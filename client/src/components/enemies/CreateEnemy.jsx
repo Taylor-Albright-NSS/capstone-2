@@ -34,7 +34,7 @@ export const CreateEnemy = () => {
 
             <Row >
                 <Col className="d-flex align-items-center flex-column">
-                    <FormGroup className="justify-content-center">
+                    <FormGroup>
                         <Label for="minLevel">Min. Level</Label>
                         <Input style={{width: "76px"}} type="number" name="minLevel" id="minLevel" />
                     </FormGroup>
@@ -44,15 +44,15 @@ export const CreateEnemy = () => {
                     </FormGroup>
                 </Col>
                 <Col className="d-flex align-items-center flex-column">
-                    <FormGroup>
-                        <Label for="baseDamage">Base Damage</Label>
+                <FormGroup className="d-flex flex-column align-items-center">
+                <Label for="baseDamage">Base Damage</Label>
                         <Input style={{maxWidth: "76px"}} type="number" name="baseDamage" id="baseDamage" />
                     </FormGroup>
-                    <FormGroup>
+                    <FormGroup className="d-flex flex-column align-items-center">
                         <Label for="baseHealth">Base Health</Label>
                         <Input style={{maxWidth: "76px"}} type="number" name="baseHealth" id="baseHealth" />
                     </FormGroup>
-                    <FormGroup>
+                    <FormGroup className="d-flex flex-column align-items-center">
                         <Label for="baseExperience">Base Experience</Label>
                         <Input style={{maxWidth: "76px"}} type="number" name="baseExperience" id="baseExperience" />
                     </FormGroup>
