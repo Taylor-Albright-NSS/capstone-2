@@ -3,6 +3,7 @@ using System;
 using Capstone2.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Capstone_2.Migrations
 {
     [DbContext(typeof(Capstone2DbContext))]
-    partial class Capstone2DbContextModelSnapshot : ModelSnapshot
+    [Migration("20250113054655_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -187,7 +190,7 @@ namespace Capstone_2.Migrations
                             BaseExperience = 10,
                             BaseHealth = 10,
                             BluntArmor = 0,
-                            BluntDamage = true,
+                            BluntDamage = false,
                             Description = "A brown moving puddle that resembles a puddle of mud.",
                             ImageId = 1,
                             MaxLevel = 3,
@@ -196,183 +199,12 @@ namespace Capstone_2.Migrations
                             PiercingArmor = 0,
                             PiercingDamage = false,
                             SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A small, green sliver that could easily be mistaken for a blade of grass.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Grassling",
-                            PiercingArmor = 0,
-                            PiercingDamage = false,
-                            SlashingArmor = 0,
                             SlashingDamage = true,
                             UserId = 1
                         },
                         new
                         {
-                            Id = 3,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Waterling",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Skeleton",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Giant Rat",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Cultist",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Grave Worm",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Wild Boar",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Stag",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Impling",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 11,
+                            Id = 2,
                             BaseDamage = 7,
                             BaseExperience = 150,
                             BaseHealth = 160,
@@ -618,13 +450,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6a4522eb-04d5-420f-bdfd-d532f724a942",
+                            ConcurrencyStamp = "e92aaeaf-d6be-4c66-b8b9-51e966c2f890",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEPc/fwaA5N+PQQc6/MAhIu2UqEzKHDFERvR7EjgRRfvJ5tz+bz6s8bN06YvXig7aSw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEErG/kT6QARC5AOq8thlJzgqNI90nlLpnWDenSdcTe56lquuINqkb/TucKvtSZaXQg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5f800b4f-6660-46c9-a5e7-f028d4647e0d",
+                            SecurityStamp = "8064d7e6-5571-4e48-86b5-de8640c6693e",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -632,13 +464,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d8d76512-74f1-43bb-b1fd-87d3a8aa36df",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4324ef69-38d7-4775-8301-fa5f687c969c",
+                            ConcurrencyStamp = "e1ad3e24-634a-48f0-badf-3bcac06a2944",
                             Email = "john@doe.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAECMJtwzDfAj7ZJcVZHe7yBc/yLyX6/OOSQ05xqINR9CGnpnNEhZwhatyMXI5jZnw9Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELBDJfJWcdK72WA+AhLiFFshsXhHckEJSvCCe8YjtgpXDPLnZ6/kLlTcLBtH81bJJw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "349c5ae1-0da0-4f59-ba25-7a949c01ba72",
+                            SecurityStamp = "5976ea26-2d6b-4c84-a98f-e6d51e9ad231",
                             TwoFactorEnabled = false,
                             UserName = "JohnDoe"
                         },
@@ -646,13 +478,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "a7d21fac-3b21-454a-a747-075f072d0cf3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5e411555-958b-428c-8d8e-e422a0a35019",
+                            ConcurrencyStamp = "8c4708de-b40b-4ed5-8c12-da8751d455fe",
                             Email = "jane@smith.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEIrMTfZnd3kM0z47/VraVMbFkebB4rMHFrSyysMbsgULDfIf6ffPX4tlSyJiH31sKg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBpB97DAOF7lrDeoNk2QQa8BQL73s6ewfEdKhzzIu25DcXs/I2IUIQfIdBIlctWcRw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "19e83e52-862e-425f-abc5-ba9a1e86d64d",
+                            SecurityStamp = "44acb663-d83c-40ce-821d-a39a8bbff26a",
                             TwoFactorEnabled = false,
                             UserName = "JaneSmith"
                         },
@@ -660,13 +492,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "c806cfae-bda9-47c5-8473-dd52fd056a9b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "821ca2b1-6e30-4cf7-a0b7-7c7162078de2",
+                            ConcurrencyStamp = "53814c2a-4cca-4e53-908e-41d87599b169",
                             Email = "alice@johnson.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAENOjBfjF8+i57ebvEDePL4FyNS9nXW3ldK1rXUtr+Fzde+rsji5e0Mz2hFSv2+okTw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMTaWGI6wprOMNsKcUGaQlqbPFvI/9GhxnigHOucYU87vujchYxdzmr6Bxrt8WxceA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "994088cf-538d-4b8b-b417-d90ffcaabd1a",
+                            SecurityStamp = "dc8d905c-dd60-4c9e-bbf9-eb06e049c901",
                             TwoFactorEnabled = false,
                             UserName = "AliceJohnson"
                         },
@@ -674,13 +506,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "9ce89d88-75da-4a80-9b0d-3fe58582b8e2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b72d82b3-5a49-4cb3-b66d-d63d5f2a78e4",
+                            ConcurrencyStamp = "abfdc78a-91db-4028-b055-739050d95143",
                             Email = "bob@williams.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEMcB/HuMOUyg6yWAl2hkp6MFERi4FEeZuyToF+fupVOrTrz0Di+8Jm0+4sw/UxImVQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEP24y+q9+0Zzgq+YxCt2MueMkd1p6QFQlSifJpWu10KG78MAyxJg94ghf3OB58GuvQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c312d556-31f9-4c30-9e44-d933e9059c4e",
+                            SecurityStamp = "153561e4-b8da-4cac-aede-bb8b21097e4a",
                             TwoFactorEnabled = false,
                             UserName = "BobWilliams"
                         },
@@ -688,13 +520,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d224a03d-bf0c-4a05-b728-e3521e45d74d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "070768fe-8025-4e35-9868-c6da258996f7",
+                            ConcurrencyStamp = "1e7d7715-8039-44b1-ab6c-970958abb759",
                             Email = "Eve@Davis.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEB8QNaNdeb00uZm5zplNe1OfCrG/RW5s8Z9vY3JUWJcuZm6Gq++V1NT/HEyIturCtg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFtGAWqPo6FJz9gogIP60cMufmuZ3trWM4wTPYQEUKvC7rzvLR02rsyMeKEkgkHmyw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1f084d62-b17c-4e00-8e33-aead48786d8b",
+                            SecurityStamp = "ec2d84c4-ea39-4558-95d3-23bb8d99ade1",
                             TwoFactorEnabled = false,
                             UserName = "EveDavis"
                         });

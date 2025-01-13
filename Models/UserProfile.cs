@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Capstone_2.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Capstone2.Models;
@@ -41,4 +42,5 @@ public class UserProfile
             return $"{FirstName} {LastName}";
         }
     }
+    public List<Enemy> Enemies { get; set; }
 }

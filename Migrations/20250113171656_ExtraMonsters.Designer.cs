@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Capstone_2.Migrations
 {
     [DbContext(typeof(Capstone2DbContext))]
-    [Migration("20250112031130_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250113171656_ExtraMonsters")]
+    partial class ExtraMonsters
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,6 +115,306 @@ namespace Capstone_2.Migrations
                             IdentityUserId = "d224a03d-bf0c-4a05-b728-e3521e45d74d",
                             ImageLocation = "https://robohash.org/hicnihilipsa.png?size=150x150&set=set1",
                             LastName = "Davis"
+                        });
+                });
+
+            modelBuilder.Entity("Capstone_2.Models.Enemy", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BaseDamage")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("BaseExperience")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("BaseHealth")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("BluntArmor")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("BluntDamage")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ImageId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MaxLevel")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MinLevel")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("PiercingArmor")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("PiercingDamage")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("SlashingArmor")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("SlashingDamage")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("UserProfileId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserProfileId");
+
+                    b.ToTable("Enemies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BaseDamage = 5,
+                            BaseExperience = 10,
+                            BaseHealth = 10,
+                            BluntArmor = 0,
+                            BluntDamage = true,
+                            Description = "A brown moving puddle that resembles a puddle of mud.",
+                            ImageId = 1,
+                            MaxLevel = 3,
+                            MinLevel = 1,
+                            Name = "Mudling",
+                            PiercingArmor = 0,
+                            PiercingDamage = false,
+                            SlashingArmor = 0,
+                            SlashingDamage = false,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BaseDamage = 5,
+                            BaseExperience = 10,
+                            BaseHealth = 10,
+                            BluntArmor = 0,
+                            BluntDamage = false,
+                            Description = "A small, green sliver that could easily be mistaken for a blade of grass.",
+                            ImageId = 1,
+                            MaxLevel = 3,
+                            MinLevel = 1,
+                            Name = "Grassling",
+                            PiercingArmor = 0,
+                            PiercingDamage = false,
+                            SlashingArmor = 0,
+                            SlashingDamage = true,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BaseDamage = 5,
+                            BaseExperience = 10,
+                            BaseHealth = 10,
+                            BluntArmor = 0,
+                            BluntDamage = false,
+                            Description = "A blue puddle.",
+                            ImageId = 1,
+                            MaxLevel = 3,
+                            MinLevel = 1,
+                            Name = "Waterling",
+                            PiercingArmor = 0,
+                            PiercingDamage = true,
+                            SlashingArmor = 0,
+                            SlashingDamage = false,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BaseDamage = 5,
+                            BaseExperience = 10,
+                            BaseHealth = 10,
+                            BluntArmor = 0,
+                            BluntDamage = false,
+                            Description = "A blue puddle.",
+                            ImageId = 1,
+                            MaxLevel = 3,
+                            MinLevel = 1,
+                            Name = "Skeleton",
+                            PiercingArmor = 0,
+                            PiercingDamage = true,
+                            SlashingArmor = 0,
+                            SlashingDamage = false,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BaseDamage = 5,
+                            BaseExperience = 10,
+                            BaseHealth = 10,
+                            BluntArmor = 0,
+                            BluntDamage = false,
+                            Description = "A blue puddle.",
+                            ImageId = 1,
+                            MaxLevel = 3,
+                            MinLevel = 1,
+                            Name = "Giant Rat",
+                            PiercingArmor = 0,
+                            PiercingDamage = true,
+                            SlashingArmor = 0,
+                            SlashingDamage = false,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BaseDamage = 5,
+                            BaseExperience = 10,
+                            BaseHealth = 10,
+                            BluntArmor = 0,
+                            BluntDamage = false,
+                            Description = "A blue puddle.",
+                            ImageId = 1,
+                            MaxLevel = 3,
+                            MinLevel = 1,
+                            Name = "Cultist",
+                            PiercingArmor = 0,
+                            PiercingDamage = true,
+                            SlashingArmor = 0,
+                            SlashingDamage = false,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BaseDamage = 7,
+                            BaseExperience = 150,
+                            BaseHealth = 160,
+                            BluntArmor = 0,
+                            BluntDamage = false,
+                            Description = "A small, green creature with a big nose and pointy ears.",
+                            ImageId = 2,
+                            MaxLevel = 15,
+                            MinLevel = 10,
+                            Name = "Kobold",
+                            PiercingArmor = 5,
+                            PiercingDamage = false,
+                            SlashingArmor = 5,
+                            SlashingDamage = true,
+                            UserId = 1
+                        });
+                });
+
+            modelBuilder.Entity("Capstone_2.Models.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ImageLocation")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ImageLocation = "assets/elementals/mudling/mudling.png"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ImageLocation = "assets/kobolds/kobold child/kobold child.png"
+                        });
+                });
+
+            modelBuilder.Entity("Capstone_2.Models.Item", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Items");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Sword"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Twohanded Sword"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Bow"
+                        });
+                });
+
+            modelBuilder.Entity("EnemyItem", b =>
+                {
+                    b.Property<int>("EnemiesId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ItemsId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("EnemiesId", "ItemsId");
+
+                    b.HasIndex("ItemsId");
+
+                    b.ToTable("EnemyItem");
+
+                    b.HasData(
+                        new
+                        {
+                            EnemiesId = 1,
+                            ItemsId = 1
+                        },
+                        new
+                        {
+                            EnemiesId = 1,
+                            ItemsId = 2
+                        },
+                        new
+                        {
+                            EnemiesId = 1,
+                            ItemsId = 3
+                        },
+                        new
+                        {
+                            EnemiesId = 2,
+                            ItemsId = 2
                         });
                 });
 
@@ -245,13 +545,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4e8c42c9-cdea-4e7c-99a4-6aa32373c445",
+                            ConcurrencyStamp = "e635d2d1-3832-400d-8906-6c8d50edb3cc",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAELZ82rbHTmy81TqYhEAc2+HB4d18//jviJ3nfdBTuv8KRPXbZm1EEf/t+/UW962Hsw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIVyZmAxA6UtmNK6RTLjGCdQjVwWWNyTmV3zf3ApR7yPG2SRHlfhhAPJ2fvTvOmDuA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "95094269-2d19-428c-bfd0-b9a17acca0f7",
+                            SecurityStamp = "616a20ad-cfa9-4cb6-b2d9-21ef2fbf7a26",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -259,13 +559,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d8d76512-74f1-43bb-b1fd-87d3a8aa36df",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6bf17c4d-0809-4e2b-902a-63effdc28c01",
+                            ConcurrencyStamp = "3cb035d8-e69d-46b2-946b-4db1a146a171",
                             Email = "john@doe.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEKycFHVSpdkcuPNzXlk2K8Fl/NXYEEQDg96KGv8cyRdPpNbcw3jqIGgU7hivVb/RRw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPTTVD3TCVRKpfXwQNT2Xl0/pF8mmDiMAtsH8uigvWm/wYAlsJWFFM9OLEUane9NiA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4dd4b656-1362-4e53-8594-30a3dbc455bc",
+                            SecurityStamp = "a832ad51-707b-44a6-a954-4a9ac2a754fc",
                             TwoFactorEnabled = false,
                             UserName = "JohnDoe"
                         },
@@ -273,13 +573,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "a7d21fac-3b21-454a-a747-075f072d0cf3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "99f9187c-81df-486b-a5f9-633af69f0b74",
+                            ConcurrencyStamp = "12844085-c442-438b-ae7d-f8e9001964c2",
                             Email = "jane@smith.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEP1uBEacYYOkiMYq1kkwXIPUreXIYDYjMdTVMq23lbGrhVVsITa54YLRCaIvQpp/ow==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEK31jbI3C3LWtW635ZiwTn1eV7kdfSB7PRYzXUD2O2UPoYFA7VXlXeTvRKgFmSpQbA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5956a698-d17e-4d9d-97b5-46ed153faa1f",
+                            SecurityStamp = "e87a067c-3ad9-4386-8201-f184fe7a9537",
                             TwoFactorEnabled = false,
                             UserName = "JaneSmith"
                         },
@@ -287,13 +587,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "c806cfae-bda9-47c5-8473-dd52fd056a9b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c623959f-b931-4e10-90f6-f72eb9307b95",
+                            ConcurrencyStamp = "b74289be-8686-4052-bb48-ec4d5e17b84f",
                             Email = "alice@johnson.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEECg6aS7gKvGd/Q7JOt1ggsSvH5/h2szgx+WS6j1CAMCBEAAeoUncbK5xueiD3ScyA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFtB/UDb3V15SGNlZdVPxrI0WiqPs2X+4RrJlriQGKmd41cVNwEYyXBVD11PRIx5TQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d0e61eb1-c5ea-4056-882e-6fce78dcf33d",
+                            SecurityStamp = "a2b710e9-cd2d-4d13-b628-89dea01f8287",
                             TwoFactorEnabled = false,
                             UserName = "AliceJohnson"
                         },
@@ -301,13 +601,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "9ce89d88-75da-4a80-9b0d-3fe58582b8e2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e300ffe7-a84c-47c1-aaea-8fbee9c4dfd1",
+                            ConcurrencyStamp = "d9f60946-1139-4c1a-af08-dfd559d7f5fa",
                             Email = "bob@williams.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEPEaKxzpT3zdJp3IZi92UQ408UI96oZpq0z+sTandcETeGv7xJchIrEmU33FhXutUg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEM5myeqr7xjVQQOZNtu07x22GMjEzpj7kbl+gRYtzqdNSOXJ/F48j9XQ+ZBmCsinsQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "50ba79fb-abfb-4a9c-962e-6cc0d42e8859",
+                            SecurityStamp = "fa21abd9-1841-4808-9996-66b38d302c29",
                             TwoFactorEnabled = false,
                             UserName = "BobWilliams"
                         },
@@ -315,13 +615,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d224a03d-bf0c-4a05-b728-e3521e45d74d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "95e96dff-36bb-43dd-9833-3dbf8d88ade3",
+                            ConcurrencyStamp = "24108712-6e68-45c7-bbc3-794c03650b06",
                             Email = "Eve@Davis.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEOCFRZb9LKXNNuoVZiIxp4Jgd4t/45IlX66Jd1ZOB98YR2OrVIzr7gcVIXyotQerRA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBz/Sn9ba0xzdq9gzAoEANJ2cyDLBQJn2iWLu7Thi3BxuImnwgZQo1KF5cYQ96/JRw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7f05e130-2760-4953-82f8-670d0d9843ae",
+                            SecurityStamp = "d8b2628a-4148-4fc8-a5d9-344dfbe9449c",
                             TwoFactorEnabled = false,
                             UserName = "EveDavis"
                         });
@@ -431,6 +731,28 @@ namespace Capstone_2.Migrations
                     b.Navigation("IdentityUser");
                 });
 
+            modelBuilder.Entity("Capstone_2.Models.Enemy", b =>
+                {
+                    b.HasOne("Capstone2.Models.UserProfile", null)
+                        .WithMany("Enemies")
+                        .HasForeignKey("UserProfileId");
+                });
+
+            modelBuilder.Entity("EnemyItem", b =>
+                {
+                    b.HasOne("Capstone_2.Models.Enemy", null)
+                        .WithMany()
+                        .HasForeignKey("EnemiesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Capstone_2.Models.Item", null)
+                        .WithMany()
+                        .HasForeignKey("ItemsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -480,6 +802,11 @@ namespace Capstone_2.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Capstone2.Models.UserProfile", b =>
+                {
+                    b.Navigation("Enemies");
                 });
 #pragma warning restore 612, 618
         }

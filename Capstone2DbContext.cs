@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Capstone2.Models;
 using Microsoft.AspNetCore.Identity;
+using Capstone_2.Models;
 
 namespace Capstone2.Data;
 public class Capstone2DbContext : IdentityDbContext<IdentityUser>
@@ -9,6 +10,9 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
     private readonly IConfiguration _configuration;
 
     public DbSet<UserProfile> UserProfiles { get; set; }
+    public DbSet<Enemy> Enemies { get; set; }
+    public DbSet<Item> Items { get; set; }
+    public DbSet<Image> Images { get; set; }
 
     public Capstone2DbContext(DbContextOptions<Capstone2DbContext> context, IConfiguration config) : base(context)
     {
@@ -87,6 +91,254 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
             },
 
         });
+
+        modelBuilder.Entity<Enemy>().HasData(new Enemy[]
+        {
+            new Enemy
+            {
+                Id = 1,
+                UserId = 1,
+                ImageId = 1,
+                Name = "Mudling",
+                MinLevel = 1,
+                MaxLevel = 3,
+                BaseDamage = 5,
+                BaseHealth = 10,
+                BaseExperience = 10,
+                SlashingArmor = 0,
+                PiercingArmor = 0,
+                BluntArmor = 0,
+                SlashingDamage = false,
+                PiercingDamage = false,
+                BluntDamage = true,
+                Description = "A brown moving puddle that resembles a puddle of mud."
+            },
+            new Enemy
+            {
+                Id = 2,
+                UserId = 1,
+                ImageId = 1,
+                Name = "Grassling",
+                MinLevel = 1,
+                MaxLevel = 3,
+                BaseDamage = 5,
+                BaseHealth = 10,
+                BaseExperience = 10,
+                SlashingArmor = 0,
+                PiercingArmor = 0,
+                BluntArmor = 0,
+                SlashingDamage = true,
+                PiercingDamage = false,
+                BluntDamage = false,
+                Description = "A small, green sliver that could easily be mistaken for a blade of grass."
+            },
+            new Enemy
+            {
+                Id = 3,
+                UserId = 1,
+                ImageId = 1,
+                Name = "Waterling",
+                MinLevel = 1,
+                MaxLevel = 3,
+                BaseDamage = 5,
+                BaseHealth = 10,
+                BaseExperience = 10,
+                SlashingArmor = 0,
+                PiercingArmor = 0,
+                BluntArmor = 0,
+                SlashingDamage = false,
+                PiercingDamage = true,
+                BluntDamage = false,
+                Description = "A blue puddle."
+            },
+            new Enemy
+            {
+                Id = 4,
+                UserId = 1,
+                ImageId = 1,
+                Name = "Skeleton",
+                MinLevel = 1,
+                MaxLevel = 3,
+                BaseDamage = 5,
+                BaseHealth = 10,
+                BaseExperience = 10,
+                SlashingArmor = 0,
+                PiercingArmor = 0,
+                BluntArmor = 0,
+                SlashingDamage = false,
+                PiercingDamage = true,
+                BluntDamage = false,
+                Description = "A blue puddle."
+            },
+            new Enemy
+            {
+                Id = 5,
+                UserId = 1,
+                ImageId = 1,
+                Name = "Giant Rat",
+                MinLevel = 1,
+                MaxLevel = 3,
+                BaseDamage = 5,
+                BaseHealth = 10,
+                BaseExperience = 10,
+                SlashingArmor = 0,
+                PiercingArmor = 0,
+                BluntArmor = 0,
+                SlashingDamage = false,
+                PiercingDamage = true,
+                BluntDamage = false,
+                Description = "A blue puddle."
+            },
+            new Enemy
+            {
+                Id = 6,
+                UserId = 1,
+                ImageId = 1,
+                Name = "Cultist",
+                MinLevel = 1,
+                MaxLevel = 3,
+                BaseDamage = 5,
+                BaseHealth = 10,
+                BaseExperience = 10,
+                SlashingArmor = 0,
+                PiercingArmor = 0,
+                BluntArmor = 0,
+                SlashingDamage = false,
+                PiercingDamage = true,
+                BluntDamage = false,
+                Description = "A blue puddle."
+            },
+            new Enemy
+            {
+                Id = 7,
+                UserId = 1,
+                ImageId = 1,
+                Name = "Grave Worm",
+                MinLevel = 1,
+                MaxLevel = 3,
+                BaseDamage = 5,
+                BaseHealth = 10,
+                BaseExperience = 10,
+                SlashingArmor = 0,
+                PiercingArmor = 0,
+                BluntArmor = 0,
+                SlashingDamage = false,
+                PiercingDamage = true,
+                BluntDamage = false,
+                Description = "A blue puddle."
+            },
+            new Enemy
+            {
+                Id = 8,
+                UserId = 1,
+                ImageId = 1,
+                Name = "Wild Boar",
+                MinLevel = 1,
+                MaxLevel = 3,
+                BaseDamage = 5,
+                BaseHealth = 10,
+                BaseExperience = 10,
+                SlashingArmor = 0,
+                PiercingArmor = 0,
+                BluntArmor = 0,
+                SlashingDamage = false,
+                PiercingDamage = true,
+                BluntDamage = false,
+                Description = "A blue puddle."
+            },
+            new Enemy
+            {
+                Id = 9,
+                UserId = 1,
+                ImageId = 1,
+                Name = "Stag",
+                MinLevel = 1,
+                MaxLevel = 3,
+                BaseDamage = 5,
+                BaseHealth = 10,
+                BaseExperience = 10,
+                SlashingArmor = 0,
+                PiercingArmor = 0,
+                BluntArmor = 0,
+                SlashingDamage = false,
+                PiercingDamage = true,
+                BluntDamage = false,
+                Description = "A blue puddle."
+            },
+            new Enemy
+            {
+                Id = 10,
+                UserId = 1,
+                ImageId = 1,
+                Name = "Impling",
+                MinLevel = 1,
+                MaxLevel = 3,
+                BaseDamage = 5,
+                BaseHealth = 10,
+                BaseExperience = 10,
+                SlashingArmor = 0,
+                PiercingArmor = 0,
+                BluntArmor = 0,
+                SlashingDamage = false,
+                PiercingDamage = true,
+                BluntDamage = false,
+                Description = "A blue puddle."
+            },
+            new Enemy
+            {
+                Id = 11,
+                UserId = 1,
+                ImageId = 2,
+                Name = "Kobold",
+                MinLevel = 10,
+                MaxLevel = 15,
+                BaseDamage = 7,
+                BaseHealth = 160,
+                BaseExperience = 150,
+                SlashingArmor = 5,
+                PiercingArmor = 5,
+                BluntArmor = 0,
+                SlashingDamage = true,
+                PiercingDamage = false,
+                BluntDamage = false,
+                Description = "A small, green creature with a big nose and pointy ears."
+            }
+        }
+        );
+
+        modelBuilder.Entity<Item>().HasData(new Item[]
+        {
+            new Item
+            {
+                Id = 1,
+                Name = "Sword"
+            },
+            new Item
+            {
+                Id = 2,
+                Name = "Twohanded Sword"
+            },
+            new Item
+            {
+                Id = 3,
+                Name = "Bow"
+            }
+        });
+
+        modelBuilder.Entity<Image>().HasData(new Image[]
+        {
+            new Image
+            {
+                Id = 1,
+                ImageLocation = "assets/elementals/mudling/mudling.png"
+            },
+            new Image
+            {
+                Id = 2,
+                ImageLocation = "assets/kobolds/kobold child/kobold child.png"
+            },
+        });
+
         modelBuilder.Entity<UserProfile>().HasData(new UserProfile[]
         {
             new UserProfile
@@ -147,17 +399,14 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
 
         //Many to many relationship example
 
-        // modelBuilder.Entity<Post>()
-        // .HasMany(p => p.Tags)
-        // .WithMany(t => t.Posts)
-        // .UsingEntity(j => j.HasData(
-        //     new { PostsId = 1, TagsId = 3 },
-        //     new { PostsId = 1, TagsId = 2 },
-        //     new { PostsId = 2, TagsId = 1 },
-        //     new { PostsId = 3, TagsId = 1 },
-        //     new { PostsId = 4, TagsId = 1 },
-        //     new { PostsId = 5, TagsId = 1 },
-        //     new { PostsId = 6, TagsId = 3 }
-        // ));
+        modelBuilder.Entity<Enemy>()
+        .HasMany(e => e.Items)
+        .WithMany(i => i.Enemies)
+        .UsingEntity(j => j.HasData(
+            new { EnemiesId = 1, ItemsId = 1 },
+            new { EnemiesId = 1, ItemsId = 2 },
+            new { EnemiesId = 1, ItemsId = 3 },
+            new { EnemiesId = 2, ItemsId = 2 }
+        ));
     }
 }

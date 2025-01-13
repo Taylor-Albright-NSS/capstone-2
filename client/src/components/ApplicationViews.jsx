@@ -11,6 +11,7 @@ import { EnemyList } from "./enemies/EnemyList";
 import { EnemyDetails } from "./enemies/EnemyDetails";
 import { CreateEnemy } from "./enemies/CreateEnemy";
 export const UserContext = createContext();
+
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   const test = "test"
   return (
