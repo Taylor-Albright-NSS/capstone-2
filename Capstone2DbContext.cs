@@ -13,6 +13,7 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
     public DbSet<Enemy> Enemies { get; set; }
     public DbSet<Item> Items { get; set; }
     public DbSet<Image> Images { get; set; }
+    public DbSet<EnemyItem> EnemiesItems { get; set; }
 
     public Capstone2DbContext(DbContextOptions<Capstone2DbContext> context, IConfiguration config) : base(context)
     {
@@ -388,16 +389,27 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
             }
         });
 
+        modelBuilder.Entity<EnemyItem>()
+            .HasKey(ei => new { ei.EnemiesId, ei.ItemsId });
+
+        modelBuilder.Entity<EnemyItem>()
+            .HasOne(ei => ei.Enemy)
+            .WithMany(e => e.EnemyItems)
+            .HasForeignKey(ei => ei.EnemiesId);
+
+        modelBuilder.Entity<EnemyItem>()
+            .HasOne(ei => ei.Item)
+            .WithMany(i => i.EnemyItems)
+            .HasForeignKey(ei => ei.ItemsId);
+
+        modelBuilder.Entity<EnemyItem>().HasData(
+            new EnemyItem { EnemiesId = 1, ItemsId = 1 },
+            new EnemyItem { EnemiesId = 1, ItemsId = 2 },
+            new EnemyItem { EnemiesId = 1, ItemsId = 3 },
+            new EnemyItem { EnemiesId = 2, ItemsId = 2 }
+        );
+
         //Many to many relationship example
 
-        modelBuilder.Entity<Enemy>()
-        .HasMany(e => e.Items)
-        .WithMany(i => i.Enemies)
-        .UsingEntity(j => j.HasData(
-            new { EnemiesId = 1, ItemsId = 1 },
-            new { EnemiesId = 1, ItemsId = 2 },
-            new { EnemiesId = 1, ItemsId = 3 },
-            new { EnemiesId = 2, ItemsId = 2 }
-        ));
     }
 }

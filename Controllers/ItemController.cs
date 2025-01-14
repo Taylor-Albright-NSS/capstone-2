@@ -9,7 +9,7 @@ namespace Capstone_2.Controllers;
 
 
 [ApiController]
-[Route("api/controller")]
+[Route("api/[controller]")]
 
 public class ItemController : ControllerBase
 {

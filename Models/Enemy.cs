@@ -19,6 +19,7 @@ public class Enemy
     public bool PiercingDamage { get; set; }
     public bool BluntDamage { get; set; }
     public string Description { get; set; }
+    public List<int>? ItemIds { get; set; }
     public int ActualLevel
     {
         get { return new Random().Next(MinLevel, MaxLevel + 1); }
@@ -28,5 +29,6 @@ public class Enemy
         get { return 100 + (ActualLevel - MinLevel / MaxLevel - MinLevel) * (150 - 100); }
     }
     public List<Item>? Items { get; set; }
+    public ICollection<EnemyItem> EnemyItems { get; set; }
 
 }

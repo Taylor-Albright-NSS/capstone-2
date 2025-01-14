@@ -39,6 +39,24 @@ public class EnemyController : ControllerBase
         Enemy enemy = _mapper.Map<Enemy>(enemyDTO);
         _dbContext.Enemies.Add(enemy);
         _dbContext.SaveChanges();
-        return Created($"api/enemy/{enemy.Id}", enemy);
+
+        var enemyId = enemy.Id;
+
+        var associations = enemyDTO.ItemIds.Select(itemId => new EnemyItem 
+        {
+            EnemiesId = enemyId,
+            ItemsId = itemId
+        });
+
+        _dbContext.EnemiesItems.AddRange(associations);
+        _dbContext.SaveChangesAsync();
+
+        return Ok(new { Message = "Enemy created successfully", EnemyId = enemyId });
+    }
+    //--------
+    [HttpGet("enemies-items")]
+    public IActionResult GetEnemiesItems()
+    {
+        return Ok(_dbContext.EnemiesItems);
     }
 }

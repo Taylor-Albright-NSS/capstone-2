@@ -1,12 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button, Form, FormGroup, Input, Label, Row, Col } from "reactstrap";
 import { UserContext } from "../ApplicationViews";
 import { postEnemy } from "../../managers/enemyManager";
+import { getItems } from "../../managers/itemManager";
+import { getEnemyImages } from "../../managers/imageManager";
+
 
 export const CreateEnemy = () => {
     const { loggedInUser } = useContext(UserContext)
     const userId = loggedInUser.id
     const [images, setImages] = useState([])
+    const [items, setItems] = useState([])
+    const [itemDrops, setItemDrops] = useState([])
     const [newEnemy, setNewEnemy] = useState({
         userId: userId,
         imageId: 1,
@@ -23,23 +28,52 @@ export const CreateEnemy = () => {
         piercingDamage: false,
         bluntDamage: false,
         description: "",
-        // items: null,
-
+        itemIds: []
     })
+
+    useEffect(() => {
+        getItems().then(itemList => {
+            console.log(itemList)
+            setItems(itemList)
+        })
+    }, [])
+    useEffect(() => {
+        getEnemyImages().then(imageList => {
+            console.log(imageList)
+            setImages(imageList)
+        })
+    }, [])
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('testing')
-        console.log(newEnemy, 'New Enemy Object')
-        postEnemy(newEnemy).then(() => {
-            console.log(newEnemy)
-        })
+        console.log(itemDrops)
+        // postEnemy(newEnemy).then(() => {
+        //     console.log(newEnemy)
+        // })
     }
+
+    const handleItemDropsChange = (e) => {
+        const itemId = e.target.value;  // ID of the item
+        const isChecked = e.target.checked;
+        // Update the selectedItems array
+        if (isChecked) {
+            // setNewEnemy(prev => [...prev, parseInt(itemId)]);  // Add itemId
+            setItemDrops(prev => [...prev, parseInt(itemId)]);  // Add itemId
+        } else {
+            setItemDrops(prev => prev.filter(item => item !== parseInt(itemId)));  // Remove itemId
+        }
+      };
 
     const handleCheckbox = (e) => {
         const { name, checked } = e.target;
         setNewEnemy({ ...newEnemy, [name]: checked });
     };
+
+    const handleItemSelect = (e) => {
+        console.log(e)
+        console.log(e.target)
+        console.log(e.target.options[e.target.selectedIndex].value, ' test')
+    }
 
     const handleTextInput = (e) => {
         setNewEnemy({...newEnemy, [e.target.name]: e.target.checked})
@@ -149,6 +183,37 @@ export const CreateEnemy = () => {
                             </fieldset>
                         </Row>
                     </Col>
+                </Row>
+                <Row>
+                    <fieldset>
+                        <legend>Item Drops</legend>
+                                        {items && items.map(item => 
+                                             (
+                                                <Col key={item.id} xs="12" sm="6" md="4" lg="3">
+                                                <FormGroup check>
+                                                    <Label check>
+                                                        <Input type="checkbox" name={`item-${item.id}`} value={item.id} onChange={handleItemDropsChange}/>
+                                                        {item.name}
+                                                    </Label>
+                                                </FormGroup>
+                                            </Col>
+                                            )
+                                        )}
+                                {/* <FormGroup >
+                                    <Label for="items">TEST</Label>
+                                    <Input type="select" onChange={(e) => handleSelect(e)}>
+                                    <option key={0} value={0}>Select an item</option>
+                                        {items && items.map(item => {
+                                            return (<option key={item.id} value={item.id} data-name={'test'}>{item.name}</option>)
+                                        })}
+                                    </Input>
+                                </FormGroup> */}
+                        {/* {items && items.map(item => {
+                            return (
+
+                        )
+                        })} */}
+                    </fieldset>
                 </Row>
         </Form>
         // <div className="container" style={{ maxWidth: "500px" }}>
