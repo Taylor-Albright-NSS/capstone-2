@@ -16,11 +16,15 @@ public class AutoMapperProfiles : Profile
         CreateMap<Item, ItemSimpleDTO>();
         CreateMap<Image, ImageDTO>();
 
-        //         CreateMap<Item, ItemDTO>()
-        //     .ForMember(dest => dest.Enemies, opt => opt.MapFrom(src => src.Enemies));
+        CreateMap<Enemy, EnemyDTO>()
+            .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Image));
+        CreateMap<EnemyDTO, Enemy>()
+            .ForMember(dest => dest.Image, opt => opt.Ignore());
 
-        // CreateMap<ItemDTO, Item>()
-        //     .ForMember(dest => dest.Enemies, opt => opt.MapFrom(src => src.Enemies));
+        CreateMap<Item, ItemDTO>()
+            .ForMember(dest => dest.Enemies, opt => opt.MapFrom(src => src.Enemies));
+        CreateMap<ItemDTO, Item>()
+            .ForMember(dest => dest.Enemies, opt => opt.MapFrom(src => src.Enemies));
 
     }
         

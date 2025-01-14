@@ -409,6 +409,16 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
             new EnemyItem { EnemiesId = 2, ItemsId = 2 }
         );
 
+        modelBuilder.Entity<Enemy>()
+        .HasMany(e => e.Items)
+        .WithMany(i => i.Enemies)
+        .UsingEntity(j => j.HasData(
+            new { EnemiesId = 1, ItemsId = 1 },
+            new { EnemiesId = 1, ItemsId = 2 },
+            new { EnemiesId = 1, ItemsId = 3 },
+            new { EnemiesId = 2, ItemsId = 2 }
+        ));
+
         //Many to many relationship example
 
     }

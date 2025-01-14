@@ -11,9 +11,7 @@ export const EnemyList = () => {
     const { test } = useContext(UserContext)
 
     useEffect(() => {
-        console.log(loggedInUser)
         getEnemies().then(enemyList => {
-            console.log(enemyList)
             setEnemies(enemyList)
         })
     }, [])

@@ -26,6 +26,24 @@ public class EnemyController : ControllerBase
     {
         return Ok(_dbContext.Enemies.ProjectTo<EnemyDTO>(_mapper.ConfigurationProvider));
     }
+    [HttpGet("{id}")]
+    public IActionResult Get(int id)
+    {
+        EnemyDTO enemyDTO = _dbContext.Enemies
+        .ProjectTo<EnemyDTO>(_mapper.ConfigurationProvider)
+        .Single(enemy => enemy.Id == id);
+
+        if (enemyDTO == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(enemyDTO);
+
+            //         PostDetailDTO post = _DbContext.Posts
+            // .ProjectTo<PostDetailDTO>(_mapper.ConfigurationProvider)
+            // .FirstOrDefault(p => p.Id == id);
+    }
     //--------
     [HttpGet("simple")]
     public IActionResult GetSimple()

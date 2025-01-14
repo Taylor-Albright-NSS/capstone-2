@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Capstone_2.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitailMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -307,12 +307,12 @@ namespace Capstone_2.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "9ce89d88-75da-4a80-9b0d-3fe58582b8e2", 0, "851de101-43ee-40d4-9ad0-d6decc36fde6", "bob@williams.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEPnkectQXT31PfBNFtssUhqvTzb82A7BhnDHO+g/MdZ/88dXxIJuyb45jfgWwuguSA==", null, false, "e2f928db-25d2-4ec4-ab34-a18319852dc3", false, "BobWilliams" },
-                    { "a7d21fac-3b21-454a-a747-075f072d0cf3", 0, "7e556b92-6b19-49d5-8f2c-5879980cad28", "jane@smith.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEIof8V1u5T9bYEmeKjGD99L9wbwokqyHMPcvWm8cWG3gqekGnukluMh1d/UZQf8LTQ==", null, false, "5e50a77d-b9d0-4ed6-9099-8a8c8f7f07f9", false, "JaneSmith" },
-                    { "c806cfae-bda9-47c5-8473-dd52fd056a9b", 0, "84da96e9-4ca7-4072-83a2-ccfc54bcfe00", "alice@johnson.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEI//H2VkEBM2UkTug3O1NHWMmZuaOsk6+K3zRtg1yGF/2j4F9kXgO5R/mDuubLHvqQ==", null, false, "61fa13a8-db6c-4e72-8376-ebe31de80ad7", false, "AliceJohnson" },
-                    { "d224a03d-bf0c-4a05-b728-e3521e45d74d", 0, "391db74d-5528-4c7f-8d93-4437afe2e0ea", "Eve@Davis.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEPyT78Hyh1XtANWPPt29I+hy/LMULqftMNPDA10LTavtFsdHo9Q4HBqAt3DFeztOuQ==", null, false, "00a932a1-dd64-4230-97f3-0d470696d8ae", false, "EveDavis" },
-                    { "d8d76512-74f1-43bb-b1fd-87d3a8aa36df", 0, "065c2e85-2e66-4765-9220-02647734391e", "john@doe.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEL4yPyiQJJ3Uh3LtIRrQxIJ4IyvE3lR8SMX3WcQX6VXxK3Bpn5nFiV27+7BROL0dHA==", null, false, "6b37a39f-d4f0-4089-a911-efecf36f163b", false, "JohnDoe" },
-                    { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "a0cf5801-a3af-4cac-b876-b1541a458e72", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEOJ8/kKe8R1ySvNVZs5HLlI9NjWLRPQk4inBkMQrENQFJpi2vWc6ELWgfDONtt/9ww==", null, false, "2378a022-5fba-492a-b9a0-d01175daa11f", false, "Administrator" }
+                    { "9ce89d88-75da-4a80-9b0d-3fe58582b8e2", 0, "307fdb05-3b23-425f-b549-332c03f3d7e7", "bob@williams.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEOXMM8ykBv/732kFj70duatPdxEBZftkNiPd9rnghL6/FQ3t7fteytfsZ/Jd1gxaCA==", null, false, "22726cb3-8067-422d-b4e3-062da1a550bf", false, "BobWilliams" },
+                    { "a7d21fac-3b21-454a-a747-075f072d0cf3", 0, "ccc2ee26-5f10-48b4-bf9c-9e64be58d68e", "jane@smith.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEBDvmULWq67iLT7R2PjKFKBTr60zLYUT/h3O4ZkkYvCjwQ5Xif7cY9Q9gikmik4BmQ==", null, false, "4560bb23-456a-40d6-b556-31cff6e6ee64", false, "JaneSmith" },
+                    { "c806cfae-bda9-47c5-8473-dd52fd056a9b", 0, "8b16786a-c015-43bc-8c72-2c7f4e849fe5", "alice@johnson.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEO0hIb1tLB67kW1lzIWY8bCksi2GbUHNrKzZi/VVIfxgQHzzlZ6PKJzklZQCXa3c2Q==", null, false, "7e955e13-c4e1-4aac-afd3-a0a06b1ec77d", false, "AliceJohnson" },
+                    { "d224a03d-bf0c-4a05-b728-e3521e45d74d", 0, "7bfac7f6-379b-4fa2-a562-dd9b6c1de813", "Eve@Davis.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEH8HF/B/xBDwaw6IYS35C5H+VGcA3l8xDs4lxgHWMG6Tml3UtisDlVCAjam8R++EIQ==", null, false, "e61f2e6e-564c-44f4-8f72-21ccc7e2332f", false, "EveDavis" },
+                    { "d8d76512-74f1-43bb-b1fd-87d3a8aa36df", 0, "2509e440-e95e-476e-8223-3f6ba2c5ce32", "john@doe.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEB/AenNhkjm0Ear3VYDX2JGspQ92itg7+ghF5xJr9YDJqYv7lMqK9174mE9fXWT8SQ==", null, false, "32c17010-1fb4-473e-88c1-a5ccb7d1ea07", false, "JohnDoe" },
+                    { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "9c7fecf4-691b-4f1d-a8c1-46a8aefe38ea", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEMavSWo7NfTgron6ccriVzdBciMdjqMkTLJiL9L8/bjyvHIox+ngr/4YXiF1ZqGwCw==", null, false, "43756784-1bc4-41f7-884d-bc1e5c8bc5dd", false, "Administrator" }
                 });
 
             migrationBuilder.InsertData(
@@ -379,6 +379,17 @@ namespace Capstone_2.Migrations
 
             migrationBuilder.InsertData(
                 table: "EnemiesItems",
+                columns: new[] { "EnemiesId", "ItemsId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 1, 2 },
+                    { 1, 3 },
+                    { 2, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "EnemyItem1",
                 columns: new[] { "EnemiesId", "ItemsId" },
                 values: new object[,]
                 {

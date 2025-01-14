@@ -5,7 +5,10 @@ export const getEnemies = async () => {
     return await response.json()
 }
 
-
+export const getEnemy = async (id) => {
+    const response = await fetch(`${api_url}/${id}`)
+    return await response.json()
+}
 
 export const postEnemy = async (enemy) => {
     const response = await fetch(`${api_url}`, {
