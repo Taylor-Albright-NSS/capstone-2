@@ -89,8 +89,8 @@ export const CreateEnemy = () => {
                             <Label for="image">Click to select an image</Label>
                             <div
                                 style={{
-                                    width: "200px",
-                                    height: "200px",
+                                    maxWidth: "200px",
+                                    minHeight: "200px",
                                     border: "2px solid grey",
                                     display: "flex",
                                     alignItems: "center",
