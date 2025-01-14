@@ -60,21 +60,47 @@ public class EnemyController : ControllerBase
 
         var enemyId = enemy.Id;
 
-        var associations = enemyDTO.ItemIds.Select(itemId => new EnemyItem 
+        List<EnemyItem> associations = enemyDTO.ItemIds.Select(itemId => new EnemyItem 
         {
             EnemiesId = enemyId,
             ItemsId = itemId
-        });
+        }).ToList();
 
         _dbContext.EnemiesItems.AddRange(associations);
-        _dbContext.SaveChangesAsync();
+        _dbContext.SaveChanges();
 
         return Ok(new { Message = "Enemy created successfully", EnemyId = enemyId });
     }
     //--------
+    //This is just for testing to see the enemy-item relationship in swagger
     [HttpGet("enemies-items")]
     public IActionResult GetEnemiesItems()
     {
         return Ok(_dbContext.EnemiesItems);
+    }
+    //--------
+    [HttpDelete("{enemyId}")]
+    public IActionResult DeleteEnemy(int enemyId)
+    {
+        var enemy = _dbContext.Enemies.FirstOrDefault(e => e.Id == enemyId);
+        if (enemy == null)
+        {
+            return NotFound("Enemy with that id not found");
+        }
+
+
+        var enemyItems = _dbContext.EnemiesItems.Where(ei => ei.EnemiesId == enemyId).ToList();
+        if (enemyItems == null)
+        {
+            return NotFound("Some or all enemy item relationships were not found");
+        }
+        //Removes enemy from database
+        _dbContext.Enemies.Remove(enemy);
+        _dbContext.SaveChanges();
+
+        //Removes enemy-item relationship from database
+        _dbContext.EnemiesItems.RemoveRange(enemyItems);
+        _dbContext.SaveChanges();
+        return Ok(new { message = "Enemy and it's item relationship has been deleted"});
     }
 }

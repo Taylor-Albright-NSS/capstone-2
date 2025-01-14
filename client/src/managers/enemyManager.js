@@ -21,7 +21,17 @@ export const postEnemy = async (enemy) => {
 
     if (!response.ok) {
         throw new Error(`Error posting enemy. Status: ${response.status}`)
+    } else {
+        console.log("enemy created")
     }
 
     return response.json()
+}
+
+export const deleteEnemy = async (enemyId) => {
+    const response = await fetch(`${api_url}/${enemyId}`, {
+        method: "DELETE"
+    })
+    const data = await response.json()
+    console.log(data.message)
 }

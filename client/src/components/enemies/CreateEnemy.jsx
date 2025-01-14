@@ -11,7 +11,6 @@ export const CreateEnemy = () => {
     const userId = loggedInUser.id
     const [images, setImages] = useState([])
     const [items, setItems] = useState([])
-    const [itemDrops, setItemDrops] = useState([])
     const [newEnemy, setNewEnemy] = useState({
         userId: userId,
         imageId: 1,
@@ -46,21 +45,18 @@ export const CreateEnemy = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(itemDrops)
-        // postEnemy(newEnemy).then(() => {
-        //     console.log(newEnemy)
-        // })
+        postEnemy(newEnemy).then(() => {
+            console.log(newEnemy)
+        })
     }
 
     const handleItemDropsChange = (e) => {
         const itemId = e.target.value;  // ID of the item
         const isChecked = e.target.checked;
-        // Update the selectedItems array
         if (isChecked) {
-            // setNewEnemy(prev => [...prev, parseInt(itemId)]);  // Add itemId
-            setItemDrops(prev => [...prev, parseInt(itemId)]);  // Add itemId
+            setNewEnemy(prevState => ({...prevState, itemIds: [...prevState.itemIds, parseInt(itemId)]}))
         } else {
-            setItemDrops(prev => prev.filter(item => item !== parseInt(itemId)));  // Remove itemId
+            setNewEnemy(prevState => ({...prevState, itemIds: prevState.itemIds.filter(id => id !== parseInt(itemId))}))  // Remove itemId
         }
       };
 
@@ -76,7 +72,10 @@ export const CreateEnemy = () => {
     }
 
     const handleTextInput = (e) => {
-        setNewEnemy({...newEnemy, [e.target.name]: e.target.checked})
+        const {name, value} = e.target
+
+        setNewEnemy({...newEnemy, [name]: value})
+        console.log(newEnemy)
     }
 
     return (
@@ -111,7 +110,7 @@ export const CreateEnemy = () => {
                         </FormGroup>
                         <FormGroup style={{maxWidth: "500px"}}>
                                 <Label for="description">Enemy Description</Label>
-                                <Input style={{resize: "none"}} type="textarea" name="description" id="description"></Input>
+                                <Input style={{resize: "none"}} type="textarea" name="description" id="description" onChange={handleTextInput}></Input>
                             </FormGroup>
                     </Col>
                     {/* RIGHT SIDE */}
