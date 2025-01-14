@@ -235,6 +235,12 @@ namespace Capstone_2.Migrations
                 {
                     table.PrimaryKey("PK_Enemies", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Enemies_Images_ImageId",
+                        column: x => x.ImageId,
+                        principalTable: "Images",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Enemies_UserProfiles_UserProfileId",
                         column: x => x.UserProfileId,
                         principalTable: "UserProfiles",
@@ -275,21 +281,12 @@ namespace Capstone_2.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "9ce89d88-75da-4a80-9b0d-3fe58582b8e2", 0, "abfdc78a-91db-4028-b055-739050d95143", "bob@williams.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEP24y+q9+0Zzgq+YxCt2MueMkd1p6QFQlSifJpWu10KG78MAyxJg94ghf3OB58GuvQ==", null, false, "153561e4-b8da-4cac-aede-bb8b21097e4a", false, "BobWilliams" },
-                    { "a7d21fac-3b21-454a-a747-075f072d0cf3", 0, "8c4708de-b40b-4ed5-8c12-da8751d455fe", "jane@smith.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEBpB97DAOF7lrDeoNk2QQa8BQL73s6ewfEdKhzzIu25DcXs/I2IUIQfIdBIlctWcRw==", null, false, "44acb663-d83c-40ce-821d-a39a8bbff26a", false, "JaneSmith" },
-                    { "c806cfae-bda9-47c5-8473-dd52fd056a9b", 0, "53814c2a-4cca-4e53-908e-41d87599b169", "alice@johnson.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEMTaWGI6wprOMNsKcUGaQlqbPFvI/9GhxnigHOucYU87vujchYxdzmr6Bxrt8WxceA==", null, false, "dc8d905c-dd60-4c9e-bbf9-eb06e049c901", false, "AliceJohnson" },
-                    { "d224a03d-bf0c-4a05-b728-e3521e45d74d", 0, "1e7d7715-8039-44b1-ab6c-970958abb759", "Eve@Davis.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEFtGAWqPo6FJz9gogIP60cMufmuZ3trWM4wTPYQEUKvC7rzvLR02rsyMeKEkgkHmyw==", null, false, "ec2d84c4-ea39-4558-95d3-23bb8d99ade1", false, "EveDavis" },
-                    { "d8d76512-74f1-43bb-b1fd-87d3a8aa36df", 0, "e1ad3e24-634a-48f0-badf-3bcac06a2944", "john@doe.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAELBDJfJWcdK72WA+AhLiFFshsXhHckEJSvCCe8YjtgpXDPLnZ6/kLlTcLBtH81bJJw==", null, false, "5976ea26-2d6b-4c84-a98f-e6d51e9ad231", false, "JohnDoe" },
-                    { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "e92aaeaf-d6be-4c66-b8b9-51e966c2f890", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEErG/kT6QARC5AOq8thlJzgqNI90nlLpnWDenSdcTe56lquuINqkb/TucKvtSZaXQg==", null, false, "8064d7e6-5571-4e48-86b5-de8640c6693e", false, "Administrator" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Enemies",
-                columns: new[] { "Id", "BaseDamage", "BaseExperience", "BaseHealth", "BluntArmor", "BluntDamage", "Description", "ImageId", "MaxLevel", "MinLevel", "Name", "PiercingArmor", "PiercingDamage", "SlashingArmor", "SlashingDamage", "UserId", "UserProfileId" },
-                values: new object[,]
-                {
-                    { 1, 5, 10, 10, 0, false, "A brown moving puddle that resembles a puddle of mud.", 1, 3, 1, "Mudling", 0, false, 0, true, 1, null },
-                    { 2, 7, 150, 160, 0, false, "A small, green creature with a big nose and pointy ears.", 2, 15, 10, "Kobold", 5, false, 5, true, 1, null }
+                    { "9ce89d88-75da-4a80-9b0d-3fe58582b8e2", 0, "673996b9-b7ed-44d9-90ff-d1ea2534cd76", "bob@williams.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEAOakMgQde/Q2aOM90vgEEX/RhbJ2S+lQshLkyRnH488peJDjq6Bq2DGVWj1I5n8kQ==", null, false, "fde152f5-9670-4086-8cec-e303989cbcba", false, "BobWilliams" },
+                    { "a7d21fac-3b21-454a-a747-075f072d0cf3", 0, "a703a5e2-3d84-4c87-8676-17ed7f4dcc48", "jane@smith.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEDSKIJtmPFp15OvAHakIHnECLpqoN3H+1fajNio3Hvgd1KBPOHLc3L2bVoT27tIfLg==", null, false, "a5e1792e-00af-41a1-9031-b7f898d22a47", false, "JaneSmith" },
+                    { "c806cfae-bda9-47c5-8473-dd52fd056a9b", 0, "75275704-f8f4-4bc9-acb9-b0976d2b0171", "alice@johnson.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEMXznx/AIhwhgLR/npTroX/RP86j/bBYCBMGdpIWsQ3mUSFO7hhNjaWCYI2yIOJMfA==", null, false, "8517ac74-81a1-4ec6-a634-dc540a18a66e", false, "AliceJohnson" },
+                    { "d224a03d-bf0c-4a05-b728-e3521e45d74d", 0, "b26f96de-2ef1-4252-92f4-958f229cb46b", "Eve@Davis.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEEMJ6ezCAfvGLhnkfm+e3RkWEObgpwxY/6wDYbnCb7rx0vRfnMXWX+8jLhwwH+jdpw==", null, false, "b5e5d003-394f-4b16-8e96-2dd5800fe5f0", false, "EveDavis" },
+                    { "d8d76512-74f1-43bb-b1fd-87d3a8aa36df", 0, "c255d96d-a7db-416e-ae37-ce89b73d4a49", "john@doe.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEEFdclaiYwWHfQngzXMRNFOw+TOIJtAGImTrWJZZ9lFM+Y4tSs/nLLE2lb//saOkhw==", null, false, "70fed6d5-aa00-48fe-b0e3-6d107bbe6ace", false, "JohnDoe" },
+                    { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "7b28b265-abe9-4b6e-8748-0d317dc4e5be", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEJcjDmev3WzCtA79odZLksWVxVCVoLAunmfMfk1Ce3JTVeq3wE09FCafbJSIkUpNVQ==", null, false, "5e21c175-c837-460f-aa7f-9b8cdc1923b1", false, "Administrator" }
                 });
 
             migrationBuilder.InsertData(
@@ -297,8 +294,8 @@ namespace Capstone_2.Migrations
                 columns: new[] { "Id", "ImageLocation" },
                 values: new object[,]
                 {
-                    { 1, "assets/elementals/mudling/mudling.png" },
-                    { 2, "assets/kobolds/kobold child/kobold child.png" }
+                    { 1, "public/assets/images/elementals/mudling/mudling.png" },
+                    { 2, "public/assets/images/kobolds/kobold child/kobold child.png" }
                 });
 
             migrationBuilder.InsertData(
@@ -321,14 +318,21 @@ namespace Capstone_2.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "EnemyItem",
-                columns: new[] { "EnemiesId", "ItemsId" },
+                table: "Enemies",
+                columns: new[] { "Id", "BaseDamage", "BaseExperience", "BaseHealth", "BluntArmor", "BluntDamage", "Description", "ImageId", "MaxLevel", "MinLevel", "Name", "PiercingArmor", "PiercingDamage", "SlashingArmor", "SlashingDamage", "UserId", "UserProfileId" },
                 values: new object[,]
                 {
-                    { 1, 1 },
-                    { 1, 2 },
-                    { 1, 3 },
-                    { 2, 2 }
+                    { 1, 5, 10, 10, 0, true, "A brown moving puddle that resembles a puddle of mud.", 1, 3, 1, "Mudling", 0, false, 0, false, 1, null },
+                    { 2, 5, 10, 10, 0, false, "A small, green sliver that could easily be mistaken for a blade of grass.", 1, 3, 1, "Grassling", 0, false, 0, true, 1, null },
+                    { 3, 5, 10, 10, 0, false, "A blue puddle.", 1, 3, 1, "Waterling", 0, true, 0, false, 1, null },
+                    { 4, 5, 10, 10, 0, false, "A blue puddle.", 1, 3, 1, "Skeleton", 0, true, 0, false, 1, null },
+                    { 5, 5, 10, 10, 0, false, "A blue puddle.", 1, 3, 1, "Giant Rat", 0, true, 0, false, 1, null },
+                    { 6, 5, 10, 10, 0, false, "A blue puddle.", 1, 3, 1, "Cultist", 0, true, 0, false, 1, null },
+                    { 7, 5, 10, 10, 0, false, "A blue puddle.", 1, 3, 1, "Grave Worm", 0, true, 0, false, 1, null },
+                    { 8, 5, 10, 10, 0, false, "A blue puddle.", 1, 3, 1, "Wild Boar", 0, true, 0, false, 1, null },
+                    { 9, 5, 10, 10, 0, false, "A blue puddle.", 1, 3, 1, "Stag", 0, true, 0, false, 1, null },
+                    { 10, 5, 10, 10, 0, false, "A blue puddle.", 1, 3, 1, "Impling", 0, true, 0, false, 1, null },
+                    { 11, 7, 150, 160, 0, false, "A small, green creature with a big nose and pointy ears.", 2, 15, 10, "Kobold", 5, false, 5, true, 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -342,6 +346,17 @@ namespace Capstone_2.Migrations
                     { 4, new DateTime(2023, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Alice", "c806cfae-bda9-47c5-8473-dd52fd056a9b", "https://robohash.org/deseruntutipsum.png?size=150x150&set=set1", "Johnson" },
                     { 5, new DateTime(2023, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Bob", "9ce89d88-75da-4a80-9b0d-3fe58582b8e2", "https://robohash.org/quiundedignissimos.png?size=150x150&set=set1", "Williams" },
                     { 6, new DateTime(2022, 10, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Eve", "d224a03d-bf0c-4a05-b728-e3521e45d74d", "https://robohash.org/hicnihilipsa.png?size=150x150&set=set1", "Davis" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "EnemyItem",
+                columns: new[] { "EnemiesId", "ItemsId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 1, 2 },
+                    { 1, 3 },
+                    { 2, 2 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -382,6 +397,11 @@ namespace Capstone_2.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Enemies_ImageId",
+                table: "Enemies",
+                column: "ImageId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Enemies_UserProfileId",
                 table: "Enemies",
                 column: "UserProfileId");
@@ -419,9 +439,6 @@ namespace Capstone_2.Migrations
                 name: "EnemyItem");
 
             migrationBuilder.DropTable(
-                name: "Images");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -429,6 +446,9 @@ namespace Capstone_2.Migrations
 
             migrationBuilder.DropTable(
                 name: "Items");
+
+            migrationBuilder.DropTable(
+                name: "Images");
 
             migrationBuilder.DropTable(
                 name: "UserProfiles");

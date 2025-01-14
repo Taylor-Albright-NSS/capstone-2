@@ -10,9 +10,17 @@ public class AutoMapperProfiles : Profile
     {
 
         CreateMap<Enemy, EnemyDTO>();
+        CreateMap<EnemyDTO, Enemy>();
         CreateMap<Enemy, EnemySimpleDTO>();
         CreateMap<Item, ItemDTO>();
+        CreateMap<Item, ItemSimpleDTO>();
         CreateMap<Image, ImageDTO>();
+
+        //         CreateMap<Item, ItemDTO>()
+        //     .ForMember(dest => dest.Enemies, opt => opt.MapFrom(src => src.Enemies));
+
+        // CreateMap<ItemDTO, Item>()
+        //     .ForMember(dest => dest.Enemies, opt => opt.MapFrom(src => src.Enemies));
 
     }
         

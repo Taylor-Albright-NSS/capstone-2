@@ -22,12 +22,11 @@ public class EnemyDTO
     {
         get { return new Random().Next(MinLevel, MaxLevel + 1); }
     }
-    public int TotalExperience 
+    public int? TotalExperience 
     { 
         get { return 100 + (ActualLevel - MinLevel / MaxLevel - MinLevel) * (150 - 100); }
     }
-    public List<ItemDTO> Items { get; set; }
-
+    public List<ItemDTO>? Items { get; set; }
 }
 
 public class EnemySimpleDTO

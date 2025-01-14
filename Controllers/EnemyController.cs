@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Capstone_2.Models.DTO;
 using Capstone2.Data;
+using Capstone_2.Models;
 
 namespace Capstone_2.Controllers;
 
@@ -29,5 +31,14 @@ public class EnemyController : ControllerBase
     public IActionResult GetSimple()
     {
         return Ok(_dbContext.Enemies.ProjectTo<EnemySimpleDTO>(_mapper.ConfigurationProvider));
+    }
+    //--------
+    [HttpPost()]
+    public IActionResult PostEnemy(EnemyDTO enemyDTO)
+    {
+        Enemy enemy = _mapper.Map<Enemy>(enemyDTO);
+        _dbContext.Enemies.Add(enemy);
+        _dbContext.SaveChanges();
+        return Created($"api/enemy/{enemy.Id}", enemy);
     }
 }

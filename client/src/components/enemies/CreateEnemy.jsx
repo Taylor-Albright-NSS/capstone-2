@@ -1,27 +1,40 @@
 import { useContext, useState } from "react";
 import { Button, Form, FormGroup, Input, Label, Row, Col } from "reactstrap";
 import { UserContext } from "../ApplicationViews";
+import { postEnemy } from "../../managers/enemyManager";
 
 export const CreateEnemy = () => {
     const { loggedInUser } = useContext(UserContext)
     const userId = loggedInUser.id
-
-    const [isChecked, setIsChecked] = useState(false)
+    const [images, setImages] = useState([])
     const [newEnemy, setNewEnemy] = useState({
         userId: userId,
-        name: "test"
+        imageId: 1,
+        name: "test 4",
+        minLevel: 10,
+        maxLevel: 15,
+        baseDamage: 1,
+        baseHealth: 1,
+        baseExperience: 1,
+        slashingArmor: 5,
+        piercingArmor: 5,
+        bluntArmor: 5,
+        slashingDamage: false,
+        piercingDamage: false,
+        bluntDamage: false,
+        description: "",
+        // items: null,
+
     })
     
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log('testing')
         console.log(newEnemy, 'New Enemy Object')
+        postEnemy(newEnemy).then(() => {
+            console.log(newEnemy)
+        })
     }
-
-    // const handleCheckbox = (e) => {
-    //     setNewEnemy({...newEnemy, [e.target.name]: !isChecked})
-    //     setIsChecked(!isChecked)
-    // }
 
     const handleCheckbox = (e) => {
         const { name, checked } = e.target;
@@ -117,19 +130,19 @@ export const CreateEnemy = () => {
                                 <legend>Damage Types</legend>
                                 <FormGroup check>
                                     <Label check>
-                                        <Input type="checkbox" name="slashingDamage" onChange={handleCheckbox} checked={newEnemy.slashingDamage}/>
+                                        <Input type="checkbox" name="slashingDamage" onChange={handleCheckbox} checked={newEnemy.slashingDamage || false}/>
                                         Slashing
                                     </Label>
                                 </FormGroup>
                                 <FormGroup check>
                                     <Label check>
-                                        <Input type="checkbox" name="piercingDamage" onChange={handleCheckbox} checked={newEnemy.piercingDamage}/>
+                                        <Input type="checkbox" name="piercingDamage" onChange={handleCheckbox} checked={newEnemy.piercingDamage || false}/>
                                         Piercing
                                     </Label>
                                 </FormGroup>
                                 <FormGroup check>
                                     <Label check>
-                                        <Input type="checkbox" name="bluntDamage" onChange={handleCheckbox} checked={newEnemy.bluntDamage}/>
+                                        <Input type="checkbox" name="bluntDamage" onChange={handleCheckbox} checked={newEnemy.bluntDamage || false}/>
                                         Blunt
                                     </Label>
                                 </FormGroup>

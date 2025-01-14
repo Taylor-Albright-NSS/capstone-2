@@ -5,7 +5,7 @@ public class Enemy
     public int Id { get; set; }
     public int UserId { get; set; }
     public int ImageId { get; set; }
-    public Image Image { get; set; }
+    public Image? Image { get; set; }
     public string Name { get; set; }
     public int MinLevel { get; set; }
     public int MaxLevel { get; set; }
@@ -23,10 +23,10 @@ public class Enemy
     {
         get { return new Random().Next(MinLevel, MaxLevel + 1); }
     }
-    public int TotalExperience 
+    public int? TotalExperience 
     { 
         get { return 100 + (ActualLevel - MinLevel / MaxLevel - MinLevel) * (150 - 100); }
     }
-    public List<Item> Items { get; set; }
+    public List<Item>? Items { get; set; }
 
 }

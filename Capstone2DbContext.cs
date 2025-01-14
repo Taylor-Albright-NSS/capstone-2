@@ -308,21 +308,12 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
 
         modelBuilder.Entity<Item>().HasData(new Item[]
         {
-            new Item
-            {
-                Id = 1,
-                Name = "Sword"
-            },
-            new Item
-            {
-                Id = 2,
-                Name = "Twohanded Sword"
-            },
-            new Item
-            {
-                Id = 3,
-                Name = "Bow"
-            }
+            new Item {Id = 1, Name = "Sword"},
+            new Item {Id = 2, Name = "Twohanded Sword"},
+            new Item {Id = 3, Name = "Bow"},
+            new Item {Id = 4, Name = "Fist Weapon"},
+            new Item {Id = 5, Name = "Axe"},
+            new Item {Id = 6, Name = "Leather Chest"},
         });
 
         modelBuilder.Entity<Image>().HasData(new Image[]
@@ -330,12 +321,12 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
             new Image
             {
                 Id = 1,
-                ImageLocation = "assets/elementals/mudling/mudling.png"
+                ImageLocation = "public/assets/images/elementals/mudling/mudling.png"
             },
             new Image
             {
                 Id = 2,
-                ImageLocation = "assets/kobolds/kobold child/kobold child.png"
+                ImageLocation = "public/assets/images/kobolds/kobold child/kobold child.png"
             },
         });
 
