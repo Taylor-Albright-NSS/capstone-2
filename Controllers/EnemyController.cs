@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Capstone_2.Models.DTO;
 using Capstone2.Data;
 using Capstone_2.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Capstone_2.Controllers;
 
@@ -30,8 +31,64 @@ public class EnemyController : ControllerBase
     public IActionResult Get(int id)
     {
         EnemyDTO enemyDTO = _dbContext.Enemies
+        .Include(enemy => enemy.Items)
         .ProjectTo<EnemyDTO>(_mapper.ConfigurationProvider)
         .FirstOrDefault(enemy => enemy.Id == id);
+
+        List<ItemDTO> itemsDTO = _dbContext.Items
+        .ProjectTo<ItemDTO>(_mapper.ConfigurationProvider)
+        .Where(i => enemyDTO.ItemIds.Contains(i.Id)).ToList();
+
+        enemyDTO.Items = itemsDTO;
+
+
+        if (enemyDTO == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(enemyDTO);
+    }
+    //--------
+    [HttpGet("enemyforedit/{id}")]
+    public IActionResult GetForEdit(int id)
+    {
+        EnemyForEditDTO enemyDTO = _dbContext.Enemies
+        .ProjectTo<EnemyForEditDTO>(_mapper.ConfigurationProvider)
+        .FirstOrDefault(enemy => enemy.Id == id);
+
+        if (enemyDTO == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(enemyDTO);
+    }
+    //--------
+    [HttpGet("/non-automapper/{id}")]
+    public IActionResult GetWithNonAutoMapper(int id)
+    {
+        Enemy enemy = _dbContext
+        .Enemies
+        .Include(e => e.Items)
+        .FirstOrDefault(e => e.Id == id);
+
+        EnemyDTO enemyDTO = new EnemyDTO
+        {
+            Id = enemy.Id,
+            UserId = enemy.UserId,
+            Name = enemy.Name,
+            ItemIds = enemy.ItemIds,
+            MinLevel = enemy.MinLevel,
+            MaxLevel = enemy.MaxLevel,
+            Items = _dbContext.Items
+            .Where(i => enemy.ItemIds.Contains(i.Id))
+            .Select(i => new ItemDTO 
+            {
+                Id = i.Id,
+                Name = i.Name,
+            }).ToList()
+        };
 
         if (enemyDTO == null)
         {
@@ -50,6 +107,7 @@ public class EnemyController : ControllerBase
     [HttpPost()]
     public IActionResult PostEnemy(EnemyDTO enemyDTO)
     {
+
         Enemy enemy = _mapper.Map<Enemy>(enemyDTO);
         _dbContext.Enemies.Add(enemy);
         _dbContext.SaveChanges();
@@ -61,6 +119,11 @@ public class EnemyController : ControllerBase
             EnemiesId = enemyId,
             ItemsId = itemId
         }).ToList();
+
+        if (associations == null)
+        {
+            return NotFound("Associations not created");
+        }
 
         _dbContext.EnemiesItems.AddRange(associations);
         _dbContext.SaveChanges();
@@ -96,5 +159,19 @@ public class EnemyController : ControllerBase
         _dbContext.EnemiesItems.RemoveRange(enemyItems);
         _dbContext.SaveChanges();
         return Ok();
+    }
+    [HttpPut("{id}")]
+    public IActionResult Put(EnemyDTO enemyDTO, int id)
+    {
+        Enemy enemy = _dbContext.Enemies.FirstOrDefault(e => e.Id == id);
+
+        if (enemy == null)
+        {
+            return NotFound();
+        }
+
+        _mapper.Map(enemyDTO, enemy);
+        _dbContext.SaveChanges();
+        return Ok("Changes made successfully");
     }
 }

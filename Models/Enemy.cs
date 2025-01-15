@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Capstone_2.Models;
 
 public class Enemy
@@ -28,7 +30,7 @@ public class Enemy
     { 
         get { return 100 + (ActualLevel - MinLevel / MaxLevel - MinLevel) * (150 - 100); }
     }
-    public List<Item>? Items { get; set; }
-    public ICollection<EnemyItem> EnemyItems { get; set; }
+    public ICollection<Item>? Items { get; set; } // Navigation property for many-to-many
+    public ICollection<EnemyItem>? EnemyItems { get; set; }
 
 }

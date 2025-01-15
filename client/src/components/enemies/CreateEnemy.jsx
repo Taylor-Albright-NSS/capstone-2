@@ -16,20 +16,20 @@ export const CreateEnemy = () => {
     const [newEnemy, setNewEnemy] = useState({
         userId: userId,
         imageId: 1,
-        name: "test 4",
-        minLevel: 10,
-        maxLevel: 15,
+        name: "test 1",
+        minLevel: 1,
+        maxLevel: 1,
         baseDamage: 1,
         baseHealth: 1,
         baseExperience: 1,
-        slashingArmor: 5,
-        piercingArmor: 5,
-        bluntArmor: 5,
+        slashingArmor: 1,
+        piercingArmor: 1,
+        bluntArmor: 1,
         slashingDamage: false,
         piercingDamage: false,
         bluntDamage: false,
         description: "",
-        itemIds: []
+        itemIds: [],
     })
 
     useEffect(() => {
@@ -81,6 +81,12 @@ export const CreateEnemy = () => {
         console.log(newEnemy)
     }
 
+    const handleNumberInput = (e) => {
+        const {name, value} = e.target
+        setNewEnemy({...newEnemy, [name]: parseInt(value)})
+        console.log(newEnemy)
+    }
+
     return (
         <Form className="my-4 mx-4" onSubmit={handleSubmit} style={{border: "4px solid black"}}>
             <Button>Submit</Button>
@@ -123,25 +129,25 @@ export const CreateEnemy = () => {
                                 <Col className="d-flex align-items-center flex-column">
                                     <FormGroup>
                                         <Label for="minLevel">Min. Level</Label>
-                                        <Input style={{width: "76px"}} type="number" name="minLevel" id="minLevel" />
+                                        <Input style={{width: "76px"}} type="number" name="minLevel" id="minLevel" onChange={handleNumberInput} />
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="maxLevel">Max Level</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="maxLevel" id="maxLevel" />
+                                        <Input style={{maxWidth: "76px"}} type="number" name="maxLevel" id="maxLevel" onChange={handleNumberInput} />
                                     </FormGroup>
                                 </Col>
                                 <Col className="d-flex align-items-center flex-column">
                                 <FormGroup className="d-flex flex-column align-items-center">
                                 <Label for="baseDamage">Base Damage</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="baseDamage" id="baseDamage" />
+                                        <Input style={{maxWidth: "76px"}} type="number" name="baseDamage" id="baseDamage" onChange={handleNumberInput} />
                                     </FormGroup>
                                     <FormGroup className="d-flex flex-column align-items-center">
                                         <Label for="baseHealth">Base Health</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="baseHealth" id="baseHealth" />
+                                        <Input style={{maxWidth: "76px"}} type="number" name="baseHealth" id="baseHealth" onChange={handleNumberInput} />
                                     </FormGroup>
                                     <FormGroup className="d-flex flex-column align-items-center ">
                                         <Label style={{textAlign: "center"}} for="baseExperience">Base Experience</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="baseExperience" id="baseExperience" />
+                                        <Input style={{maxWidth: "76px"}} type="number" name="baseExperience" id="baseExperience" onChange={handleNumberInput} />
                                     </FormGroup>
                                 </Col>
                             </fieldset>
@@ -150,15 +156,15 @@ export const CreateEnemy = () => {
                                 <legend>Armor Values</legend>
                                 <FormGroup className="d-flex flex-column align-items-center">
                                     <Label for="slashingArmor">Slashing Armor</Label>
-                                    <Input style={{maxWidth: "76px"}} type="number" name="slashingArmor" id="slashingArmor" />
+                                    <Input style={{maxWidth: "76px"}} type="number" name="slashingArmor" id="slashingArmor" onChange={handleNumberInput} />
                                 </FormGroup>
                                 <FormGroup className="d-flex flex-column align-items-center">
                                     <Label for="piercingArmor">Piercing Armor</Label>
-                                    <Input style={{maxWidth: "76px"}} type="number" name="piercingArmor" id="piercingArmor" />
+                                    <Input style={{maxWidth: "76px"}} type="number" name="piercingArmor" id="piercingArmor" onChange={handleNumberInput} />
                                 </FormGroup>
                                 <FormGroup className="d-flex flex-column align-items-center">
                                     <Label for="bluntArmor">Blunt Armor</Label>
-                                    <Input style={{maxWidth: "76px"}} type="number" name="bluntArmor" id="bluntArmor" />
+                                    <Input style={{maxWidth: "76px"}} type="number" name="bluntArmor" id="bluntArmor" onChange={handleNumberInput} />
                                 </FormGroup>
                             </fieldset>
 
@@ -194,7 +200,7 @@ export const CreateEnemy = () => {
                                                 <Col key={item.id} xs="12" sm="6" md="4" lg="3">
                                                 <FormGroup check>
                                                     <Label check>
-                                                        <Input type="checkbox" name={`item-${item.id}`} value={item.id} onChange={handleItemDropsChange}/>
+                                                        <Input type="checkbox" name={`item-${item.id}`} value={item.id} onChange={handleItemDropsChange} />
                                                         {item.name}
                                                     </Label>
                                                 </FormGroup>

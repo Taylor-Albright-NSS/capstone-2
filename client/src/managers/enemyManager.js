@@ -9,8 +9,13 @@ export const getEnemy = async (id) => {
     const response = await fetch(`${api_url}/${id}`)
     return await response.json()
 }
+export const getEnemyForEdit = async (id) => {
+    const response = await fetch(`${api_url}/enemyforedit/${id}`)
+    return await response.json()
+}
 
 export const postEnemy = async (enemy) => {
+    console.log(enemy, 'Posted enemy')
     const response = await fetch(`${api_url}`, {
         method: "POST",
         headers: {
@@ -33,4 +38,16 @@ export const deleteEnemy = async (enemyId) => {
     const response = await fetch(`${api_url}/${enemyId}`, {
         method: "DELETE"
     })
+}
+
+export const putEnemy = async (enemy, enemyId) => {
+    const response = await fetch(`${api_url}/${enemyId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(enemy)
+    })
+    const data = await response.json()
+    return data
 }
