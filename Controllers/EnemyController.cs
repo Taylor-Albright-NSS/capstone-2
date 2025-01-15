@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Capstone_2.Models.DTO;
 using Capstone2.Data;
 using Capstone_2.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Capstone_2.Controllers;
 
@@ -30,8 +31,41 @@ public class EnemyController : ControllerBase
     public IActionResult Get(int id)
     {
         EnemyDTO enemyDTO = _dbContext.Enemies
+        .Include(enemy => enemy.Items)
         .ProjectTo<EnemyDTO>(_mapper.ConfigurationProvider)
         .FirstOrDefault(enemy => enemy.Id == id);
+
+        if (enemyDTO == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(enemyDTO);
+    }
+    [HttpGet("/non-automapper/{id}")]
+    public IActionResult GetWithNonAutoMapper(int id)
+    {
+        Enemy enemy = _dbContext
+        .Enemies
+        .Include(e => e.Items)
+        .FirstOrDefault(e => e.Id == id);
+
+        EnemyDTO enemyDTO = new EnemyDTO
+        {
+            Id = enemy.Id,
+            UserId = enemy.UserId,
+            Name = enemy.Name,
+            ItemIds = enemy.ItemIds,
+            MinLevel = enemy.MinLevel,
+            MaxLevel = enemy.MaxLevel,
+            Items = _dbContext.Items
+            .Where(i => enemy.ItemIds.Contains(i.Id))
+            .Select(i => new ItemDTO 
+            {
+                Id = i.Id,
+                Name = i.Name,
+            }).ToList()
+        };
 
         if (enemyDTO == null)
         {
@@ -50,9 +84,8 @@ public class EnemyController : ControllerBase
     [HttpPost()]
     public IActionResult PostEnemy(EnemyDTO enemyDTO)
     {
+
         Enemy enemy = _mapper.Map<Enemy>(enemyDTO);
-        _dbContext.Enemies.Add(enemy);
-        _dbContext.SaveChanges();
 
         var enemyId = enemy.Id;
 
@@ -62,6 +95,12 @@ public class EnemyController : ControllerBase
             ItemsId = itemId
         }).ToList();
 
+        if (associations == null)
+        {
+            return NotFound("Associations not created");
+        }
+
+        _dbContext.Enemies.Add(enemy);
         _dbContext.EnemiesItems.AddRange(associations);
         _dbContext.SaveChanges();
 

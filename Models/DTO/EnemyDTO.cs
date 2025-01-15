@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Capstone_2.Models.DTO;
 
 public class EnemyDTO
@@ -28,7 +30,9 @@ public class EnemyDTO
     { 
         get { return 100 + (ActualLevel - MinLevel / MaxLevel - MinLevel) * (150 - 100); }
     }
-    public List<ItemDTO>? Items { get; set; }
+    public ICollection<ItemDTO> Items { get; set; }
+    public ICollection<EnemyItemDTO> EnemyItems { get; set; }
+
 }
 
 public class EnemySimpleDTO
