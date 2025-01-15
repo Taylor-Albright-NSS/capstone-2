@@ -29,7 +29,7 @@ export const EnemyList = () => {
             <Row className="mt-4">
                 {enemies.map(enemy => (
                     <Col key={enemy.id} xs="12" sm="6" md="4" lg="3" className="mb-4">
-                        <EnemyCard enemy={enemy} />
+                        <EnemyCard enemy={enemy} setEnemies={setEnemies} />
                     </Col>
                 ))}
             </Row>

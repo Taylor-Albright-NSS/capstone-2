@@ -1,20 +1,32 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getEnemy } from "../../managers/enemyManager";
-import { CardImg, Col, Container, Row } from "reactstrap";
+import { useNavigate, useParams } from "react-router-dom";
+import { deleteEnemy, getEnemies, getEnemy } from "../../managers/enemyManager";
+import { Button, CardImg, Col, Container, Row } from "reactstrap";
+import { getItems } from "../../managers/itemManager";
 
 export const EnemyDetails = () => {
     const [enemy, setEnemy] = useState()
     const { id } = useParams()
+    console.log(id)
+    const navigate = useNavigate()
     useEffect(() => {
         getEnemy(id).then(enemy => {
             console.log(enemy)
             setEnemy(enemy)
         })
     }, [id])
+
+    const handleEnemyDelete = () => {
+        deleteEnemy(id).then(() => {
+            navigate("/enemy-list")
+        })
+    }
+    
     return (
         <Container>
-                        <h3>Enemy Details Page</h3>
+            <h3>Enemy Details Page</h3>
+            <Button onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>
+
             <Row>
                 {/* Left side column */}
                 <Col>
@@ -62,6 +74,7 @@ export const EnemyDetails = () => {
                     </div>
                 </Col>
             </Row>
+            <Button onClick={handleEnemyDelete}>Delete Enemy</Button>
         </Container>
     );
 }

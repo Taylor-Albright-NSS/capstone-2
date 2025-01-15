@@ -31,7 +31,7 @@ public class EnemyController : ControllerBase
     {
         EnemyDTO enemyDTO = _dbContext.Enemies
         .ProjectTo<EnemyDTO>(_mapper.ConfigurationProvider)
-        .Single(enemy => enemy.Id == id);
+        .FirstOrDefault(enemy => enemy.Id == id);
 
         if (enemyDTO == null)
         {
@@ -39,10 +39,6 @@ public class EnemyController : ControllerBase
         }
 
         return Ok(enemyDTO);
-
-            //         PostDetailDTO post = _DbContext.Posts
-            // .ProjectTo<PostDetailDTO>(_mapper.ConfigurationProvider)
-            // .FirstOrDefault(p => p.Id == id);
     }
     //--------
     [HttpGet("simple")]
@@ -95,12 +91,10 @@ public class EnemyController : ControllerBase
             return NotFound("Some or all enemy item relationships were not found");
         }
         //Removes enemy from database
-        _dbContext.Enemies.Remove(enemy);
-        _dbContext.SaveChanges();
-
         //Removes enemy-item relationship from database
+        _dbContext.Enemies.Remove(enemy);
         _dbContext.EnemiesItems.RemoveRange(enemyItems);
         _dbContext.SaveChanges();
-        return Ok(new { message = "Enemy and it's item relationship has been deleted"});
+        return Ok();
     }
 }

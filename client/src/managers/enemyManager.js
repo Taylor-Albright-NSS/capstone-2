@@ -29,9 +29,8 @@ export const postEnemy = async (enemy) => {
 }
 
 export const deleteEnemy = async (enemyId) => {
+    console.log(enemyId)
     const response = await fetch(`${api_url}/${enemyId}`, {
         method: "DELETE"
     })
-    const data = await response.json()
-    console.log(data.message)
 }

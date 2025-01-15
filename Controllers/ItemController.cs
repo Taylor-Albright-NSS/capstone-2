@@ -23,12 +23,16 @@ public class ItemController : ControllerBase
     }
 
     [HttpGet]
-    // public IActionResult Get()
-    // {
-    //     return Ok(_dbContext.Items.ProjectTo<ItemSimpleDTO>(_mapper.ConfigurationProvider));
-    // }
     public IActionResult Get()
     {
-        return Ok(_dbContext.Items.ProjectTo<ItemDTO>(_mapper.ConfigurationProvider));
+        var itemDTO = _dbContext.Items
+        .ProjectTo<ItemDTO>(_mapper.ConfigurationProvider);
+
+        if (itemDTO == null)
+        {
+            return NotFound("Not found");
+        }
+
+        return Ok(itemDTO);
     }
 }
