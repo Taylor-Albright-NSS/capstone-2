@@ -16,21 +16,20 @@ export const CreateEnemy = () => {
     const [newEnemy, setNewEnemy] = useState({
         userId: userId,
         imageId: 1,
-        name: "test 4",
-        minLevel: 10,
-        maxLevel: 15,
+        name: "test 1",
+        minLevel: 1,
+        maxLevel: 1,
         baseDamage: 1,
         baseHealth: 1,
         baseExperience: 1,
-        slashingArmor: 5,
-        piercingArmor: 5,
-        bluntArmor: 5,
+        slashingArmor: 1,
+        piercingArmor: 1,
+        bluntArmor: 1,
         slashingDamage: false,
         piercingDamage: false,
         bluntDamage: false,
         description: "",
         itemIds: [],
-        enemyItems: [],
     })
 
     useEffect(() => {

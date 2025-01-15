@@ -16,8 +16,9 @@ public class AutoMapperProfiles : Profile
         CreateMap<Item, ItemSimpleDTO>();
         CreateMap<Image, ImageDTO>();
         CreateMap<EnemyItem, EnemyItemDTO>();
+        CreateMap<EnemyForEditDTO, Enemy>();
+        CreateMap<Enemy, EnemyForEditDTO>();
 
-                // Map Enemy to EnemyDTO (or whatever destination type you're using)
         CreateMap<Enemy, EnemyDTO>()
             .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));
 

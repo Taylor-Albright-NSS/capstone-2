@@ -35,6 +35,13 @@ public class EnemyController : ControllerBase
         .ProjectTo<EnemyDTO>(_mapper.ConfigurationProvider)
         .FirstOrDefault(enemy => enemy.Id == id);
 
+        List<ItemDTO> itemsDTO = _dbContext.Items
+        .ProjectTo<ItemDTO>(_mapper.ConfigurationProvider)
+        .Where(i => enemyDTO.ItemIds.Contains(i.Id)).ToList();
+
+        enemyDTO.Items = itemsDTO;
+
+
         if (enemyDTO == null)
         {
             return NotFound();
@@ -42,6 +49,22 @@ public class EnemyController : ControllerBase
 
         return Ok(enemyDTO);
     }
+    //--------
+    [HttpGet("enemyforedit/{id}")]
+    public IActionResult GetForEdit(int id)
+    {
+        EnemyForEditDTO enemyDTO = _dbContext.Enemies
+        .ProjectTo<EnemyForEditDTO>(_mapper.ConfigurationProvider)
+        .FirstOrDefault(enemy => enemy.Id == id);
+
+        if (enemyDTO == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(enemyDTO);
+    }
+    //--------
     [HttpGet("/non-automapper/{id}")]
     public IActionResult GetWithNonAutoMapper(int id)
     {
@@ -86,6 +109,8 @@ public class EnemyController : ControllerBase
     {
 
         Enemy enemy = _mapper.Map<Enemy>(enemyDTO);
+        _dbContext.Enemies.Add(enemy);
+        _dbContext.SaveChanges();
 
         var enemyId = enemy.Id;
 
@@ -100,7 +125,6 @@ public class EnemyController : ControllerBase
             return NotFound("Associations not created");
         }
 
-        _dbContext.Enemies.Add(enemy);
         _dbContext.EnemiesItems.AddRange(associations);
         _dbContext.SaveChanges();
 
@@ -135,5 +159,19 @@ public class EnemyController : ControllerBase
         _dbContext.EnemiesItems.RemoveRange(enemyItems);
         _dbContext.SaveChanges();
         return Ok();
+    }
+    [HttpPut("{id}")]
+    public IActionResult Put(EnemyDTO enemyDTO, int id)
+    {
+        Enemy enemy = _dbContext.Enemies.FirstOrDefault(e => e.Id == id);
+
+        if (enemy == null)
+        {
+            return NotFound();
+        }
+
+        _mapper.Map(enemyDTO, enemy);
+        _dbContext.SaveChanges();
+        return Ok("Changes made successfully");
     }
 }

@@ -30,8 +30,7 @@ public class Enemy
     { 
         get { return 100 + (ActualLevel - MinLevel / MaxLevel - MinLevel) * (150 - 100); }
     }
-    [Required]
-    public List<Item> Items { get; set; } // Navigation property for many-to-many
-    public ICollection<EnemyItem> EnemyItems { get; set; }
+    public ICollection<Item>? Items { get; set; } // Navigation property for many-to-many
+    public ICollection<EnemyItem>? EnemyItems { get; set; }
 
 }

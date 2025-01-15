@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Form, FormGroup, Input, Label, Row, Col } from "reactstrap";
 import { UserContext } from "../ApplicationViews";
-import { getEnemy } from "../../managers/enemyManager";
+import { getEnemyForEdit, putEnemy } from "../../managers/enemyManager";
 import { getItems } from "../../managers/itemManager";
 import { getEnemyImages } from "../../managers/imageManager";
 import { useNavigate, useParams } from "react-router-dom";
@@ -11,8 +11,8 @@ export const EnemyEdit = () => {
     const { loggedInUser } = useContext(UserContext)
     const { id } = useParams()
     const userId = loggedInUser.id
-    // const navigate = useNavigate()
-    // const [images, setImages] = useState([])
+    const navigate = useNavigate()
+    const [images, setImages] = useState([])
     const [items, setItems] = useState([])
     const [currentEnemy, setCurrentEnemy] = useState({})
 
@@ -22,29 +22,24 @@ export const EnemyEdit = () => {
             setItems(itemList)
         })
     }, [])
-    // useEffect(() => {
-    //     getEnemyImages().then(imageList => {
-    //         console.log(imageList)
-    //         setImages(imageList)
-    //     })
-    // }, [])
     useEffect(() => {
-        getEnemy(id).then(enemy => {
+        getEnemyImages().then(imageList => {
+            console.log(imageList)
+            setImages(imageList)
+        })
+    }, [])
+    useEffect(() => {
+        getEnemyForEdit(id).then(enemy => {
             console.log(enemy)
             setCurrentEnemy(enemy)
         })
     }, [])
     
     const handleSubmit = (e) => {
-        // e.preventDefault()
-        getItems().then(itemList => {
-            console.log(itemList)
-            setItems(itemList)
+        e.preventDefault()
+        putEnemy(currentEnemy, currentEnemy.id).then(() => {
+            // navigate("/enemy-list")
         })
-        console.log(items)
-        // postEnemy(newEnemy).then(() => {
-        //     navigate("/enemy-list")
-        // })
     }
 
     const handleItemDropsChange = (e) => {
@@ -198,9 +193,12 @@ export const EnemyEdit = () => {
                                                 <Col key={item.id} xs="12" sm="6" md="4" lg="3">
                                                 <FormGroup check>
                                                     <Label check>
-                                                        <Input type="checkbox" name={`item-${item.id}`} value={item.id} onChange={handleItemDropsChange} checked={() => {
-                                                            return currentEnemy.itemIds.some(itemId => itemId == item.id)
-                                                        }}
+                                                        <Input 
+                                                        type="checkbox" 
+                                                        name={`item-${item.id}`} 
+                                                        value={item.id} 
+                                                        onChange={handleItemDropsChange} 
+                                                        checked={currentEnemy?.itemIds?.includes(item.id)}
                                                         />
                                                         {item.name}
                                                     </Label>
