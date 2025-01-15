@@ -172,6 +172,6 @@ public class EnemyController : ControllerBase
 
         _mapper.Map(enemyDTO, enemy);
         _dbContext.SaveChanges();
-        return Ok("Changes made successfully");
+        return Ok(new { message = "Enemy was changed successfully"});
     }
 }

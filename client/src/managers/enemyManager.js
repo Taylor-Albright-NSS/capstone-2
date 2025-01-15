@@ -41,13 +41,25 @@ export const deleteEnemy = async (enemyId) => {
 }
 
 export const putEnemy = async (enemy, enemyId) => {
-    const response = await fetch(`${api_url}/${enemyId}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(enemy)
-    })
-    const data = await response.json()
-    return data
+    try {
+        const response = await fetch(`${api_url}/${enemyId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(enemy)
+        })
+
+        if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`)
+        }
+ 
+        const data = await response.json()
+        const { message } = data
+        return message
+
+        } catch (error) {
+            console.error("API error:", error)
+            throw error
+        }
 }

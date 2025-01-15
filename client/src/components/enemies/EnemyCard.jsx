@@ -22,7 +22,7 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
             <Card onClick={() => navigate(`${id}`)} style={{cursor: "pointer", width: "200px"}}>
                 <CardBody className="d-flex flex-column align-items-center">
                     <CardImg src={enemy.image.imageLocation} />
-                    <CardTitle tag="h4">{enemy.name}</CardTitle>
+                    <CardTitle tag="h4">{enemy.id}: {enemy.name}</CardTitle>
                 </CardBody>
             </Card>
             <Button onClick={handleEnemyDelete}>Delete Enemy</Button>

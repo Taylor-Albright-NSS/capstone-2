@@ -8,9 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 export const EnemyEdit = () => {
-    const { loggedInUser } = useContext(UserContext)
     const { id } = useParams()
-    const userId = loggedInUser.id
     const navigate = useNavigate()
     const [images, setImages] = useState([])
     const [items, setItems] = useState([])
@@ -37,8 +35,9 @@ export const EnemyEdit = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        putEnemy(currentEnemy, currentEnemy.id).then(() => {
-            // navigate("/enemy-list")
+        putEnemy(currentEnemy, currentEnemy.id).then(data => {
+            console.log(data)
+            navigate("/enemy-list")
         })
     }
 
@@ -57,12 +56,6 @@ export const EnemyEdit = () => {
         setCurrentEnemy({ ...currentEnemy, [name]: checked });
     };
 
-    const handleItemSelect = (e) => {
-        console.log(e)
-        console.log(e.target)
-        console.log(e.target.options[e.target.selectedIndex].value, ' test')
-    }
-
     const handleTextInput = (e) => {
         const {name, value} = e.target
         setCurrentEnemy({...currentEnemy, [name]: value})
@@ -73,11 +66,6 @@ export const EnemyEdit = () => {
         const {name, value} = e.target
         setCurrentEnemy({...currentEnemy, [name]: parseInt(value)})
         console.log(currentEnemy)
-    }
-
-    const handleLoadCheckboxes = (e) => {
-        console.log(e, ' checkbox event')
-        // currentEnemy.items.some(item => item == )
     }
 
     return (

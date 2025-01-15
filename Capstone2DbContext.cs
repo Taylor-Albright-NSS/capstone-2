@@ -112,6 +112,7 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
                 SlashingDamage = false,
                 PiercingDamage = false,
                 BluntDamage = true,
+                ItemIds = [1, 2],
                 Description = "A brown moving puddle that resembles a puddle of mud."
             },
             new Enemy
@@ -131,6 +132,7 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
                 SlashingDamage = true,
                 PiercingDamage = false,
                 BluntDamage = false,
+                ItemIds = null,
                 Description = "A small, green sliver that could easily be mistaken for a blade of grass."
             },
             new Enemy
@@ -150,6 +152,7 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
                 SlashingDamage = false,
                 PiercingDamage = true,
                 BluntDamage = false,
+                ItemIds = [],
                 Description = "A blue puddle."
             },
             new Enemy
@@ -169,141 +172,9 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
                 SlashingDamage = false,
                 PiercingDamage = true,
                 BluntDamage = false,
-                Description = "A blue puddle."
+                ItemIds = [1, 2, 3, 4, 5, 6],
+                Description = "A spooky skeleton!"
             },
-            new Enemy
-            {
-                Id = 5,
-                UserId = 1,
-                ImageId = 1,
-                Name = "Giant Rat",
-                MinLevel = 1,
-                MaxLevel = 3,
-                BaseDamage = 5,
-                BaseHealth = 10,
-                BaseExperience = 10,
-                SlashingArmor = 0,
-                PiercingArmor = 0,
-                BluntArmor = 0,
-                SlashingDamage = false,
-                PiercingDamage = true,
-                BluntDamage = false,
-                Description = "A blue puddle."
-            },
-            new Enemy
-            {
-                Id = 6,
-                UserId = 1,
-                ImageId = 1,
-                Name = "Cultist",
-                MinLevel = 1,
-                MaxLevel = 3,
-                BaseDamage = 5,
-                BaseHealth = 10,
-                BaseExperience = 10,
-                SlashingArmor = 0,
-                PiercingArmor = 0,
-                BluntArmor = 0,
-                SlashingDamage = false,
-                PiercingDamage = true,
-                BluntDamage = false,
-                Description = "A blue puddle."
-            },
-            new Enemy
-            {
-                Id = 7,
-                UserId = 1,
-                ImageId = 1,
-                Name = "Grave Worm",
-                MinLevel = 1,
-                MaxLevel = 3,
-                BaseDamage = 5,
-                BaseHealth = 10,
-                BaseExperience = 10,
-                SlashingArmor = 0,
-                PiercingArmor = 0,
-                BluntArmor = 0,
-                SlashingDamage = false,
-                PiercingDamage = true,
-                BluntDamage = false,
-                Description = "A blue puddle."
-            },
-            new Enemy
-            {
-                Id = 8,
-                UserId = 1,
-                ImageId = 1,
-                Name = "Wild Boar",
-                MinLevel = 1,
-                MaxLevel = 3,
-                BaseDamage = 5,
-                BaseHealth = 10,
-                BaseExperience = 10,
-                SlashingArmor = 0,
-                PiercingArmor = 0,
-                BluntArmor = 0,
-                SlashingDamage = false,
-                PiercingDamage = true,
-                BluntDamage = false,
-                Description = "A blue puddle."
-            },
-            new Enemy
-            {
-                Id = 9,
-                UserId = 1,
-                ImageId = 1,
-                Name = "Stag",
-                MinLevel = 1,
-                MaxLevel = 3,
-                BaseDamage = 5,
-                BaseHealth = 10,
-                BaseExperience = 10,
-                SlashingArmor = 0,
-                PiercingArmor = 0,
-                BluntArmor = 0,
-                SlashingDamage = false,
-                PiercingDamage = true,
-                BluntDamage = false,
-                Description = "A blue puddle."
-            },
-            new Enemy
-            {
-                Id = 10,
-                UserId = 1,
-                ImageId = 1,
-                Name = "Impling",
-                MinLevel = 1,
-                MaxLevel = 3,
-                BaseDamage = 5,
-                BaseHealth = 10,
-                BaseExperience = 10,
-                SlashingArmor = 0,
-                PiercingArmor = 0,
-                BluntArmor = 0,
-                SlashingDamage = false,
-                PiercingDamage = true,
-                BluntDamage = false,
-                Description = "A blue puddle."
-            },
-            new Enemy
-            {
-                Id = 11,
-                UserId = 1,
-                ImageId = 2,
-                Name = "Kobold",
-                MinLevel = 10,
-                MaxLevel = 15,
-                BaseDamage = 7,
-                BaseHealth = 160,
-                BaseExperience = 150,
-                SlashingArmor = 5,
-                PiercingArmor = 5,
-                BluntArmor = 0,
-                SlashingDamage = true,
-                PiercingDamage = false,
-                BluntDamage = false,
-                Description = "A small, green creature with a big nose and pointy ears."
-            }
         }
         );
 

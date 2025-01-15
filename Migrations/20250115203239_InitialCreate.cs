@@ -307,12 +307,12 @@ namespace Capstone_2.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "9ce89d88-75da-4a80-9b0d-3fe58582b8e2", 0, "955cb14e-9e78-4c3b-88be-4dd61a4ee0e6", "bob@williams.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEPv+68w1w0BmfpHm645Vr0MvMCk1M4g8F9DCOIYBkeRJ2df+2w/0k8XLc4yxoM0Oyg==", null, false, "889e44b0-becd-4466-9809-2f8d88d04aaf", false, "BobWilliams" },
-                    { "a7d21fac-3b21-454a-a747-075f072d0cf3", 0, "601b85ae-221b-406f-b066-2f6aa68d050b", "jane@smith.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEKooX5LXhT14Qzng3CsjwYmMckP3GwVIcfUKzCwGkTQ8YgO10ikhnoqtW2V+b2ugSw==", null, false, "744de00c-857e-41e8-b44f-166c5acc30e8", false, "JaneSmith" },
-                    { "c806cfae-bda9-47c5-8473-dd52fd056a9b", 0, "c2c4d237-5210-49cc-909f-f6961ed69245", "alice@johnson.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEHswPn85fBhxIiqhMfg4Xa5IRQAOKl0aexL72i7susU5TUIbQbb4mUDH67ATDbQZ0g==", null, false, "adaad038-43ec-44fb-90ba-1f41ed8fa6d4", false, "AliceJohnson" },
-                    { "d224a03d-bf0c-4a05-b728-e3521e45d74d", 0, "5128fec2-cf4b-4c94-828d-9bad83f6127e", "Eve@Davis.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEMsIxFcoXsttOhvgJd7ETUJfIo8lhm3SVunc+A6gqvQ6WBIfD+lmDpWyvp+yHeYbLg==", null, false, "9556da30-ab8b-4e65-9f3c-2473459adb42", false, "EveDavis" },
-                    { "d8d76512-74f1-43bb-b1fd-87d3a8aa36df", 0, "0aa59a2a-16a3-4071-ba5c-eb25e1b42f42", "john@doe.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEOQq6hMjpNpsfkgCS0Sh4OGMx2xBZgoVnu3zLHzeMosMk6exud4wvt6mWhLxlC2Ubw==", null, false, "e1f62f77-1f75-4127-ba9b-f6665911c4f9", false, "JohnDoe" },
-                    { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "fe1fc5ca-582a-4c9a-9c26-b3cff05d0dde", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEOVhOoesbzYRxkCe00TtdBQcMWA8v9mOL/xFTgj0RPEUrTvJD1bxItxPgLo9fnZhvw==", null, false, "669434cb-6a69-4c01-93f6-f517f31998b9", false, "Administrator" }
+                    { "9ce89d88-75da-4a80-9b0d-3fe58582b8e2", 0, "3b194595-cd65-4d01-876a-fe0c8b6b5821", "bob@williams.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEHjRPZBUJVV3jfxPRAvpOBPoVikJTUOizIZq4gXOozNE08R6TzWThfbYZZA/0CmgNg==", null, false, "12ea9a83-2910-4b34-a584-3fa592082856", false, "BobWilliams" },
+                    { "a7d21fac-3b21-454a-a747-075f072d0cf3", 0, "980d5a1d-516e-426a-a7bb-4fb256dd140f", "jane@smith.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEFycLJ/fZf3R2bhu4SObGCLDZ4JUNMfuly44dRp9qlOGD5EzPPTZ/hYNdKCi39xmIg==", null, false, "4f4783d5-c27a-486a-9e85-47d6f37ea873", false, "JaneSmith" },
+                    { "c806cfae-bda9-47c5-8473-dd52fd056a9b", 0, "e7625617-741d-4f1e-a965-ef8a91576932", "alice@johnson.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEDrbw5keYwib1oZkb6KPcX+IpvejTy5RqFYckdf7HwsChBIaWgbQQHU1dS41UQ0Avg==", null, false, "f11ac165-3cf0-4ec4-ae2b-60a30fa4a9f3", false, "AliceJohnson" },
+                    { "d224a03d-bf0c-4a05-b728-e3521e45d74d", 0, "81e6e7f6-3472-4e45-ae1a-0df0923d2265", "Eve@Davis.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEMsEVRjCdu1q8EMUz0aRtW133DWVXRt2zOTXtAYeiRT7rgLfqcgqYf0m6c/sHeYkzQ==", null, false, "7d9abeeb-6c12-4909-be3d-4e2a77d88b73", false, "EveDavis" },
+                    { "d8d76512-74f1-43bb-b1fd-87d3a8aa36df", 0, "33e8d0cf-b4ce-43e8-929b-005b1af3d5c6", "john@doe.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEN2z+lMYTfK2qJDLyhhICA3I8h4iPa4iMrtT+06YgZxVfCMiZdlTfKl7gKe0jhkwpg==", null, false, "f56b9048-7ba5-4a16-bd8f-a25de865eaff", false, "JohnDoe" },
+                    { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "b9aa9802-9f10-4a61-a790-cf18348e2095", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEIy8bbXZa/dcW8R+3+YvjwSvG62L0J/wxdKgMydTaXfqMXYJzuRAsLs2vLt0GH0O5g==", null, false, "7f753f22-9e77-49a2-8746-02a4f8adaead", false, "Administrator" }
                 });
 
             migrationBuilder.InsertData(
@@ -351,17 +351,10 @@ namespace Capstone_2.Migrations
                 columns: new[] { "Id", "BaseDamage", "BaseExperience", "BaseHealth", "BluntArmor", "BluntDamage", "Description", "ImageId", "ItemIds", "MaxLevel", "MinLevel", "Name", "PiercingArmor", "PiercingDamage", "SlashingArmor", "SlashingDamage", "UserId", "UserProfileId" },
                 values: new object[,]
                 {
-                    { 1, 5, 10, 10, 0, true, "A brown moving puddle that resembles a puddle of mud.", 1, null, 3, 1, "Mudling", 0, false, 0, false, 1, null },
+                    { 1, 5, 10, 10, 0, true, "A brown moving puddle that resembles a puddle of mud.", 1, new List<int> { 1, 2 }, 3, 1, "Mudling", 0, false, 0, false, 1, null },
                     { 2, 5, 10, 10, 0, false, "A small, green sliver that could easily be mistaken for a blade of grass.", 1, null, 3, 1, "Grassling", 0, false, 0, true, 1, null },
-                    { 3, 5, 10, 10, 0, false, "A blue puddle.", 1, null, 3, 1, "Waterling", 0, true, 0, false, 1, null },
-                    { 4, 5, 10, 10, 0, false, "A blue puddle.", 1, null, 3, 1, "Skeleton", 0, true, 0, false, 1, null },
-                    { 5, 5, 10, 10, 0, false, "A blue puddle.", 1, null, 3, 1, "Giant Rat", 0, true, 0, false, 1, null },
-                    { 6, 5, 10, 10, 0, false, "A blue puddle.", 1, null, 3, 1, "Cultist", 0, true, 0, false, 1, null },
-                    { 7, 5, 10, 10, 0, false, "A blue puddle.", 1, null, 3, 1, "Grave Worm", 0, true, 0, false, 1, null },
-                    { 8, 5, 10, 10, 0, false, "A blue puddle.", 1, null, 3, 1, "Wild Boar", 0, true, 0, false, 1, null },
-                    { 9, 5, 10, 10, 0, false, "A blue puddle.", 1, null, 3, 1, "Stag", 0, true, 0, false, 1, null },
-                    { 10, 5, 10, 10, 0, false, "A blue puddle.", 1, null, 3, 1, "Impling", 0, true, 0, false, 1, null },
-                    { 11, 7, 150, 160, 0, false, "A small, green creature with a big nose and pointy ears.", 2, null, 15, 10, "Kobold", 5, false, 5, true, 1, null }
+                    { 3, 5, 10, 10, 0, false, "A blue puddle.", 1, new List<int>(), 3, 1, "Waterling", 0, true, 0, false, 1, null },
+                    { 4, 5, 10, 10, 0, false, "A spooky skeleton!", 1, new List<int> { 1, 2, 3, 4, 5, 6 }, 3, 1, "Skeleton", 0, true, 0, false, 1, null }
                 });
 
             migrationBuilder.InsertData(
