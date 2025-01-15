@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { Button, Card, CardBody, CardImg, CardTitle, Container } from "reactstrap"
 import { deleteEnemy, getEnemies } from "../../managers/enemyManager"
-import { getItems } from "../../managers/itemManager"
 
 export const EnemyCard = ({ enemy, setEnemies }) => {
     const { id } = enemy

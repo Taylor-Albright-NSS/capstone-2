@@ -110,25 +110,25 @@ export const EnemyEdit = () => {
                                 <Col className="d-flex align-items-center flex-column">
                                     <FormGroup>
                                         <Label for="minLevel">Min. Level</Label>
-                                        <Input style={{width: "76px"}} type="number" name="minLevel" id="minLevel" value={currentEnemy.minLevel} onChange={handleNumberInput} />
+                                        <Input style={{width: "76px"}} type="number" name="minLevel" id="minLevel" value={currentEnemy.minLevel || ''} onChange={handleNumberInput} />
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="maxLevel">Max Level</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="maxLevel" id="maxLevel" value={currentEnemy.maxLevel} onChange={handleNumberInput} />
+                                        <Input style={{maxWidth: "76px"}} type="number" name="maxLevel" id="maxLevel" value={currentEnemy.maxLevel || ''} onChange={handleNumberInput} />
                                     </FormGroup>
                                 </Col>
                                 <Col className="d-flex align-items-center flex-column">
                                 <FormGroup className="d-flex flex-column align-items-center">
                                 <Label for="baseDamage">Base Damage</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="baseDamage" id="baseDamage" value={currentEnemy.baseDamage} onChange={handleNumberInput} />
+                                        <Input style={{maxWidth: "76px"}} type="number" name="baseDamage" id="baseDamage" value={currentEnemy.baseDamage || ''} onChange={handleNumberInput} />
                                     </FormGroup>
                                     <FormGroup className="d-flex flex-column align-items-center">
                                         <Label for="baseHealth">Base Health</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="baseHealth" id="baseHealth" value={currentEnemy.baseHealth} onChange={handleNumberInput} />
+                                        <Input style={{maxWidth: "76px"}} type="number" name="baseHealth" id="baseHealth" value={currentEnemy.baseHealth || ''} onChange={handleNumberInput} />
                                     </FormGroup>
                                     <FormGroup className="d-flex flex-column align-items-center ">
                                         <Label style={{textAlign: "center"}} for="baseExperience">Base Experience</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="baseExperience" id="baseExperience" value={currentEnemy.baseExperience} onChange={handleNumberInput} />
+                                        <Input style={{maxWidth: "76px"}} type="number" name="baseExperience" id="baseExperience" value={currentEnemy.baseExperience || ''} onChange={handleNumberInput} />
                                     </FormGroup>
                                 </Col>
                             </fieldset>
@@ -137,15 +137,15 @@ export const EnemyEdit = () => {
                                 <legend>Armor Values</legend>
                                 <FormGroup className="d-flex flex-column align-items-center">
                                     <Label for="slashingArmor">Slashing Armor</Label>
-                                    <Input style={{maxWidth: "76px"}} type="number" name="slashingArmor" id="slashingArmor" value={currentEnemy.slashingArmor} onChange={handleNumberInput} />
+                                    <Input style={{maxWidth: "76px"}} type="number" name="slashingArmor" id="slashingArmor" value={currentEnemy.slashingArmor || ''} onChange={handleNumberInput} />
                                 </FormGroup>
                                 <FormGroup className="d-flex flex-column align-items-center">
                                     <Label for="piercingArmor">Piercing Armor</Label>
-                                    <Input style={{maxWidth: "76px"}} type="number" name="piercingArmor" id="piercingArmor" value={currentEnemy.piercingArmor} onChange={handleNumberInput} />
+                                    <Input style={{maxWidth: "76px"}} type="number" name="piercingArmor" id="piercingArmor" value={currentEnemy.piercingArmor || ''} onChange={handleNumberInput} />
                                 </FormGroup>
                                 <FormGroup className="d-flex flex-column align-items-center">
                                     <Label for="bluntArmor">Blunt Armor</Label>
-                                    <Input style={{maxWidth: "76px"}} type="number" name="bluntArmor" id="bluntArmor" value={currentEnemy.bluntArmor} onChange={handleNumberInput} />
+                                    <Input style={{maxWidth: "76px"}} type="number" name="bluntArmor" id="bluntArmor" value={currentEnemy.bluntArmor || ''} onChange={handleNumberInput} />
                                 </FormGroup>
                             </fieldset>
 
