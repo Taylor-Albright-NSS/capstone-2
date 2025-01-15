@@ -10,7 +10,9 @@ import { Test } from "./test/Test";
 import { EnemyList } from "./enemies/EnemyList";
 import { EnemyDetails } from "./enemies/EnemyDetails";
 import { CreateEnemy } from "./enemies/CreateEnemy";
+import { EnemyEdit } from "./enemies/EnemyEdit";
 export const UserContext = createContext();
+
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   const test = "test"
   return (
@@ -27,7 +29,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
           <Route path="enemy-list">
             <Route index element={<EnemyList />} />
             <Route path=":id" element={<EnemyDetails />} /> 
-            <Route path="edit/:id" element={<p>Edit Enemy</p>} /> 
+            <Route path="edit/:id" element={<EnemyEdit />} /> 
           </Route>
           <Route path="create-enemy" element={<CreateEnemy />} />
           <Route path="test" element={<Test />}></Route>
