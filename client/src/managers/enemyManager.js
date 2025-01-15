@@ -11,6 +11,7 @@ export const getEnemy = async (id) => {
 }
 
 export const postEnemy = async (enemy) => {
+    console.log(enemy, 'Posted enemy')
     const response = await fetch(`${api_url}`, {
         method: "POST",
         headers: {

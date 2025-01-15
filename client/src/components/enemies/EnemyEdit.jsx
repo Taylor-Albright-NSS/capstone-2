@@ -80,6 +80,11 @@ export const EnemyEdit = () => {
         console.log(currentEnemy)
     }
 
+    const handleLoadCheckboxes = (e) => {
+        console.log(e, ' checkbox event')
+        // currentEnemy.items.some(item => item == )
+    }
+
     return (
         <Form className="my-4 mx-4"  style={{border: "4px solid black"}}>
             <Button onClick={handleSubmit}>Submit</Button>
@@ -193,7 +198,10 @@ export const EnemyEdit = () => {
                                                 <Col key={item.id} xs="12" sm="6" md="4" lg="3">
                                                 <FormGroup check>
                                                     <Label check>
-                                                        <Input type="checkbox" name={`item-${item.id}`} value={item.id} onChange={handleItemDropsChange}/>
+                                                        <Input type="checkbox" name={`item-${item.id}`} value={item.id} onChange={handleItemDropsChange} checked={() => {
+                                                            return currentEnemy.itemIds.some(itemId => itemId == item.id)
+                                                        }}
+                                                        />
                                                         {item.name}
                                                     </Label>
                                                 </FormGroup>
