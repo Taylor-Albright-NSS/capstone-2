@@ -8,6 +8,13 @@ import { useNavigate } from "react-router-dom";
 
 
 export const CreateEnemy = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const handleOpenModal = () => {
+        console.log(isModalOpen)
+        setIsModalOpen(true)
+    }
+    const handleCloseModal = () => setIsModalOpen(false)
+
     const { loggedInUser } = useContext(UserContext)
     const navigate = useNavigate()
     const userId = loggedInUser.id
@@ -34,14 +41,14 @@ export const CreateEnemy = () => {
 
     useEffect(() => {
         getItems().then(itemList => {
-            console.log(itemList)
+            console.log(itemList, ' Items list')
             setItems(itemList)
         })
     }, [])
 
     useEffect(() => {
         getEnemyImages().then(imageList => {
-            console.log(imageList)
+            console.log(imageList, 'Images list')
             setImages(imageList)
         })
     }, [])
@@ -95,6 +102,19 @@ export const CreateEnemy = () => {
                     <Col className="col-4">
                         <FormGroup>
                             <Label for="image">Click to select an image</Label>
+
+                            <Button onClick={handleOpenModal}>Open modal</Button>
+                            {isModalOpen && (
+                <div className="modal" onClick={handleCloseModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <span className="close-button" onClick={handleCloseModal}>
+                            &times;
+                        </span>
+                        <h2>Image Selector</h2>
+                        <p>Content for the modal goes here.</p>
+                    </div>
+                </div>
+            )}
                             <div
                                 style={{
                                     maxWidth: "200px",
@@ -104,7 +124,7 @@ export const CreateEnemy = () => {
                                     alignItems: "center",
                                     justifyContent: "center",
                                     cursor: "pointer",
-                                    backgroundImage: `url(${newEnemy.image})`,
+                                    backgroundImage: `url(${images[0]?.imageLocation})`,
                                     backgroundSize: "cover",
                                     backgroundPosition: "center"
                                 }}

@@ -5,8 +5,6 @@ import { deleteEnemy, getEnemies } from "../../managers/enemyManager"
 export const EnemyCard = ({ enemy, setEnemies }) => {
     const { id } = enemy
     const navigate = useNavigate()
-    console.log(enemy.image.imageLocation)
-
     const handleEnemyDelete = () => {
         deleteEnemy(id).then(() => {
             getEnemies().then(enemies => {

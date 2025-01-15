@@ -12,7 +12,6 @@ export const EnemyList = () => {
 
     useEffect(() => {
         getEnemies().then(enemyList => {
-            console.log(enemyList)
             setEnemies(enemyList)
         })
     }, [])
