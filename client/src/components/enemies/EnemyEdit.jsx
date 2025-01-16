@@ -14,7 +14,9 @@ export const EnemyEdit = () => {
     const [images, setImages] = useState([])
     const [items, setItems] = useState([])
     const [currentImage, setCurrentImage] = useState({})
+    
     const [currentEnemy, setCurrentEnemy] = useState({})
+    const [originalEnemy, setOriginalEnemy] = useState({})
     const [isOpen, setIsOpen] = useState(false);
     const toggleModal = () => setIsOpen(!isOpen);
 
@@ -103,7 +105,7 @@ export const EnemyEdit = () => {
                                             className="mx-1"
                                             border="2px solid black"
                                             onClick={() => {
-                                                setCurrentEnemy(prev => ({...prev, imageId: image.id}))
+                                                setCurrentEnemy(prev => ({...prev, imageId: image.id, image: image}))
                                                 setCurrentImage(image.imageLocation)
                                                 console.log("test")
                                             }
@@ -116,8 +118,8 @@ export const EnemyEdit = () => {
                                         color="danger" 
                                         onClick={() => {
                                             toggleModal()
-                                            setCurrentEnemy(prev => ({...prev, imageId: currentEnemy.image.id}))
-                                            setCurrentImage(currentEnemy.image.imageLocation)
+                                            // setCurrentEnemy(prev => ({...prev, imageId: currentEnemy.image.id}))
+                                            // setCurrentImage(currentEnemy.image.imageLocation)
                                         }
                                         }
                                         >Cancel
@@ -135,7 +137,7 @@ export const EnemyEdit = () => {
                                     alignItems: "center",
                                     justifyContent: "center",
                                     cursor: "pointer",
-                                    backgroundImage: `url(${currentImage})`,
+                                    backgroundImage: `url(${currentEnemy?.image?.imageLocation})`,
                                     backgroundSize: "cover",
                                     backgroundPosition: "center"
                                 }}
