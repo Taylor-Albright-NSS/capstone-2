@@ -16,7 +16,7 @@ export const CreateEnemy = () => {
     const navigate = useNavigate()
     const userId = loggedInUser.id
     const [images, setImages] = useState([])
-    const [selectedImage, setSelectedImage] = useState("")
+    const [currentImage, setCurrentImage] = useState(null)
 
     const [items, setItems] = useState([])
     const [newEnemy, setNewEnemy] = useState({
@@ -101,11 +101,15 @@ export const CreateEnemy = () => {
                     <Col className="col-4">
                         <FormGroup>
                             <Label for="image">Click to select an image</Label>
+                            <Modal isOpen={isOpen} toggle={() => {
+                                    toggleModal()
+                                    setCurrentImage(newEnemy.image)
+                                }}>
 
-                            <Button onClick={toggleModal}>Open modal</Button>
-                            <Modal isOpen={isOpen} toggle={toggleModal}>
-
-                                <ModalHeader toggle={toggleModal}></ModalHeader>
+                                <ModalHeader toggle={() => {
+                                    toggleModal()
+                                    setCurrentImage(newEnemy.image)
+                                }}>Header</ModalHeader>
                                 <ModalBody>
                                     {images?.map(image => 
                                         (<img 
@@ -116,8 +120,8 @@ export const CreateEnemy = () => {
                                             className="mx-1"
                                             border="2px solid black"
                                             onClick={() => {
-                                                setNewEnemy(prev => ({...prev, imageId: image.id}))
-                                                setSelectedImage(image.imageLocation)
+                                                // setNewEnemy(prev => ({...prev, imageId: image.id, image: image}))
+                                                setCurrentImage(image)
                                                 console.log("test")
                                             }
                                             }
@@ -125,11 +129,28 @@ export const CreateEnemy = () => {
                                     )}
                                 </ModalBody>
                                 <ModalFooter className="d-flex justify-content-center">
-                                    <Button color="danger" onClick={toggleModal}>Cancel</Button>
+                                    <Button 
+                                        color="danger" 
+                                        onClick={() => {
+                                            toggleModal()
+                                            console.log(newEnemy.image)
+                                            setCurrentImage(newEnemy.image)
+                                            }
+                                        }
+                                        >Cancel</Button>
+
+                                    <Button 
+                                        color="primary" 
+                                        onClick={() => {
+                                            toggleModal()
+                                            setNewEnemy(prev => ({...prev, imageId: currentImage.id, image: currentImage}))
+                                            }}
+                                        >Confirm</Button>
                                 </ModalFooter>
 
                             </Modal>
                             <div
+                                onClick={toggleModal}
                                 style={{
                                     maxWidth: "200px",
                                     minHeight: "200px",
@@ -138,12 +159,12 @@ export const CreateEnemy = () => {
                                     alignItems: "center",
                                     justifyContent: "center",
                                     cursor: "pointer",
-                                    backgroundImage: `url(${selectedImage})`,
+                                    backgroundImage: `url(${currentImage?.imageLocation})`,
                                     backgroundSize: "cover",
                                     backgroundPosition: "center"
                                 }}
                             >
-                                {!newEnemy.image && <span>Select Image</span>}
+                                {currentImage == null || currentImage == undefined ? <span>Select Image</span> : ""}
                             </div>
                         </FormGroup>
 

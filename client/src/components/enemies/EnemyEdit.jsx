@@ -8,15 +8,32 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 export const EnemyEdit = () => {
+    const [currentEnemy, setCurrentEnemy] = useState({
+        name: "",
+        minLevel: 0,
+        maxLevel: 0,
+        baseDamage: 0,
+        baseHealth: 0,
+        baseExperience: 0,
+        slashingArmor: 0,
+        piercingArmor: 0,
+        bluntArmor: 0,
+        slashingDamage: false,
+        piercingDamage: false,
+        bluntDamage: false,
+        description: "",
+        imageId: null,
+        itemIds: []
+    });
     const { id } = useParams()
     const navigate = useNavigate()
 
     const [images, setImages] = useState([])
     const [items, setItems] = useState([])
     const [currentImage, setCurrentImage] = useState({})
-    
-    const [currentEnemy, setCurrentEnemy] = useState({})
+
     const [originalEnemy, setOriginalEnemy] = useState({})
+
     const [isOpen, setIsOpen] = useState(false);
     const toggleModal = () => setIsOpen(!isOpen);
 
@@ -36,7 +53,8 @@ export const EnemyEdit = () => {
         getEnemyForEdit(id).then(enemy => {
             console.log(enemy)
             setCurrentEnemy(enemy)
-            setCurrentImage(enemy.image.imageLocation)
+            setOriginalEnemy(enemy)
+            setCurrentImage(enemy.image)
         })
     }, [])
     
@@ -77,24 +95,28 @@ export const EnemyEdit = () => {
 
     const handleTest = () =>{
         console.log(currentEnemy, "current enemy")
+        console.log(originalEnemy, "original enemy")
     }
 
     return (
         <Form className="my-4 mx-4"  style={{border: "4px solid black"}}>
             <Button onClick={handleSubmit}>Submit</Button>
             <Button onClick={handleTest}>Test</Button>
+            <Button onClick={() => navigate("/enemy-list")}>Go Back</Button>
                 <Row className="d-flex mx-4">
                     {/* LEFT SIDE */}
                     <Col className="col-4">
                         <FormGroup>
                             <Label for="image">Click to select an image</Label>
-                            <Button onClick={toggleModal}>Open modal</Button>
-                            <Modal isOpen={isOpen} toggle={toggleModal}>
+                            <Modal isOpen={isOpen} toggle={() => {
+                                    toggleModal()
+                                    setCurrentImage(currentEnemy.image)
+                                }}>
 
                                 <ModalHeader toggle={() => {
                                     toggleModal()
-                                    console.log('works!')
-                                }}></ModalHeader>
+                                    setCurrentImage(currentEnemy.image)
+                                }}>Header</ModalHeader>
                                 <ModalBody>
                                     {images?.map(image => 
                                         (<img 
@@ -105,8 +127,7 @@ export const EnemyEdit = () => {
                                             className="mx-1"
                                             border="2px solid black"
                                             onClick={() => {
-                                                setCurrentEnemy(prev => ({...prev, imageId: image.id, image: image}))
-                                                setCurrentImage(image.imageLocation)
+                                                setCurrentImage(image)
                                                 console.log("test")
                                             }
                                             }
@@ -118,17 +139,19 @@ export const EnemyEdit = () => {
                                         color="danger" 
                                         onClick={() => {
                                             toggleModal()
-                                            // setCurrentEnemy(prev => ({...prev, imageId: currentEnemy.image.id}))
-                                            // setCurrentImage(currentEnemy.image.imageLocation)
-                                        }
+                                            setCurrentImage(currentEnemy.image)
+                                            }
                                         }
                                         >Cancel
                                     </Button>
-                                    <Button color="primary" onClick={toggleModal}>Confirm</Button>
+                                    <Button color="primary" onClick={() => {
+                                            toggleModal()
+                                            setCurrentEnemy(prev => ({...prev, imageId: currentImage.id, image: currentImage}))
+                                        }}>Confirm</Button>
                                 </ModalFooter>
-
                             </Modal>
                             <div
+                            onClick={toggleModal}
                                 style={{
                                     maxWidth: "200px",
                                     minHeight: "200px",
@@ -137,22 +160,22 @@ export const EnemyEdit = () => {
                                     alignItems: "center",
                                     justifyContent: "center",
                                     cursor: "pointer",
-                                    backgroundImage: `url(${currentEnemy?.image?.imageLocation})`,
+                                    backgroundImage: `url(${currentImage.imageLocation})`,
                                     backgroundSize: "cover",
                                     backgroundPosition: "center"
                                 }}
                             >
-                                {currentEnemy?.image?.imageLocation && <span>Select Image</span>}
+                                {!currentEnemy?.image?.imageLocation && <span>Select Image</span>}
                             </div>
                         </FormGroup>
 
                         <FormGroup className="d-flex align-items-center flex-row">
                             <Label for="name">Name</Label>
-                            <Input style={{width: "200px"}} type="text" name="name" id="name" value={currentEnemy.name || ''} onChange={handleTextInput}/>
+                            <Input style={{width: "200px"}} type="text" name="name" id="name" value={currentEnemy.name} onChange={handleTextInput}/>
                         </FormGroup>
                         <FormGroup style={{maxWidth: "500px"}}>
                                 <Label for="description">Enemy Description</Label>
-                                <Input style={{resize: "none"}} type="textarea" name="description" id="description" value={currentEnemy.description || ''} onChange={handleTextInput}></Input>
+                                <Input style={{resize: "none"}} type="textarea" name="description" id="description" value={currentEnemy.description} onChange={handleTextInput}></Input>
                             </FormGroup>
                     </Col>
                     {/* RIGHT SIDE */}
@@ -162,25 +185,25 @@ export const EnemyEdit = () => {
                                 <Col className="d-flex align-items-center flex-column">
                                     <FormGroup>
                                         <Label for="minLevel">Min. Level</Label>
-                                        <Input style={{width: "76px"}} type="number" name="minLevel" id="minLevel" value={currentEnemy.minLevel || ''} onChange={handleNumberInput} />
+                                        <Input style={{width: "76px"}} type="number" name="minLevel" id="minLevel" value={currentEnemy.minLevel} onChange={handleNumberInput} />
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="maxLevel">Max Level</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="maxLevel" id="maxLevel" value={currentEnemy.maxLevel || ''} onChange={handleNumberInput} />
+                                        <Input style={{maxWidth: "76px"}} type="number" name="maxLevel" id="maxLevel" value={currentEnemy.maxLevel} onChange={handleNumberInput} />
                                     </FormGroup>
                                 </Col>
                                 <Col className="d-flex align-items-center flex-column">
                                 <FormGroup className="d-flex flex-column align-items-center">
                                 <Label for="baseDamage">Base Damage</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="baseDamage" id="baseDamage" value={currentEnemy.baseDamage || ''} onChange={handleNumberInput} />
+                                        <Input style={{maxWidth: "76px"}} type="number" name="baseDamage" id="baseDamage" value={currentEnemy.baseDamage} onChange={handleNumberInput} />
                                     </FormGroup>
                                     <FormGroup className="d-flex flex-column align-items-center">
                                         <Label for="baseHealth">Base Health</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="baseHealth" id="baseHealth" value={currentEnemy.baseHealth || ''} onChange={handleNumberInput} />
+                                        <Input style={{maxWidth: "76px"}} type="number" name="baseHealth" id="baseHealth" value={currentEnemy.baseHealth} onChange={handleNumberInput} />
                                     </FormGroup>
                                     <FormGroup className="d-flex flex-column align-items-center ">
                                         <Label style={{textAlign: "center"}} for="baseExperience">Base Experience</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="baseExperience" id="baseExperience" value={currentEnemy.baseExperience || ''} onChange={handleNumberInput} />
+                                        <Input style={{maxWidth: "76px"}} type="number" name="baseExperience" id="baseExperience" value={currentEnemy.baseExperience} onChange={handleNumberInput} />
                                     </FormGroup>
                                 </Col>
                             </fieldset>
@@ -189,15 +212,15 @@ export const EnemyEdit = () => {
                                 <legend>Armor Values</legend>
                                 <FormGroup className="d-flex flex-column align-items-center">
                                     <Label for="slashingArmor">Slashing Armor</Label>
-                                    <Input style={{maxWidth: "76px"}} type="number" name="slashingArmor" id="slashingArmor" value={currentEnemy.slashingArmor || ''} onChange={handleNumberInput} />
+                                    <Input style={{maxWidth: "76px"}} type="number" name="slashingArmor" id="slashingArmor" value={currentEnemy.slashingArmor} onChange={handleNumberInput} />
                                 </FormGroup>
                                 <FormGroup className="d-flex flex-column align-items-center">
                                     <Label for="piercingArmor">Piercing Armor</Label>
-                                    <Input style={{maxWidth: "76px"}} type="number" name="piercingArmor" id="piercingArmor" value={currentEnemy.piercingArmor || ''} onChange={handleNumberInput} />
+                                    <Input style={{maxWidth: "76px"}} type="number" name="piercingArmor" id="piercingArmor" value={currentEnemy.piercingArmor} onChange={handleNumberInput} />
                                 </FormGroup>
                                 <FormGroup className="d-flex flex-column align-items-center">
                                     <Label for="bluntArmor">Blunt Armor</Label>
-                                    <Input style={{maxWidth: "76px"}} type="number" name="bluntArmor" id="bluntArmor" value={currentEnemy.bluntArmor || ''} onChange={handleNumberInput} />
+                                    <Input style={{maxWidth: "76px"}} type="number" name="bluntArmor" id="bluntArmor" value={currentEnemy.bluntArmor} onChange={handleNumberInput} />
                                 </FormGroup>
                             </fieldset>
 
@@ -205,19 +228,19 @@ export const EnemyEdit = () => {
                                 <legend>Damage Types</legend>
                                 <FormGroup check>
                                     <Label check>
-                                        <Input type="checkbox" name="slashingDamage" onChange={handleCheckbox} checked={currentEnemy.slashingDamage || false}/>
+                                        <Input type="checkbox" name="slashingDamage" onChange={handleCheckbox} checked={currentEnemy.slashingDamage}/>
                                         Slashing
                                     </Label>
                                 </FormGroup>
                                 <FormGroup check>
                                     <Label check>
-                                        <Input type="checkbox" name="piercingDamage" onChange={handleCheckbox} checked={currentEnemy.piercingDamage || false}/>
+                                        <Input type="checkbox" name="piercingDamage" onChange={handleCheckbox} checked={currentEnemy.piercingDamage}/>
                                         Piercing
                                     </Label>
                                 </FormGroup>
                                 <FormGroup check>
                                     <Label check>
-                                        <Input type="checkbox" name="bluntDamage" onChange={handleCheckbox} checked={currentEnemy.bluntDamage || false}/>
+                                        <Input type="checkbox" name="bluntDamage" onChange={handleCheckbox} checked={currentEnemy.bluntDamage}/>
                                         Blunt
                                     </Label>
                                 </FormGroup>

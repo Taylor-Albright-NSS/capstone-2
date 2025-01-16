@@ -26,6 +26,7 @@ export const EnemyDetails = () => {
         <Container>
             <h3>Enemy Details Page</h3>
             <Button onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>
+            <Button onClick={() => navigate("/enemy-list")}>Go Back</Button>
 
             <Row>
                 {/* Left side column */}

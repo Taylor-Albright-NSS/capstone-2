@@ -19,10 +19,13 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
             <Card onClick={() => navigate(`${id}`)} style={{cursor: "pointer", width: "200px"}}>
                 <CardBody className="d-flex flex-column align-items-center">
                     <CardImg src={enemy.image.imageLocation} />
-                    <CardTitle tag="h4">{enemy.id}: {enemy.name}</CardTitle>
+                    <CardTitle tag="h4"><span style={{fontSize: "12px"}}>Id: {enemy.id}</span>{enemy.name}</CardTitle>
                 </CardBody>
             </Card>
-            <Button onClick={handleEnemyDelete}>Delete Enemy</Button>
+            <div>
+                <Button style={{width: "100px", fontSize: "12px"}} onClick={handleEnemyDelete}>Delete Enemy</Button>
+                <Button style={{width: "100px", fontSize: "12px"}} onClick={() => navigate(`edit/${id}`)}>Edit</Button>
+            </div>
         </Container>
     )
 }
