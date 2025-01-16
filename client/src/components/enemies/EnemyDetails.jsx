@@ -23,39 +23,37 @@ export const EnemyDetails = () => {
     }
     
     return (
-        <Container>
+        <Container style={{border: "2px solid black"}}>
             <h3>Enemy Details Page</h3>
-            <Button onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>
-            <Button onClick={() => navigate("/enemy-list")}>Go Back</Button>
-
             <Row>
                 {/* Left side column */}
                 <Col>
                     <Row>
-                        <div className="container" style={{ maxWidth: "500px" }}>
-                            <h1>name: {enemy?.name}</h1>
+                        <div className="container" style={{ maxWidth: "400px" }}>
+                            <h1>{enemy?.name}</h1>
                             <img src={`${enemy?.image?.imageLocation}`} alt={enemy?.name} />
+                            <p style={{marginBottom: 0}}>Level range: {enemy?.minLevel + " - " + enemy?.maxLevel}</p>
                         </div>
                     </Row>
                     <Row>
                             <h3>Details</h3>
-                        <Col>
-                            <p style={{marginBottom: 0}}>Level range: {enemy?.minLevel + " - " + enemy?.maxLevel}</p>
+                        <Col style={{border: "2px solid green"}}>
+                            <p style={{marginBottom: 0}}>Type: Elemental (this is hard coded)</p>
                             <p style={{marginBottom: 0}}>Base Health: {enemy?.baseHealth}</p>
-                            <p style={{marginBottom: 0}}>Base experience: {enemy?.baseExperience}</p>
                             <p style={{marginBottom: 0}}>Slashing Armor: {enemy?.slashingArmor}</p>
                             <p style={{marginBottom: 0}}>Piercing Armor: {enemy?.piercingArmor}</p>
                             <p style={{marginBottom: 0}}>Blunt Armor: {enemy?.bluntArmor}</p>
-                            <p style={{marginBottom: 0}}>Description: {enemy?.description}</p>
                         </Col>
-                        <Col>
+                        <Col style={{border: "2px solid black"}}>
                             <p style={{marginBottom: 0}}>Slashing Attack?: {enemy?.slashingDamage ? "Yes" : "No"}</p>
                             <p style={{marginBottom: 0}}>Piercing Attack?: {enemy?.piercingDamage ? "Yes" : "No"}</p>
                             <p style={{marginBottom: 0}}>Blunt Attack?: {enemy?.bluntDamage ? "Yes" : "No"}</p>
                             <p style={{marginBottom: 0}}>PLACEHOLDER FOR ABILITIES</p>
-                            <p style={{marginBottom: 0}}>Description: {enemy?.description}</p>
                         </Col>
-                        <Row className="d-flex ">
+                        <Row style={{border: "2px solid red"}}>
+                            <p style={{marginBottom: 0}}>Base experience: {enemy?.baseExperience}</p>
+                            <p style={{marginBottom: 0}}>Base gold: (this is hard coded){enemy?.baseExperience}</p>
+
                             <h6>Item drops</h6>
                             {enemy?.items.length > 0 ?
                             enemy.items.map(item => {
@@ -64,8 +62,12 @@ export const EnemyDetails = () => {
                                 )
                             })
                             : "Does not drop any items"}
+                            <p style={{marginBottom: 0}}>Description: {enemy?.description || "Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder "}</p>
                         </Row>
                     </Row>
+
+
+
                 </Col>
 
                 {/* Right side column */}
@@ -75,7 +77,9 @@ export const EnemyDetails = () => {
                     </div>
                 </Col>
             </Row>
-            <Button onClick={handleEnemyDelete}>Delete Enemy</Button>
+            <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>
+            <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>
+            <Button color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
         </Container>
     );
 }
