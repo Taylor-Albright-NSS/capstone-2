@@ -33,7 +33,7 @@ export const EnemyDetails = () => {
                     <Row>
                         <div className="container" style={{ maxWidth: "500px" }}>
                             <h1>name: {enemy?.name}</h1>
-                            <img src={`/${enemy?.image?.imageLocation}`} alt={enemy?.name} />
+                            <img src={`${enemy?.image?.imageLocation}`} alt={enemy?.name} />
                         </div>
                     </Row>
                     <Row>

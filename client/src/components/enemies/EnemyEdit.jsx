@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, Form, FormGroup, Input, Label, Row, Col } from "reactstrap";
+import { Button, Form, FormGroup, Input, Label, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { UserContext } from "../ApplicationViews";
 import { getEnemyForEdit, putEnemy } from "../../managers/enemyManager";
 import { getItems } from "../../managers/itemManager";
@@ -10,9 +10,13 @@ import { useNavigate, useParams } from "react-router-dom";
 export const EnemyEdit = () => {
     const { id } = useParams()
     const navigate = useNavigate()
+
     const [images, setImages] = useState([])
     const [items, setItems] = useState([])
+    const [currentImage, setCurrentImage] = useState({})
     const [currentEnemy, setCurrentEnemy] = useState({})
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleModal = () => setIsOpen(!isOpen);
 
     useEffect(() => {
         getItems().then(itemList => {
@@ -30,6 +34,7 @@ export const EnemyEdit = () => {
         getEnemyForEdit(id).then(enemy => {
             console.log(enemy)
             setCurrentEnemy(enemy)
+            setCurrentImage(enemy.image.imageLocation)
         })
     }, [])
     
@@ -68,14 +73,59 @@ export const EnemyEdit = () => {
         console.log(currentEnemy)
     }
 
+    const handleTest = () =>{
+        console.log(currentEnemy, "current enemy")
+    }
+
     return (
         <Form className="my-4 mx-4"  style={{border: "4px solid black"}}>
             <Button onClick={handleSubmit}>Submit</Button>
+            <Button onClick={handleTest}>Test</Button>
                 <Row className="d-flex mx-4">
                     {/* LEFT SIDE */}
                     <Col className="col-4">
                         <FormGroup>
                             <Label for="image">Click to select an image</Label>
+                            <Button onClick={toggleModal}>Open modal</Button>
+                            <Modal isOpen={isOpen} toggle={toggleModal}>
+
+                                <ModalHeader toggle={() => {
+                                    toggleModal()
+                                    console.log('works!')
+                                }}></ModalHeader>
+                                <ModalBody>
+                                    {images?.map(image => 
+                                        (<img 
+                                            key={image.id} 
+                                            src={`${image.imageLocation}`} 
+                                            alt={"NO IMAGE"} 
+                                            style={{maxWidth: "80px"}}
+                                            className="mx-1"
+                                            border="2px solid black"
+                                            onClick={() => {
+                                                setCurrentEnemy(prev => ({...prev, imageId: image.id}))
+                                                setCurrentImage(image.imageLocation)
+                                                console.log("test")
+                                            }
+                                            }
+                                            />)
+                                    )}
+                                </ModalBody>
+                                <ModalFooter className="d-flex justify-content-center">
+                                    <Button 
+                                        color="danger" 
+                                        onClick={() => {
+                                            toggleModal()
+                                            setCurrentEnemy(prev => ({...prev, imageId: currentEnemy.image.id}))
+                                            setCurrentImage(currentEnemy.image.imageLocation)
+                                        }
+                                        }
+                                        >Cancel
+                                    </Button>
+                                    <Button color="primary" onClick={toggleModal}>Confirm</Button>
+                                </ModalFooter>
+
+                            </Modal>
                             <div
                                 style={{
                                     maxWidth: "200px",
@@ -85,12 +135,12 @@ export const EnemyEdit = () => {
                                     alignItems: "center",
                                     justifyContent: "center",
                                     cursor: "pointer",
-                                    backgroundImage: `url(${currentEnemy.image})`,
+                                    backgroundImage: `url(${currentImage})`,
                                     backgroundSize: "cover",
                                     backgroundPosition: "center"
                                 }}
                             >
-                                {!currentEnemy.image && <span>Select Image</span>}
+                                {currentEnemy?.image?.imageLocation && <span>Select Image</span>}
                             </div>
                         </FormGroup>
 

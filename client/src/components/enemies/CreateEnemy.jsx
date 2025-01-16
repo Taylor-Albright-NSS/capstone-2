@@ -1,24 +1,23 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, Form, FormGroup, Input, Label, Row, Col } from "reactstrap";
+import { Button, Form, FormGroup, Input, Label, Row, Col, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { UserContext } from "../ApplicationViews";
 import { postEnemy } from "../../managers/enemyManager";
 import { getItems } from "../../managers/itemManager";
 import { getEnemyImages } from "../../managers/imageManager";
 import { useNavigate } from "react-router-dom";
+import { Modal,  } from "reactstrap";
 
 
 export const CreateEnemy = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const handleOpenModal = () => {
-        console.log(isModalOpen)
-        setIsModalOpen(true)
-    }
-    const handleCloseModal = () => setIsModalOpen(false)
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleModal = () => setIsOpen(!isOpen);
 
     const { loggedInUser } = useContext(UserContext)
     const navigate = useNavigate()
     const userId = loggedInUser.id
     const [images, setImages] = useState([])
+    const [selectedImage, setSelectedImage] = useState("")
+
     const [items, setItems] = useState([])
     const [newEnemy, setNewEnemy] = useState({
         userId: userId,
@@ -103,18 +102,33 @@ export const CreateEnemy = () => {
                         <FormGroup>
                             <Label for="image">Click to select an image</Label>
 
-                            <Button onClick={handleOpenModal}>Open modal</Button>
-                            {isModalOpen && (
-                <div className="modal" onClick={handleCloseModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <span className="close-button" onClick={handleCloseModal}>
-                            &times;
-                        </span>
-                        <h2>Image Selector</h2>
-                        <p>Content for the modal goes here.</p>
-                    </div>
-                </div>
-            )}
+                            <Button onClick={toggleModal}>Open modal</Button>
+                            <Modal isOpen={isOpen} toggle={toggleModal}>
+
+                                <ModalHeader toggle={toggleModal}></ModalHeader>
+                                <ModalBody>
+                                    {images?.map(image => 
+                                        (<img 
+                                            key={image.id} 
+                                            src={image.imageLocation} 
+                                            alt={"NO IMAGE"} 
+                                            style={{maxWidth: "80px"}}
+                                            className="mx-1"
+                                            border="2px solid black"
+                                            onClick={() => {
+                                                setNewEnemy(prev => ({...prev, imageId: image.id}))
+                                                setSelectedImage(image.imageLocation)
+                                                console.log("test")
+                                            }
+                                            }
+                                            />)
+                                    )}
+                                </ModalBody>
+                                <ModalFooter className="d-flex justify-content-center">
+                                    <Button color="danger" onClick={toggleModal}>Cancel</Button>
+                                </ModalFooter>
+
+                            </Modal>
                             <div
                                 style={{
                                     maxWidth: "200px",
@@ -124,7 +138,7 @@ export const CreateEnemy = () => {
                                     alignItems: "center",
                                     justifyContent: "center",
                                     cursor: "pointer",
-                                    backgroundImage: `url(${images[0]?.imageLocation})`,
+                                    backgroundImage: `url(${selectedImage})`,
                                     backgroundSize: "cover",
                                     backgroundPosition: "center"
                                 }}

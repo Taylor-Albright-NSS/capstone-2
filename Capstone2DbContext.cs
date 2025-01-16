@@ -193,12 +193,32 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
             new Image
             {
                 Id = 1,
-                ImageLocation = "public/assets/images/elementals/mudling/mudling.png"
+                ImageLocation = "/public/assets/images/elementals/mudling/mudling.png"
             },
             new Image
             {
                 Id = 2,
-                ImageLocation = "public/assets/images/kobolds/kobold child/kobold child.png"
+                ImageLocation = "/public/assets/images/elementals/waterling/waterling.png"
+            },
+            new Image
+            {
+                Id = 3,
+                ImageLocation = "/public/assets/images/elementals/grassling/grassling.png"
+            },
+            new Image
+            {
+                Id = 4,
+                ImageLocation = "/public/assets/images/kobolds/kobold_child/kobold_child.png"
+            },
+            new Image
+            {
+                Id = 5,
+                ImageLocation = "/public/assets/images/kobolds/kobold_archer/kobold_archer.png"
+            },
+            new Image
+            {
+                Id = 6,
+                ImageLocation = "/public/assets/images/kobolds/kobold_scoundrel/kobold_scoundrel.png"
             },
         });
 
