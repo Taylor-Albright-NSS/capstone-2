@@ -7,8 +7,7 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setAllIm
     const toggleModal = () => setIsOpen(!isOpen);
     
     return (
-        <FormGroup>
-            <Label for="image">Click to select an image</Label>
+        <FormGroup className="d-flex justify-content-center">
             <Modal isOpen={isOpen} toggle={() => {
                 toggleModal()
                 setEnemyImage(enemy.image)
@@ -63,24 +62,24 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setAllIm
                         >Confirm</Button>
                 </ModalFooter>
             </Modal>
-                <div
-                    onClick={toggleModal}
-                    style={{
-                        name: "image",
-                        maxWidth: "200px",
-                        minHeight: "200px",
-                        border: "8px solid grey",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        cursor: "pointer",
-                        backgroundImage: `url(${enemyImage?.imageLocation})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center"
-                    }}
-                    >
-                    {enemyImage == null || enemyImage == undefined ? <span>Select Image</span> : ""}
-                </div>
+            <div
+                onClick={toggleModal}
+                style={{
+                    name: "image",
+                    minWidth: "200px",
+                    minHeight: "200px",
+                    border: "8px solid grey",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    cursor: "pointer",
+                    backgroundImage: `url(${enemyImage?.imageLocation})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center"
+                }}
+                >
+                {enemyImage == null || enemyImage == undefined ? <span>Select Image</span> : ""}
+            </div>
         </FormGroup>
     )
 }
