@@ -20,6 +20,7 @@ public class EnemyDTO
     public bool SlashingDamage { get; set; }
     public bool PiercingDamage { get; set; }
     public bool BluntDamage { get; set; }
+    
     public string Description { get; set; }
     public List<int>? ItemIds { get; set; }
     public int ActualLevel

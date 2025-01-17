@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteEnemy, getEnemies, getEnemy } from "../../managers/enemyManager";
-import { Button, Card, CardImg, Col, Container, Row } from "reactstrap";
+import { Button, Card, CardBody, CardImg, CardText, Col, Container, Row } from "reactstrap";
 import { getItems } from "../../managers/itemManager";
 
 export const EnemyDetails = () => {
@@ -40,28 +40,35 @@ export const EnemyDetails = () => {
                         <Col >
                             <Row>
                                 <Col>
-                                <h5 style={{textAlign: "center"}}>Defense</h5>
-                                <p style={{marginBottom: 0}}>Base Health: {enemy?.baseHealth}</p>
-                                <p style={{marginBottom: 0}}>Slashing Armor: {enemy?.slashingArmor}</p>
-                                <p style={{marginBottom: 0}}>Piercing Armor: {enemy?.piercingArmor}</p>
-                                <p style={{marginBottom: 0}}>Blunt Armor: {enemy?.bluntArmor}</p>
-                                <h5 style={{textAlign: "center"}}>Magic Defense</h5>
-                                <p style={{marginBottom: 0}}>Magic res: 0</p>
-                                <p style={{marginBottom: 0}}>Magic res: 0</p>
-                                <p style={{marginBottom: 0}}>Magic res: 0</p>
-                                <p style={{marginBottom: 0}}>Magic res: 0</p>
+                                    <Card>
+                                        <h5 style={{textAlign: "center"}}>Defense</h5>
+                                        <p style={{marginBottom: 0}}>Base Health: {enemy?.baseHealth}</p>
+                                        <p style={{marginBottom: 0}}>Slashing Armor: {enemy?.slashingArmor}</p>
+                                        <p style={{marginBottom: 0}}>Piercing Armor: {enemy?.piercingArmor}</p>
+                                        <p style={{marginBottom: 0}}>Blunt Armor: {enemy?.bluntArmor}</p>
+                                    </Card>
+                                    <Card>
+                                        <h5 style={{textAlign: "center"}}>Magic Defense</h5>
+                                        <p style={{marginBottom: 0}}>Magic res: 0</p>
+                                        <p style={{marginBottom: 0}}>Magic res: 0</p>
+                                        <p style={{marginBottom: 0}}>Magic res: 0</p>
+                                        <p style={{marginBottom: 0}}>Magic res: 0</p>
+                                    </Card>
                                 </Col>
                                 <Col style={{textAlign: "center"}}>
-                                <h5 style={{textAlign: "center"}}>Offense</h5>
-                                <p>Base Damage: {enemy?.baseDamage}</p>
-                                <h6 className="my-2">Damage Types</h6>
-                                {enemy?.slashingDamage && <p style={{marginBottom: 0}}>Slashing</p>}
-                                {enemy?.piercingDamage && <p style={{marginBottom: 0}}>Piercing</p>}
-                                {enemy?.bluntDamage && <p style={{marginBottom: 0}}>Blunt</p>}
-                                <h6 className="my-2">Abilities</h6>
+                                    <Card style={{height: "100%"}}>
+                                        <h5 style={{textAlign: "center"}}>Offense</h5>
+                                        <p>Base Damage: {enemy?.baseDamage}</p>
+                                        <h6 className="my-2">Damage Types</h6>
+                                        {enemy?.slashingDamage && <p style={{marginBottom: 0}}>Slashing</p>}
+                                        {enemy?.piercingDamage && <p style={{marginBottom: 0}}>Piercing</p>}
+                                        {enemy?.bluntDamage && <p style={{marginBottom: 0}}>Blunt</p>}
+                                        <h6 className="my-2">Abilities</h6>
+                                    </Card>
                                 </Col>
                             </Row>
-                            <Row style={{border: "2px solid red"}}>
+                            <Row>
+                                <Card>
                                 <h5 style={{textAlign: "center"}}>Extra</h5>
                                 <p style={{marginBottom: 0}}>Base experience: {enemy?.baseExperience}</p>
                                 <p style={{marginBottom: 0}}>Base gold: (this is hard coded){enemy?.baseExperience}</p>
@@ -76,10 +83,17 @@ export const EnemyDetails = () => {
                                         : "Does not drop any items"
                                         }
                                 </span>
-                                <span>
+                                <span className="d-flex flex-column align-items-center">
                                     <h6 style={{textAlign: "center"}}>Description</h6>
-                                    <p style={{marginBottom: 0}}>{enemy?.description || "Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder "}</p>
+                                    <Card className="align-items-center" style={{maxWidth: "400px", minWidth: "200px"}}>
+                                        <CardBody>
+
+                                        {enemy?.description || "This is an enemy that has not yet been given a description"}
+                                        </CardBody>
+                                    </Card>
                                 </span>
+
+                                </Card>
                             </Row>
                         </Col>
                     </Row>
