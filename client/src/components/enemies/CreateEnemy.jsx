@@ -6,6 +6,7 @@ import { getItems } from "../../managers/itemManager";
 import { getEnemyImages } from "../../managers/imageManager";
 import { useNavigate } from "react-router-dom";
 import { Modal,  } from "reactstrap";
+import { FormModal } from "../formComponents/FormModal";
 
 
 export const CreateEnemy = () => {
@@ -98,57 +99,9 @@ export const CreateEnemy = () => {
             <Button>Submit</Button>
                 <Row className="d-flex mx-4">
                     <Col className="col-4">
-                        <FormGroup>
-                            <Label for="image">Click to select an image</Label>
-                            <Modal isOpen={isOpen} toggle={() => {
-                                    toggleModal()
-                                    setCurrentImage(newEnemy.image)
-                                }}>
-
-                                <ModalHeader toggle={() => {
-                                    toggleModal()
-                                    setCurrentImage(newEnemy.image)
-                                }}>Header</ModalHeader>
-                                <ModalBody>
-                                    {images?.map(image => 
-                                        (<img 
-                                            key={image.id} 
-                                            src={image.imageLocation} 
-                                            alt={"NO IMAGE"} 
-                                            style={{maxWidth: "80px"}}
-                                            className="mx-1"
-                                            border="2px solid black"
-                                            onClick={() => {
-                                                // setNewEnemy(prev => ({...prev, imageId: image.id, image: image}))
-                                                setCurrentImage(image)
-                                                console.log("test")
-                                            }
-                                            }
-                                            />)
-                                    )}
-                                </ModalBody>
-                                <ModalFooter className="d-flex justify-content-center">
-                                    <Button 
-                                        color="danger" 
-                                        onClick={() => {
-                                            toggleModal()
-                                            console.log(newEnemy.image)
-                                            setCurrentImage(newEnemy.image)
-                                            }
-                                        }
-                                        >Cancel</Button>
-
-                                    <Button 
-                                        color="primary" 
-                                        onClick={() => {
-                                            toggleModal()
-                                            setNewEnemy(prev => ({...prev, imageId: currentImage.id, image: currentImage}))
-                                            }}
-                                        >Confirm</Button>
-                                </ModalFooter>
-                            </Modal>
-                        </FormGroup>
-                            <div
+                    {console.log(images)}
+                        <FormModal setEnemyImage={setCurrentImage} enemyImage={currentImage} setEnemy={setNewEnemy} enemy={newEnemy} setAllImages={setImages} allImages={images} />
+                            {/* <div
                                 onClick={toggleModal}
                                 style={{
                                     name: "image",
@@ -165,7 +118,7 @@ export const CreateEnemy = () => {
                                 }}
                             >
                                 {currentImage == null || currentImage == undefined ? <span>Select Image</span> : ""}
-                            </div>
+                            </div> */}
 
                         <FormGroup className="d-flex align-items-center flex-row">
                             <Label for="name">Name</Label>
