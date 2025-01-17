@@ -1,9 +1,9 @@
 import { FormGroup, Label, Input } from "reactstrap"
 
-export const Fieldset3 = ({ handleNumberInput }) => {
+export const FieldsetDefense = ({ handleNumberInput }) => {
     return (
         <fieldset>
-            <legend>Defense</legend>
+            <legend style={{textAlign: "center"}}>Defense</legend>
             <FormGroup className="d-flex flex-column align-items-center">
                 <Label for="baseHealth">Base Health</Label>
                 <Input style={{maxWidth: "76px"}} type="number" name="baseHealth" id="baseHealth" onChange={handleNumberInput} />

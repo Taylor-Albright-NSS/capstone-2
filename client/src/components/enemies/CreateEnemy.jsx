@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, Form, FormGroup, Input, Label, Row, Col, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Form, FormGroup, Input, Label, Row, Col, ModalHeader, ModalBody, ModalFooter, Card } from "reactstrap";
 import { UserContext } from "../ApplicationViews";
 import { postEnemy } from "../../managers/enemyManager";
 import { getItems } from "../../managers/itemManager";
@@ -9,8 +9,8 @@ import { Modal,  } from "reactstrap";
 import { FormModal } from "../formComponents/FormModal";
 import { Fieldset1 } from "../formComponents/Fieldset1";
 import { Fieldset2 } from "../formComponents/Fieldset2";
-import { Fieldset3 } from "../formComponents/Fieldset3";
-import { FieldsetDamageTypes } from "../formComponents/FieldsetDamageTypes";
+import { FieldsetDefense } from "../formComponents/FieldsetDefense";
+import { FieldsetOffense } from "../formComponents/FieldsetOffense";
 import { FieldsetItemDrops } from "../formComponents/FieldsetItemDrops";
 
 
@@ -102,40 +102,33 @@ export const CreateEnemy = () => {
     return (
         <Form className="my-4 mx-4" onSubmit={handleSubmit} style={{border: "2px solid black"}}>
             <Row className="justify-content-center mx-4" style={{border: "2px solid green"}}>
-                <Col className="col-8" style={{border: "2px solid red"}}>
+                <Col className="col-7" style={{border: "2px solid red"}}>
                 {/*ROW 1*/}
-                    <Row style={{border: "2px solid yellow"}}>
-                        <Col className="d-flex justify-content-center" style={{border: "2px solid blue"}}>
-                        <FormModal setEnemyImage={setCurrentImage} enemyImage={currentImage} setEnemy={setNewEnemy} enemy={newEnemy} setAllImages={setImages} allImages={images} />
-                            <Fieldset1 enemy={newEnemy} handleTextInput={handleTextInput} handleNumberInput={handleNumberInput} />
+                    <Row style={{border: "2px solid yellow", padding: "1rem"}}>
+                        <Col className="d-flex justify-content-evenly">
+                                <FormModal setEnemyImage={setCurrentImage} enemyImage={currentImage} setEnemy={setNewEnemy} enemy={newEnemy} setAllImages={setImages} allImages={images} />
+                                <Fieldset1 enemy={newEnemy} handleTextInput={handleTextInput} handleNumberInput={handleNumberInput} />
+                                <Fieldset2 handleNumberInput={handleNumberInput} handleTextInput={handleTextInput} />
                         </Col>
                     </Row>
                 {/*ROW 2*/}
                     <Row style={{border: "2px solid yellow"}}>
 
-
                         <Col style={{border: "2px solid blue"}}>
-                            <Fieldset3 handleNumberInput={handleNumberInput} />
+                            <FieldsetOffense handleCheckbox={handleCheckbox} enemy={newEnemy} handleNumberInput={handleNumberInput} />
+                        </Col>
+                        <Col style={{border: "2px solid blue"}}>
+                            <FieldsetDefense handleNumberInput={handleNumberInput} />
                         </Col>
 
-                        <Col style={{border: "2px solid blue"}}>
-                            <FieldsetDamageTypes handleCheckbox={handleCheckbox} enemy={newEnemy} handleNumberInput={handleNumberInput} />
-                        </Col>
-
-                        <Col style={{border: "2px solid blue"}}>
-                            <FieldsetItemDrops handleItemDropsChange={handleItemDropsChange} items={items} handleNumberInput={handleNumberInput} />
-                        </Col>
                             
                     </Row>
                 </Col>
+                <Col style={{border: "2px solid blue"}}>
+                            <FieldsetItemDrops handleItemDropsChange={handleItemDropsChange} items={items} handleNumberInput={handleNumberInput} />
+                </Col>
             </Row>
-                
-            <Row>
-                <FormGroup style={{maxWidth: "500px"}}>
-                    <Label for="description">Enemy Description</Label>
-                    <Input style={{resize: "none"}} type="textarea" name="description" id="description" onChange={handleTextInput}></Input>
-                </FormGroup>
-            </Row>
+            
             <Button>Submit</Button>
         </Form>
     );
