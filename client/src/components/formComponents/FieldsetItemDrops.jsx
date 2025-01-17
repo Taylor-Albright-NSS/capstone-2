@@ -1,6 +1,6 @@
 import { FormGroup, Label, Input, Col } from "reactstrap"
 
-export const FieldsetItemDrops = ({ handleItemDropsChange, items }) => {
+export const FieldsetItemDrops = ({ handleItemDropsChange, items, handleNumberInput }) => {
     return (
         <fieldset>
             <legend>Item Drops</legend>
@@ -16,6 +16,11 @@ export const FieldsetItemDrops = ({ handleItemDropsChange, items }) => {
                     </Col>
                 )
             )}
+            <FormGroup className="d-flex flex-column align-items-center ">
+                <Label style={{textAlign: "center"}} for="baseExperience">Base Experience</Label>
+                <Input style={{maxWidth: "76px"}} type="number" name="baseExperience" id="baseExperience" onChange={handleNumberInput} />
+            </FormGroup>
+            <FormGroup>Gold placeholder</FormGroup>
         </fieldset>
     )
 }

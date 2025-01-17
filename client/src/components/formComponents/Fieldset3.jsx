@@ -3,7 +3,11 @@ import { FormGroup, Label, Input } from "reactstrap"
 export const Fieldset3 = ({ handleNumberInput }) => {
     return (
         <fieldset>
-            <legend>Armor Values</legend>
+            <legend>Defense</legend>
+            <FormGroup className="d-flex flex-column align-items-center">
+                <Label for="baseHealth">Base Health</Label>
+                <Input style={{maxWidth: "76px"}} type="number" name="baseHealth" id="baseHealth" onChange={handleNumberInput} />
+            </FormGroup>
             <FormGroup className="d-flex flex-column align-items-center">
                 <Label for="slashingArmor">Slashing Armor</Label>
                 <Input style={{maxWidth: "76px"}} type="number" name="slashingArmor" id="slashingArmor" onChange={handleNumberInput} />

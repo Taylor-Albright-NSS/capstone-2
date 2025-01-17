@@ -103,15 +103,19 @@ export const CreateEnemy = () => {
         <Form className="my-4 mx-4" onSubmit={handleSubmit} style={{border: "8px solid black"}}>
             <Row className="justify-content-center mx-4" style={{border: "8px solid green"}}>
                 <Col className="col-8" style={{border: "8px solid red"}}>
+                {/*ROW 1*/}
                     <Row style={{border: "8px solid yellow"}}>
                         <FormModal setEnemyImage={setCurrentImage} enemyImage={currentImage} setEnemy={setNewEnemy} enemy={newEnemy} setAllImages={setImages} allImages={images} />
                     </Row>
-                    
+                {/*ROW 2*/}
                     <Row style={{border: "8px solid yellow"}}>
-
-                        <Col style={{border: "8px solid blue"}}>
+                        <Col className="d-flex justify-content-center" style={{border: "8px solid blue"}}>
                             <Fieldset1 enemy={newEnemy} handleTextInput={handleTextInput} handleNumberInput={handleNumberInput} />
                         </Col>
+                    </Row>
+                {/*ROW 3*/}
+                    <Row style={{border: "8px solid yellow"}}>
+
 
                         <Col className="d-flex align-items-center flex-column" style={{border: "8px solid blue"}}>
                             <Fieldset2 handleNumberInput={handleNumberInput} />
@@ -122,11 +126,11 @@ export const CreateEnemy = () => {
                         </Col>
 
                         <Col style={{border: "8px solid blue"}}>
-                            <FieldsetDamageTypes handleCheckbox={handleCheckbox} enemy={newEnemy} />
+                            <FieldsetDamageTypes handleCheckbox={handleCheckbox} enemy={newEnemy} handleNumberInput={handleNumberInput} />
                         </Col>
 
                         <Col style={{border: "8px solid blue"}}>
-                            <FieldsetItemDrops handleItemDropsChange={handleItemDropsChange} items={items} />
+                            <FieldsetItemDrops handleItemDropsChange={handleItemDropsChange} items={items} handleNumberInput={handleNumberInput} />
                         </Col>
                             
                     </Row>

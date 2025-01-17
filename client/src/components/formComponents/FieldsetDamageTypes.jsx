@@ -1,9 +1,14 @@
 import { FormGroup, Label, Input } from "reactstrap"
 
-export const FieldsetDamageTypes = ({ handleCheckbox, enemy }) => {
+export const FieldsetDamageTypes = ({ handleCheckbox, enemy, handleNumberInput }) => {
     return (
         <fieldset>
-            <legend>Damage Types</legend>
+            <legend>Damage</legend>
+            <FormGroup className="d-flex flex-column align-items-center">
+                <Label for="baseDamage">Base Damage</Label>
+                <Input style={{maxWidth: "76px"}} type="number" name="baseDamage" id="baseDamage" onChange={handleNumberInput} />
+            </FormGroup>
+
             <FormGroup check>
                 <Label check>
                     <Input type="checkbox" name="slashingDamage" onChange={handleCheckbox} checked={enemy.slashingDamage || false}/>
