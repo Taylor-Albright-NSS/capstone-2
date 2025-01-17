@@ -16,12 +16,12 @@ export const Fieldset1 = ({ enemy, handleTextInput, handleNumberInput }) => {
                 <span className="d-flex justify-content-around">
                     <FormGroup>
                         <Label for="minLevel">Min. Level</Label>
-                        <Input style={{width: "76px"}} type="number" name="minLevel" id="minLevel" onChange={handleNumberInput} />
+                        <Input style={{width: "76px"}} type="number" name="minLevel" id="minLevel" value={enemy.minLevel} onChange={handleNumberInput} />
                     </FormGroup>
 
                     <FormGroup>
                         <Label for="maxLevel">Max Level</Label>
-                        <Input style={{maxWidth: "76px"}} type="number" name="maxLevel" id="maxLevel" onChange={handleNumberInput} />
+                        <Input style={{maxWidth: "76px"}} type="number" name="maxLevel" id="maxLevel" value={enemy.maxLevel} onChange={handleNumberInput} />
                     </FormGroup>
                 </span>
             </fieldset>

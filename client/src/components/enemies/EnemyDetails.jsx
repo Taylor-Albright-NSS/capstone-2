@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteEnemy, getEnemies, getEnemy } from "../../managers/enemyManager";
-import { Button, CardImg, Col, Container, Row } from "reactstrap";
+import { Button, Card, CardImg, Col, Container, Row } from "reactstrap";
 import { getItems } from "../../managers/itemManager";
 
 export const EnemyDetails = () => {
@@ -83,19 +83,17 @@ export const EnemyDetails = () => {
                             </Row>
                         </Col>
                     </Row>
-
-
-
-            <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>
-            <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>
-            <Button color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
+                    <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>
+                    <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>
+                    <Button color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
                 </Col>
 
                 {/* Right side column */}
-                <Col>
-                    <div className="container" style={{ maxWidth: "500px" }}>
-                        <h3>Simulator information</h3>
-                    </div>
+                <Col className="d-flex justify-content-center align-items-center" style={{border: "2px solid black"}}>
+                    <Card className="justify-content-center align-items-center" style={{minWidth: "300px", minHeight: "300px"}}>
+                        <h3>Simulator </h3>
+                        <p>Coming in a future update!</p>
+                    </Card>
                 </Col>
             </Row>
         </Container>

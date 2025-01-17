@@ -5,10 +5,11 @@ import { getEnemyForEdit, putEnemy } from "../../managers/enemyManager";
 import { getItems } from "../../managers/itemManager";
 import { getEnemyImages } from "../../managers/imageManager";
 import { useNavigate, useParams } from "react-router-dom";
+import { FormMain } from "../formComponents/_FormMain";
 
 
 export const EnemyEdit = () => {
-    const [currentEnemy, setCurrentEnemy] = useState({
+    const [enemy, setEnemy] = useState({
         name: "",
         minLevel: 0,
         maxLevel: 0,
@@ -30,7 +31,7 @@ export const EnemyEdit = () => {
 
     const [images, setImages] = useState([])
     const [items, setItems] = useState([])
-    const [currentImage, setCurrentImage] = useState({})
+    const [enemyImage, setEnemyImage] = useState({})
 
     const [originalEnemy, setOriginalEnemy] = useState({})
 
@@ -52,15 +53,15 @@ export const EnemyEdit = () => {
     useEffect(() => {
         getEnemyForEdit(id).then(enemy => {
             console.log(enemy)
-            setCurrentEnemy(enemy)
+            setEnemy(enemy)
             setOriginalEnemy(enemy)
-            setCurrentImage(enemy.image)
+            setEnemyImage(enemy.image)
         })
     }, [])
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        putEnemy(currentEnemy, currentEnemy.id).then(data => {
+        putEnemy(enemy, enemy.id).then(data => {
             console.log(data)
             navigate("/enemy-list")
         })
@@ -70,224 +71,48 @@ export const EnemyEdit = () => {
         const itemId = e.target.value;  // ID of the item
         const isChecked = e.target.checked;
         if (isChecked) {
-            setCurrentEnemy(prevState => ({...prevState, itemIds: [...prevState.itemIds, parseInt(itemId)]}))
+            setEnemy(prevState => ({...prevState, itemIds: [...prevState.itemIds, parseInt(itemId)]}))
         } else {
-            setCurrentEnemy(prevState => ({...prevState, itemIds: prevState.itemIds.filter(id => id !== parseInt(itemId))}))  // Remove itemId
+            setEnemy(prevState => ({...prevState, itemIds: prevState.itemIds.filter(id => id !== parseInt(itemId))}))  // Remove itemId
         }
       };
 
     const handleCheckbox = (e) => {
         const { name, checked } = e.target;
-        setCurrentEnemy({ ...currentEnemy, [name]: checked });
+        setEnemy({ ...enemy, [name]: checked });
     };
 
     const handleTextInput = (e) => {
         const {name, value} = e.target
-        setCurrentEnemy({...currentEnemy, [name]: value})
-        console.log(currentEnemy)
+        setEnemy({...enemy, [name]: value})
+        console.log(enemy)
     }
 
     const handleNumberInput = (e) => {
         const {name, value} = e.target
-        setCurrentEnemy({...currentEnemy, [name]: parseInt(value)})
-        console.log(currentEnemy)
+        setEnemy({...enemy, [name]: parseInt(value)})
+        console.log(enemy)
     }
 
     const handleTest = () =>{
-        console.log(currentEnemy, "current enemy")
+        console.log(enemy, "current enemy")
         console.log(originalEnemy, "original enemy")
     }
 
     return (
-        <Form className="my-4 mx-4"  style={{border: "4px solid black"}}>
-            <Button onClick={handleSubmit}>Submit</Button>
-            <Button onClick={handleTest}>Test</Button>
-            <Button onClick={() => navigate("/enemy-list")}>Go Back</Button>
-                <Row className="d-flex mx-4">
-                    {/* LEFT SIDE */}
-                    <Col className="col-4">
-                        <FormGroup>
-                            <Label for="image">Click to select an image</Label>
-                            <Modal isOpen={isOpen} toggle={() => {
-                                    toggleModal()
-                                    setCurrentImage(currentEnemy.image)
-                                }}>
-
-                                <ModalHeader toggle={() => {
-                                    toggleModal()
-                                    setCurrentImage(currentEnemy.image)
-                                }}>Header</ModalHeader>
-                                <ModalBody>
-                                    {images?.map(image => 
-                                        (<img 
-                                            key={image.id} 
-                                            src={`${image.imageLocation}`} 
-                                            alt={"NO IMAGE"} 
-                                            style={{maxWidth: "80px"}}
-                                            className="mx-1"
-                                            border="2px solid black"
-                                            onClick={() => {
-                                                setCurrentImage(image)
-                                                console.log("test")
-                                            }
-                                            }
-                                            />)
-                                    )}
-                                </ModalBody>
-                                <ModalFooter className="d-flex justify-content-center">
-                                    <Button 
-                                        color="danger" 
-                                        onClick={() => {
-                                            toggleModal()
-                                            setCurrentImage(currentEnemy.image)
-                                            }
-                                        }
-                                        >Cancel
-                                    </Button>
-                                    <Button color="primary" onClick={() => {
-                                            toggleModal()
-                                            setCurrentEnemy(prev => ({...prev, imageId: currentImage.id, image: currentImage}))
-                                        }}>Confirm</Button>
-                                </ModalFooter>
-                            </Modal>
-                            <div
-                            onClick={toggleModal}
-                                style={{
-                                    maxWidth: "200px",
-                                    minHeight: "200px",
-                                    border: "2px solid grey",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    cursor: "pointer",
-                                    backgroundImage: `url(${currentImage.imageLocation})`,
-                                    backgroundSize: "cover",
-                                    backgroundPosition: "center"
-                                }}
-                            >
-                                {!currentEnemy?.image?.imageLocation && <span>Select Image</span>}
-                            </div>
-                        </FormGroup>
-
-                        <FormGroup className="d-flex align-items-center flex-row">
-                            <Label for="name">Name</Label>
-                            <Input style={{width: "200px"}} type="text" name="name" id="name" value={currentEnemy.name} onChange={handleTextInput}/>
-                        </FormGroup>
-                        <FormGroup style={{maxWidth: "500px"}}>
-                                <Label for="description">Enemy Description</Label>
-                                <Input style={{resize: "none"}} type="textarea" name="description" id="description" value={currentEnemy.description} onChange={handleTextInput}></Input>
-                            </FormGroup>
-                    </Col>
-                    {/* RIGHT SIDE */}
-                    <Col>
-                        <Row>
-                            <fieldset style={{maxWidth: "200px", border: "2px solid grey"}}>
-                                <Col className="d-flex align-items-center flex-column">
-                                    <FormGroup>
-                                        <Label for="minLevel">Min. Level</Label>
-                                        <Input style={{width: "76px"}} type="number" name="minLevel" id="minLevel" value={currentEnemy.minLevel} onChange={handleNumberInput} />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <Label for="maxLevel">Max Level</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="maxLevel" id="maxLevel" value={currentEnemy.maxLevel} onChange={handleNumberInput} />
-                                    </FormGroup>
-                                </Col>
-                                <Col className="d-flex align-items-center flex-column">
-                                <FormGroup className="d-flex flex-column align-items-center">
-                                <Label for="baseDamage">Base Damage</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="baseDamage" id="baseDamage" value={currentEnemy.baseDamage} onChange={handleNumberInput} />
-                                    </FormGroup>
-                                    <FormGroup className="d-flex flex-column align-items-center">
-                                        <Label for="baseHealth">Base Health</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="baseHealth" id="baseHealth" value={currentEnemy.baseHealth} onChange={handleNumberInput} />
-                                    </FormGroup>
-                                    <FormGroup className="d-flex flex-column align-items-center ">
-                                        <Label style={{textAlign: "center"}} for="baseExperience">Base Experience</Label>
-                                        <Input style={{maxWidth: "76px"}} type="number" name="baseExperience" id="baseExperience" value={currentEnemy.baseExperience} onChange={handleNumberInput} />
-                                    </FormGroup>
-                                </Col>
-                            </fieldset>
-
-                            <fieldset style={{maxWidth: "200px", border: "2px solid grey"}}>
-                                <legend>Armor Values</legend>
-                                <FormGroup className="d-flex flex-column align-items-center">
-                                    <Label for="slashingArmor">Slashing Armor</Label>
-                                    <Input style={{maxWidth: "76px"}} type="number" name="slashingArmor" id="slashingArmor" value={currentEnemy.slashingArmor} onChange={handleNumberInput} />
-                                </FormGroup>
-                                <FormGroup className="d-flex flex-column align-items-center">
-                                    <Label for="piercingArmor">Piercing Armor</Label>
-                                    <Input style={{maxWidth: "76px"}} type="number" name="piercingArmor" id="piercingArmor" value={currentEnemy.piercingArmor} onChange={handleNumberInput} />
-                                </FormGroup>
-                                <FormGroup className="d-flex flex-column align-items-center">
-                                    <Label for="bluntArmor">Blunt Armor</Label>
-                                    <Input style={{maxWidth: "76px"}} type="number" name="bluntArmor" id="bluntArmor" value={currentEnemy.bluntArmor} onChange={handleNumberInput} />
-                                </FormGroup>
-                            </fieldset>
-
-                            <fieldset style={{maxWidth: "200px", border: "2px solid grey"}}>
-                                <legend>Damage Types</legend>
-                                <FormGroup check>
-                                    <Label check>
-                                        <Input type="checkbox" name="slashingDamage" onChange={handleCheckbox} checked={currentEnemy.slashingDamage}/>
-                                        Slashing
-                                    </Label>
-                                </FormGroup>
-                                <FormGroup check>
-                                    <Label check>
-                                        <Input type="checkbox" name="piercingDamage" onChange={handleCheckbox} checked={currentEnemy.piercingDamage}/>
-                                        Piercing
-                                    </Label>
-                                </FormGroup>
-                                <FormGroup check>
-                                    <Label check>
-                                        <Input type="checkbox" name="bluntDamage" onChange={handleCheckbox} checked={currentEnemy.bluntDamage}/>
-                                        Blunt
-                                    </Label>
-                                </FormGroup>
-                            </fieldset>
-                        </Row>
-                    </Col>
-                </Row>
-                <Row>
-                    <fieldset>
-                        <legend>Item Drops</legend>
-                                        {items && items.map(item => 
-                                             (
-                                                <Col key={item.id} xs="12" sm="6" md="4" lg="3">
-                                                <FormGroup check>
-                                                    <Label check>
-                                                        <Input 
-                                                        type="checkbox" 
-                                                        name={`item-${item.id}`} 
-                                                        value={item.id} 
-                                                        onChange={handleItemDropsChange} 
-                                                        checked={currentEnemy?.itemIds?.includes(item.id)}
-                                                        />
-                                                        {item.name}
-                                                    </Label>
-                                                </FormGroup>
-                                            </Col>
-                                            )
-                                        )}
-                                {/* <FormGroup >
-                                    <Label for="items">TEST</Label>
-                                    <Input type="select" onChange={(e) => handleSelect(e)}>
-                                    <option key={0} value={0}>Select an item</option>
-                                        {items && items.map(item => {
-                                            return (<option key={item.id} value={item.id} data-name={'test'}>{item.name}</option>)
-                                        })}
-                                    </Input>
-                                </FormGroup> */}
-                        {/* {items && items.map(item => {
-                            return (
-
-                        )
-                        })} */}
-                    </fieldset>
-                </Row>
-        </Form>
-        // <div className="container" style={{ maxWidth: "500px" }}>
-        //     <h3>Create Enemy Page</h3>
-        // </div>
+                <FormMain 
+                    handleSubmit={handleSubmit} 
+                    setEnemyImage={setEnemyImage}
+                    enemyImage={enemyImage}
+                    setEnemy={setEnemy}
+                    enemy={enemy}
+                    setImages={setImages}
+                    images={images}
+                    handleTextInput={handleTextInput}
+                    handleNumberInput={handleNumberInput}
+                    handleCheckbox={handleCheckbox}
+                    handleItemDropsChange={handleItemDropsChange}
+                    items={items} 
+            />
     );
 }

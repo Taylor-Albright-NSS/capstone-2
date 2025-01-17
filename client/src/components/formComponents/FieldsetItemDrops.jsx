@@ -1,6 +1,6 @@
 import { FormGroup, Label, Input, Col } from "reactstrap"
 
-export const FieldsetItemDrops = ({ handleItemDropsChange, items, handleNumberInput }) => {
+export const FieldsetItemDrops = ({ handleItemDropsChange, items, handleNumberInput, enemy }) => {
     return (
         <fieldset>
             <legend style={{textAlign: "center"}}>Item Drops</legend>
@@ -9,7 +9,7 @@ export const FieldsetItemDrops = ({ handleItemDropsChange, items, handleNumberIn
                     <Col key={item.id} xs="12" sm="6" md="4" lg="3">
                         <FormGroup check>
                             <Label check>
-                                <Input type="checkbox" name={`item-${item.id}`} value={item.id} onChange={handleItemDropsChange} />
+                                <Input checked={enemy?.itemIds?.includes(item.id)} type="checkbox" name={`item-${item.id}`} value={item.id} onChange={handleItemDropsChange} />
                                 {item.name}
                             </Label>
                         </FormGroup>

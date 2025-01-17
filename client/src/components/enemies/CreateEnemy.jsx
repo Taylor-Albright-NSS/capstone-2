@@ -109,7 +109,8 @@ export const CreateEnemy = () => {
                 handleNumberInput={handleNumberInput}
                 handleCheckbox={handleCheckbox}
                 handleItemDropsChange={handleItemDropsChange}
-                items={items} 
+                items={items}
+                isCreateButton={true}
             />
     );
 }

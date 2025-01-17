@@ -19,7 +19,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
 
   return (
     <div>
-      <Navbar color="light" light fixed="true" expand="lg">
+      <Navbar className="" color="light" light fixed="true" expand="lg">
         <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
           ✍️ Capstone2
         </NavbarBrand>
@@ -37,7 +37,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                 {loggedInUser.roles.includes("Admin") && (
                   <NavItem>
                     <NavLink tag={RRNavLink} to="/enemy-list">
-                      Enemy List
+                      Enemies
                     </NavLink>
                   </NavItem>
                 )}
