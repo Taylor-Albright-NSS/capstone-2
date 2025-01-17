@@ -24,62 +24,80 @@ export const EnemyDetails = () => {
     
     return (
         <Container style={{border: "2px solid black"}}>
-            <h3>Enemy Details Page</h3>
             <Row>
                 {/* Left side column */}
-                <Col>
-                    <Row>
-                        <div className="container" style={{ maxWidth: "400px" }}>
+                <Col style={{maxWidth: "500px"}}>
+                    <Row className="d-flex justify-content-center">
+                        <div className="d-flex flex-column align-items-center" style={{ maxWidth: "400px" }} >
                             <h1>{enemy?.name}</h1>
-                            <img src={`${enemy?.image?.imageLocation}`} alt={enemy?.name} />
-                            <p style={{marginBottom: 0}}>Level range: {enemy?.minLevel + " - " + enemy?.maxLevel}</p>
+                            <img style={{maxWidth: "100px"}} src={`${enemy?.image?.imageLocation}`} alt={enemy?.name} />
+                                <p style={{marginBottom: 0}}>Level range: {enemy?.minLevel + " - " + enemy?.maxLevel}</p>
+                                <p style={{marginBottom: 0}}>Elemental</p>
+                                {/* <p style={{marginBottom: 0}}>^ elemental is hard coded. Need to add type property to enemies</p> */}
                         </div>
                     </Row>
-                    <Row>
-                            <h3>Details</h3>
-                        <Col style={{border: "2px solid green"}}>
-                            <p style={{marginBottom: 0}}>Type: Elemental (this is hard coded)</p>
-                            <p style={{marginBottom: 0}}>Base Health: {enemy?.baseHealth}</p>
-                            <p style={{marginBottom: 0}}>Slashing Armor: {enemy?.slashingArmor}</p>
-                            <p style={{marginBottom: 0}}>Piercing Armor: {enemy?.piercingArmor}</p>
-                            <p style={{marginBottom: 0}}>Blunt Armor: {enemy?.bluntArmor}</p>
+                    <Row style={{border: "2px solid green"}}>
+                        <Col >
+                            <Row>
+                                <Col>
+                                <h5 style={{textAlign: "center"}}>Defense</h5>
+                                <p style={{marginBottom: 0}}>Base Health: {enemy?.baseHealth}</p>
+                                <p style={{marginBottom: 0}}>Slashing Armor: {enemy?.slashingArmor}</p>
+                                <p style={{marginBottom: 0}}>Piercing Armor: {enemy?.piercingArmor}</p>
+                                <p style={{marginBottom: 0}}>Blunt Armor: {enemy?.bluntArmor}</p>
+                                <h5 style={{textAlign: "center"}}>Magic Defense</h5>
+                                <p style={{marginBottom: 0}}>Magic res: 0</p>
+                                <p style={{marginBottom: 0}}>Magic res: 0</p>
+                                <p style={{marginBottom: 0}}>Magic res: 0</p>
+                                <p style={{marginBottom: 0}}>Magic res: 0</p>
+                                </Col>
+                                <Col style={{textAlign: "center"}}>
+                                <h5 style={{textAlign: "center"}}>Offense</h5>
+                                <p>Base Damage: {enemy?.baseDamage}</p>
+                                <h6 className="my-2">Damage Types</h6>
+                                {enemy?.slashingDamage && <p style={{marginBottom: 0}}>Slashing</p>}
+                                {enemy?.piercingDamage && <p style={{marginBottom: 0}}>Piercing</p>}
+                                {enemy?.bluntDamage && <p style={{marginBottom: 0}}>Blunt</p>}
+                                <h6 className="my-2">Abilities</h6>
+                                </Col>
+                            </Row>
+                            <Row style={{border: "2px solid red"}}>
+                                <h5 style={{textAlign: "center"}}>Extra</h5>
+                                <p style={{marginBottom: 0}}>Base experience: {enemy?.baseExperience}</p>
+                                <p style={{marginBottom: 0}}>Base gold: (this is hard coded){enemy?.baseExperience}</p>
+                                <span className="d-flex">
+                                    <h6>Item drops:</h6>
+                                    {enemy?.items.length > 0 ?
+                                        enemy.items.map(item => {
+                                            return (
+                                                <p style={{marginBottom: 0, marginLeft: "4px"}} key={item.id}>{item.name}</p>
+                                            )
+                                        })
+                                        : "Does not drop any items"
+                                        }
+                                </span>
+                                <span>
+                                    <h6 style={{textAlign: "center"}}>Description</h6>
+                                    <p style={{marginBottom: 0}}>{enemy?.description || "Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder "}</p>
+                                </span>
+                            </Row>
                         </Col>
-                        <Col style={{border: "2px solid black"}}>
-                            <p style={{marginBottom: 0}}>Slashing Attack?: {enemy?.slashingDamage ? "Yes" : "No"}</p>
-                            <p style={{marginBottom: 0}}>Piercing Attack?: {enemy?.piercingDamage ? "Yes" : "No"}</p>
-                            <p style={{marginBottom: 0}}>Blunt Attack?: {enemy?.bluntDamage ? "Yes" : "No"}</p>
-                            <p style={{marginBottom: 0}}>PLACEHOLDER FOR ABILITIES</p>
-                        </Col>
-                        <Row style={{border: "2px solid red"}}>
-                            <p style={{marginBottom: 0}}>Base experience: {enemy?.baseExperience}</p>
-                            <p style={{marginBottom: 0}}>Base gold: (this is hard coded){enemy?.baseExperience}</p>
-
-                            <h6>Item drops</h6>
-                            {enemy?.items.length > 0 ?
-                            enemy.items.map(item => {
-                                return (
-                                    <p style={{marginBottom: 0}} key={item.id}>{item.name}</p>
-                                )
-                            })
-                            : "Does not drop any items"}
-                            <p style={{marginBottom: 0}}>Description: {enemy?.description || "Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder "}</p>
-                        </Row>
                     </Row>
 
 
 
+            <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>
+            <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>
+            <Button color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
                 </Col>
 
                 {/* Right side column */}
                 <Col>
                     <div className="container" style={{ maxWidth: "500px" }}>
-                        <h3>Enemy Stats information</h3>
+                        <h3>Simulator information</h3>
                     </div>
                 </Col>
             </Row>
-            <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>
-            <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>
-            <Button color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
         </Container>
     );
 }

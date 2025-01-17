@@ -97,7 +97,6 @@ export const CreateEnemy = () => {
         <Form className="my-4 mx-4" onSubmit={handleSubmit} style={{border: "4px solid black"}}>
             <Button>Submit</Button>
                 <Row className="d-flex mx-4">
-                    {/* LEFT SIDE */}
                     <Col className="col-4">
                         <FormGroup>
                             <Label for="image">Click to select an image</Label>
@@ -147,11 +146,12 @@ export const CreateEnemy = () => {
                                             }}
                                         >Confirm</Button>
                                 </ModalFooter>
-
                             </Modal>
+                        </FormGroup>
                             <div
                                 onClick={toggleModal}
                                 style={{
+                                    name: "image",
                                     maxWidth: "200px",
                                     minHeight: "200px",
                                     border: "2px solid grey",
@@ -166,7 +166,6 @@ export const CreateEnemy = () => {
                             >
                                 {currentImage == null || currentImage == undefined ? <span>Select Image</span> : ""}
                             </div>
-                        </FormGroup>
 
                         <FormGroup className="d-flex align-items-center flex-row">
                             <Label for="name">Name</Label>
@@ -176,9 +175,6 @@ export const CreateEnemy = () => {
                                 <Label for="description">Enemy Description</Label>
                                 <Input style={{resize: "none"}} type="textarea" name="description" id="description" onChange={handleTextInput}></Input>
                             </FormGroup>
-                    </Col>
-                    {/* RIGHT SIDE */}
-                    <Col>
                         <Row>
                             <fieldset style={{maxWidth: "200px", border: "2px solid grey"}}>
                                 <Col className="d-flex align-items-center flex-column">
@@ -244,9 +240,9 @@ export const CreateEnemy = () => {
                                     </Label>
                                 </FormGroup>
                             </fieldset>
-                        </Row>
+                            </Row>
                     </Col>
-                </Row>
+                    </Row>
                 <Row>
                     <fieldset>
                         <legend>Item Drops</legend>
@@ -262,20 +258,6 @@ export const CreateEnemy = () => {
                                             </Col>
                                             )
                                         )}
-                                {/* <FormGroup >
-                                    <Label for="items">TEST</Label>
-                                    <Input type="select" onChange={(e) => handleSelect(e)}>
-                                    <option key={0} value={0}>Select an item</option>
-                                        {items && items.map(item => {
-                                            return (<option key={item.id} value={item.id} data-name={'test'}>{item.name}</option>)
-                                        })}
-                                    </Input>
-                                </FormGroup> */}
-                        {/* {items && items.map(item => {
-                            return (
-
-                        )
-                        })} */}
                     </fieldset>
                 </Row>
         </Form>
