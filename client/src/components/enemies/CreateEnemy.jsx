@@ -10,8 +10,7 @@ import { FormModal } from "../formComponents/FormModal";
 import { Fieldset1 } from "../formComponents/Fieldset1";
 import { Fieldset2 } from "../formComponents/Fieldset2";
 import { Fieldset3 } from "../formComponents/Fieldset3";
-import { Fieldset4 } from "../formComponents/Fieldset4";
-import { FieldsetCheckbox } from "../formComponents/FieldsetCheckbox";
+import { FieldsetDamageTypes } from "../formComponents/FieldsetDamageTypes";
 import { FieldsetItemDrops } from "../formComponents/FieldsetItemDrops";
 
 
@@ -102,52 +101,45 @@ export const CreateEnemy = () => {
 
     return (
         <Form className="my-4 mx-4" onSubmit={handleSubmit} style={{border: "8px solid black"}}>
-                <Row className="mx-4" style={{border: "8px solid green"}}>
-                    <Col className="col-8" style={{border: "8px solid blue"}}>
+            <Row className="justify-content-center mx-4" style={{border: "8px solid green"}}>
+                <Col className="col-8" style={{border: "8px solid red"}}>
+                    <Row style={{border: "8px solid yellow"}}>
                         <FormModal setEnemyImage={setCurrentImage} enemyImage={currentImage} setEnemy={setNewEnemy} enemy={newEnemy} setAllImages={setImages} allImages={images} />
-                        <Row style={{border: "8px solid green"}}>
+                    </Row>
+                    
+                    <Row style={{border: "8px solid yellow"}}>
 
-                            <Col className="" style={{border: "8px solid blue"}}>
-                                    <Fieldset1 enemy={newEnemy} handleTextInput={handleTextInput} handleNumberInput={handleNumberInput} />
-                            </Col>
+                        <Col style={{border: "8px solid blue"}}>
+                            <Fieldset1 enemy={newEnemy} handleTextInput={handleTextInput} handleNumberInput={handleNumberInput} />
+                        </Col>
 
-                            <Col className="d-flex align-items-center flex-column" style={{border: "8px solid blue"}}>
-                                    <Fieldset2 handleNumberInput={handleNumberInput} />
-                            </Col>
+                        <Col className="d-flex align-items-center flex-column" style={{border: "8px solid blue"}}>
+                            <Fieldset2 handleNumberInput={handleNumberInput} />
+                        </Col>
 
-                            <Col>
-                                    <Fieldset3 handleNumberInput={handleNumberInput} />
-                            </Col>
+                        <Col style={{border: "8px solid blue"}}>
+                            <Fieldset3 handleNumberInput={handleNumberInput} />
+                        </Col>
 
-                            <Col>
-                                    <Fieldset4 handleNumberInput={handleNumberInput} />
-                            </Col>
+                        <Col style={{border: "8px solid blue"}}>
+                            <FieldsetDamageTypes handleCheckbox={handleCheckbox} enemy={newEnemy} />
+                        </Col>
 
-                            <Col>
-                                    <FieldsetCheckbox handleCheckbox={handleCheckbox} enemy={newEnemy} />
-                            </Col>
-
-                            <Col>
-                                    <FieldsetItemDrops handleItemDropsChange={handleItemDropsChange} items={items} />
-                            </Col>
-
-                        </Row>
-                    </Col>
-                </Row>
-
-                <Row>
-
-                    <FormGroup style={{maxWidth: "500px"}}>
-                        <Label for="description">Enemy Description</Label>
-                        <Input style={{resize: "none"}} type="textarea" name="description" id="description" onChange={handleTextInput}></Input>
-                    </FormGroup>
-
-                </Row>
-
-                <Button>Submit</Button>
+                        <Col style={{border: "8px solid blue"}}>
+                            <FieldsetItemDrops handleItemDropsChange={handleItemDropsChange} items={items} />
+                        </Col>
+                            
+                    </Row>
+                </Col>
+            </Row>
+                
+            <Row>
+                <FormGroup style={{maxWidth: "500px"}}>
+                    <Label for="description">Enemy Description</Label>
+                    <Input style={{resize: "none"}} type="textarea" name="description" id="description" onChange={handleTextInput}></Input>
+                </FormGroup>
+            </Row>
+            <Button>Submit</Button>
         </Form>
-        // <div className="container" style={{ maxWidth: "500px" }}>
-        //     <h3>Create Enemy Page</h3>
-        // </div>
     );
 }
