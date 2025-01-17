@@ -5,7 +5,6 @@ import { postEnemy } from "../../managers/enemyManager";
 import { getItems } from "../../managers/itemManager";
 import { getEnemyImages } from "../../managers/imageManager";
 import { useNavigate } from "react-router-dom";
-import { Modal,  } from "reactstrap";
 import { FormModal } from "../formComponents/FormModal";
 import { Fieldset1 } from "../formComponents/Fieldset1";
 import { Fieldset2 } from "../formComponents/Fieldset2";
@@ -15,17 +14,14 @@ import { FieldsetItemDrops } from "../formComponents/FieldsetItemDrops";
 
 
 export const CreateEnemy = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleModal = () => setIsOpen(!isOpen);
-
     const { loggedInUser } = useContext(UserContext)
     const navigate = useNavigate()
     const userId = loggedInUser.id
     const [images, setImages] = useState([])
-    const [currentImage, setCurrentImage] = useState(null)
+    const [enemyImage, setEnemyImage] = useState(null)
 
     const [items, setItems] = useState([])
-    const [newEnemy, setNewEnemy] = useState({
+    const [enemy, setEnemy] = useState({
         userId: userId,
         imageId: 1,
         name: "test 1",
@@ -60,7 +56,7 @@ export const CreateEnemy = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        postEnemy(newEnemy).then(() => {
+        postEnemy(enemy).then(() => {
             navigate("/enemy-list")
         })
     }
@@ -69,15 +65,15 @@ export const CreateEnemy = () => {
         const itemId = e.target.value;  // ID of the item
         const isChecked = e.target.checked;
         if (isChecked) {
-            setNewEnemy(prevState => ({...prevState, itemIds: [...prevState.itemIds, parseInt(itemId)]}))
+            setEnemy(prevState => ({...prevState, itemIds: [...prevState.itemIds, parseInt(itemId)]}))
         } else {
-            setNewEnemy(prevState => ({...prevState, itemIds: prevState.itemIds.filter(id => id !== parseInt(itemId))}))  // Remove itemId
+            setEnemy(prevState => ({...prevState, itemIds: prevState.itemIds.filter(id => id !== parseInt(itemId))}))  // Remove itemId
         }
       };
 
     const handleCheckbox = (e) => {
         const { name, checked } = e.target;
-        setNewEnemy({ ...newEnemy, [name]: checked });
+        setEnemy({ ...enemy, [name]: checked });
     };
 
     const handleItemSelect = (e) => {
@@ -89,14 +85,14 @@ export const CreateEnemy = () => {
     const handleTextInput = (e) => {
         const {name, value} = e.target
 
-        setNewEnemy({...newEnemy, [name]: value})
-        console.log(newEnemy)
+        setEnemy({...enemy, [name]: value})
+        console.log(enemy)
     }
 
     const handleNumberInput = (e) => {
         const {name, value} = e.target
-        setNewEnemy({...newEnemy, [name]: parseInt(value)})
-        console.log(newEnemy)
+        setEnemy({...enemy, [name]: parseInt(value)})
+        console.log(enemy)
     }
 
     return (
@@ -106,8 +102,8 @@ export const CreateEnemy = () => {
                 {/*ROW 1*/}
                     <Row style={{border: "2px solid yellow", padding: "1rem"}}>
                         <Col className="d-flex justify-content-evenly">
-                                <FormModal setEnemyImage={setCurrentImage} enemyImage={currentImage} setEnemy={setNewEnemy} enemy={newEnemy} setAllImages={setImages} allImages={images} />
-                                <Fieldset1 enemy={newEnemy} handleTextInput={handleTextInput} handleNumberInput={handleNumberInput} />
+                                <FormModal setEnemyImage={setEnemyImage} enemyImage={enemyImage} setEnemy={setEnemy} enemy={enemy} setImages={setImages} images={images} />
+                                <Fieldset1 enemy={enemy} handleTextInput={handleTextInput} handleNumberInput={handleNumberInput} />
                                 <Fieldset2 handleNumberInput={handleNumberInput} handleTextInput={handleTextInput} />
                         </Col>
                     </Row>
@@ -115,7 +111,7 @@ export const CreateEnemy = () => {
                     <Row style={{border: "2px solid yellow"}}>
 
                         <Col style={{border: "2px solid blue"}}>
-                            <FieldsetOffense handleCheckbox={handleCheckbox} enemy={newEnemy} handleNumberInput={handleNumberInput} />
+                            <FieldsetOffense handleCheckbox={handleCheckbox} enemy={enemy} handleNumberInput={handleNumberInput} />
                         </Col>
                         <Col style={{border: "2px solid blue"}}>
                             <FieldsetDefense handleNumberInput={handleNumberInput} />

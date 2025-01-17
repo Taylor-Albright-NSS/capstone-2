@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter, Button, Card } from "reactstrap"
 
 
-export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setAllImages, allImages }) => {
+export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImages, images }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleModal = () => setIsOpen(!isOpen);
     
@@ -20,7 +20,7 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setAllIm
                     </ModalHeader>
                     
                     <ModalBody>
-                        {allImages?.map(image => {
+                        {images?.map(image => {
                             return (<img 
                                 key={image.id} 
                                 src={image.imageLocation} 
