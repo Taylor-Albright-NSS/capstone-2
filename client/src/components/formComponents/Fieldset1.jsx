@@ -1,6 +1,8 @@
 import { FormGroup, Label, Input, Card } from "reactstrap"
 
-export const Fieldset1 = ({ enemy, handleTextInput, handleNumberInput }) => {
+export const Fieldset1 = ({ enemy, handleTextInput, handleNumberInput, handlePositionLogging }) => {
+
+
     return (
         <Card>
             <fieldset>
@@ -10,13 +12,13 @@ export const Fieldset1 = ({ enemy, handleTextInput, handleNumberInput }) => {
                 </FormGroup>
 
                 <FormGroup className="d-flex justify-content-center">
-                    <Label for="name">Type (placeholder)</Label>
+                    <Label for="type">Type (placeholder)</Label>
                 </FormGroup>
 
                 <span className="d-flex justify-content-around">
                     <FormGroup>
                         <Label for="minLevel">Min. Level</Label>
-                        <Input style={{width: "76px"}} type="number" name="minLevel" id="minLevel" value={enemy.minLevel} onChange={handleNumberInput} />
+                        <Input style={{width: "76px"}} type="number" name="minLevel" id="minLevel" value={enemy.minLevel} onChange={handleNumberInput} onClick={handlePositionLogging} />
                     </FormGroup>
 
                     <FormGroup>

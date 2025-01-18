@@ -13,7 +13,7 @@ export const EnemyEdit = () => {
         name: "",
         minLevel: 0,
         maxLevel: 0,
-        baseDamage: 0,
+        strength: 0,
         baseHealth: 0,
         baseExperience: 0,
         slashingArmor: 0,
@@ -22,6 +22,13 @@ export const EnemyEdit = () => {
         slashingDamage: false,
         piercingDamage: false,
         bluntDamage: false,
+        dodgeRating: 0,
+        accuracyRating: 0,
+        fireResist: 0,
+        iceResist: 0,
+        lightningResist: 0,
+        minGold: 0,
+        maxGold: 0,
         description: "",
         imageId: null,
         itemIds: []
@@ -88,15 +95,14 @@ export const EnemyEdit = () => {
         console.log(enemy)
     }
 
-    const handleNumberInput = (e) => {
-        const {name, value} = e.target
-        setEnemy({...enemy, [name]: parseInt(value)})
-        console.log(enemy)
-    }
 
-    const handleTest = () =>{
-        console.log(enemy, "current enemy")
-        console.log(originalEnemy, "original enemy")
+    const handleNumberInput = (e) => {
+        const {name, value, clientX, clientY} = e.target
+        if (value < 0 || value > 9999) { // Example limit
+            console.log('test')
+        } else {
+            setEnemy({...enemy, [name]: parseInt(value)})
+        }
     }
 
     return (

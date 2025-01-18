@@ -2,6 +2,14 @@ const api_url = "/api/enemy"
 
 export const getEnemies = async () => {
     const response = await fetch(`${api_url}`)
+    if (!response.ok) {
+        throw new Error(`Error fetching enemy. Status: ${response.status}`)
+    } else {
+        console.log(`Enemy found`)
+    }
+
+    
+
     return await response.json()
 }
 

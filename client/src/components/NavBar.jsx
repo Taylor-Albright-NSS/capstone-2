@@ -21,28 +21,28 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
     <div>
       <Navbar className="" color="light" light fixed="true" expand="lg">
         <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
-          ✍️ Capstone2
+          Bestiary
         </NavbarBrand>
         {loggedInUser ? (
           <>
             <NavbarToggler onClick={toggleNavbar} />
             <Collapse isOpen={open} navbar>
               <Nav navbar>
-                <NavItem>
+                <NavItem className="mx-4">
                   <NavLink tag={RRNavLink} to="/">
                     Home
                   </NavLink>
                 </NavItem>
 
                 {loggedInUser.roles.includes("Admin") && (
-                  <NavItem>
+                  <NavItem className="mx-4">
                     <NavLink tag={RRNavLink} to="/enemy-list">
                       Enemies
                     </NavLink>
                   </NavItem>
                 )}
 
-                  <NavLink tag={RRNavLink} to="/create-enemy">
+                  <NavLink  className="mx-4" tag={RRNavLink} to="/create-enemy">
                     Create Enemy
                   </NavLink>
               </Nav>

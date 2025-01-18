@@ -12,6 +12,7 @@ import { FieldsetDefense } from "../formComponents/FieldsetDefense";
 import { FieldsetOffense } from "../formComponents/FieldsetOffense";
 import { FieldsetItemDrops } from "../formComponents/FieldsetItemDrops";
 import { FormMain } from "../formComponents/_FormMain";
+import "../../App.css"
 
 
 export const CreateEnemy = () => {
@@ -25,18 +26,25 @@ export const CreateEnemy = () => {
     const [enemy, setEnemy] = useState({
         userId: userId,
         imageId: 1,
-        name: "test 1",
+        name: "",
         minLevel: 1,
         maxLevel: 1,
-        baseDamage: 1,
+        strength: 1,
         baseHealth: 1,
-        baseExperience: 1,
-        slashingArmor: 1,
-        piercingArmor: 1,
-        bluntArmor: 1,
+        baseExperience: 0,
+        slashingArmor: 0,
+        piercingArmor: 0,
+        bluntArmor: 0,
         slashingDamage: false,
         piercingDamage: false,
         bluntDamage: false,
+        dodgeRating: 0,
+        accuracyRating: 0,
+        fireResist: 0,
+        iceResist: 0,
+        lightningResist: 0,
+        minGold: 0,
+        maxGold: 0,
         description: "",
         itemIds: [],
     })
@@ -85,18 +93,24 @@ export const CreateEnemy = () => {
 
     const handleTextInput = (e) => {
         const {name, value} = e.target
-
         setEnemy({...enemy, [name]: value})
-        console.log(enemy)
     }
 
     const handleNumberInput = (e) => {
-        const {name, value} = e.target
-        setEnemy({...enemy, [name]: parseInt(value)})
-        console.log(enemy)
+        const {name, value, clientX, clientY} = e.target
+        if (value < 0 || value > 9999) { // Example limit
+            console.log('test')
+        } else {
+            setEnemy({...enemy, [name]: parseInt(value)})
+        }
+    }
+
+    const handleLimiters = (e) => {
+
     }
 
     return (
+        <>
             <FormMain 
                 handleSubmit={handleSubmit} 
                 setEnemyImage={setEnemyImage}
@@ -112,5 +126,6 @@ export const CreateEnemy = () => {
                 items={items}
                 isCreateButton={true}
             />
+        </>
     );
 }
