@@ -31,7 +31,7 @@ export const EnemyDetails = () => {
                     <Row className="d-flex justify-content-center">
                         <div className="d-flex flex-column align-items-center" style={{ maxWidth: "400px" }} >
                             <h3>{enemy?.name}</h3>
-                            <img style={{maxWidth: "100px"}} src={`${enemy?.image?.imageLocation}`} alt={enemy?.name} />
+                            <img style={{maxWidth: "100px"}} src={`${enemy?.imageUrl}`} alt={enemy?.name} />
                                 <p style={{marginBottom: 0}}>Level range: {enemy?.minLevel + " - " + enemy?.maxLevel}</p>
                                 <p style={{marginBottom: 0}}>Experience Range: {enemy?.baseExperience}</p>
                                 <p style={{marginBottom: 0}}>Gold Range: {enemy?.minGold + " - " + enemy?.maxGold}</p>

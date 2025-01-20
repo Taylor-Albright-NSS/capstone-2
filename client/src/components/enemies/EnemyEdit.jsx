@@ -4,6 +4,7 @@ import { UserContext } from "../ApplicationViews";
 import { getEnemyForEdit, putEnemy } from "../../managers/enemyManager";
 import { getItems } from "../../managers/itemManager";
 import { getEnemyImages } from "../../managers/imageManager";
+import { getEnemyImagesFirebase } from "../../managers/imageManager";
 import { useNavigate, useParams } from "react-router-dom";
 import { FormMain } from "../formComponents/_FormMain";
 
@@ -30,7 +31,7 @@ export const EnemyEdit = () => {
         minGold: 0,
         maxGold: 0,
         description: "",
-        imageId: null,
+        imageUrl: "",
         itemIds: []
     });
     const { id } = useParams()
@@ -52,7 +53,7 @@ export const EnemyEdit = () => {
         })
     }, [])
     useEffect(() => {
-        getEnemyImages().then(imageList => {
+        getEnemyImagesFirebase().then(imageList => {
             console.log(imageList)
             setImages(imageList)
         })
@@ -108,8 +109,6 @@ export const EnemyEdit = () => {
     return (
                 <FormMain 
                     handleSubmit={handleSubmit} 
-                    setEnemyImage={setEnemyImage}
-                    enemyImage={enemyImage}
                     setEnemy={setEnemy}
                     enemy={enemy}
                     setImages={setImages}

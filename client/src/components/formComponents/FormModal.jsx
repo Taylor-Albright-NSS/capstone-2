@@ -7,6 +7,10 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
     const [isOpen, setIsOpen] = useState(false);
     const toggleModal = () => setIsOpen(!isOpen);
 
+    useEffect(() => {
+        setSelectedImage(enemy.imageUrl)
+    }, [enemy.imageUrl])
+
     return (
             <FormGroup className="d-flex justify-content-center">
                 <Modal isOpen={isOpen} toggle={() => {
@@ -42,7 +46,7 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
                             color="danger" 
                             onClick={() => {
                                 toggleModal()
-                                console.log(enemy.image)
+                                console.log(enemy.imageUrl)
                                 setSelectedImage(enemy.imageUrl)
                                 }
                             }
@@ -72,7 +76,7 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
                             backgroundPosition: "center"
                         }}
                         >
-                        {enemyImage == null || enemyImage == undefined ? <span>Select Image</span> : ""}
+                        {selectedImage == null || selectedImage == undefined ? <span>Select Image</span> : ""}
                     </Card>
             </FormGroup>
 

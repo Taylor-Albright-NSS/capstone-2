@@ -20,7 +20,7 @@ export const CreateEnemy = () => {
     const [items, setItems] = useState([])
     const [enemy, setEnemy] = useState({
         userId: userId,
-        imageUrl: "",
+        imageUrl: null,
         name: "",
         minLevel: 1,
         maxLevel: 1,
@@ -114,8 +114,6 @@ export const CreateEnemy = () => {
         <>
             <FormMain 
                 handleSubmit={handleSubmit} 
-                // setEnemyImage={setEnemyImage}
-                // enemyImage={enemyImage}
                 setEnemy={setEnemy}
                 enemy={enemy}
                 setImages={setImages}
