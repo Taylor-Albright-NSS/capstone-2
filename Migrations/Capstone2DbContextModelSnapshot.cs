@@ -124,6 +124,9 @@ namespace Capstone_2.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AccuracyRating")
+                        .HasColumnType("integer");
+
                     b.Property<int>("BaseDamage")
                         .HasColumnType("integer");
 
@@ -143,13 +146,31 @@ namespace Capstone_2.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("DodgeRating")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("FireResist")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IceResist")
+                        .HasColumnType("integer");
+
                     b.Property<int>("ImageId")
                         .HasColumnType("integer");
 
                     b.Property<List<int>>("ItemIds")
                         .HasColumnType("integer[]");
 
+                    b.Property<int>("LightningResist")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MaxGold")
+                        .HasColumnType("integer");
+
                     b.Property<int>("MaxLevel")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MinGold")
                         .HasColumnType("integer");
 
                     b.Property<int>("MinLevel")
@@ -189,210 +210,28 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 1,
+                            AccuracyRating = 0,
                             BaseDamage = 5,
                             BaseExperience = 10,
                             BaseHealth = 10,
                             BluntArmor = 0,
                             BluntDamage = true,
                             Description = "A brown moving puddle that resembles a puddle of mud.",
+                            DodgeRating = 0,
+                            FireResist = 0,
+                            IceResist = 0,
                             ImageId = 1,
+                            ItemIds = new List<int> { 1, 2 },
+                            LightningResist = 0,
+                            MaxGold = 0,
                             MaxLevel = 3,
+                            MinGold = 0,
                             MinLevel = 1,
                             Name = "Mudling",
                             PiercingArmor = 0,
                             PiercingDamage = false,
                             SlashingArmor = 0,
                             SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A small, green sliver that could easily be mistaken for a blade of grass.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Grassling",
-                            PiercingArmor = 0,
-                            PiercingDamage = false,
-                            SlashingArmor = 0,
-                            SlashingDamage = true,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Waterling",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Skeleton",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Giant Rat",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Cultist",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Grave Worm",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Wild Boar",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Stag",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            BaseDamage = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A blue puddle.",
-                            ImageId = 1,
-                            MaxLevel = 3,
-                            MinLevel = 1,
-                            Name = "Impling",
-                            PiercingArmor = 0,
-                            PiercingDamage = true,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 11,
-                            BaseDamage = 7,
-                            BaseExperience = 150,
-                            BaseHealth = 160,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "A small, green creature with a big nose and pointy ears.",
-                            ImageId = 2,
-                            MaxLevel = 15,
-                            MinLevel = 10,
-                            Name = "Kobold",
-                            PiercingArmor = 5,
-                            PiercingDamage = false,
-                            SlashingArmor = 5,
-                            SlashingDamage = true,
                             UserId = 1
                         });
                 });
@@ -417,12 +256,32 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 1,
-                            ImageLocation = "public/assets/images/elementals/mudling/mudling.png"
+                            ImageLocation = "/public/assets/images/elementals/mudling/mudling.png"
                         },
                         new
                         {
                             Id = 2,
-                            ImageLocation = "public/assets/images/kobolds/kobold child/kobold child.png"
+                            ImageLocation = "/public/assets/images/elementals/waterling/waterling.png"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ImageLocation = "/public/assets/images/elementals/grassling/grassling.png"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ImageLocation = "/public/assets/images/kobolds/kobold_child/kobold_child.png"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ImageLocation = "/public/assets/images/kobolds/kobold_archer/kobold_archer.png"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ImageLocation = "/public/assets/images/kobolds/kobold_scoundrel/kobold_scoundrel.png"
                         });
                 });
 
@@ -472,6 +331,76 @@ namespace Capstone_2.Migrations
                         {
                             Id = 6,
                             Name = "Leather Chest"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Potion"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Small Gem"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Dagger"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Mudball"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Fish"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Leather Trousers"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Plate Gauntlets"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Large Bone"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Small Bone"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "Cape"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "Small Key"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "Fishing Rod"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Name = "Bright Yellow Flower"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Name = "Tome"
                         });
                 });
 
@@ -504,11 +433,6 @@ namespace Capstone_2.Migrations
                         {
                             EnemiesId = 1,
                             ItemsId = 3
-                        },
-                        new
-                        {
-                            EnemiesId = 2,
-                            ItemsId = 2
                         });
                 });
 
@@ -541,11 +465,6 @@ namespace Capstone_2.Migrations
                         {
                             EnemiesId = 1,
                             ItemsId = 3
-                        },
-                        new
-                        {
-                            EnemiesId = 2,
-                            ItemsId = 2
                         });
                 });
 
@@ -676,13 +595,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fe1fc5ca-582a-4c9a-9c26-b3cff05d0dde",
+                            ConcurrencyStamp = "a2576dd5-117a-47b6-b43f-21a234365997",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEOVhOoesbzYRxkCe00TtdBQcMWA8v9mOL/xFTgj0RPEUrTvJD1bxItxPgLo9fnZhvw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOmrpigpAQmegklqkKiOkhYN67Z95VAkS5KjqWbT1KKKoS9E0YRqCgKVQFj02piaaQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "669434cb-6a69-4c01-93f6-f517f31998b9",
+                            SecurityStamp = "6b341c6b-8367-448b-a8e2-3189e8816d6d",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -690,13 +609,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d8d76512-74f1-43bb-b1fd-87d3a8aa36df",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0aa59a2a-16a3-4071-ba5c-eb25e1b42f42",
+                            ConcurrencyStamp = "65c071cd-0298-4186-88f3-e1ed2957d4be",
                             Email = "john@doe.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEOQq6hMjpNpsfkgCS0Sh4OGMx2xBZgoVnu3zLHzeMosMk6exud4wvt6mWhLxlC2Ubw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEP4t+bqQEcaaHfitx7rU1LZnw8E61+iYQVOrBWBFp/wCUUV+Ro7/mzMPQOb31FgTQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e1f62f77-1f75-4127-ba9b-f6665911c4f9",
+                            SecurityStamp = "00643b83-ae6a-45b3-bb78-77ff19e3ff6e",
                             TwoFactorEnabled = false,
                             UserName = "JohnDoe"
                         },
@@ -704,13 +623,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "a7d21fac-3b21-454a-a747-075f072d0cf3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "601b85ae-221b-406f-b066-2f6aa68d050b",
+                            ConcurrencyStamp = "2e3b2a98-f224-4cbb-8a0b-d4b33c056716",
                             Email = "jane@smith.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEKooX5LXhT14Qzng3CsjwYmMckP3GwVIcfUKzCwGkTQ8YgO10ikhnoqtW2V+b2ugSw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAIDvdHc9VNXLWz6e8q69gWaQWzsMYadLhRd5Vol/KpYjXn63un1NG80rUe0wgT6tA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "744de00c-857e-41e8-b44f-166c5acc30e8",
+                            SecurityStamp = "28a73371-fe5b-42a7-930b-6aa5541689fb",
                             TwoFactorEnabled = false,
                             UserName = "JaneSmith"
                         },
@@ -718,13 +637,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "c806cfae-bda9-47c5-8473-dd52fd056a9b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c2c4d237-5210-49cc-909f-f6961ed69245",
+                            ConcurrencyStamp = "23a341a6-eb95-4b43-8b72-bc06b539c0ac",
                             Email = "alice@johnson.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEHswPn85fBhxIiqhMfg4Xa5IRQAOKl0aexL72i7susU5TUIbQbb4mUDH67ATDbQZ0g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEODomwV2YNO2DMkWUmc7r87KwAM4/wXdfnOTCwuc8ejn3delYJ17dlrKLFnwnmB78A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "adaad038-43ec-44fb-90ba-1f41ed8fa6d4",
+                            SecurityStamp = "89717b0a-a84d-4a3d-ac20-40dafa87bee5",
                             TwoFactorEnabled = false,
                             UserName = "AliceJohnson"
                         },
@@ -732,13 +651,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "9ce89d88-75da-4a80-9b0d-3fe58582b8e2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "955cb14e-9e78-4c3b-88be-4dd61a4ee0e6",
+                            ConcurrencyStamp = "cc0fdf8d-08ad-47c3-892f-45573c72937e",
                             Email = "bob@williams.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEPv+68w1w0BmfpHm645Vr0MvMCk1M4g8F9DCOIYBkeRJ2df+2w/0k8XLc4yxoM0Oyg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECqfTkQwRbjLWR0ywPdUJPDTEGkrFg4o7tQdTewEGN1LwmLwCqr5qUwefNNMM+xkdQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "889e44b0-becd-4466-9809-2f8d88d04aaf",
+                            SecurityStamp = "d56719f3-7ded-4073-ab7a-b682e7ee204e",
                             TwoFactorEnabled = false,
                             UserName = "BobWilliams"
                         },
@@ -746,13 +665,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d224a03d-bf0c-4a05-b728-e3521e45d74d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5128fec2-cf4b-4c94-828d-9bad83f6127e",
+                            ConcurrencyStamp = "cfaa717c-3b79-4b05-b010-a800e9f85225",
                             Email = "Eve@Davis.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEMsIxFcoXsttOhvgJd7ETUJfIo8lhm3SVunc+A6gqvQ6WBIfD+lmDpWyvp+yHeYbLg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJRiw2TDUKa0bzIlZwgrEYK50uK5ETOEvojgqcGR1L/cQ1wAVeegHUM/jDNnMhVC9w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9556da30-ab8b-4e65-9f3c-2473459adb42",
+                            SecurityStamp = "f11363d3-9bbd-477a-b240-1c394557982c",
                             TwoFactorEnabled = false,
                             UserName = "EveDavis"
                         });

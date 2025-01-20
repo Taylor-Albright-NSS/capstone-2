@@ -14,12 +14,12 @@ export const HomeView = () => {
             </Row>
 
             {/* Body Element */}
-            <Row className="my-4">
-                <Col>
-                    <div className="p-4 bg-light text-dark">
-                        <h2>Welcome, User!</h2>
+            <Row>
+                <Col className="d-flex justify-content-center align-items-center my-4">
+                    <div className="p-4 bg-light text-dark" style={{textAlign: "center"}}>
+                        <h2>Galvadia Bestiary</h2>
                         <p>
-                            
+                            Check out and create enemies for Galvadia! 
                         </p>
                     </div>
                 </Col>

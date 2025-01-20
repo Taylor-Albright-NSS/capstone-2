@@ -1,0 +1,22 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    border: 4px ridge rgb(232, 182, 31);
+    background: rgb(0, 0, 0);
+    margin-bottom: 4rem;
+    background-image: url('/public/assets/images/navbar/navbar.png');
+    background-size: cover;
+}
+.navbar a {
+    text-decoration: none;
+    color: gold;
+}
+
+.nav-link-override {
+    transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
+    border: 2px solid black; /* Initial border color */
+}
+
+.nav-link-override:hover {
+    color: rgb(166, 141, 0);
+}
