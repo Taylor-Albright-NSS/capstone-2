@@ -51,12 +51,6 @@ export const CreateEnemy = () => {
         })
     }, [])
 
-    // useEffect(() => {
-    //     fetchImages().then(imageList => {
-    //         console.log(imageList, 'Images list')
-    //         setImages(imageList)
-    //     })
-    // }, [])
     useEffect(() => {
         getEnemyImages().then(imageList => {
             console.log(imageList, 'Images list')
