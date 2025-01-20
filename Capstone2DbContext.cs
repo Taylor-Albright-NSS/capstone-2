@@ -12,7 +12,6 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
     public DbSet<UserProfile> UserProfiles { get; set; }
     public DbSet<Enemy> Enemies { get; set; }
     public DbSet<Item> Items { get; set; }
-    public DbSet<Image> Images { get; set; }
     public DbSet<EnemyItem> EnemiesItems { get; set; }
 
     public Capstone2DbContext(DbContextOptions<Capstone2DbContext> context, IConfiguration config) : base(context)
@@ -99,7 +98,7 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
             {
                 Id = 1,
                 UserId = 1,
-                ImageId = 1,
+                ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2Fno%20image%20default.avif?alt=media&token=0aa5fa20-7104-4ac6-8845-92767fe685f2",
                 Name = "Mudling",
                 MinLevel = 1,
                 MaxLevel = 3,
@@ -146,40 +145,6 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
             new Item {Id = 18, Name = "Fishing Rod"},
             new Item {Id = 19, Name = "Bright Yellow Flower"},
             new Item {Id = 20, Name = "Tome"},
-        });
-
-        modelBuilder.Entity<Image>().HasData(new Image[]
-        {
-            new Image
-            {
-                Id = 1,
-                ImageLocation = "/public/assets/images/elementals/mudling/mudling.png"
-            },
-            new Image
-            {
-                Id = 2,
-                ImageLocation = "/public/assets/images/elementals/waterling/waterling.png"
-            },
-            new Image
-            {
-                Id = 3,
-                ImageLocation = "/public/assets/images/elementals/grassling/grassling.png"
-            },
-            new Image
-            {
-                Id = 4,
-                ImageLocation = "/public/assets/images/kobolds/kobold_child/kobold_child.png"
-            },
-            new Image
-            {
-                Id = 5,
-                ImageLocation = "/public/assets/images/kobolds/kobold_archer/kobold_archer.png"
-            },
-            new Image
-            {
-                Id = 6,
-                ImageLocation = "/public/assets/images/kobolds/kobold_scoundrel/kobold_scoundrel.png"
-            },
         });
 
         modelBuilder.Entity<UserProfile>().HasData(new UserProfile[]

@@ -15,12 +15,12 @@ export const CreateEnemy = () => {
     const navigate = useNavigate()
     const userId = loggedInUser.id
     const [images, setImages] = useState([])
-    const [enemyImage, setEnemyImage] = useState(null)
+    // const [enemyImage, setEnemyImage] = useState(null)
 
     const [items, setItems] = useState([])
     const [enemy, setEnemy] = useState({
         userId: userId,
-        imageId: 1,
+        imageUrl: "",
         name: "",
         minLevel: 1,
         maxLevel: 1,
@@ -58,7 +58,7 @@ export const CreateEnemy = () => {
     //     })
     // }, [])
     useEffect(() => {
-        getEnemyImages().then(imageList => {
+        getEnemyImagesFirebase().then(imageList => {
             console.log(imageList, 'Images list')
             setImages(imageList)
         })
@@ -114,8 +114,8 @@ export const CreateEnemy = () => {
         <>
             <FormMain 
                 handleSubmit={handleSubmit} 
-                setEnemyImage={setEnemyImage}
-                enemyImage={enemyImage}
+                // setEnemyImage={setEnemyImage}
+                // enemyImage={enemyImage}
                 setEnemy={setEnemy}
                 enemy={enemy}
                 setImages={setImages}

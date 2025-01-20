@@ -19,7 +19,7 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
             <Card style={{maxWidth: "200px"}}>
                 <CardBody onClick={() => navigate(`${id}`)} style={{cursor: "pointer"}} className="d-flex flex-column align-items-center">
                     <CardTitle tag="h5">{enemy.name}</CardTitle>
-                    <CardImg src={enemy.image.imageLocation} />
+                    <CardImg src={enemy.imageUrl} />
                 </CardBody>
             <div className="d-flex justify-content-evenly my-1">
                 <Button color="danger" style={{width: "90px", fontSize: "12px"}} onClick={handleEnemyDelete}>Delete</Button>

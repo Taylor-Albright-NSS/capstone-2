@@ -6,8 +6,7 @@ public class EnemyDTO
 {
     public int Id { get; set; }
     public int UserId { get; set; }
-    public int ImageId { get; set; }
-    public Image? Image { get; set; }
+    public string ImageUrl { get; set; }
     public string Name { get; set; }
     public int MinLevel { get; set; }
     public int MaxLevel { get; set; }
@@ -38,16 +37,14 @@ public class EnemySimpleDTO
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public int ImageId { get; set; }
-    public ImageDTO Image { get; set; }
+    public string ImageUrl { get; set; }
 }
 
 public class EnemyForEditDTO
 {
     public int Id { get; set; }
     public int UserId { get; set; }
-    public int ImageId { get; set; }
-    public Image? Image { get; set; }
+    public string ImageUrl { get; set; }
     public string Name { get; set; }
     public int MinLevel { get; set; }
     public int MaxLevel { get; set; }

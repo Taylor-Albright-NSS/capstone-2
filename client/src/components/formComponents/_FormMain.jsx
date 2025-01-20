@@ -12,7 +12,7 @@ import { useState } from "react";
 
 
 
-export const FormMain = ({handleSubmit,setEnemyImage, enemyImage, setEnemy, enemy, setImages, images, handleTextInput, handleNumberInput, handleCheckbox, handleItemDropsChange, items, isCreateButton}) => {
+export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, handleTextInput, handleNumberInput, handleCheckbox, handleItemDropsChange, items, isCreateButton}) => {
     const navigate = useNavigate()
     const [warning, setWarning] = useState({ visible: false, message: '', x: 0, y:0 })
 
@@ -32,7 +32,7 @@ export const FormMain = ({handleSubmit,setEnemyImage, enemyImage, setEnemy, enem
                         {/*ROW 1*/}
                         <Row style={{border: "2px solid yellow", padding: "1rem"}}>
                             <Col className="d-flex justify-content-evenly">
-                                    <FormModal  setEnemyImage={setEnemyImage} enemyImage={enemyImage} setEnemy={setEnemy} enemy={enemy} setImages={setImages} images={images} />
+                                    <FormModal setEnemy={setEnemy} enemy={enemy} setImages={setImages} images={images} />
                                     <Fieldset1 enemy={enemy} handleTextInput={handleTextInput} handleNumberInput={handleNumberInput} handlePositionLogging={handlePositionLogging} />
                                     <Fieldset2 handleNumberInput={handleNumberInput} handleTextInput={handleTextInput} enemy={enemy} />
                             </Col>
