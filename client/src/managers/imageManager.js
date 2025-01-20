@@ -17,7 +17,7 @@ export const getEnemyImages = async () => {
 }
 
 //FIREBASE FETCH
-export const fetchImages = async () => {
+export const getEnemyImagesFirebase = async () => {
     const imagesRef = ref(storage, 'uploads/');
     try {
       const res = await listAll(imagesRef);

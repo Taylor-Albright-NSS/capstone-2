@@ -4,7 +4,7 @@ import { UserContext } from "../ApplicationViews";
 import { postEnemy } from "../../managers/enemyManager";
 import { getItems } from "../../managers/itemManager";
 import { getEnemyImages } from "../../managers/imageManager";
-import { fetchImages } from "../../managers/imageManager";
+import { getEnemyImagesFirebase } from "../../managers/imageManager";
 import { useNavigate } from "react-router-dom";
 import { FormMain } from "../formComponents/_FormMain";
 import "../../App.css"
@@ -52,7 +52,7 @@ export const CreateEnemy = () => {
     }, [])
 
     // useEffect(() => {
-    //     fetchImages().then(imageList => {
+    //     getEnemyImagesFirebase().then(imageList => {
     //         console.log(imageList, 'Images list')
     //         setImages(imageList)
     //     })
