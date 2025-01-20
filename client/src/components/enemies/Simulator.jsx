@@ -3,6 +3,8 @@ import { Button, Card, CardBody, CardColumns, CardGroup, CardText, CardTitle, Co
 import { getEnemy } from "../../managers/enemyManager";
 import { useParams } from "react-router-dom";
 import './Simulator.css'
+import { app } from "../../firebase/fireBase";
+import App from "../../firebase/FirebaseUploadUI";
 
 
 export const Simulator = () => {
@@ -177,6 +179,7 @@ export const Simulator = () => {
 
     return (
         <>
+        <App />
         <button className="toggle-btn" onClick={toggleSlide}>→</button>
         <Container style={{height: "800px"}} className="slide slide-right">
             <div id="test" className="slide-content">Simulator</div>

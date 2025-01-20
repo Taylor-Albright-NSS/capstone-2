@@ -11,6 +11,7 @@ import { useState } from "react";
 
 
 
+
 export const FormMain = ({handleSubmit,setEnemyImage, enemyImage, setEnemy, enemy, setImages, images, handleTextInput, handleNumberInput, handleCheckbox, handleItemDropsChange, items, isCreateButton}) => {
     const navigate = useNavigate()
     const [warning, setWarning] = useState({ visible: false, message: '', x: 0, y:0 })
