@@ -20,16 +20,15 @@ public class EnemyDTO
     public bool SlashingDamage { get; set; }
     public bool PiercingDamage { get; set; }
     public bool BluntDamage { get; set; }
+    public int DodgeRating { get; set; }
+    public int AccuracyRating { get; set; }
+    public int FireResist { get; set; }
+    public int IceResist { get; set; }
+    public int LightningResist { get; set; }
+    public int MinGold { get; set; }
+    public int MaxGold { get; set; }    
     public string Description { get; set; }
     public List<int>? ItemIds { get; set; }
-    public int ActualLevel
-    {
-        get { return new Random().Next(MinLevel, MaxLevel + 1); }
-    }
-    public int? TotalExperience 
-    { 
-        get { return 100 + (ActualLevel - MinLevel / MaxLevel - MinLevel) * (150 - 100); }
-    }
     public ICollection<ItemDTO>? Items { get; set; }
     public ICollection<EnemyItemDTO>? EnemyItems { get; set; }
 
@@ -61,15 +60,13 @@ public class EnemyForEditDTO
     public bool SlashingDamage { get; set; }
     public bool PiercingDamage { get; set; }
     public bool BluntDamage { get; set; }
+    public int DodgeRating { get; set; }
+    public int AccuracyRating { get; set; }
+    public int FireResist { get; set; }
+    public int IceResist { get; set; }
+    public int LightningResist { get; set; }
+    public int MinGold { get; set; }
+    public int MaxGold { get; set; }    
     public string Description { get; set; }
     public List<int>? ItemIds { get; set; }
-    public int ActualLevel
-    {
-        get { return new Random().Next(MinLevel, MaxLevel + 1); }
-    }
-    public int? TotalExperience 
-    { 
-        get { return 100 + (ActualLevel - MinLevel / MaxLevel - MinLevel) * (150 - 100); }
-    }
-
 }

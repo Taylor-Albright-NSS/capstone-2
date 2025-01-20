@@ -1,0 +1,11 @@
+Simulator
+
+- simulate enemy damage vs player, add armor mitigation
+- simulate enemy dodge chance vs player
+- simulate enemy hit chance vs player
+- simulate item drops roll
+
+- simulate player damage vs enemy, add armor mitigation
+- simulate player dodge chance vs enemy
+- simulate player hit chance vs enemy
+

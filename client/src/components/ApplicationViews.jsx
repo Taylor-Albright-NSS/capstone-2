@@ -6,7 +6,6 @@ import Register from "./auth/Register";
 // import UserProfileDetails from "./userprofiles/UserProfileDetails";
 import { createContext } from "react";
 import { HomeView } from "./home/HomeView";
-import { Test } from "./test/Test";
 import { EnemyList } from "./enemies/EnemyList";
 import { EnemyDetails } from "./enemies/EnemyDetails";
 import { CreateEnemy } from "./enemies/CreateEnemy";
@@ -32,7 +31,6 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             <Route path="edit/:id" element={<EnemyEdit />} /> 
           </Route>
           <Route path="create-enemy" element={<CreateEnemy />} />
-          <Route path="test" element={<Test />}></Route>
           <Route path="login" element={<Login setLoggedInUser={setLoggedInUser} />} />
           <Route path="register" element={<Register setLoggedInUser={setLoggedInUser} />} />
           <Route path="*" element={<p>Whoops, nothing here...</p>} />

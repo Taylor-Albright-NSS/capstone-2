@@ -114,18 +114,18 @@ public class EnemyController : ControllerBase
 
         var enemyId = enemy.Id;
 
-        List<EnemyItem> associations = enemyDTO.ItemIds.Select(itemId => new EnemyItem 
+        List<EnemyItem> enemyItems = enemyDTO.ItemIds.Select(itemId => new EnemyItem 
         {
             EnemiesId = enemyId,
             ItemsId = itemId
         }).ToList();
 
-        if (associations == null)
+        if (enemyItems == null)
         {
-            return NotFound("Associations not created");
+            return NotFound("enemyItems not created");
         }
 
-        _dbContext.EnemiesItems.AddRange(associations);
+        _dbContext.EnemiesItems.AddRange(enemyItems);
         _dbContext.SaveChanges();
 
         return Ok(new { Message = "Enemy created successfully", EnemyId = enemyId });
@@ -153,8 +153,7 @@ public class EnemyController : ControllerBase
         {
             return NotFound("Some or all enemy item relationships were not found");
         }
-        //Removes enemy from database
-        //Removes enemy-item relationship from database
+
         _dbContext.Enemies.Remove(enemy);
         _dbContext.EnemiesItems.RemoveRange(enemyItems);
         _dbContext.SaveChanges();
@@ -172,6 +171,6 @@ public class EnemyController : ControllerBase
 
         _mapper.Map(enemyDTO, enemy);
         _dbContext.SaveChanges();
-        return Ok("Changes made successfully");
+        return Ok(new { message = "Custom message: Enemy was changed successfully"});
     }
 }
