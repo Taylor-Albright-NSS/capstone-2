@@ -29,7 +29,7 @@ export const EnemyDetails = () => {
                 {/* Left side column */}
                 <Col style={{maxWidth: "500px"}}>
                     <Row className="d-flex justify-content-center">
-                        <div className="d-flex flex-column align-items-center" style={{ maxWidth: "400px" }} >
+                        <div className="d-flex flex-column align-items-center">
                             <h3>{enemy?.name}</h3>
                             <img style={{maxWidth: "100px"}} src={`${enemy?.image?.imageLocation}`} alt={enemy?.name} />
                                 <p style={{marginBottom: 0}}>Level range: {enemy?.minLevel + " - " + enemy?.maxLevel}</p>

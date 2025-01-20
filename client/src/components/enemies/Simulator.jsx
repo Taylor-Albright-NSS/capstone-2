@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react"
-import { Button, Card, CardBody, CardColumns, CardGroup, CardText, CardTitle, Col, Container, Row } from "reactstrap";
+import { Button, Card, CardBody, CardText, CardTitle, Col, Container, Row } from "reactstrap";
 import { getEnemy } from "../../managers/enemyManager";
 import { useParams } from "react-router-dom";
 import './Simulator.css'
-import { app } from "../../firebase/fireBase";
-import App from "../../firebase/FirebaseUploadUI";
-
 
 export const Simulator = () => {
     const playerBase = {
@@ -51,13 +48,11 @@ export const Simulator = () => {
      }
 
     //base variables
-    const scalingFactor = 1 //Strength is increased by 1 per level
     const { baseDamage } = enemy || 0
     const { baseExperience } = enemy || 0
     const { baseHealth } = enemy || 0
     const { actualLevel } = enemy || 0
     const { minLevel } = enemy || 0
-    const { maxLevel } = enemy || 0
     const { slashingArmor } = enemy || 0
     const { piercingArmor } = enemy || 0
     const { bluntArmor } = enemy || 0
@@ -67,30 +62,11 @@ export const Simulator = () => {
     const dodgeRating = enemy?.dodgeRating + actualLevel || 0
     const accuracyRating = enemy?.accuracyRating + actualLevel || 0
     
-    //variables to interpolate
     const botDamage = Math.floor(baseDamage * 0.5)
     const topDamage = Math.floor(baseDamage * 1.5)
     const experience = actualLevel == minLevel ? baseExperience : Math.floor((((actualLevel * 0.1) * baseExperience) + baseExperience))
     const health = actualLevel == minLevel ? baseHealth : Math.floor((((actualLevel * 0.1) * baseHealth) + baseHealth))
     
-    //randomizer
-    const damage = randomNumberRange(botDamage, topDamage)
-
-    //PLAYER DAMAGE CALC
-	// const { attackPower, botMultiplier, topMultiplier } = player[playerWeapon.skillUsed]
-	// const { botDamage, topDamage } = playerWeapon;
-	// const lowDamage = Math.ceil(attackPower * (botMultiplier * botDamage));
-	// const highDamage = Math.ceil(attackPower * (topMultiplier * topDamage));
-	// const baseDamage = Math.max(0, randomNumberRange(lowDamage, highDamage))
-	// console.log(lowDamage, 'LOW DAMAGE - RIGHT')
-	// console.log(highDamage, 'HIGH DAMAGE - RIGHT', highDamage / player.currentWeaponSkill.speed, ' HIGH DPS - RIGHT')
-	// console.log(baseDamage, 'CHOSEN DAMAGE - RIGHT')
-	// console.log(baseDamage / player.currentWeaponSkill.speed, ' DPS - RIGHT')
-	// return baseDamage  
-
-    // let armorAfterPen = enemyArmor - player[slashingPiercingOrBlunt] <= 0 ? 0 : enemyArmor - player[slashingPiercingOrBlunt]
-    // const damageAfterMitigation = (damageBeforeMitigation - armorAfterPen) * (1000 / (1000 + armorAfterPen)) <= 0 ? 0 : (damageBeforeMitigation - armorAfterPen) * (1000 / (1000 + armorAfterPen))
-
     const incrementLevel = () => {
         if (enemy.actualLevel + 1 > enemy.maxLevel) {return}
         setEnemy(prevEnemy => ({...prevEnemy, actualLevel: prevEnemy.actualLevel + 1}))
@@ -115,7 +91,6 @@ export const Simulator = () => {
         const { rawDamage } = enemyDamageObject
         const blockedDamage = rawDamage - actualDamage
         const playerNewHealth = Math.max(simPlayer.baseHealth - actualDamage, 0)
-        console.log(playerNewHealth, ' PLAYER NEW HEALTH')
         const damageLog = document.getElementById('damage-log')
         const damageP = document.createElement('logline')
         damageLog.style.fontSize = "12px"
@@ -137,7 +112,6 @@ export const Simulator = () => {
         damageObject.rawDamage = randomNumberRange(damageObject.lowDamage, damageObject.topDamage)
         damageObject.enemyArmorAfterPenetration = Math.max(simEnemy[armorType] - simPlayer[penetrationType], 0)
         damageObject.actualDamage = Math.max(Math.floor((damageObject.rawDamage - damageObject.enemyArmorAfterPenetration) * (1000 / (1000 + damageObject.enemyArmorAfterPenetration))), 0)
-        console.log(damageObject)
         return damageObject
     }
     const simulatePlayerHit = (armorType, penetrationType) => {
@@ -164,17 +138,12 @@ export const Simulator = () => {
     const [isMoved, setIsMoved] = useState(false)
     function toggleSlide() {
         const slidingElement = document.querySelector("#test");
-        // slidingElement.classList.toggle('slide-content')
         if (isMoved) {
             slidingElement.style.transform = 'translate(0, 0)'
         } else {
             slidingElement.style.transform = 'translate(100%, 0)'
         }
         setIsMoved(!isMoved)
-        // const isMoved = slidingElement.style.transform === 'translate(100%, 0)';
-        // slidingElement.style.transform = isMoved ? 'translate(0, 0)' : 'translate(100%, 0)';
-
-
     }
 
     return (
@@ -183,14 +152,6 @@ export const Simulator = () => {
         <Container style={{height: "800px"}} className="slide slide-right">
             <div id="test" className="slide-content">Simulator</div>
             <Row>
-            {/* <div className="container">
-                    <div className="main-element">
-                    </div>
-                    
-                    <div className="sliding-element">
-                    This is the sliding element
-                    </div>
-                    </div> */}
                 <Col>
                     <Row>
                         <Col>
@@ -234,7 +195,6 @@ export const Simulator = () => {
                                 <CardBody>
                                     <CardText>Health: {player.baseHealth}</CardText>
                                     <CardText>Damage: {player.damage}</CardText>
-                                    {/* <CardText>Gold Range: {enemy?.minGold} - {enemy?.maxGold}</CardText> */}
                                     <CardText>Slashing Armor: {player.slashingArmor}</CardText>
                                     <CardText>Piercing Armor: {player.piercingArmor}</CardText>
                                     <CardText>Blunt Armor: {player.bluntArmor}</CardText>
@@ -261,7 +221,6 @@ export const Simulator = () => {
                             </span>
                         </Col>
                         <Col>
-                            {/*Card is what holds the combat log. Combat messages are appended here.*/}
                             <Card id="damage-log" className="my-2 d-flex align-items-start" style={{height: "220px", overflowY: "auto"}}></Card>
                                 <span className="d-flex justify-content-center" style={{height: "30px"}}>
                                     <Button className="d-flex align-items-center" onClick={handleLogReset}>Reset</Button>
