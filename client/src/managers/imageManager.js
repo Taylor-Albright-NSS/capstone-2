@@ -1,4 +1,7 @@
+import { ref, uploadBytes, getDownloadURL, listAll } from "firebase/storage";
+import { storage } from "../firebase/fireBase";
 const api_url = "/api/image"
+
 
 export const getEnemyImages = async () => {
     try {
@@ -12,3 +15,20 @@ export const getEnemyImages = async () => {
         console.error(error)
     }
 }
+
+//FIREBASE FETCH
+export const fetchImages = async () => {
+    const imagesRef = ref(storage, 'uploads/');
+    try {
+      const res = await listAll(imagesRef);
+      const imageUrls = await Promise.all(
+        res.items.map(async (itemRef) => {
+          const url = await getDownloadURL(itemRef);
+          return url;
+        })
+      );
+      return imageUrls;  // Return the URLs of all images
+    } catch (error) {
+      console.error("Error fetching images:", error);
+    }
+  }

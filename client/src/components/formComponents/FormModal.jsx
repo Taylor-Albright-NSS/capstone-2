@@ -24,6 +24,7 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
                             return (<img 
                                 key={image.id} 
                                 src={image.imageLocation} 
+                                // src={image} 
                                 alt={"NO IMAGE"} 
                                 style={{maxWidth: "80px"}}
                                 className="mx-1"

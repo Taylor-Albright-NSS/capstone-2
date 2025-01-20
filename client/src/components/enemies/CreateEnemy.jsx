@@ -4,13 +4,8 @@ import { UserContext } from "../ApplicationViews";
 import { postEnemy } from "../../managers/enemyManager";
 import { getItems } from "../../managers/itemManager";
 import { getEnemyImages } from "../../managers/imageManager";
+import { fetchImages } from "../../managers/imageManager";
 import { useNavigate } from "react-router-dom";
-import { FormModal } from "../formComponents/FormModal";
-import { Fieldset1 } from "../formComponents/Fieldset1";
-import { Fieldset2 } from "../formComponents/Fieldset2";
-import { FieldsetDefense } from "../formComponents/FieldsetDefense";
-import { FieldsetOffense } from "../formComponents/FieldsetOffense";
-import { FieldsetItemDrops } from "../formComponents/FieldsetItemDrops";
 import { FormMain } from "../formComponents/_FormMain";
 import "../../App.css"
 
@@ -56,6 +51,12 @@ export const CreateEnemy = () => {
         })
     }, [])
 
+    // useEffect(() => {
+    //     fetchImages().then(imageList => {
+    //         console.log(imageList, 'Images list')
+    //         setImages(imageList)
+    //     })
+    // }, [])
     useEffect(() => {
         getEnemyImages().then(imageList => {
             console.log(imageList, 'Images list')

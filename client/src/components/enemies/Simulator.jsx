@@ -179,7 +179,7 @@ export const Simulator = () => {
 
     return (
         <>
-        <App />
+        {/* <App /> */}
         <button className="toggle-btn" onClick={toggleSlide}>→</button>
         <Container style={{height: "800px"}} className="slide slide-right">
             <div id="test" className="slide-content">Simulator</div>
