@@ -34,13 +34,19 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                   </NavLink>
                 </NavItem>
 
+                  <NavItem className="mx-4">
+                    <NavLink tag={RRNavLink} to="/enemy-list">
+                      Enemies
+                    </NavLink>
+                  </NavItem>
+{/* 
                 {loggedInUser.roles.includes("Admin") && (
                   <NavItem className="mx-4">
                     <NavLink tag={RRNavLink} to="/enemy-list">
                       Enemies
                     </NavLink>
                   </NavItem>
-                )}
+                )} */}
 
                   <NavLink  className="mx-4" tag={RRNavLink} to="/create-enemy">
                     Create Enemy

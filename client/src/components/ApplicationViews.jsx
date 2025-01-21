@@ -27,23 +27,24 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
           />
           <Route path="enemy-list">
             <Route index element={
-              <AuthorizedRoute>
+              <AuthorizedRoute loggedInUser={loggedInUser}>
                 <EnemyList />
               </AuthorizedRoute>
-              } />
+              } 
+              />
             <Route path=":id" element={
-              <AuthorizedRoute>
+              <AuthorizedRoute loggedInUser={loggedInUser}>
                 <EnemyDetails />
               </AuthorizedRoute>
               } /> 
             <Route path="edit/:id" element={
-              <AuthorizedRoute>
+              <AuthorizedRoute loggedInUser={loggedInUser}>
                 <EnemyEdit />
               </AuthorizedRoute>
               } /> 
           </Route>
           <Route path="create-enemy" element={
-            <AuthorizedRoute>
+            <AuthorizedRoute loggedInUser={loggedInUser}>
               <CreateEnemy />
             </AuthorizedRoute>
             } />
@@ -53,88 +54,5 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         </Route>
       </Routes>
     </UserContext.Provider>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
-    //   <Routes>
-    //     <Route path="/">
-    //       <Route
-    //         index
-    //         element={
-    //           <AuthorizedRoute loggedInUser={loggedInUser}>
-    //             <HomeView />
-    //           </AuthorizedRoute>
-    //         }
-    //       />
-    //       <Route path="/userprofiles">
-    //         <Route
-    //           index
-    //           element={
-    //             <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
-    //               <UserProfileList />
-    //             </AuthorizedRoute>
-    //           }
-    //         />
-    //         <Route
-    //           path=":id"
-    //           element={
-    //             <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
-    //               <UserProfileDetails />
-    //             </AuthorizedRoute>
-    //           }
-    //         />
-    //       </Route>
-
-    //       <Route path="/myposts">
-    //           {/* <Route index element={<MyPostsList />} /> */}
-    //       </Route>
-          
-    //       <Route path="/create-post">
-    //           {/* <Route index element={<CreatePost />} /> */}
-    //       </Route>
-
-    //       <Route
-    //         path="login"
-    //         element={<Login setLoggedInUser={setLoggedInUser} />}
-    //       />
-    //       <Route
-    //         path="register"
-    //         element={<Register setLoggedInUser={setLoggedInUser} />}
-    //       />
-    //     </Route>
-    //     <Route path="*" element={<p>Whoops, nothing here...</p>} />
-    //   </Routes>
-    // </UserContext.Provider>
   );
 }

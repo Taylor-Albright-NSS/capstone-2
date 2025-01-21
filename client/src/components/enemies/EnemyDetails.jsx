@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteEnemy, getEnemies, getEnemy } from "../../managers/enemyManager";
 import { Button, Card, CardBody, CardImg, CardText, Col, Container, Row } from "reactstrap";
 import { getItems } from "../../managers/itemManager";
 import { Simulator } from "./Simulator";
+import { UserContext } from "../ApplicationViews";
 
 export const EnemyDetails = () => {
     const [enemy, setEnemy] = useState()
@@ -17,16 +18,18 @@ export const EnemyDetails = () => {
         })
     }, [id])
 
-    const handleEnemyDelete = () => {
-        deleteEnemy(id).then(() => {
+    const { loggedInUser } = useContext(UserContext)
+    const userId = loggedInUser.id
+	const handleEnemyDelete = () => {
+        deleteEnemy(id, userId).then(() => {
             navigate("/enemy-list")
         })
     }
     
     return (
         <Container style={{border: "2px solid black"}}>
-                                <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>
-                    <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>
+                    {loggedInUser?.id == enemy?.userId && <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>}
+                    {loggedInUser?.id == enemy?.userId && <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>}
                     <Button color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
             <Row>
                 {/* Left side column */}

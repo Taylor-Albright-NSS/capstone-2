@@ -26,7 +26,7 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
 
     return (
         <>
-            <Form className="my-4 mx-4 col-10" onSubmit={handleSubmit} style={{border: "2px solid black"}}>
+            <Form className="my-4 mx-4 col-10" onSubmit={handleSubmit} style={{backgroundColor: "white", border: "2px solid black"}}>
                 <Row className="justify-content-center mx-4" style={{border: "2px solid green"}}>
                     <Col className="col-7" style={{border: "2px solid red"}}>
                         {/*ROW 1*/}

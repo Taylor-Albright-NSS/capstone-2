@@ -138,15 +138,18 @@ public class EnemyController : ControllerBase
         return Ok(_dbContext.EnemiesItems);
     }
     //--------
-    [HttpDelete("{enemyId}")]
-    public IActionResult DeleteEnemy(int enemyId)
+	[HttpDelete("{enemyId}")]
+    public IActionResult DeleteEnemy(int enemyId, int userId)
     {
         var enemy = _dbContext.Enemies.FirstOrDefault(e => e.Id == enemyId);
+        if (enemy.UserId != userId)
+        {
+            return NotFound( new {message = "You are not authorized to perform this action"});
+        }
         if (enemy == null)
         {
             return NotFound("Enemy with that id not found");
         }
-
 
         var enemyItems = _dbContext.EnemiesItems.Where(ei => ei.EnemiesId == enemyId).ToList();
         if (enemyItems == null)
@@ -159,6 +162,7 @@ public class EnemyController : ControllerBase
         _dbContext.SaveChanges();
         return Ok();
     }
+
     [HttpPut("{id}")]
     public IActionResult Put(EnemyDTO enemyDTO, int id)
     {
