@@ -17,7 +17,6 @@ export const FormMain = ({handleSubmit,setEnemyImage, enemyImage, setEnemy, enem
     const [warning, setWarning] = useState({ visible: false, message: '', x: 0, y:0 })
 
     const handlePositionLogging = (e) => {
-        console.log(e)
         setWarning({...warning, visible: true})
         setTimeout(() => {
             setWarning({...warning, visible: false})

@@ -74,22 +74,6 @@ export const Simulator = () => {
     const health = actualLevel == minLevel ? baseHealth : Math.floor((((actualLevel * 0.1) * baseHealth) + baseHealth))
     
     //randomizer
-    const damage = randomNumberRange(botDamage, topDamage)
-
-    //PLAYER DAMAGE CALC
-	// const { attackPower, botMultiplier, topMultiplier } = player[playerWeapon.skillUsed]
-	// const { botDamage, topDamage } = playerWeapon;
-	// const lowDamage = Math.ceil(attackPower * (botMultiplier * botDamage));
-	// const highDamage = Math.ceil(attackPower * (topMultiplier * topDamage));
-	// const baseDamage = Math.max(0, randomNumberRange(lowDamage, highDamage))
-	// console.log(lowDamage, 'LOW DAMAGE - RIGHT')
-	// console.log(highDamage, 'HIGH DAMAGE - RIGHT', highDamage / player.currentWeaponSkill.speed, ' HIGH DPS - RIGHT')
-	// console.log(baseDamage, 'CHOSEN DAMAGE - RIGHT')
-	// console.log(baseDamage / player.currentWeaponSkill.speed, ' DPS - RIGHT')
-	// return baseDamage  
-
-    // let armorAfterPen = enemyArmor - player[slashingPiercingOrBlunt] <= 0 ? 0 : enemyArmor - player[slashingPiercingOrBlunt]
-    // const damageAfterMitigation = (damageBeforeMitigation - armorAfterPen) * (1000 / (1000 + armorAfterPen)) <= 0 ? 0 : (damageBeforeMitigation - armorAfterPen) * (1000 / (1000 + armorAfterPen))
 
     const incrementLevel = () => {
         if (enemy.actualLevel + 1 > enemy.maxLevel) {return}
@@ -115,7 +99,6 @@ export const Simulator = () => {
         const { rawDamage } = enemyDamageObject
         const blockedDamage = rawDamage - actualDamage
         const playerNewHealth = Math.max(simPlayer.baseHealth - actualDamage, 0)
-        console.log(playerNewHealth, ' PLAYER NEW HEALTH')
         const damageLog = document.getElementById('damage-log')
         const damageP = document.createElement('logline')
         damageLog.style.fontSize = "12px"
@@ -137,7 +120,6 @@ export const Simulator = () => {
         damageObject.rawDamage = randomNumberRange(damageObject.lowDamage, damageObject.topDamage)
         damageObject.enemyArmorAfterPenetration = Math.max(simEnemy[armorType] - simPlayer[penetrationType], 0)
         damageObject.actualDamage = Math.max(Math.floor((damageObject.rawDamage - damageObject.enemyArmorAfterPenetration) * (1000 / (1000 + damageObject.enemyArmorAfterPenetration))), 0)
-        console.log(damageObject)
         return damageObject
     }
     const simulatePlayerHit = (armorType, penetrationType) => {
@@ -233,7 +215,7 @@ export const Simulator = () => {
                                 <CardTitle style={{alignSelf: "center"}}>Player</CardTitle>
                                 <CardBody>
                                     <CardText>Health: {player.baseHealth}</CardText>
-                                    <CardText>Damage: {player.damage}</CardText>
+                                    <CardText>Damage: {player.attackPower}</CardText>
                                     {/* <CardText>Gold Range: {enemy?.minGold} - {enemy?.maxGold}</CardText> */}
                                     <CardText>Slashing Armor: {player.slashingArmor}</CardText>
                                     <CardText>Piercing Armor: {player.piercingArmor}</CardText>

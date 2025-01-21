@@ -8,11 +8,9 @@ import { Simulator } from "./Simulator";
 export const EnemyDetails = () => {
     const [enemy, setEnemy] = useState()
     const { id } = useParams()
-    console.log(id)
     const navigate = useNavigate()
     useEffect(() => {
         getEnemy(id).then(enemy => {
-            console.log(enemy)
             setEnemy(enemy)
         })
     }, [id])

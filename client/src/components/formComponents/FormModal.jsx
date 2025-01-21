@@ -42,7 +42,6 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
                             color="danger" 
                             onClick={() => {
                                 toggleModal()
-                                console.log(enemy.image)
                                 setEnemyImage(enemy.image)
                                 }
                             }

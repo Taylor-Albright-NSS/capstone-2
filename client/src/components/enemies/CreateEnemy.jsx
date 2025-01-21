@@ -46,14 +46,12 @@ export const CreateEnemy = () => {
 
     useEffect(() => {
         getItems().then(itemList => {
-            console.log(itemList, ' Items list')
             setItems(itemList)
         })
     }, [])
 
     useEffect(() => {
         getEnemyImages().then(imageList => {
-            console.log(imageList, 'Images list')
             setImages(imageList)
         })
     }, [])
@@ -80,11 +78,7 @@ export const CreateEnemy = () => {
         setEnemy({ ...enemy, [name]: checked });
     };
 
-    const handleItemSelect = (e) => {
-        console.log(e)
-        console.log(e.target)
-        console.log(e.target.options[e.target.selectedIndex].value, ' test')
-    }
+
 
     const handleTextInput = (e) => {
         const {name, value} = e.target
@@ -94,7 +88,6 @@ export const CreateEnemy = () => {
     const handleNumberInput = (e) => {
         const {name, value, clientX, clientY} = e.target
         if (value < 0 || value > 9999) { // Example limit
-            console.log('test')
         } else {
             setEnemy({...enemy, [name]: parseInt(value)})
         }

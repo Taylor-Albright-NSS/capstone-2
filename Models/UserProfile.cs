@@ -42,5 +42,4 @@ public class UserProfile
             return $"{FirstName} {LastName}";
         }
     }
-    public List<Enemy> Enemies { get; set; }
 }

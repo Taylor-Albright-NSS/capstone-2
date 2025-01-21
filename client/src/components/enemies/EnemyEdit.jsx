@@ -47,19 +47,16 @@ export const EnemyEdit = () => {
 
     useEffect(() => {
         getItems().then(itemList => {
-            console.log(itemList)
             setItems(itemList)
         })
     }, [])
     useEffect(() => {
         getEnemyImages().then(imageList => {
-            console.log(imageList)
             setImages(imageList)
         })
     }, [])
     useEffect(() => {
         getEnemyForEdit(id).then(enemy => {
-            console.log(enemy)
             setEnemy(enemy)
             setOriginalEnemy(enemy)
             setEnemyImage(enemy.image)
@@ -69,7 +66,6 @@ export const EnemyEdit = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         putEnemy(enemy, enemy.id).then(data => {
-            console.log(data)
             navigate("/enemy-list")
         })
     }
@@ -92,14 +88,12 @@ export const EnemyEdit = () => {
     const handleTextInput = (e) => {
         const {name, value} = e.target
         setEnemy({...enemy, [name]: value})
-        console.log(enemy)
     }
 
 
     const handleNumberInput = (e) => {
         const {name, value, clientX, clientY} = e.target
         if (value < 0 || value > 9999) { // Example limit
-            console.log('test')
         } else {
             setEnemy({...enemy, [name]: parseInt(value)})
         }

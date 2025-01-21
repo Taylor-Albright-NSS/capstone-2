@@ -26,11 +26,28 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             } 
           />
           <Route path="enemy-list">
-            <Route index element={<EnemyList />} />
-            <Route path=":id" element={<EnemyDetails />} /> 
-            <Route path="edit/:id" element={<EnemyEdit />} /> 
+            <Route index element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <EnemyList />
+              </AuthorizedRoute>
+              } 
+              />
+            <Route path=":id" element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <EnemyDetails />
+              </AuthorizedRoute>
+              } /> 
+            <Route path="edit/:id" element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <EnemyEdit />
+              </AuthorizedRoute>
+              } /> 
           </Route>
-          <Route path="create-enemy" element={<CreateEnemy />} />
+          <Route path="create-enemy" element={
+            <AuthorizedRoute loggedInUser={loggedInUser}>
+              <CreateEnemy />
+            </AuthorizedRoute>
+            } />
           <Route path="login" element={<Login setLoggedInUser={setLoggedInUser} />} />
           <Route path="register" element={<Register setLoggedInUser={setLoggedInUser} />} />
           <Route path="*" element={<p>Whoops, nothing here...</p>} />

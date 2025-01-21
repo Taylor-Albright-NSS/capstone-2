@@ -8,7 +8,6 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
     const handleEnemyDelete = () => {
         deleteEnemy(id).then(() => {
             getEnemies().then(enemies => {
-                console.log(enemies)
                 setEnemies(enemies)
             })
         })

@@ -21,7 +21,7 @@ export const EnemyList = () => {
             <Row className="mt-4">
                 <Col>
                     <div className="p-1 bg-primary text-white text-center border border-danger">
-                        <h1>Filters and search bar placeholder</h1>
+                        <h1>Filters and search bar</h1>
                     </div>
                 </Col>
             </Row>
