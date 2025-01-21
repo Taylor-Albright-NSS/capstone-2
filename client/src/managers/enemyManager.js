@@ -53,26 +53,44 @@ export const deleteEnemy = async (enemyId, userId) => {
     }
 }
 
-export const putEnemy = async (enemy, enemyId) => {
+export const putEnemy = async (enemy, enemyId, userId) => {
     try {
-        const response = await fetch(`${api_url}/${enemyId}`, {
+        const response = await fetch(`${api_url}/${enemyId}?userId=${userId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(enemy)
         })
+        const data = await response.json()
+        const { message } = data
+        console.log(message)
 
         if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`)
         }
  
-        const data = await response.json()
-        const { message } = data
-        return message
 
         } catch (error) {
             console.error("API error:", error)
             throw error
         }
+}
+
+export const getUserEnemies = async (userId) => {
+    console.log('Trying to get user enemies')
+    console.log(userId, ' user id')
+    try {
+        const response = await fetch(`${api_url}/${userId}/userEnemies`)
+        const data = await response.json()
+        if (!response.ok) {
+            console.log(data.message)
+            console.log("sdfafasdfdsafdasfsda")
+            throw new Error(`Unable to get user enemies`)
+        }
+        return data
+    } catch (error) {
+        console.error(`${error}`)
+        throw error
+    }
 }

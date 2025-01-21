@@ -25,11 +25,13 @@ export const EnemyDetails = () => {
             navigate("/enemy-list")
         })
     }
+
+    
     
     return (
         <Container style={{border: "2px solid black"}}>
                     {loggedInUser?.id == enemy?.userId && <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>}
-                    {loggedInUser?.id == enemy?.userId && <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>}
+                    {<Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>}
                     <Button color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
             <Row>
                 {/* Left side column */}

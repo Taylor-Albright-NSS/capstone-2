@@ -28,18 +28,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
             <NavbarToggler onClick={toggleNavbar} />
             <Collapse isOpen={open} navbar>
               <Nav navbar>
-                <NavItem className="mx-4">
-                  <NavLink tag={RRNavLink} to="/">
-                    Home
-                  </NavLink>
-                </NavItem>
-
-                  <NavItem className="mx-4">
-                    <NavLink tag={RRNavLink} to="/enemy-list">
-                      Enemies
-                    </NavLink>
-                  </NavItem>
-{/* 
+                {/* 
                 {loggedInUser.roles.includes("Admin") && (
                   <NavItem className="mx-4">
                     <NavLink tag={RRNavLink} to="/enemy-list">
@@ -47,10 +36,29 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                     </NavLink>
                   </NavItem>
                 )} */}
-
-                  <NavLink  className="mx-4" tag={RRNavLink} to="/create-enemy">
-                    Create Enemy
+                <NavItem className="mx-4">
+                  <NavLink tag={RRNavLink} to="/">
+                    Home
                   </NavLink>
+                </NavItem>
+
+                <NavItem className="mx-4">
+                  <NavLink tag={RRNavLink} to="/enemy-list">
+                    Enemies
+                  </NavLink>
+                </NavItem>
+
+                  <NavItem>
+                    <NavLink  className="mx-4" tag={RRNavLink} to="/create-enemy">
+                      Create Enemy
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink  className="mx-4" tag={RRNavLink} to="/myprofile">
+                      My Profile
+                    </NavLink>
+                  </NavItem>
+
               </Nav>
             </Collapse>
             <Button

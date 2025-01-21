@@ -10,6 +10,7 @@ import { EnemyList } from "./enemies/EnemyList";
 import { EnemyDetails } from "./enemies/EnemyDetails";
 import { CreateEnemy } from "./enemies/CreateEnemy";
 import { EnemyEdit } from "./enemies/EnemyEdit";
+import { MyProfile } from "./myProfile/MyProfile";
 export const UserContext = createContext();
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
@@ -47,6 +48,11 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             <AuthorizedRoute loggedInUser={loggedInUser}>
               <CreateEnemy />
             </AuthorizedRoute>
+            } />
+            <Route path="myprofile" element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <MyProfile />
+              </AuthorizedRoute>
             } />
           <Route path="login" element={<Login setLoggedInUser={setLoggedInUser} />} />
           <Route path="register" element={<Register setLoggedInUser={setLoggedInUser} />} />

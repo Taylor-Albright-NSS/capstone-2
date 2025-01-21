@@ -1,4 +1,4 @@
-import { Button, Form, FormGroup, Input, Label, Row, Col, ModalHeader, ModalBody, ModalFooter, Card } from "reactstrap";
+import { Button, Form, FormGroup, Input, Label, Row, Col, ModalHeader, ModalBody, ModalFooter, Card, Container } from "reactstrap";
 import { FormModal } from "../formComponents/FormModal";
 import { Fieldset1 } from "../formComponents/Fieldset1";
 import { Fieldset2 } from "../formComponents/Fieldset2";
@@ -25,8 +25,8 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
     }
 
     return (
-        <>
-            <Form className="my-4 mx-4 col-10" onSubmit={handleSubmit} style={{backgroundColor: "white", border: "2px solid black"}}>
+        <Container className="d-flex justify-content-center">
+            <Form className="my-4 mx-4 col-10" onSubmit={handleSubmit} style={{backgroundColor: "white", border: "8px solid black"}}>
                 <Row className="justify-content-center mx-4" style={{border: "2px solid green"}}>
                     <Col className="col-7" style={{border: "2px solid red"}}>
                         {/*ROW 1*/}
@@ -70,6 +70,6 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
                     {warning.message}fdsafasd
                 </div>
             )}
-        </>
+        </Container>
     );
 }

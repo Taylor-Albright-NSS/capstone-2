@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
 
 html, #root {
-  background: url('public/assets/images/background/main background.png') no-repeat center fixed; /* Centered, no repeat, fixed position */
+  /* background: url('public/assets/images/background/main background.png') no-repeat center fixed; */
   background-size: cover;
-  background-color: black;
+  /* background-color: black; */
 }
 
 body {

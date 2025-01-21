@@ -27,6 +27,23 @@ public class EnemyController : ControllerBase
     {
         return Ok(_dbContext.Enemies.ProjectTo<EnemyDTO>(_mapper.ConfigurationProvider));
     }
+
+    [HttpGet("{userId}/userEnemies")]
+    public IActionResult GetUserEnemies(int userId)
+    {
+        Console.WriteLine(userId);
+        var userEnemies = _dbContext.Enemies
+        .Where(e => e.UserId == userId)
+        .ProjectTo<EnemyDTO>(_mapper.ConfigurationProvider);
+
+        if (userEnemies == null || !userEnemies.Any())
+        {
+            return NotFound("Could not find any enemies!");
+        }
+
+        return Ok(userEnemies);
+    }
+
     [HttpGet("{id}")]
     public IActionResult Get(int id)
     {
@@ -164,9 +181,14 @@ public class EnemyController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult Put(EnemyDTO enemyDTO, int id)
+    public IActionResult Put(EnemyDTO enemyDTO, int id, int userId)
     {
         Enemy enemy = _dbContext.Enemies.FirstOrDefault(e => e.Id == id);
+
+        if (enemy.UserId != userId)
+        {
+            return NotFound(new {message = "You are unauthorized to edit this enemy"});
+        }
 
         if (enemy == null)
         {

@@ -37,6 +37,9 @@ export const EnemyEdit = () => {
     const { id } = useParams()
     const navigate = useNavigate()
 
+    const { loggedInUser } = useContext(UserContext)
+    const userId = loggedInUser.id
+
     const [images, setImages] = useState([])
     const [items, setItems] = useState([])
     const [enemyImage, setEnemyImage] = useState({})
@@ -54,7 +57,6 @@ export const EnemyEdit = () => {
     }, [])
     useEffect(() => {
         getEnemyImagesFirebase().then(imageList => {
-            console.log(imageList)
             setImages(imageList)
         })
     }, [])
@@ -69,7 +71,7 @@ export const EnemyEdit = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        putEnemy(enemy, enemy.id).then(data => {
+        putEnemy(enemy, enemy.id, userId).then(data => {
             console.log(data)
             navigate("/enemy-list")
         })

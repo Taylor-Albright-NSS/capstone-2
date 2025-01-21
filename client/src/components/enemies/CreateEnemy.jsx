@@ -60,7 +60,6 @@ export const CreateEnemy = () => {
     // }, [])
     useEffect(() => {
         getEnemyImagesFirebase().then(imageList => {
-            console.log(imageList, 'Images list')
             setImages(imageList)
         })
     }, [])

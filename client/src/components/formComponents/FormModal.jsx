@@ -78,7 +78,6 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
                         >
                         {selectedImage == null || selectedImage == undefined ? <span>Select Image</span> : ""}
                     </Card>
-
             </FormGroup>
 
     )
