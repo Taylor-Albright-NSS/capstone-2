@@ -13,7 +13,7 @@ export const EnemyEdit = () => {
         name: "",
         minLevel: 0,
         maxLevel: 0,
-        strength: 0,
+        baseDamage: 0,
         baseHealth: 0,
         baseExperience: 0,
         slashingArmor: 0,

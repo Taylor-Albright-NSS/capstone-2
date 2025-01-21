@@ -24,7 +24,7 @@ export const CreateEnemy = () => {
         name: "",
         minLevel: 1,
         maxLevel: 1,
-        strength: 1,
+        baseDamage: 1,
         baseHealth: 1,
         baseExperience: 0,
         slashingArmor: 0,
