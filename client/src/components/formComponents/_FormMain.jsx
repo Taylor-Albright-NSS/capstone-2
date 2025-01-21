@@ -27,10 +27,10 @@ export const FormMain = ({handleSubmit,setEnemyImage, enemyImage, setEnemy, enem
     return (
         <>
             <Form className="my-4 mx-4" onSubmit={handleSubmit} style={{border: "2px solid black"}}>
-                <Row className="justify-content-center mx-4" style={{border: "2px solid green"}}>
-                    <Col className="col-7" style={{border: "2px solid red"}}>
+                <Row className="justify-content-center mx-4">
+                    <Col className="col-7">
                         {/*ROW 1*/}
-                        <Row style={{border: "2px solid yellow", padding: "1rem"}}>
+                        <Row style={{padding: "1rem"}}>
                             <Col className="d-flex justify-content-evenly">
                                     <FormModal  setEnemyImage={setEnemyImage} enemyImage={enemyImage} setEnemy={setEnemy} enemy={enemy} setImages={setImages} images={images} />
                                     <Fieldset1 enemy={enemy} handleTextInput={handleTextInput} handleNumberInput={handleNumberInput} handlePositionLogging={handlePositionLogging} />
@@ -38,19 +38,19 @@ export const FormMain = ({handleSubmit,setEnemyImage, enemyImage, setEnemy, enem
                             </Col>
                         </Row>
                         {/*ROW 2*/}
-                        <Row style={{border: "2px solid yellow"}}>
+                        <Row style={{padding: "4px", border: "2px solid lightGrey", borderRadius: "10px"}}>
 
-                            <Col style={{border: "2px solid blue"}}>
+                            <Col>
                                 <FieldsetOffense handleCheckbox={handleCheckbox} enemy={enemy} handleNumberInput={handleNumberInput} />
                             </Col>
-                            <Col style={{border: "2px solid blue"}}>
+                            <Col>
                                 <FieldsetDefense handleNumberInput={handleNumberInput} enemy={enemy} />
                             </Col>
 
                                 
                         </Row>
                     </Col>
-                    <Col style={{border: "2px solid blue"}}>
+                    <Col style={{border: "2px solid lightGrey", borderRadius: "10px"}}>
                         <FieldsetItemDrops handleItemDropsChange={handleItemDropsChange} items={items} handleNumberInput={handleNumberInput} enemy={enemy} />
                     </Col>
                     <Row className="justify-content-center">

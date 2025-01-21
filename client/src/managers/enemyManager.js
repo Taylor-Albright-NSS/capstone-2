@@ -4,11 +4,7 @@ export const getEnemies = async () => {
     const response = await fetch(`${api_url}`)
     if (!response.ok) {
         throw new Error(`Error fetching enemy. Status: ${response.status}`)
-    } else {
-        console.log(`Enemy found`)
-    }
-
-    
+    } 
 
     return await response.json()
 }
@@ -23,7 +19,6 @@ export const getEnemyForEdit = async (id) => {
 }
 
 export const postEnemy = async (enemy) => {
-    console.log(enemy, 'Posted enemy')
     const response = await fetch(`${api_url}`, {
         method: "POST",
         headers: {
@@ -34,15 +29,12 @@ export const postEnemy = async (enemy) => {
 
     if (!response.ok) {
         throw new Error(`Error posting enemy. Status: ${response.status}`)
-    } else {
-        console.log("enemy created")
-    }
+    } 
 
     return response.json()
 }
 
 export const deleteEnemy = async (enemyId) => {
-    console.log(enemyId)
     const response = await fetch(`${api_url}/${enemyId}`, {
         method: "DELETE"
     })

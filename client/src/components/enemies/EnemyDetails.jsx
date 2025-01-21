@@ -27,18 +27,18 @@ export const EnemyDetails = () => {
         <Container style={{border: "2px solid black"}}>
             <Row>
                 {/* Left side column */}
-                <Col style={{maxWidth: "500px"}}>
+                <Col className="d-flex  flex-column justify-content-between align-content-center" style={{maxWidth: "500px"}}>
                     <Row className="d-flex justify-content-center">
-                        <div className="d-flex flex-column align-items-center" style={{ maxWidth: "400px" }} >
+                        <Card className="d-flex flex-column align-items-center" style={{ maxWidth: "400px" }} >
                             <h3>{enemy?.name}</h3>
                             <img style={{maxWidth: "100px"}} src={`${enemy?.image?.imageLocation}`} alt={enemy?.name} />
                                 <p style={{marginBottom: 0}}>Level range: {enemy?.minLevel + " - " + enemy?.maxLevel}</p>
                                 <p style={{marginBottom: 0}}>Experience Range: {enemy?.baseExperience}</p>
                                 <p style={{marginBottom: 0}}>Gold Range: {enemy?.minGold + " - " + enemy?.maxGold}</p>
                                 {/* <p style={{marginBottom: 0}}>^ elemental is hard coded. Need to add type property to enemies</p> */}
-                        </div>
+                        </Card>
                     </Row>
-                    <Row style={{border: "2px solid green"}}>
+                    <Row>
                         <Col >
                             <Row>
                                 <Col style={{textAlign: "center"}}>
@@ -73,7 +73,7 @@ export const EnemyDetails = () => {
                             <Row>
                                 <Card>
 
-                                <div className="d-flex flex-column align-items-center">
+                                <Card className="d-flex flex-column align-items-center">
                                     <h6>Item drops</h6>
                                     <ul>
                                     {enemy?.items.length > 0 ?
@@ -87,7 +87,7 @@ export const EnemyDetails = () => {
                                         }
 
                                     </ul>
-                                </div>
+                                </Card>
                                 <span className="d-flex flex-column align-items-center">
                                     <h6 style={{textAlign: "center"}}>Description</h6>
                                     <Card className="align-items-center" style={{maxWidth: "400px", minWidth: "200px"}}>
@@ -101,9 +101,11 @@ export const EnemyDetails = () => {
                             </Row>
                         </Col>
                     </Row>
-                    <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>
-                    <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>
-                    <Button color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
+                    <span className="d-flex justify-content-center align-items-center">
+                        <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>
+                        <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>
+                        <Button color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
+                    </span>
                 </Col>
 
                 {/* Right side column */}

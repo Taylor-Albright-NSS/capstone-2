@@ -65,7 +65,7 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
                             alignItems: "center",
                             name: "image",
                             minWidth: "200px",
-                            minHeight: "200px",
+                            maxHeight: "200px",
                             cursor: "pointer",
                             backgroundImage: `url(${enemyImage?.imageLocation})`,
                             backgroundSize: "cover",
