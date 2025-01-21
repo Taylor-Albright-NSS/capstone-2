@@ -10,22 +10,11 @@ export const Fieldset1 = ({ enemy, handleTextInput, handleNumberInput, handlePos
                     <Label for="name">Name</Label>
                     <Input style={{maxWidth: "100px"}} type="text" name="name" id="name" value={enemy.name} onChange={handleTextInput}/>
                 </FormGroup>
-
-                <FormGroup className="d-flex justify-content-center">
-                    <Label for="type">Type (placeholder)</Label>
-                </FormGroup>
-
-                <span className="d-flex justify-content-around">
-                    <FormGroup>
-                        <Label for="minLevel">Min. Level</Label>
-                        <Input style={{width: "76px"}} type="number" name="minLevel" id="minLevel" value={enemy.minLevel} onChange={handleNumberInput} onClick={handlePositionLogging} />
+                <FormGroup className="d-flex flex-column align-items-center" style={{maxWidth: "200px"}}>
+                        <Label for="description">Enemy Description</Label>
+                        <Input style={{resize: "none"}} type="textarea" name="description" id="description" onChange={handleTextInput} value={enemy.description}></Input>
                     </FormGroup>
 
-                    <FormGroup>
-                        <Label for="maxLevel">Max Level</Label>
-                        <Input style={{maxWidth: "76px"}} type="number" name="maxLevel" id="maxLevel" value={enemy.maxLevel} onChange={handleNumberInput} />
-                    </FormGroup>
-                </span>
             </fieldset>
         </Card>
     )

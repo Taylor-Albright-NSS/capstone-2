@@ -18,7 +18,7 @@ export const EnemyList = () => {
     }, [])
 
     return (
-        <Container>
+        <Container style={{height: "800px", overflow: "hidden", overflowY: "auto"}}>
             <Row className="mt-4">
                 <Col>
                     <div className="p-1 bg-primary text-white text-center border border-danger">
@@ -27,11 +27,14 @@ export const EnemyList = () => {
                 </Col>
             </Row>
             <Row className="mt-4">
-                {enemies.map(enemy => (
-                    <Col key={enemy.id} xs="12" sm="6" md="4" lg="3" className="mb-4">
-                        <EnemyCard enemy={enemy} setEnemies={setEnemies} />
+                {enemies.map(enemy => {
+                    return(
+                    <Col key={enemy.id}>
+                        <EnemyCard  enemy={enemy} setEnemies={setEnemies} />
                     </Col>
-                ))}
+
+                    )
+                })}
             </Row>
         </Container>
     );

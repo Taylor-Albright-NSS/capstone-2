@@ -9,11 +9,11 @@ import App from "../../firebase/FirebaseUploadUI";
 
 export const Simulator = () => {
     const playerBase = {
-        baseHealth: 30,
-        attackPower: 1000,
-        slashingArmor: 10,
-        piercingArmor: 20,
-        bluntArmor: 30,
+        baseHealth: 300,
+        attackPower: 5,
+        slashingArmor: 5,
+        piercingArmor: 10,
+        bluntArmor: 20,
         slashingPenetration: 0,
         piercingPenetration: 0,
         bluntPenetration: 0,
@@ -21,11 +21,11 @@ export const Simulator = () => {
         accuracyRating: 0,
     }
     const simEnemyBase = {
-        baseHealth: 100,
-        baseDamage: 100,
-        slashingArmor: 10,
+        baseHealth: 1000,
+        baseDamage: 9,
+        slashingArmor: 5,
         piercingArmor: 10,
-        bluntArmor: 10,
+        bluntArmor: 20,
     }
     const [enemy, setEnemy] = useState({})
     const [simEnemy, setSimEnemy] = useState({})
@@ -193,15 +193,16 @@ export const Simulator = () => {
                     </div>
                     </div> */}
                 <Col>
-                    <Row>
+                    <Row className="my-4">
                         <Col>
                             <Card>
-                                <span className="d-flex justify-content-center">
-                                    <Button onClick={decrementLevel}>Decrease Enemy Level</Button>
-                                    <Button onClick={incrementLevel}>Increase Enemy Level</Button>
-                                </span>
+
                                 <CardBody>
-                                    <CardText>Level: {actualLevel}</CardText>
+                                    <span className="d-flex justify-content-start">
+                                    <CardText style={{marginRight: "10px"}}>Level: {actualLevel}</CardText>
+                                    <Button onClick={incrementLevel} style={{maxHeight: "30px", maxWidth: "30px", display: "flex", alignItems: "center", justifyContent: "center"}}>-</Button>
+                                    <Button onClick={decrementLevel} style={{maxHeight: "30px", maxWidth: "30px", display: "flex", alignItems: "center", justifyContent: "center"}}>+</Button>
+                                    </span>
                                     <CardText>Damage Range: {botDamage} - {topDamage}</CardText>
                                     {/* <CardText>Gold Range: {enemy?.minGold} - {enemy?.maxGold}</CardText> */}
                                     <CardText>Experience: {experience}</CardText>
@@ -246,7 +247,7 @@ export const Simulator = () => {
                             </Card>
                         </Col>
                     </Row>
-                    <Row className="d-flex justify-content-center align-content-around">
+                    <Row style={{border: "2px solid green"}} className="d-flex justify-content-center align-content-around">
                         <Col className="d-flex flex-column justify-content-center">
                             <span className="d-flex justify-content-center">
                                 <Button onClick={() => setSimEnemy(prev => ({...prev, baseHealth: enemy.baseHealth}))}>Reset Enemy</Button>

@@ -25,13 +25,16 @@ export const EnemyDetails = () => {
     
     return (
         <Container style={{border: "2px solid black"}}>
+                                <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>
+                    <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>
+                    <Button color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
             <Row>
                 {/* Left side column */}
                 <Col style={{maxWidth: "500px"}}>
                     <Row className="d-flex justify-content-center">
                         <div className="d-flex flex-column align-items-center" style={{ maxWidth: "400px" }} >
                             <h3>{enemy?.name}</h3>
-                            <img style={{maxWidth: "100px"}} src={`${enemy?.imageUrl}`} alt={enemy?.name} />
+                            <img style={{maxWidth: "200px"}} src={`${enemy?.imageUrl}`} alt={enemy?.name} />
                                 <p style={{marginBottom: 0}}>Level range: {enemy?.minLevel + " - " + enemy?.maxLevel}</p>
                                 <p style={{marginBottom: 0}}>Experience Range: {enemy?.baseExperience}</p>
                                 <p style={{marginBottom: 0}}>Gold Range: {enemy?.minGold + " - " + enemy?.maxGold}</p>
@@ -75,7 +78,7 @@ export const EnemyDetails = () => {
 
                                 <div className="d-flex flex-column align-items-center">
                                     <h6>Item drops</h6>
-                                    <ul>
+                                    <ul style={{maxHeight: "80px", overflow: "hidden", overflowY: "auto"}}>
                                     {enemy?.items.length > 0 ?
                                         enemy.items.map((item, i) => {
                                             i = i + 1
@@ -90,9 +93,9 @@ export const EnemyDetails = () => {
                                 </div>
                                 <span className="d-flex flex-column align-items-center">
                                     <h6 style={{textAlign: "center"}}>Description</h6>
-                                    <Card className="align-items-center" style={{maxWidth: "400px", minWidth: "200px"}}>
-                                        <CardBody>
-
+                                    <Card style={{maxWidth: "400px", minWidth: "200px", height: "100px"}}>
+                                        <CardBody style={{overflow: "hidden", overflowY: "auto"}}>
+                                        rest
                                         {enemy?.description || "This is an enemy that has not yet been given a description"}
                                         </CardBody>
                                     </Card>
@@ -101,9 +104,6 @@ export const EnemyDetails = () => {
                             </Row>
                         </Col>
                     </Row>
-                    <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>
-                    <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>
-                    <Button color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
                 </Col>
 
                 {/* Right side column */}

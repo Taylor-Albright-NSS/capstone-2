@@ -15,17 +15,16 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
     }
 
     return (
-        <Container >
-            <Card style={{maxWidth: "200px"}}>
+            <Card className="mx-2 my-2" style={{maxWidth: "200px"}}>
                 <CardBody onClick={() => navigate(`${id}`)} style={{cursor: "pointer"}} className="d-flex flex-column align-items-center">
                     <CardTitle tag="h5">{enemy.name}</CardTitle>
-                    <CardImg src={enemy.imageUrl} />
+                    {/* <CardImg src={enemy.imageUrl} /> */}
+                    <Card style={{width: "100px", minHeight: "100px", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundImage: `url(${enemy.imageUrl})`}} />
                 </CardBody>
-            <div className="d-flex justify-content-evenly my-1">
-                <Button color="danger" style={{width: "90px", fontSize: "12px"}} onClick={handleEnemyDelete}>Delete</Button>
-                <Button color="warning" style={{width: "90px", fontSize: "12px"}} onClick={() => navigate(`edit/${id}`)}>Edit</Button>
-            </div>
+                <div className="d-flex justify-content-evenly my-1">
+                    <Button color="danger" style={{width: "75px", fontSize: "12px"}} onClick={handleEnemyDelete}>Delete</Button>
+                    <Button color="warning" style={{width: "75px", fontSize: "12px"}} onClick={() => navigate(`edit/${id}`)}>Edit</Button>
+                </div>
             </Card>
-        </Container>
     )
 }

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter, Button, Card } from "reactstrap"
+import { FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter, Button, Card, Input } from "reactstrap"
 
 
-export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImages, images }) => {
+export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImages, images, handleTextInput }) => {
     const [selectedImage, setSelectedImage] = useState("")
     const [isOpen, setIsOpen] = useState(false);
     const toggleModal = () => setIsOpen(!isOpen);
@@ -25,9 +25,9 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
                     </ModalHeader>
                     
                     <ModalBody>
-                        {images?.map(image => {
+                        {images?.map((image, i) => {
                             return (<img 
-                                key={image.id} 
+                                key={i} 
                                 src={image} 
                                 alt={"NO IMAGE"} 
                                 style={{maxWidth: "80px"}}
@@ -78,6 +78,7 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
                         >
                         {selectedImage == null || selectedImage == undefined ? <span>Select Image</span> : ""}
                     </Card>
+
             </FormGroup>
 
     )
