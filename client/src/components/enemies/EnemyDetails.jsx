@@ -1,14 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteEnemy, getEnemies, getEnemy } from "../../managers/enemyManager";
 import { Button, Card, CardBody, CardImg, CardText, Col, Container, Row } from "reactstrap";
 import { getItems } from "../../managers/itemManager";
 import { Simulator } from "./Simulator";
+import { tryGetLoggedInUser } from "../../managers/authManager";
+import { UserContext } from "../ApplicationViews";
 
 export const EnemyDetails = () => {
     const [enemy, setEnemy] = useState()
     const { id } = useParams()
     const navigate = useNavigate()
+
+    const { loggedInUser } = useContext(UserContext)
+    const userId = loggedInUser.id
+    const { test } = useContext(UserContext)
+
     useEffect(() => {
         getEnemy(id).then(enemy => {
             setEnemy(enemy)
@@ -16,7 +23,7 @@ export const EnemyDetails = () => {
     }, [id])
 
     const handleEnemyDelete = () => {
-        deleteEnemy(id).then(() => {
+        deleteEnemy(id, userId).then(() => {
             navigate("/enemy-list")
         })
     }
@@ -100,8 +107,8 @@ export const EnemyDetails = () => {
                         </Col>
                     </Row>
                     <span className="d-flex justify-content-center align-items-center">
-                        <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>
-                        <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>
+                    {loggedInUser?.id == enemy?.userId && <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>}
+                    {loggedInUser?.id == enemy?.userId && <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>}
                         <Button color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
                     </span>
                 </Col>

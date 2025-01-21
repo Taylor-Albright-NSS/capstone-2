@@ -34,10 +34,16 @@ export const postEnemy = async (enemy) => {
     return response.json()
 }
 
-export const deleteEnemy = async (enemyId) => {
-    const response = await fetch(`${api_url}/${enemyId}`, {
+export const deleteEnemy = async (enemyId, userId) => {
+    console.log(enemyId, userId)
+    const response = await fetch(`${api_url}/${enemyId}?userId=${userId}`, {
         method: "DELETE"
     })
+    if (!response.ok) {
+        const data = await response.json()
+        console.log(data)
+
+    }
 }
 
 export const putEnemy = async (enemy, enemyId) => {
