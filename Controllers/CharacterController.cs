@@ -22,10 +22,12 @@ public class CharacterController : ControllerBase
         _dbContext = context;
         _mapper = mapper;
     }
-    [HttpGet]
-    public IActionResult Get()
+    [HttpGet("{id}")]
+    public IActionResult Get(int id)
     {
-        var characters = _dbContext.Characters.ProjectTo<CharacterDTO>(_mapper.ConfigurationProvider);
+        var characters = _dbContext.Characters
+        .Where(c => c.UserId == id)
+        .ProjectTo<CharacterDTO>(_mapper.ConfigurationProvider);
 
         if (characters == null)
         {

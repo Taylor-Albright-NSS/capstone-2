@@ -19,7 +19,7 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
     }
 
     return (
-            <Card className="mx-2 my-2" style={{maxWidth: "200px"}}>
+            <Card className="mx-4 my-4" style={{maxWidth: "200px"}}>
                 <CardBody onClick={() => navigate(`${id}`)} style={{cursor: "pointer"}} className="d-flex flex-column align-items-center">
                     <CardTitle tag="h5">{enemy.name}</CardTitle>
                     {/* <CardImg src={enemy.imageUrl} /> */}

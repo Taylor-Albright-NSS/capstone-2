@@ -45,7 +45,7 @@ export const CreateCharacterModal = ({setCharacters }) => {
     const handlePostNewCharacter = () => {
         postCharacter(character).then(data => {
             console.log(data)
-            getCharacters().then(chars => {
+            getCharacters(userId).then(chars => {
                 setCharacters(chars)
             })
         })

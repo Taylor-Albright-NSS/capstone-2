@@ -1,12 +1,13 @@
 const api_url = "/api/character"
 
-export const getCharacters = async () => {
+export const getCharacters = async (userId) => {
     try {
-        const response = await fetch(`${api_url}`)
+        const response = await fetch(`${api_url}/${userId}`)
         const data = await response.json()
         if (!response.ok) {
             throw new Error(`Couldn't retrieve characters`)
         }
+        console.log(data)
         return data
     } catch (error) {
         console.error(`Error message: ${error}`)

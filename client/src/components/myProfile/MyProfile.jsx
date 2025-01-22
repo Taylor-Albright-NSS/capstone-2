@@ -34,7 +34,7 @@ export const MyProfile = () => {
     }, [loggedInUser])
 
     useEffect(() => {
-        getCharacters().then(charList => {
+        getCharacters(userId).then(charList => {
             console.log(charList)
             setCharacters(charList)
         })
@@ -50,12 +50,12 @@ export const MyProfile = () => {
 
     const handleDeleteCharacter = () => {
         deleteCharacter(selectedCharacter.id).then(() => {
-            getCharacters().then(charList => {
+            getCharacters(userId).then(charList => {
                 console.log(charList)
                 setCharacters(charList)
             })
         })
-        setSelectedCharacter({})
+        setSelectedCharacter(null)
     }
 
     return (
@@ -82,7 +82,7 @@ export const MyProfile = () => {
                         </CardBody>
                     </Card>
                 </Col>
-                <Col style={{border: "4px solid blue"}}>
+                <Col style={{border: "4px solid blue", textAlign: "center"}}>
                     <span className="d-flex justify-content-around">
                         <CreateCharacterModal setCharacters={setCharacters} />
                         <Input type="select" value={selectedCharacter?.name} style={{maxWidth: "400px"}} onChange={handleCharacterSelect}>
@@ -105,7 +105,7 @@ export const MyProfile = () => {
                                 </CardBody>
                             </Card>
                             }
-                            {Object.values(selectedCharacter).length > 0 && <Button onClick={handleDeleteCharacter}>Delete Character</Button>}
+                            {selectedCharacter != null && <Button onClick={handleDeleteCharacter}>Delete Character</Button>}
                 </Col>
             </Row>
         </Container>
