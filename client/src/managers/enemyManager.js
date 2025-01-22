@@ -46,24 +46,24 @@ export const deleteEnemy = async (enemyId, userId) => {
     }
 }
 
-export const putEnemy = async (enemy, enemyId) => {
+export const putEnemy = async (enemy, userId) => {
+    console.log(enemy.id, userId)
     try {
-        const response = await fetch(`${api_url}/${enemyId}`, {
+        const response = await fetch(`${api_url}/${enemy.id}/${userId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(enemy)
         })
-
+        const data = await response.json()
+        const { message } = data
+        console.log(message, ' mess')
+        
         if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`)
         }
- 
-        const data = await response.json()
-        const { message } = data
-        return message
-
+        return data
         } catch (error) {
             console.error("API error:", error)
             throw error

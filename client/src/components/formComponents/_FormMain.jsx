@@ -32,7 +32,11 @@ export const FormMain = ({handleSubmit,setEnemyImage, enemyImage, setEnemy, enem
                         <Row style={{padding: "1rem"}}>
                             <Col className="d-flex justify-content-evenly">
                                     <FormModal  setEnemyImage={setEnemyImage} enemyImage={enemyImage} setEnemy={setEnemy} enemy={enemy} setImages={setImages} images={images} />
+                            </Col>
+                            <Col>
                                     <Fieldset1 enemy={enemy} handleTextInput={handleTextInput} handleNumberInput={handleNumberInput} handlePositionLogging={handlePositionLogging} />
+                            </Col>
+                            <Col>
                                     <Fieldset2 handleNumberInput={handleNumberInput} handleTextInput={handleTextInput} enemy={enemy} />
                             </Col>
                         </Row>
