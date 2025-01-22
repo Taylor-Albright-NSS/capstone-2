@@ -28,6 +28,8 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
             <div className="d-flex justify-content-evenly my-1">
                 {loggedInUser?.id == enemy?.userId && <Button color="danger" style={{width: "90px", fontSize: "12px"}} onClick={handleEnemyDelete}>Delete</Button>}
                 {loggedInUser?.id == enemy?.userId && <Button color="warning" style={{width: "90px", fontSize: "12px"}} onClick={() => navigate(`edit/${id}`)}>Edit</Button>}
+                <Button color="danger" style={{width: "90px", fontSize: "12px"}} onClick={handleEnemyDelete}>Delete</Button>
+                <Button color="warning" style={{width: "90px", fontSize: "12px"}} onClick={() => navigate(`edit/${id}`)}>Edit</Button>
             </div>
             </Card>
         </Container>
