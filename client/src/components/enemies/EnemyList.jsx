@@ -38,20 +38,20 @@ export const EnemyList = () => {
     }
 
     return (
-        <Container style={{height: "780px", padding: "2rem", border: "6px ridge grey"}}>
+        <Container className="d-flex flex-column align-content-center" style={{height: "780px", border: "6px ridge grey"}}>
             <Row>
-                <Col className="p-2 bg-primary d-flex justify-content-start">
-                        <span className="d-flex align-items-center justify-content-between" style={{width: "40%"}}>
-                            <p style={{margin: 0, fontSize: "20px"}}>Browse Enemies</p>
+                <Col className="bg-black d-flex justify-content-start">
+                        <span className="d-flex align-items-center justify-content-between" style={{width: "56%"}}>
                             <span className="d-flex align-items-center">
                                 <p style={{marginBottom: 0, marginRight: "2rem"}}>Filter Min Level</p>
                                 <Input style={{width: "80px"}} type="number" value={minLevelFilter} onChange={filterByLevel}/>
                             </span>
+                            <p style={{margin: 0, fontSize: "20px"}}>Browse Enemies</p>
                         </span>
 
                 </Col>
             </Row>
-            <Row className="mt-4" style={{height: "90%", overflow: "hidden", overflowY: "auto", backdropFilter: "blur(15px)", border: "4px ridge black"}}>
+            <Row className="" style={{height: "90%", overflow: "hidden", overflowY: "auto", backdropFilter: "blur(15px)", border: "4px ridge black"}}>
                 {filteredEnemies.map(enemy => {
                     return(
                         <EnemyCard key={enemy.id} enemy={enemy} setEnemies={setEnemies} />

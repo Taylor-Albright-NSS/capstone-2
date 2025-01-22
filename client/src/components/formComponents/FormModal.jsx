@@ -12,7 +12,7 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
     }, [enemy.imageUrl])
 
     return (
-            <FormGroup className="d-flex justify-content-center" style={{border: "4px solid blue"}}>
+            <FormGroup className="d-flex justify-content-center">
                 <Modal isOpen={isOpen} toggle={() => {
                     toggleModal()
                     setEnemyImage(enemy.imageUrl)

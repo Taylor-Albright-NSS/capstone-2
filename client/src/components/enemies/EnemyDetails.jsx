@@ -29,10 +29,10 @@ export const EnemyDetails = () => {
     
     
     return (
-        <Container style={{border: "2px solid black"}}>
+        <Container style={{border: "6px ridge grey"}}>
             <Row>
                 {/* Left side column */}
-                <Col style={{maxWidth: "500px"}}>
+                <Col className="granite-background" style={{maxWidth: "500px"}}>
                     <Row className="d-flex justify-content-center">
                     <Button style={{width: "150px"}} color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
                         <div className="d-flex flex-column align-items-center" style={{ maxWidth: "400px" }} >
@@ -46,11 +46,11 @@ export const EnemyDetails = () => {
                             </Card>
                         </div>
                     </Row>
-                    <Row style={{border: "2px solid green"}}>
+                    <Row>
                         <Col >
                             <Row>
                                 <Col style={{textAlign: "center"}}>
-                                    <Card style={{height: "100%"}}>
+                                    <Card style={{border: "4px ridge grey", height: "100%"}}>
                                         <h5 style={{textAlign: "center"}}>Offense</h5>
                                         <p>Attack Power: {enemy?.attackPower}</p>
                                         <p>Accuracy: {enemy?.accuracyRating}</p>
@@ -62,7 +62,7 @@ export const EnemyDetails = () => {
                                     </Card>
                                 </Col>
                                 <Col>
-                                    <Card>
+                                    <Card style={{border: "4px ridge grey"}}>
                                         <h5 style={{textAlign: "center"}}>Defense</h5>
                                         <p style={{marginBottom: 0}}>Base Health: {enemy?.baseHealth}</p>
                                         <p style={{marginBottom: 0}}>Slashing Armor: {enemy?.slashingArmor}</p>
@@ -70,7 +70,7 @@ export const EnemyDetails = () => {
                                         <p style={{marginBottom: 0}}>Blunt Armor: {enemy?.bluntArmor}</p>
                                         <p style={{marginBottom: 0}}>Dodge: {enemy?.dodgeRating}</p>
                                     </Card>
-                                    <Card>
+                                    <Card style={{border: "4px ridge grey"}}>
                                         <h5 style={{textAlign: "center"}}>Magic Resist</h5>
                                         <p style={{marginBottom: 0}}>Fire Resist: {enemy?.fireResist}</p>
                                         <p style={{marginBottom: 0}}>Ice Resist: {enemy?.iceResist}</p>
@@ -81,7 +81,7 @@ export const EnemyDetails = () => {
                             <Row>
                                 <Card>
 
-                                <div className="d-flex flex-column align-items-center">
+                                <div className="d-flex flex-column align-items-center" style={{border: "4px ridge grey"}}>
                                     <h6>Item drops</h6>
                                     <ul style={{maxHeight: "80px", overflow: "hidden", overflowY: "auto"}}>
                                     {enemy?.items.length > 0 ?
@@ -98,7 +98,7 @@ export const EnemyDetails = () => {
                                 </div>
                                 <span className="d-flex flex-column align-items-center">
                                     <h6 style={{textAlign: "center"}}>Description</h6>
-                                    <Card style={{maxWidth: "400px", minWidth: "200px", height: "100px"}}>
+                                    <Card style={{maxWidth: "400px", minWidth: "200px", height: "100px", border: "4px ridge grey"}}>
                                         <CardBody style={{overflow: "hidden", overflowY: "auto"}}>
                                         {enemy?.description || "This is an enemy that has not yet been given a description"}
                                         </CardBody>

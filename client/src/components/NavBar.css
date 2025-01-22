@@ -4,7 +4,7 @@
     border: 4px ridge rgb(232, 182, 31);
     background: rgb(0, 0, 0);
     margin-bottom: 4rem;
-    background-image: url('/public/assets/images/navbar/navbar.png');
+    background-image: url('/assets/images/navbar/navbar.png');
     background-size: cover;
 }
 .navbar a {

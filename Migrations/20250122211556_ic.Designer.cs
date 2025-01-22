@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Capstone_2.Migrations
 {
     [DbContext(typeof(Capstone2DbContext))]
-    [Migration("20250122175114_ic")]
+    [Migration("20250122211556_ic")]
     partial class ic
     {
         /// <inheritdoc />
@@ -933,13 +933,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8f3d944e-c99e-4812-b445-55d463596b1b",
+                            ConcurrencyStamp = "f85defe7-198a-49fb-b672-4a10a9960b11",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAELIP9qHlaU27O5t113mkChoE2g+WYMXKOzb9xueNbVADPfQYzkfKs5V56vFHSx3xfw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEwiG7yqSplKXoUxNyNi30Db2MzLt0XNp+PSOtFkNJ4xqUy6cir+EXqOmztngan9bg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e0795506-8483-43e6-92b2-86f482349fbe",
+                            SecurityStamp = "e5febfe6-2492-4f4b-9ace-1664de2e0487",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -947,13 +947,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d8d76512-74f1-43bb-b1fd-87d3a8aa36df",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f76f33d0-46cd-4f07-baf4-5584c5d4bc58",
+                            ConcurrencyStamp = "adccadc9-4aef-47c4-b477-7059a9a20a64",
                             Email = "john@doe.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEIttpewDxjxz7AG1CE0P80afSW9p10HWUbQ1nEgyUn9TTnkfZ5R77qIZSbinjSn9mQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEP1HUHU3VcabVDKQrBSLZRsx+yL59Iw2k+43lM5x8FHSLYr6kFSq2kkifTYBQTf5sw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0498dbdb-d2ff-41b4-bd7f-b82faf1067da",
+                            SecurityStamp = "8098568c-ec6b-4b1a-9df6-77fd5fdd8262",
                             TwoFactorEnabled = false,
                             UserName = "JohnDoe"
                         },
@@ -961,13 +961,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "a7d21fac-3b21-454a-a747-075f072d0cf3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "173825a6-06fc-4f54-9af5-911d21d395ae",
+                            ConcurrencyStamp = "53d51b42-ea9e-4e37-9f22-9261ad259ce7",
                             Email = "jane@smith.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEOXaEaKYZxh+iSDQUhSeusQzGaqaC+59C8/Hhcm2gaiGRz4ssj2QLGYBt82DCjp1hA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELYCCiRcQdzQCMUTM6Ck93GjNGaYF7McUk7QOyhsnv6WdY37F+92jTSnQKHt2dkrGA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "961c4b06-09a7-487c-9cbe-3be8c66f8bb9",
+                            SecurityStamp = "c0341084-b6d5-4004-a4e5-fb101890db07",
                             TwoFactorEnabled = false,
                             UserName = "JaneSmith"
                         },
@@ -975,13 +975,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "c806cfae-bda9-47c5-8473-dd52fd056a9b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "edbbd630-de0e-4b50-aa8b-647a21c412a2",
+                            ConcurrencyStamp = "735a3f09-ea44-4e14-bf94-691622d1a2d7",
                             Email = "alice@johnson.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEJZxk4Ec4axHKlAeXQ14Ci9bNM2YPAqMlMkUnG8rrTdcEvcPsMEgwfCvNXQullt/zg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELPbbDfzG0dwYLBNPvmt2CwFwcIVoZ9ThRch4+R1aRg1f5FKRoF/NRwwJnRg8Z2Ncw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d4069de5-c681-4751-bd94-afd9834471be",
+                            SecurityStamp = "57435704-527c-45bc-8389-bb3e2421807e",
                             TwoFactorEnabled = false,
                             UserName = "AliceJohnson"
                         },
@@ -989,13 +989,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "9ce89d88-75da-4a80-9b0d-3fe58582b8e2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "46ecea1c-5081-452f-a839-811708fcfff7",
+                            ConcurrencyStamp = "0339ecc5-19a6-4d2d-9bce-f799e601dba4",
                             Email = "bob@williams.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEJscMRvCR0bU0EjvGi+J0bubHR+KnEDX8+yyUMDNZoIKS9IbUhBg/f58ss5BtVYt4A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFH1RpSLFPc+jHCRUAVUjPjqXzxVbIZeefPYd07N5cWCTC1twGqfz+ECh8IgW3VQbw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "31c82539-95f8-44d6-a4c0-2a67cfd95694",
+                            SecurityStamp = "3bb6c14b-2831-4d7c-8388-988555d63dd9",
                             TwoFactorEnabled = false,
                             UserName = "BobWilliams"
                         },
@@ -1003,13 +1003,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d224a03d-bf0c-4a05-b728-e3521e45d74d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1f796b46-f99b-4a5c-bfd9-ce26d3df7412",
+                            ConcurrencyStamp = "85f28cd5-70f5-4226-a886-922b99f0c9ae",
                             Email = "Eve@Davis.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEPm0fj2Ttt9VKnxDMmgwRaOJiQYupD/Jl/PTFTcOPuosScHbedM24YKvDQUww4WscQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECNtj9ibRogDavSI91RBUF3z3KJdikvthiMmnqiUJwayyvAvYvHR3hmiRca6lvvT3g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8687f877-5be0-4c8b-8c50-059d7314cfa2",
+                            SecurityStamp = "36277cd1-245d-40c0-91e2-a776604ac789",
                             TwoFactorEnabled = false,
                             UserName = "EveDavis"
                         });

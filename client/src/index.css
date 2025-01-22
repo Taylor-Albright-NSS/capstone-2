@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
 
 html, #root {
-  background: url('public/assets/images/background/main background.png') no-repeat center fixed;
+  background: url('/assets/images/background/main background.png') no-repeat center fixed;
   background-size: cover;
   /* background-color: black; */
 }
@@ -24,13 +24,11 @@ code {
     monospace;
 }
 
-.card,
-p,
-a,
-li,
+.card, p, a, li, h1, h2, h3, h4, h5, h6, ul, li, div.card-body,
 label {
   font-weight: 1000;
   font-family: 'Cinzel';
+  color: gold !important;
 }
 
 .gold {
@@ -48,9 +46,13 @@ button.btn {
 }
 
 form {
-  background-image: url("public/assets/images/background/button background/button background.png");
+  background-image: url("/assets/images/background/button background/button background.png");
   color: gold;
   font-family: "Cinzel";
+}
+
+.granite-background {
+  background-image: url("/assets/images/background/button background/button background.png");
 }
 
 fieldset {
@@ -59,6 +61,11 @@ fieldset {
 
 .card {
   --bs-card-bg: none !important;
+}
+
+div.card {
+  /* border: 4px ridge rgb(134, 75, 26); */
+  border-radius: 0px;
 }
 
 label.form-check-label,
@@ -70,5 +77,40 @@ legend {
 .card.enemy-card {
   color: red;
   font-weight: bolder !important;
+  border: 2px solid white;
+  border-radius: 10px;
   background-image: url("public/assets/images/background/element background/bg 3.jpg");
+}
+/* .card.enemy-card::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px; 
+  border-image-source: url('/public/assets/images/border/enemy border.png');
+  border-image-slice: 50%; 
+  border-image-width: 50%;
+  border-image-outset: 20px; 
+  border-image-repeat: stretch; 
+  border-style: solid;
+  pointer-events: none;
+  z-index: 100;
+} */
+
+span {
+  color: white;
+}
+
+button.btn {
+  color: rgb(255, 255, 255) !important;
+  background-image: url("/assets/images/background/button background/button background.png") !important
+}
+
+button.btn-danger {
+  background-color: rgb(red, green, blue, 0);
+}
+
+img {
+  border: 6px ridge grey;
 }

@@ -9,7 +9,7 @@ export const FieldsetItemDrops = ({ handleItemDropsChange, items, handleNumberIn
                     <FormGroup key={item.id} check>
                         <Label check>
                             <Input checked={enemy?.itemIds?.includes(item.id)} type="checkbox" name={`item-${item.id}`} value={item.id} onChange={handleItemDropsChange} />
-                            <p style={{margin: 0, width: "200px"}}>{item.name}</p>
+                            <p style={{margin: 0, maxWidth: "200px"}}>{item.name}</p>
                         </Label>
                     </FormGroup>
                     )
