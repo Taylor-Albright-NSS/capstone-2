@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter, Button, Card, Input, Form, Container } from "reactstrap"
+import { UserContext } from "../ApplicationViews";
 
 
 export const CreateCharacterModal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleModal = () => setIsOpen(!isOpen);
+    const { loggedInUser } = useContext(UserContext)
+    const userId = loggedInUser.id
     const [characterTemplate, setCharacterTemplate] = useState({
+        userId: userId,
         name: "No Name",
         health: 1,
         attackPower: 1,

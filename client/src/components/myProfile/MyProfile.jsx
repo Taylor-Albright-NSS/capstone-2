@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react"
-import { Button, Card, CardBody, Col, Container, Input, Row } from "reactstrap"
+import { Button, Card, CardBody, CardHeader, CardText, Col, Container, Input, Row } from "reactstrap"
 import { UserContext } from "../ApplicationViews"
 import { getUserEnemies } from "../../managers/enemyManager"
 import "./MyProfile.css"
 import { useLocation, useNavigate } from "react-router-dom"
 import { CreateCharacterModal } from "./CreateCharacterModal"
+import { getCharacters } from "../../managers/characterManager"
 
 
 export const MyProfile = () => {
@@ -14,6 +15,8 @@ export const MyProfile = () => {
     const navigate = useNavigate()
 
     const [enemies, setEnemies] = useState([])
+    const [characters, setCharacters] = useState([])
+    const [selectedCharacter, setSelectedCharacter] = useState()
 
     useEffect(() => {
         getUserEnemies(userId).then(enemies => {
@@ -27,6 +30,19 @@ export const MyProfile = () => {
         console.log(loggedInUser)
     }, [loggedInUser])
 
+    useEffect(() => {
+        getCharacters().then(charList => {
+            console.log(charList)
+            setCharacters(charList)
+        })
+    }, [])
+
+    const handleCharacterSelect = (e) => {
+        const optionValue = e.target.value
+        const selectedCharacter = characters.find(c => c.name == optionValue)
+        console.log(selectedCharacter)
+        setSelectedCharacter(selectedCharacter)
+    }
 
     return (
         <Container style={{border: "4px solid black"}}>
@@ -55,8 +71,25 @@ export const MyProfile = () => {
                 <Col style={{border: "4px solid blue"}}>
                     <span className="d-flex justify-content-around">
                         <CreateCharacterModal />
-                        <Input type="select" style={{maxWidth: "400px"}}/>
+                        <Input type="select" style={{maxWidth: "400px"}} onChange={handleCharacterSelect}>
+                            {characters?.map(c => <option key={c.id}>{c.name}</option>)}
+                        </Input>
                     </span>
+                            {selectedCharacter && 
+                            <Card className="mx-2 my-2">
+                                <CardBody className="d-flex flex-column align-items-center">
+                                    <CardText>{selectedCharacter.name}</CardText>
+                                    <CardText>Health: {selectedCharacter?.health}</CardText>
+                                    <CardText>Attack Power: {selectedCharacter?.attackPower}</CardText>
+                                    <CardText>Slashing Armor: {selectedCharacter?.slashingArmor}</CardText>
+                                    <CardText>Piercing Armor: {selectedCharacter?.piercingArmor}</CardText>
+                                    <CardText>Blunt Armor: {selectedCharacter?.bluntArmor}</CardText>
+                                    <CardText>Slashing Penetration: {selectedCharacter?.slashingPenetration}</CardText>
+                                    <CardText>Piercing Penetration: {selectedCharacter?.piercingPenetration}</CardText>
+                                    <CardText>Blunt Penetration: {selectedCharacter?.bluntPenetration}</CardText>
+                                </CardBody>
+                            </Card>
+                            }
                 </Col>
             </Row>
         </Container>

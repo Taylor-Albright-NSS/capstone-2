@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Capstone_2.Migrations
 {
     [DbContext(typeof(Capstone2DbContext))]
-    [Migration("20250121205015_ic")]
+    [Migration("20250122000355_ic")]
     partial class ic
     {
         /// <inheritdoc />
@@ -116,6 +116,94 @@ namespace Capstone_2.Migrations
                             IdentityUserId = "d224a03d-bf0c-4a05-b728-e3521e45d74d",
                             ImageLocation = "https://robohash.org/hicnihilipsa.png?size=150x150&set=set1",
                             LastName = "Davis"
+                        });
+                });
+
+            modelBuilder.Entity("Capstone_2.Models.Character", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AttackPower")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("BluntArmor")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("BluntPenetration")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Health")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("PiercingArmor")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PiercingPenetration")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SlashingArmor")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SlashingPenetration")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Characters");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AttackPower = 10,
+                            BluntArmor = 3,
+                            BluntPenetration = 7,
+                            Health = 50,
+                            Name = "Fighter",
+                            PiercingArmor = 3,
+                            PiercingPenetration = 6,
+                            SlashingArmor = 3,
+                            SlashingPenetration = 5,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AttackPower = 20,
+                            BluntArmor = 9,
+                            BluntPenetration = 1,
+                            Health = 100,
+                            Name = "Paladin",
+                            PiercingArmor = 9,
+                            PiercingPenetration = 1,
+                            SlashingArmor = 9,
+                            SlashingPenetration = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AttackPower = 5,
+                            BluntArmor = 1,
+                            BluntPenetration = 10,
+                            Health = 40,
+                            Name = "Thief",
+                            PiercingArmor = 2,
+                            PiercingPenetration = 10,
+                            SlashingArmor = 1,
+                            SlashingPenetration = 10,
+                            UserId = 1
                         });
                 });
 
@@ -235,6 +323,38 @@ namespace Capstone_2.Migrations
                             SlashingArmor = 0,
                             SlashingDamage = false,
                             UserId = 1
+                        });
+                });
+
+            modelBuilder.Entity("Capstone_2.Models.EnemyItem", b =>
+                {
+                    b.Property<int>("EnemiesId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ItemsId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("EnemiesId", "ItemsId");
+
+                    b.HasIndex("ItemsId");
+
+                    b.ToTable("EnemiesItems");
+
+                    b.HasData(
+                        new
+                        {
+                            EnemiesId = 1,
+                            ItemsId = 1
+                        },
+                        new
+                        {
+                            EnemiesId = 1,
+                            ItemsId = 2
+                        },
+                        new
+                        {
+                            EnemiesId = 1,
+                            ItemsId = 3
                         });
                 });
 
@@ -369,39 +489,7 @@ namespace Capstone_2.Migrations
 
                     b.HasIndex("ItemsId");
 
-                    b.ToTable("EnemiesItems");
-
-                    b.HasData(
-                        new
-                        {
-                            EnemiesId = 1,
-                            ItemsId = 1
-                        },
-                        new
-                        {
-                            EnemiesId = 1,
-                            ItemsId = 2
-                        },
-                        new
-                        {
-                            EnemiesId = 1,
-                            ItemsId = 3
-                        });
-                });
-
-            modelBuilder.Entity("EnemyItem1", b =>
-                {
-                    b.Property<int>("EnemiesId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ItemsId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("EnemiesId", "ItemsId");
-
-                    b.HasIndex("ItemsId");
-
-                    b.ToTable("EnemyItem1");
+                    b.ToTable("EnemyItem");
 
                     b.HasData(
                         new
@@ -548,13 +636,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2df8b71e-fa75-47cd-a7a0-2f94205a529a",
+                            ConcurrencyStamp = "c621becd-139a-4f3d-a342-8b326159eec2",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEG5nt2EKPRLb8qeEQ5GfSXl8le7cgCu8qWBGpqWV5ahFIp7hc5M5o/vBS0EJOdUV7A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO24sAyzQl15tn9ceYV3b04oFJYpKoaJiyd56AVlPDlrXEhi0TbFSTPFSiMbt9E/0w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "11097585-282e-4290-81ad-99821d8376d1",
+                            SecurityStamp = "4f327d96-50dd-40d0-812e-046630c72ce9",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -562,13 +650,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d8d76512-74f1-43bb-b1fd-87d3a8aa36df",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0a9db02c-6fc1-4aa4-b0d5-71ab062f567f",
+                            ConcurrencyStamp = "1fa1edc1-779b-45fb-9331-80bf772aba2f",
                             Email = "john@doe.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEB9Yd904cE/N/ELJolxSpNX7hoAexYfxTGUw7H+bOSHgpw1sZ12PD3koIM2yMcm9xA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEftorE8VqfoLGLN+JtNiedpObltYZiv5mTUc6Uq6HXZ7wwlM+v5t4sgIVeqA3D8RA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "90edde7e-c05d-44c6-8aa5-6137308abd2b",
+                            SecurityStamp = "aa4e2f1e-a565-4d48-b1e2-51f8990ce28e",
                             TwoFactorEnabled = false,
                             UserName = "JohnDoe"
                         },
@@ -576,13 +664,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "a7d21fac-3b21-454a-a747-075f072d0cf3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "59e5bd30-5d4d-41ec-912b-2d015206c618",
+                            ConcurrencyStamp = "398533b0-0f39-43eb-8684-6bbeb3b55d91",
                             Email = "jane@smith.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEGdCGJsZg6pwobWX5bnEWAFa1kPJqserwa9aKU/ZQWXQmZAM8VVCRSYGmdKeVw+oyA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECrp7y8Nknpep5kdet93A/YZAZLZDO9dm1G6nZwakJDF4wGcZ1ePUCWQVbmmoXHkEg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9268d031-6180-4259-b682-ec3d3ae2ce21",
+                            SecurityStamp = "d4e0f51b-0857-4c2d-b81b-189fb60a7e87",
                             TwoFactorEnabled = false,
                             UserName = "JaneSmith"
                         },
@@ -590,13 +678,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "c806cfae-bda9-47c5-8473-dd52fd056a9b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fe3de5ed-6708-4192-9a61-d8d148068fcf",
+                            ConcurrencyStamp = "bbcf4bf3-992b-4ba0-a8ab-4314ba805334",
                             Email = "alice@johnson.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEFZfTiNQkcweiDfbeNM037XxUbNH2OJfbCIlmaP48H35fP1C+iRUbNJgs0DPIkBmmA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEB/p30UY5IfYivXedUjmzgqxD/u+qiUme4AwdXSByPX/yLLwreVpTpEJFw/apIj3Rg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2f09ffc2-e478-4f8f-a0ca-3ed79c592844",
+                            SecurityStamp = "a12a3749-2731-4e3c-a199-9bbf99e8696e",
                             TwoFactorEnabled = false,
                             UserName = "AliceJohnson"
                         },
@@ -604,13 +692,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "9ce89d88-75da-4a80-9b0d-3fe58582b8e2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6737899d-1326-4ca4-8056-c57d93ab81fe",
+                            ConcurrencyStamp = "a9071702-b52b-436b-b0d3-90c82d4400bb",
                             Email = "bob@williams.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEFJ+0q9aBvEJWRmDpuLUX0kb73Ymw7+WopWBCG6YctLD92J5Nd9np7Y+FDJyzxQmTA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAdnLpjx9QZVLReisS2YFiuG9ikGFO7NW4U6bpMKhHQ4ejhAFAoEtdvcHWkm++XfQQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "78717d27-7e38-4283-9e25-c7a9f4a7d448",
+                            SecurityStamp = "00c8a95c-9364-40a4-a0d5-26e232a68b5c",
                             TwoFactorEnabled = false,
                             UserName = "BobWilliams"
                         },
@@ -618,13 +706,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d224a03d-bf0c-4a05-b728-e3521e45d74d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1bfc3b8b-53a0-499f-9365-27ee37e65810",
+                            ConcurrencyStamp = "50c86465-c4f0-4ecf-ba31-9a35fbe8de68",
                             Email = "Eve@Davis.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEOp2y7oGXEFWc70MjN4xvbTKEwBV/4M8rA1B4ejQhinEYbaU3DA+M/ulXMCL2jHczw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAED9wjEfz9P54Kb6wy2DFvM4iFdL/wak3GL/d1FV/jbz7AVZ+8Uy/hCivzrhT+iNnlQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "88efed5f-2486-40e7-8085-8ba225d4c7e0",
+                            SecurityStamp = "45bb9835-a9b8-41dc-b51b-2a55b9487f5a",
                             TwoFactorEnabled = false,
                             UserName = "EveDavis"
                         });
@@ -741,7 +829,7 @@ namespace Capstone_2.Migrations
                         .HasForeignKey("UserProfileId");
                 });
 
-            modelBuilder.Entity("EnemyItem", b =>
+            modelBuilder.Entity("Capstone_2.Models.EnemyItem", b =>
                 {
                     b.HasOne("Capstone_2.Models.Enemy", "Enemy")
                         .WithMany("EnemyItems")
@@ -760,7 +848,7 @@ namespace Capstone_2.Migrations
                     b.Navigation("Item");
                 });
 
-            modelBuilder.Entity("EnemyItem1", b =>
+            modelBuilder.Entity("EnemyItem", b =>
                 {
                     b.HasOne("Capstone_2.Models.Enemy", null)
                         .WithMany()

@@ -11,6 +11,7 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
 
     public DbSet<UserProfile> UserProfiles { get; set; }
     public DbSet<Enemy> Enemies { get; set; }
+    public DbSet<Character> Characters { get; set; }
     public DbSet<Item> Items { get; set; }
     public DbSet<EnemyItem> EnemiesItems { get; set; }
 
@@ -145,6 +146,22 @@ public class Capstone2DbContext : IdentityDbContext<IdentityUser>
             new Item {Id = 18, Name = "Fishing Rod"},
             new Item {Id = 19, Name = "Bright Yellow Flower"},
             new Item {Id = 20, Name = "Tome"},
+        });
+
+        modelBuilder.Entity<Character>().HasData(new Character[]
+        {
+            new Character
+            {
+                Id = 1, UserId = 1, Name = "Fighter", Health = 50, AttackPower = 10, SlashingArmor = 3, PiercingArmor = 3, BluntArmor = 3, SlashingPenetration = 5, PiercingPenetration = 6, BluntPenetration = 7,
+            },
+            new Character
+            {
+                Id = 2, UserId = 1, Name = "Paladin", Health = 100, AttackPower = 20, SlashingArmor = 9, PiercingArmor = 9, BluntArmor = 9, SlashingPenetration = 1, PiercingPenetration = 1, BluntPenetration = 1,
+            },
+            new Character
+            {
+                Id = 3, UserId = 1, Name = "Thief", Health = 40, AttackPower = 5, SlashingArmor = 1, PiercingArmor = 2, BluntArmor = 1, SlashingPenetration = 10, PiercingPenetration = 10, BluntPenetration = 10,
+            },
         });
 
         modelBuilder.Entity<UserProfile>().HasData(new UserProfile[]

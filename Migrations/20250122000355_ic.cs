@@ -55,6 +55,28 @@ namespace Capstone_2.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Characters",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Health = table.Column<int>(type: "integer", nullable: false),
+                    AttackPower = table.Column<int>(type: "integer", nullable: false),
+                    SlashingArmor = table.Column<int>(type: "integer", nullable: false),
+                    PiercingArmor = table.Column<int>(type: "integer", nullable: false),
+                    BluntArmor = table.Column<int>(type: "integer", nullable: false),
+                    SlashingPenetration = table.Column<int>(type: "integer", nullable: false),
+                    PiercingPenetration = table.Column<int>(type: "integer", nullable: false),
+                    BluntPenetration = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Characters", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Items",
                 columns: table => new
                 {
@@ -262,7 +284,7 @@ namespace Capstone_2.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EnemyItem1",
+                name: "EnemyItem",
                 columns: table => new
                 {
                     EnemiesId = table.Column<int>(type: "integer", nullable: false),
@@ -270,15 +292,15 @@ namespace Capstone_2.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EnemyItem1", x => new { x.EnemiesId, x.ItemsId });
+                    table.PrimaryKey("PK_EnemyItem", x => new { x.EnemiesId, x.ItemsId });
                     table.ForeignKey(
-                        name: "FK_EnemyItem1_Enemies_EnemiesId",
+                        name: "FK_EnemyItem_Enemies_EnemiesId",
                         column: x => x.EnemiesId,
                         principalTable: "Enemies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EnemyItem1_Items_ItemsId",
+                        name: "FK_EnemyItem_Items_ItemsId",
                         column: x => x.ItemsId,
                         principalTable: "Items",
                         principalColumn: "Id",
@@ -295,12 +317,22 @@ namespace Capstone_2.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "9ce89d88-75da-4a80-9b0d-3fe58582b8e2", 0, "6737899d-1326-4ca4-8056-c57d93ab81fe", "bob@williams.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEFJ+0q9aBvEJWRmDpuLUX0kb73Ymw7+WopWBCG6YctLD92J5Nd9np7Y+FDJyzxQmTA==", null, false, "78717d27-7e38-4283-9e25-c7a9f4a7d448", false, "BobWilliams" },
-                    { "a7d21fac-3b21-454a-a747-075f072d0cf3", 0, "59e5bd30-5d4d-41ec-912b-2d015206c618", "jane@smith.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEGdCGJsZg6pwobWX5bnEWAFa1kPJqserwa9aKU/ZQWXQmZAM8VVCRSYGmdKeVw+oyA==", null, false, "9268d031-6180-4259-b682-ec3d3ae2ce21", false, "JaneSmith" },
-                    { "c806cfae-bda9-47c5-8473-dd52fd056a9b", 0, "fe3de5ed-6708-4192-9a61-d8d148068fcf", "alice@johnson.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEFZfTiNQkcweiDfbeNM037XxUbNH2OJfbCIlmaP48H35fP1C+iRUbNJgs0DPIkBmmA==", null, false, "2f09ffc2-e478-4f8f-a0ca-3ed79c592844", false, "AliceJohnson" },
-                    { "d224a03d-bf0c-4a05-b728-e3521e45d74d", 0, "1bfc3b8b-53a0-499f-9365-27ee37e65810", "Eve@Davis.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEOp2y7oGXEFWc70MjN4xvbTKEwBV/4M8rA1B4ejQhinEYbaU3DA+M/ulXMCL2jHczw==", null, false, "88efed5f-2486-40e7-8085-8ba225d4c7e0", false, "EveDavis" },
-                    { "d8d76512-74f1-43bb-b1fd-87d3a8aa36df", 0, "0a9db02c-6fc1-4aa4-b0d5-71ab062f567f", "john@doe.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEB9Yd904cE/N/ELJolxSpNX7hoAexYfxTGUw7H+bOSHgpw1sZ12PD3koIM2yMcm9xA==", null, false, "90edde7e-c05d-44c6-8aa5-6137308abd2b", false, "JohnDoe" },
-                    { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "2df8b71e-fa75-47cd-a7a0-2f94205a529a", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEG5nt2EKPRLb8qeEQ5GfSXl8le7cgCu8qWBGpqWV5ahFIp7hc5M5o/vBS0EJOdUV7A==", null, false, "11097585-282e-4290-81ad-99821d8376d1", false, "Administrator" }
+                    { "9ce89d88-75da-4a80-9b0d-3fe58582b8e2", 0, "a9071702-b52b-436b-b0d3-90c82d4400bb", "bob@williams.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEAdnLpjx9QZVLReisS2YFiuG9ikGFO7NW4U6bpMKhHQ4ejhAFAoEtdvcHWkm++XfQQ==", null, false, "00c8a95c-9364-40a4-a0d5-26e232a68b5c", false, "BobWilliams" },
+                    { "a7d21fac-3b21-454a-a747-075f072d0cf3", 0, "398533b0-0f39-43eb-8684-6bbeb3b55d91", "jane@smith.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAECrp7y8Nknpep5kdet93A/YZAZLZDO9dm1G6nZwakJDF4wGcZ1ePUCWQVbmmoXHkEg==", null, false, "d4e0f51b-0857-4c2d-b81b-189fb60a7e87", false, "JaneSmith" },
+                    { "c806cfae-bda9-47c5-8473-dd52fd056a9b", 0, "bbcf4bf3-992b-4ba0-a8ab-4314ba805334", "alice@johnson.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEB/p30UY5IfYivXedUjmzgqxD/u+qiUme4AwdXSByPX/yLLwreVpTpEJFw/apIj3Rg==", null, false, "a12a3749-2731-4e3c-a199-9bbf99e8696e", false, "AliceJohnson" },
+                    { "d224a03d-bf0c-4a05-b728-e3521e45d74d", 0, "50c86465-c4f0-4ecf-ba31-9a35fbe8de68", "Eve@Davis.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAED9wjEfz9P54Kb6wy2DFvM4iFdL/wak3GL/d1FV/jbz7AVZ+8Uy/hCivzrhT+iNnlQ==", null, false, "45bb9835-a9b8-41dc-b51b-2a55b9487f5a", false, "EveDavis" },
+                    { "d8d76512-74f1-43bb-b1fd-87d3a8aa36df", 0, "1fa1edc1-779b-45fb-9331-80bf772aba2f", "john@doe.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEEftorE8VqfoLGLN+JtNiedpObltYZiv5mTUc6Uq6HXZ7wwlM+v5t4sgIVeqA3D8RA==", null, false, "aa4e2f1e-a565-4d48-b1e2-51f8990ce28e", false, "JohnDoe" },
+                    { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "c621becd-139a-4f3d-a342-8b326159eec2", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEO24sAyzQl15tn9ceYV3b04oFJYpKoaJiyd56AVlPDlrXEhi0TbFSTPFSiMbt9E/0w==", null, false, "4f327d96-50dd-40d0-812e-046630c72ce9", false, "Administrator" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Characters",
+                columns: new[] { "Id", "AttackPower", "BluntArmor", "BluntPenetration", "Health", "Name", "PiercingArmor", "PiercingPenetration", "SlashingArmor", "SlashingPenetration", "UserId" },
+                values: new object[,]
+                {
+                    { 1, 10, 3, 7, 50, "Fighter", 3, 6, 3, 5, 1 },
+                    { 2, 20, 9, 1, 100, "Paladin", 9, 1, 9, 1, 1 },
+                    { 3, 5, 1, 10, 40, "Thief", 2, 10, 1, 10, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -355,7 +387,7 @@ namespace Capstone_2.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "EnemyItem1",
+                table: "EnemyItem",
                 columns: new[] { "EnemiesId", "ItemsId" },
                 values: new object[,]
                 {
@@ -425,8 +457,8 @@ namespace Capstone_2.Migrations
                 column: "ItemsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EnemyItem1_ItemsId",
-                table: "EnemyItem1",
+                name: "IX_EnemyItem_ItemsId",
+                table: "EnemyItem",
                 column: "ItemsId");
 
             migrationBuilder.CreateIndex(
@@ -454,10 +486,13 @@ namespace Capstone_2.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Characters");
+
+            migrationBuilder.DropTable(
                 name: "EnemiesItems");
 
             migrationBuilder.DropTable(
-                name: "EnemyItem1");
+                name: "EnemyItem");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
