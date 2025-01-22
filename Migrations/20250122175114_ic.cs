@@ -229,7 +229,7 @@ namespace Capstone_2.Migrations
                     Name = table.Column<string>(type: "text", nullable: false),
                     MinLevel = table.Column<int>(type: "integer", nullable: false),
                     MaxLevel = table.Column<int>(type: "integer", nullable: false),
-                    BaseDamage = table.Column<int>(type: "integer", nullable: false),
+                    AttackPower = table.Column<int>(type: "integer", nullable: false),
                     BaseHealth = table.Column<int>(type: "integer", nullable: false),
                     BaseExperience = table.Column<int>(type: "integer", nullable: false),
                     SlashingArmor = table.Column<int>(type: "integer", nullable: false),
@@ -317,12 +317,12 @@ namespace Capstone_2.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "9ce89d88-75da-4a80-9b0d-3fe58582b8e2", 0, "5ae117d5-a4ba-4866-8300-5060ba64ce6a", "bob@williams.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEEIm/NP6yRH11nO7mBwtnJ5bthKb3FIBVgJgF6xRGzyqNKdXTeZ9C//ajFfaGvg5Fw==", null, false, "5099bee3-ba52-4112-b2e7-14fa31ca80df", false, "BobWilliams" },
-                    { "a7d21fac-3b21-454a-a747-075f072d0cf3", 0, "4bcb743c-387e-4810-8fbe-3acc21a13750", "jane@smith.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEJeSo1NJeyUAiXkRZ9KGwXlURFQo16ls+Zj5VCCrAt+zeiuOWCgHNKOqD0khvAGqmw==", null, false, "6d5801f6-4aa8-48a0-aceb-c979c24bd0e2", false, "JaneSmith" },
-                    { "c806cfae-bda9-47c5-8473-dd52fd056a9b", 0, "9cf1dd56-0bab-4d62-b8cb-ab03cf1b2575", "alice@johnson.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEBj2aKFl3i9nvaPhixsKa2/vNGI1AXlNFobzF1ZQL6P48jrBR3GVwmpo9/wj8OH8cg==", null, false, "eb07ea18-3c5c-4c52-a352-24741905954a", false, "AliceJohnson" },
-                    { "d224a03d-bf0c-4a05-b728-e3521e45d74d", 0, "7ae72385-e8c8-4427-8a46-fdebe1f63367", "Eve@Davis.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEL2QsenTZgg4oQHmxspaNwErpZ7PENFloPp9aLHzWIRrlHCrblGQJ1rEvGoM3TJNeQ==", null, false, "3a00bb07-c31e-4d0a-aeae-0e24ba64e2a8", false, "EveDavis" },
-                    { "d8d76512-74f1-43bb-b1fd-87d3a8aa36df", 0, "f35dc17a-76b1-44e5-9a59-e8025eb4963a", "john@doe.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAELCXJuWC7q4irQUlZFBmcRhqTsJivCFK0I8ax3YZ0pzlUXhlAQSK0EuOdiBSBaHJDg==", null, false, "648379ce-5660-47ea-bd93-2f9081076542", false, "JohnDoe" },
-                    { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "5cce43f5-dd59-4865-aa54-a01f9ff5b73b", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAENjmLRxYdhfaj2ctbwEnd0eOrkuqZWrdHfWVvRjo9wIpL/ZdWFgPaBonVydpUeSENA==", null, false, "fdb30090-5fbe-4160-ad3f-fe75af38a02f", false, "Administrator" }
+                    { "9ce89d88-75da-4a80-9b0d-3fe58582b8e2", 0, "46ecea1c-5081-452f-a839-811708fcfff7", "bob@williams.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEJscMRvCR0bU0EjvGi+J0bubHR+KnEDX8+yyUMDNZoIKS9IbUhBg/f58ss5BtVYt4A==", null, false, "31c82539-95f8-44d6-a4c0-2a67cfd95694", false, "BobWilliams" },
+                    { "a7d21fac-3b21-454a-a747-075f072d0cf3", 0, "173825a6-06fc-4f54-9af5-911d21d395ae", "jane@smith.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEOXaEaKYZxh+iSDQUhSeusQzGaqaC+59C8/Hhcm2gaiGRz4ssj2QLGYBt82DCjp1hA==", null, false, "961c4b06-09a7-487c-9cbe-3be8c66f8bb9", false, "JaneSmith" },
+                    { "c806cfae-bda9-47c5-8473-dd52fd056a9b", 0, "edbbd630-de0e-4b50-aa8b-647a21c412a2", "alice@johnson.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEJZxk4Ec4axHKlAeXQ14Ci9bNM2YPAqMlMkUnG8rrTdcEvcPsMEgwfCvNXQullt/zg==", null, false, "d4069de5-c681-4751-bd94-afd9834471be", false, "AliceJohnson" },
+                    { "d224a03d-bf0c-4a05-b728-e3521e45d74d", 0, "1f796b46-f99b-4a5c-bfd9-ce26d3df7412", "Eve@Davis.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEPm0fj2Ttt9VKnxDMmgwRaOJiQYupD/Jl/PTFTcOPuosScHbedM24YKvDQUww4WscQ==", null, false, "8687f877-5be0-4c8b-8c50-059d7314cfa2", false, "EveDavis" },
+                    { "d8d76512-74f1-43bb-b1fd-87d3a8aa36df", 0, "f76f33d0-46cd-4f07-baf4-5584c5d4bc58", "john@doe.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAEIttpewDxjxz7AG1CE0P80afSW9p10HWUbQ1nEgyUn9TTnkfZ5R77qIZSbinjSn9mQ==", null, false, "0498dbdb-d2ff-41b4-bd7f-b82faf1067da", false, "JohnDoe" },
+                    { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "8f3d944e-c99e-4812-b445-55d463596b1b", "admina@strator.comx", false, false, null, null, null, "AQAAAAIAAYagAAAAELIP9qHlaU27O5t113mkChoE2g+WYMXKOzb9xueNbVADPfQYzkfKs5V56vFHSx3xfw==", null, false, "e0795506-8483-43e6-92b2-86f482349fbe", false, "Administrator" }
                 });
 
             migrationBuilder.InsertData(
@@ -337,7 +337,7 @@ namespace Capstone_2.Migrations
 
             migrationBuilder.InsertData(
                 table: "Enemies",
-                columns: new[] { "Id", "AccuracyRating", "BaseDamage", "BaseExperience", "BaseHealth", "BluntArmor", "BluntDamage", "Description", "DodgeRating", "FireResist", "IceResist", "ImageUrl", "ItemIds", "LightningResist", "MaxGold", "MaxLevel", "MinGold", "MinLevel", "Name", "PiercingArmor", "PiercingDamage", "SlashingArmor", "SlashingDamage", "UserId", "UserProfileId" },
+                columns: new[] { "Id", "AccuracyRating", "AttackPower", "BaseExperience", "BaseHealth", "BluntArmor", "BluntDamage", "Description", "DodgeRating", "FireResist", "IceResist", "ImageUrl", "ItemIds", "LightningResist", "MaxGold", "MaxLevel", "MinGold", "MinLevel", "Name", "PiercingArmor", "PiercingDamage", "SlashingArmor", "SlashingDamage", "UserId", "UserProfileId" },
                 values: new object[,]
                 {
                     { 1, 0, 5, 10, 10, 0, false, "", 0, 0, 0, "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2Fno%20image%20default.avif?alt=media&token=0aa5fa20-7104-4ac6-8845-92767fe685f2", new List<int>(), 0, 0, 3, 0, 1, "Mudling", 0, false, 0, false, 1, null },

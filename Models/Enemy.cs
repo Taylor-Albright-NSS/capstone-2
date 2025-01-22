@@ -10,7 +10,7 @@ public class Enemy
     public string Name { get; set; }
     public int MinLevel { get; set; }
     public int MaxLevel { get; set; }
-    public int BaseDamage { get; set; }
+    public int AttackPower { get; set; }
     public int BaseHealth { get; set; }
     public int BaseExperience { get; set; }
     public int SlashingArmor { get; set; }

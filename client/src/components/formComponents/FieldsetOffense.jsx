@@ -6,8 +6,8 @@ export const FieldsetOffense = ({ handleCheckbox, enemy, handleNumberInput }) =>
             <fieldset>
                 <legend style={{textAlign: "center"}}>Offense</legend>
                 <FormGroup style={{margin: 0}}>
-                    <Label for="baseDamage">Base Damage</Label>
-                    <Input style={{maxWidth: "76px"}} type="number" name="baseDamage" id="baseDamage" onChange={handleNumberInput}  value={enemy.baseDamage} />
+                    <Label for="attackPower">Attack Power</Label>
+                    <Input style={{maxWidth: "76px"}} type="number" name="attackPower" id="attackPower" onChange={handleNumberInput}  value={enemy.attackPower} />
                 </FormGroup>
 
                 <FormGroup>

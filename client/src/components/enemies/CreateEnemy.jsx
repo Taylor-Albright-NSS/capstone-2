@@ -21,11 +21,10 @@ export const CreateEnemy = () => {
     const [items, setItems] = useState([])
     const [enemy, setEnemy] = useState({
         userId: userId,
-        imageUrl: null,
         name: "",
         minLevel: 1,
         maxLevel: 1,
-        strength: 1,
+        attackPower: 1,
         baseHealth: 1,
         baseExperience: 0,
         slashingArmor: 0,
@@ -42,6 +41,7 @@ export const CreateEnemy = () => {
         minGold: 0,
         maxGold: 0,
         description: "",
+        imageUrl: null,
         itemIds: [],
     })
 
@@ -105,7 +105,9 @@ export const CreateEnemy = () => {
     }
 
     const handleNumberInput = (e) => {
-        const {name, value} = e.target
+        let {name, value} = e.target
+        console.log(value, "value")
+        if (isNaN(value) || !value) {value = 0}
         if (value < 0 || value > 9999) { // Example limit
             console.log('Value cannot be less than 0 or greater than 9999')
             return
@@ -115,8 +117,18 @@ export const CreateEnemy = () => {
                 return
             }
         }
+        if (name == "maxLevel") {
+            if (value < enemy.minLevel) {
+                return
+            }
+        }
         if (name == "minGold") {
             if (value > enemy.maxGold) {
+                return
+            }
+        }
+        if (name == "maxGold") {
+            if (value < enemy.minGold) {
                 return
             }
         }

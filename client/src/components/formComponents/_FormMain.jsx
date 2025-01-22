@@ -30,7 +30,7 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
                 <Row className="justify-content-center mx-4" style={{border: "2px solid green"}}>
                     <Col md="9">
                         {/*ROW 1*/}
-                        <Row style={{border: "4px solid blue", padding: "1rem"}}>
+                        <Row>
                             <Col>
                                 <FormModal setEnemy={setEnemy} enemy={enemy} setImages={setImages} images={images} handleTextInput={handleTextInput} />
                             </Col>
@@ -42,16 +42,13 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
                             </Col>
                         </Row>
                         {/*ROW 2*/}
-                        <Row style={{border: "2px solid yellow"}}>
-
+                        <Row>
                             <Col style={{border: "2px solid blue"}}>
                                 <FieldsetOffense handleCheckbox={handleCheckbox} enemy={enemy} handleNumberInput={handleNumberInput} />
                             </Col>
-                            <Col style={{border: "2px solid blue"}}>
+                            <Col style={{border: "2px solid pink"}}>
                                 <FieldsetDefense handleNumberInput={handleNumberInput} enemy={enemy} />
                             </Col>
-
-                                
                         </Row>
                     </Col>
                     <Col style={{border: "2px solid blue"}}>

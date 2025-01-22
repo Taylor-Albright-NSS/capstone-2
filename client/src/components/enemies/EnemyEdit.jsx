@@ -14,7 +14,7 @@ export const EnemyEdit = () => {
         name: "",
         minLevel: 0,
         maxLevel: 0,
-        strength: 0,
+        attackPower: 0,
         baseHealth: 0,
         baseExperience: 0,
         slashingArmor: 0,
@@ -99,7 +99,9 @@ export const EnemyEdit = () => {
 
 
     const handleNumberInput = (e) => {
-        const {name, value} = e.target
+        let {name, value} = e.target
+        console.log(value, "value")
+        if (isNaN(value) || !value) {value = 0}
         if (value < 0 || value > 9999) { // Example limit
             console.log('Value cannot be less than 0 or greater than 9999')
             return
@@ -109,8 +111,18 @@ export const EnemyEdit = () => {
                 return
             }
         }
+        if (name == "maxLevel") {
+            if (value < enemy.minLevel) {
+                return
+            }
+        }
         if (name == "minGold") {
             if (value > enemy.maxGold) {
+                return
+            }
+        }
+        if (name == "maxGold") {
+            if (value < enemy.minGold) {
                 return
             }
         }

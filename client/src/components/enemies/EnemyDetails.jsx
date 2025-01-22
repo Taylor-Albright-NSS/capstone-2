@@ -30,20 +30,20 @@ export const EnemyDetails = () => {
     
     return (
         <Container style={{border: "2px solid black"}}>
-                    {loggedInUser?.id == enemy?.userId && <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>}
-                    {<Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>}
-                    <Button color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
             <Row>
                 {/* Left side column */}
                 <Col style={{maxWidth: "500px"}}>
                     <Row className="d-flex justify-content-center">
+                    <Button style={{width: "150px"}} color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
                         <div className="d-flex flex-column align-items-center" style={{ maxWidth: "400px" }} >
                             <h3>{enemy?.name}</h3>
                             <img style={{maxWidth: "200px"}} src={`${enemy?.imageUrl}`} alt={enemy?.name} />
+                            <Card>
                                 <p style={{marginBottom: 0}}>Level range: {enemy?.minLevel + " - " + enemy?.maxLevel}</p>
-                                <p style={{marginBottom: 0}}>Experience Range: {enemy?.baseExperience}</p>
+                                <p style={{marginBottom: 0}}>Base Experience: {enemy?.baseExperience}</p>
                                 <p style={{marginBottom: 0}}>Gold Range: {enemy?.minGold + " - " + enemy?.maxGold}</p>
                                 {/* <p style={{marginBottom: 0}}>^ elemental is hard coded. Need to add type property to enemies</p> */}
+                            </Card>
                         </div>
                     </Row>
                     <Row style={{border: "2px solid green"}}>
@@ -52,13 +52,13 @@ export const EnemyDetails = () => {
                                 <Col style={{textAlign: "center"}}>
                                     <Card style={{height: "100%"}}>
                                         <h5 style={{textAlign: "center"}}>Offense</h5>
-                                        <p>Base Damage: {enemy?.baseDamage}</p>
+                                        <p>Attack Power: {enemy?.attackPower}</p>
                                         <p>Accuracy: {enemy?.accuracyRating}</p>
-                                        <h6 className="my-2">Damage Types</h6>
+                                        <h6 className="my-2 fw-bold">Damage Types</h6>
                                         {enemy?.slashingDamage && <p style={{marginBottom: 0}}>Slashing</p>}
                                         {enemy?.piercingDamage && <p style={{marginBottom: 0}}>Piercing</p>}
                                         {enemy?.bluntDamage && <p style={{marginBottom: 0}}>Blunt</p>}
-                                        <h6 className="my-2">Abilities</h6>
+                                        {/* <h6 className="my-2 fw-bold">Abilities</h6> */}
                                     </Card>
                                 </Col>
                                 <Col>
@@ -103,6 +103,10 @@ export const EnemyDetails = () => {
                                         {enemy?.description || "This is an enemy that has not yet been given a description"}
                                         </CardBody>
                                     </Card>
+                                </span>
+                                <span style={{textAlign: "center"}}>
+                                    {loggedInUser?.id == enemy?.userId && <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>}
+                                    {loggedInUser?.id == enemy?.userId && <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>}
                                 </span>
                                 </Card>
                             </Row>

@@ -38,20 +38,20 @@ export const EnemyList = () => {
     }
 
     return (
-        <Container style={{height: "800px", overflow: "hidden", overflowY: "auto", padding: "2rem", border: "4px solid green"}}>
-            <Row className="mt-4">
-                <Col className="p-2 bg-primary d-flex justify-content-around">
-                        <span className="d-flex align-items-center">
-                            <p style={{margin: 0}}>Filter Min Level</p>
-                            <Input style={{width: "80px"}} type="number" value={minLevelFilter} onChange={filterByLevel}/>
+        <Container style={{height: "780px", padding: "2rem", border: "4px solid green"}}>
+            <Row>
+                <Col className="p-2 bg-primary d-flex justify-content-start">
+                        <span className="d-flex align-items-center justify-content-between" style={{width: "40%"}}>
+                            <p style={{margin: 0, fontSize: "20px"}}>Browse Enemies</p>
+                            <span className="d-flex align-items-center">
+                                <p style={{marginBottom: 0, marginRight: "2rem"}}>Filter Min Level</p>
+                                <Input style={{width: "80px"}} type="number" value={minLevelFilter} onChange={filterByLevel}/>
+                            </span>
                         </span>
-                        <p style={{margin: 0}}>Filter2</p>
-                        <p style={{margin: 0}}>Filter3</p>
-                        <p style={{margin: 0}}>
-                        </p>
+
                 </Col>
             </Row>
-            <Row className="mt-4" style={{border: "4px solid black"}}>
+            <Row className="mt-4" style={{height: "90%", overflow: "hidden", overflowY: "auto", backdropFilter: "blur(15px)", border: "4px solid black"}}>
                 {filteredEnemies.map(enemy => {
                     return(
                         <EnemyCard key={enemy.id} enemy={enemy} setEnemies={setEnemies} />

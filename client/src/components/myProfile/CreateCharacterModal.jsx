@@ -33,14 +33,18 @@ export const CreateCharacterModal = ({setCharacters }) => {
     }
 
     const handleNumberInput = (e) => {
-        const {name, value, clientX, clientY} = e.target
+        let {name, value} = e.target
+        console.log(value)
+        if (isNaN(value) || !value) {value = 0}
         if (value < 0 || value > 9999) { // Example limit
             console.log('test')
         } else {
+            console.log(value)
             setCharacter({...character, [name]: parseInt(value)})
         }
         console.log(character)
     }
+
 
     const handlePostNewCharacter = () => {
         postCharacter(character).then(data => {

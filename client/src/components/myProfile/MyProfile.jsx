@@ -70,7 +70,7 @@ export const MyProfile = () => {
         <Container style={{border: "4px solid black"}}>
             <h1>{user?.fullName}</h1>
             <Row style={{border: "4px solid green"}}>
-                <Col style={{border: "4px solid red", maxHeight: "780px", minHeight: "400px", overflow: "hidden", overflowY: "auto"}}>
+                <Col style={{border: "4px solid red", maxHeight: "700px", minHeight: "400px", overflow: "hidden", overflowY: "auto"}}>
                     <h3 style={{textAlign: "center"}}>My Enemies</h3>
                     <Card>
                         <CardBody>
@@ -98,7 +98,7 @@ export const MyProfile = () => {
                             {characters?.map(c => <option key={c.id}>{c.name}</option>)}
                         </Input>
                     </span>
-                            {selectedCharacter && 
+                            {selectedCharacter?.id && 
                             <Card className="mx-2 my-2">
                                 <CardBody className="d-flex flex-column align-items-center">
                                     <CardText>{selectedCharacter?.name}</CardText>

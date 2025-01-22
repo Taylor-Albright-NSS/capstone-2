@@ -11,6 +11,7 @@ import {
   NavbarToggler,
 } from "reactstrap";
 import { logout } from "../managers/authManager";
+import "./NavBar.css"
 
 export default function NavBar({ loggedInUser, setLoggedInUser }) {
   const [open, setOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
 
   return (
     <div>
-      <Navbar className="" color="light" light fixed="true" expand="lg">
+      <Navbar color="light" light fixed="true" expand="lg">
         <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
           Bestiary
         </NavbarBrand>
@@ -37,7 +38,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                   </NavItem>
                 )} */}
                 <NavItem className="mx-4">
-                  <NavLink tag={RRNavLink} to="/">
+                  <NavLink className="nav-link" tag={RRNavLink} to="/">
                     Home
                   </NavLink>
                 </NavItem>

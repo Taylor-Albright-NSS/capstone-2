@@ -12,7 +12,7 @@ export const Simulator = () => {
     const { selectedCharacter } = useContext(UserContext)
     const simEnemyBase = {
         baseHealth: 1000,
-        baseDamage: 9,
+        attackPower: 9,
         slashingArmor: 5,
         piercingArmor: 10,
         bluntArmor: 20,
@@ -41,8 +41,8 @@ export const Simulator = () => {
      }
 
     //base variables
-    const scalingFactor = 1 //Strength is increased by 1 per level
-    const { baseDamage } = enemy || 0
+    const scalingFactor = 1
+    const { attackPower } = enemy || 0
     const { baseExperience } = enemy || 0
     const { baseHealth } = enemy || 0
     const { actualLevel } = enemy || 0
@@ -58,8 +58,8 @@ export const Simulator = () => {
     const accuracyRating = enemy?.accuracyRating + actualLevel || 0
     
     //variables to interpolate
-    const botDamage = Math.floor(baseDamage * 0.5)
-    const topDamage = Math.floor(baseDamage * 1.5)
+    const botDamage = Math.floor(attackPower * 0.5)
+    const topDamage = Math.floor(attackPower * 1.5)
     const experience = actualLevel == minLevel ? baseExperience : Math.floor((((actualLevel * 0.1) * baseExperience) + baseExperience))
     const health = actualLevel == minLevel ? baseHealth : Math.floor((((actualLevel * 0.1) * baseHealth) + baseHealth))
     
@@ -71,12 +71,12 @@ export const Simulator = () => {
 	// const { botDamage, topDamage } = playerWeapon;
 	// const lowDamage = Math.ceil(attackPower * (botMultiplier * botDamage));
 	// const highDamage = Math.ceil(attackPower * (topMultiplier * topDamage));
-	// const baseDamage = Math.max(0, randomNumberRange(lowDamage, highDamage))
+	// const attackPower = Math.max(0, randomNumberRange(lowDamage, highDamage))
 	// console.log(lowDamage, 'LOW DAMAGE - RIGHT')
 	// console.log(highDamage, 'HIGH DAMAGE - RIGHT', highDamage / player.currentWeaponSkill.speed, ' HIGH DPS - RIGHT')
-	// console.log(baseDamage, 'CHOSEN DAMAGE - RIGHT')
-	// console.log(baseDamage / player.currentWeaponSkill.speed, ' DPS - RIGHT')
-	// return baseDamage  
+	// console.log(attackPower, 'CHOSEN DAMAGE - RIGHT')
+	// console.log(attackPower / player.currentWeaponSkill.speed, ' DPS - RIGHT')
+	// return attackPower  
 
     // let armorAfterPen = enemyArmor - player[slashingPiercingOrBlunt] <= 0 ? 0 : enemyArmor - player[slashingPiercingOrBlunt]
     // const damageAfterMitigation = (damageBeforeMitigation - armorAfterPen) * (1000 / (1000 + armorAfterPen)) <= 0 ? 0 : (damageBeforeMitigation - armorAfterPen) * (1000 / (1000 + armorAfterPen))
@@ -92,8 +92,8 @@ export const Simulator = () => {
     const calculateEnemyDamage = (armorType) => {
         const playerArmor = simPlayer[armorType]
         const damageObject = {}
-        damageObject.lowDamage = Math.ceil(simEnemy.baseDamage * 0.5)
-        damageObject.topDamage = Math.ceil(simEnemy.baseDamage * 1.5)
+        damageObject.lowDamage = Math.ceil(simEnemy.attackPower * 0.5)
+        damageObject.topDamage = Math.ceil(simEnemy.attackPower * 1.5)
         damageObject.rawDamage = randomNumberRange(damageObject.lowDamage, damageObject.topDamage)
         damageObject.actualDamage = Math.max(Math.floor((damageObject.rawDamage - playerArmor) * (1000 / (1000 + playerArmor))), 0)
         return damageObject
@@ -170,6 +170,8 @@ export const Simulator = () => {
     return (
         <>
         {/* <App /> */}
+        {!selectedCharacter?.id ? <p className="slide slide-right">Select a character from your profile to use the simulator</p> :
+        <>
         <button className="toggle-btn" onClick={toggleSlide}>→</button>
         <Container style={{height: "800px"}} className="slide slide-right">
             <div id="test" className="slide-content">Simulator</div>
@@ -205,12 +207,12 @@ export const Simulator = () => {
                                     {enemy?.piercingDamage && <CardText>Piercing</CardText>}
                                     {enemy?.bluntDamage && <CardText>Blunt</CardText>}
                                     <div className="d-flex justify-content-around">
-                                        <span>
+                                        <span className="d-flex flex-row justify-content-end align-content-end align-items-end">
                                             <CardText>Slashing Armor: {slashingArmor}</CardText>
                                             <CardText>Piercing Armor: {piercingArmor}</CardText>
                                             <CardText>Blunt Armor: {bluntArmor}</CardText>
                                         </span>
-                                        <span>
+                                        <span className="d-flex flex-column justify-content-end align-content-end align-items-end">
                                             <CardText>Fire Resist: {fireResist}</CardText>
                                             <CardText>Ice Resist: {iceResist}</CardText>
                                             <CardText>Lightning Resist: {lightningResist}</CardText>
@@ -282,6 +284,8 @@ export const Simulator = () => {
                 </Col>
             </Row>
         </Container>
+        </>
+}
         </>
     )
 }

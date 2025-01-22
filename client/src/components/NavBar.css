@@ -12,11 +12,20 @@
     color: gold;
 }
 
-.nav-link-override {
-    transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out;
-    border: 2px solid black; /* Initial border color */
+.nav-link {
+    transition: color .25s ease-in-out, background-color .25s ease-in-out, border-color .25s ease-in-out !important;
+    color: gold !important;
 }
 
-.nav-link-override:hover {
-    color: rgb(166, 141, 0);
+.nav-link:hover {
+    color: rgb(166, 141, 0) !important;
+}
+
+.nav-link.active {
+    color: rgb(166, 141, 0) !important;
+    font-weight: bold; /* Optional: Add a bold effect */
+    border-bottom: 2px solid #ffcc00; /* Optional: Add a highlight */
+  }
+.navbar-collapse {
+    justify-content: center;
 }
