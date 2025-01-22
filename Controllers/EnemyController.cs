@@ -180,20 +180,21 @@ public class EnemyController : ControllerBase
         return Ok();
     }
 
-    [HttpPut("{id}")]
-    public IActionResult Put(EnemyDTO enemyDTO, int id, int userId)
+    [HttpPut("{id}/{userId}")]
+    public IActionResult Put(int id, int userId, EnemyDTO enemyDTO)
     {
         Enemy enemy = _dbContext.Enemies.FirstOrDefault(e => e.Id == id);
-
-        if (enemy.UserId != userId)
-        {
-            return NotFound(new {message = "You are unauthorized to edit this enemy"});
-        }
 
         if (enemy == null)
         {
             return NotFound();
         }
+        
+        if (enemy.UserId != userId)
+        {
+            return NotFound(new {message = "Unauthorized operation: You are not authorized to make changes to this enemy"});
+        }
+
 
         _mapper.Map(enemyDTO, enemy);
         _dbContext.SaveChanges();

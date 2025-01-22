@@ -71,8 +71,7 @@ export const EnemyEdit = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        putEnemy(enemy, enemy.id, userId).then(data => {
-            console.log(data)
+        putEnemy(enemy, userId).then(data => {
             navigate("/enemy-list")
         })
     }

@@ -100,7 +100,6 @@ export const EnemyDetails = () => {
                                     <h6 style={{textAlign: "center"}}>Description</h6>
                                     <Card style={{maxWidth: "400px", minWidth: "200px", height: "100px"}}>
                                         <CardBody style={{overflow: "hidden", overflowY: "auto"}}>
-                                        rest
                                         {enemy?.description || "This is an enemy that has not yet been given a description"}
                                         </CardBody>
                                     </Card>

@@ -16,9 +16,14 @@ export const EnemyList = () => {
         getEnemies().then(enemyList => {
             console.log(enemyList)
             setEnemies(enemyList)
-            setFilteredEnemies(enemyList)
         })
     }, [])
+    
+    useEffect(() => {
+        getEnemies().then(enemyList => {
+            setFilteredEnemies(enemyList)
+        })
+    }, [enemies])
 
     const filterByLevel = (e) => {
         const targetLevel = parseInt(e.target.value)
@@ -42,16 +47,14 @@ export const EnemyList = () => {
                         </span>
                         <p style={{margin: 0}}>Filter2</p>
                         <p style={{margin: 0}}>Filter3</p>
-                        <p style={{margin: 0}}>Filter4</p>
+                        <p style={{margin: 0}}>
+                        </p>
                 </Col>
             </Row>
             <Row className="mt-4" style={{border: "4px solid black"}}>
                 {filteredEnemies.map(enemy => {
                     return(
-                    // <Col key={enemy.id}>
                         <EnemyCard key={enemy.id} enemy={enemy} setEnemies={setEnemies} />
-                    // </Col>
-
                     )
                 })}
             </Row>

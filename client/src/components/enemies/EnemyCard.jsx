@@ -12,8 +12,9 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
     const userId = loggedInUser.id
     const handleEnemyDelete = () => {
         deleteEnemy(id, userId).then(() => {
-            getEnemies().then(enemies => {
-                setEnemies(enemies)
+            getEnemies().then(updatedEnemies => {
+                console.log(updatedEnemies, " UPDATED ENEMIES")
+                setEnemies(updatedEnemies)
             })
         })
     }
@@ -26,8 +27,8 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
                     <Card style={{width: "100px", minHeight: "100px", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundImage: `url(${enemy.imageUrl})`}} />
                 </CardBody>
                 <div className="d-flex justify-content-evenly my-1">
-                    {loggedInUser?.id == enemy?.userId && <Button color="danger" style={{width: "90px", fontSize: "12px"}} onClick={handleEnemyDelete}>Delete</Button>}
-                    {loggedInUser?.id == enemy?.userId && <Button color="warning" style={{width: "90px", fontSize: "12px"}} onClick={() => navigate(`edit/${id}`)}>Edit</Button>}
+                    <Button color="danger" style={{width: "90px", fontSize: "12px"}} onClick={handleEnemyDelete}>Delete</Button>
+                    <Button color="warning" style={{width: "90px", fontSize: "12px"}} onClick={() => navigate(`edit/${id}`)}>Edit</Button>
                 </div>
             </Card>
     )

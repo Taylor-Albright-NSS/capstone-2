@@ -10,7 +10,7 @@ export const FieldsetItemDrops = ({ handleItemDropsChange, items, handleNumberIn
                         <FormGroup className="d-flex align-items-center" check>
                             <Label check>
                                 <Input checked={enemy?.itemIds?.includes(item.id)} type="checkbox" name={`item-${item.id}`} value={item.id} onChange={handleItemDropsChange} />
-                                {item.name}
+                                <p style={{margin: 0, width: "200px"}}>{item.name}</p>
                             </Label>
                         </FormGroup>
                     </Row>

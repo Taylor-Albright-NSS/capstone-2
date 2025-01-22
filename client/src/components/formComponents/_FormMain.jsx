@@ -71,7 +71,7 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
             </Form>
             {warning.visible && (
                 <div className="warning-message" style={{ top: warning.y, left: warning.x }}>
-                    {warning.message}fdsafasd
+                    {warning.message}
                 </div>
             )}
         </Container>
