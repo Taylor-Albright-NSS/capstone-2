@@ -4,7 +4,7 @@ export const Fieldset1 = ({ enemy, handleTextInput, handleNumberInput, handlePos
 
 
     return (
-        <Card>
+        <Card style={{border: "4px solid green"}}>
             <fieldset>
                 <FormGroup className="d-flex align-items-center flex-column">
                     <Label for="name">Name</Label>
@@ -14,7 +14,6 @@ export const Fieldset1 = ({ enemy, handleTextInput, handleNumberInput, handlePos
                         <Label for="description">Enemy Description</Label>
                         <Input style={{resize: "none"}} type="textarea" name="description" id="description" onChange={handleTextInput} value={enemy.description}></Input>
                     </FormGroup>
-
             </fieldset>
         </Card>
     )

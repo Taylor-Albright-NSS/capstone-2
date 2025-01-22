@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter, Button, Card, Input, Form, Container } from "reactstrap"
 import { UserContext } from "../ApplicationViews";
-
-
-export const CreateCharacterModal = () => {
+import { postCharacter } from "../../managers/characterManager";
+import { getCharacters } from "../../managers/characterManager";
+export const CreateCharacterModal = ({setCharacters }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleModal = () => setIsOpen(!isOpen);
     const { loggedInUser } = useContext(UserContext)
@@ -40,6 +40,15 @@ export const CreateCharacterModal = () => {
             setCharacter({...character, [name]: parseInt(value)})
         }
         console.log(character)
+    }
+
+    const handlePostNewCharacter = () => {
+        postCharacter(character).then(data => {
+            console.log(data)
+            getCharacters().then(chars => {
+                setCharacters(chars)
+            })
+        })
     }
 
     return (
@@ -110,6 +119,7 @@ export const CreateCharacterModal = () => {
                             color="primary" 
                             onClick={() => {
                                 toggleModal()
+                                handlePostNewCharacter()
                                 }}
                             >Confirm</Button>
                     </ModalFooter>

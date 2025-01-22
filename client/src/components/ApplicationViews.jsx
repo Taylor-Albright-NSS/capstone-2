@@ -4,7 +4,7 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 // import UserProfileList from "./userprofiles/UserProfilesList";
 // import UserProfileDetails from "./userprofiles/UserProfileDetails";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { HomeView } from "./home/HomeView";
 import { EnemyList } from "./enemies/EnemyList";
 import { EnemyDetails } from "./enemies/EnemyDetails";
@@ -15,8 +15,9 @@ export const UserContext = createContext();
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   const test = "test"
+  const [selectedCharacter, setSelectedCharacter] = useState({})
   return (
-    <UserContext.Provider value={{ loggedInUser, setLoggedInUser, test }}>
+    <UserContext.Provider value={{ loggedInUser, setLoggedInUser, test, selectedCharacter, setSelectedCharacter }}>
       <Routes>
         <Route path="/">
           <Route index 

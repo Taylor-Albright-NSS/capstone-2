@@ -2,12 +2,12 @@ import { FormGroup, Label, Input, Card } from "reactstrap"
 
 export const Fieldset2 = ({ handleNumberInput, handleTextInput, enemy }) => {
     return (
-        <Card>
+        <Card style={{border: "4px solid yellow"}}>
             <fieldset>
-            <span className="d-flex justify-content-around">
+                <span className="d-flex justify-content-around">
                     <FormGroup>
                         <Label for="minLevel">Min. Level</Label>
-                        <Input style={{width: "76px"}} type="number" name="minLevel" id="minLevel" value={enemy.minLevel} onChange={handleNumberInput} />
+                        <Input style={{maxWidth: "76px"}} type="number" name="minLevel" id="minLevel" value={enemy.minLevel} onChange={handleNumberInput} />
                     </FormGroup>
 
                     <FormGroup>

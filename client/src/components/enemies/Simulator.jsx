@@ -5,21 +5,11 @@ import { useParams } from "react-router-dom";
 import './Simulator.css'
 import { app } from "../../firebase/fireBase";
 import App from "../../firebase/FirebaseUploadUI";
-
+import { UserContext } from "../ApplicationViews";
+import { useContext } from "react";
 
 export const Simulator = () => {
-    const playerBase = {
-        baseHealth: 300,
-        attackPower: 5,
-        slashingArmor: 5,
-        piercingArmor: 10,
-        bluntArmor: 20,
-        slashingPenetration: 0,
-        piercingPenetration: 0,
-        bluntPenetration: 0,
-        dodgeRating: 0,
-        accuracyRating: 0,
-    }
+    const { selectedCharacter } = useContext(UserContext)
     const simEnemyBase = {
         baseHealth: 1000,
         baseDamage: 9,
@@ -42,8 +32,8 @@ export const Simulator = () => {
     }, [id])
 
     useEffect(() => {
-        setPlayer(playerBase)
-        setSimPlayer(playerBase)
+        setPlayer(selectedCharacter)
+        setSimPlayer(selectedCharacter)
     }, [])
 
     function randomNumberRange(min, max) {
@@ -114,7 +104,7 @@ export const Simulator = () => {
         const { actualDamage } = enemyDamageObject
         const { rawDamage } = enemyDamageObject
         const blockedDamage = rawDamage - actualDamage
-        const playerNewHealth = Math.max(simPlayer.baseHealth - actualDamage, 0)
+        const playerNewHealth = Math.max(simPlayer.health - actualDamage, 0)
         console.log(playerNewHealth, ' PLAYER NEW HEALTH')
         const damageLog = document.getElementById('damage-log')
         const damageP = document.createElement('logline')
@@ -123,7 +113,7 @@ export const Simulator = () => {
         damageLog.insertBefore(damageP, damageLog.firstChild);
         damageLog.appendChild(damageP)
         damageLog.scrollTop = damageLog.scrollHeight
-        setSimPlayer(prevState => ({...prevState, baseHealth: playerNewHealth}))
+        setSimPlayer(prevState => ({...prevState, health: playerNewHealth}))
     }
 
     const calculatePlayerDamage = (armorType, penetrationType) => {
@@ -234,15 +224,20 @@ export const Simulator = () => {
                             <Card style={{height: "100%"}}>
                                 <CardTitle style={{alignSelf: "center"}}>Player</CardTitle>
                                 <CardBody>
-                                    <CardText>Health: {player.baseHealth}</CardText>
-                                    <CardText>Damage: {player.damage}</CardText>
+                                    <Button onClick={() => {
+                                        console.log(selectedCharacter, ' selected char')
+                                        console.log(player, ' player')
+                                        console.log(simPlayer, ' simplayer')
+                                    }}>Test</Button>
+                                    <CardText>Health: {player?.health}</CardText>
+                                    <CardText>Attack Power: {player?.attackPower}</CardText>
                                     {/* <CardText>Gold Range: {enemy?.minGold} - {enemy?.maxGold}</CardText> */}
-                                    <CardText>Slashing Armor: {player.slashingArmor}</CardText>
-                                    <CardText>Piercing Armor: {player.piercingArmor}</CardText>
-                                    <CardText>Blunt Armor: {player.bluntArmor}</CardText>
-                                    <CardText>Slashing Penetration: {player.slashingPenetration}</CardText>
-                                    <CardText>Piercing Penetration: {player.piercingPenetration}</CardText>
-                                    <CardText>Blunt Penetration: {player.bluntPenetration}</CardText>
+                                    <CardText>Slashing Armor: {player?.slashingArmor}</CardText>
+                                    <CardText>Piercing Armor: {player?.piercingArmor}</CardText>
+                                    <CardText>Blunt Armor: {player?.bluntArmor}</CardText>
+                                    <CardText>Slashing Penetration: {player?.slashingPenetration}</CardText>
+                                    <CardText>Piercing Penetration: {player?.piercingPenetration}</CardText>
+                                    <CardText>Blunt Penetration: {player?.bluntPenetration}</CardText>
                                 </CardBody>
                             </Card>
                         </Col>
@@ -271,11 +266,11 @@ export const Simulator = () => {
                         </Col>
                         <Col className="d-flex flex-column justify-content-center">
                             <span className="d-flex justify-content-center">
-                                <Button onClick={() => setSimPlayer(prev => ({...prev, baseHealth: player.baseHealth}))}>Reset Player</Button>
+                                <Button onClick={() => setSimPlayer(prev => ({...prev, health: player.health}))}>Reset Player</Button>
                             </span>
                             <Card className="my-2 d-flex align-items-center justify-content-between">
                                 <CardTitle>Player</CardTitle>
-                                <CardText>Health: {simPlayer.baseHealth}</CardText>
+                                <CardText>Health: {simPlayer?.health}</CardText>
                             </Card>
                             <span className="d-flex justify-content-around">
                                 <Button style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulatePlayerHit('slashingArmor', 'slashingPenetration')}>Player Slashing Swing</Button>

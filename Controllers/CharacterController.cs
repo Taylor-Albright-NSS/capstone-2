@@ -34,4 +34,26 @@ public class CharacterController : ControllerBase
 
         return Ok(characters);
     }
+
+    [HttpPost]
+    public IActionResult Post(CharacterDTO characterDTO)
+    {
+        Character character = _mapper.Map<Character>(characterDTO);
+        _dbContext.Characters.Add(character);
+        _dbContext.SaveChanges();
+        return Ok(new {message = "Character created successfully"});
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        var enemyToDelete = _dbContext.Characters.FirstOrDefault(c => c.Id == id);
+        if (enemyToDelete == null)
+        {
+            return NotFound(new {message = "Could not find character to delete"});
+        }
+        _dbContext.Characters.Remove(enemyToDelete);
+        _dbContext.SaveChanges();
+        return Ok(new { message = "Character deleted successfully"});
+    }
 }

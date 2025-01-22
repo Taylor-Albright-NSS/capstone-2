@@ -28,13 +28,17 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
         <Container className="d-flex justify-content-center">
             <Form className="my-4 mx-4 col-10" onSubmit={handleSubmit} style={{backgroundColor: "white", border: "8px solid black"}}>
                 <Row className="justify-content-center mx-4" style={{border: "2px solid green"}}>
-                    <Col className="col-7" style={{border: "2px solid red"}}>
+                    <Col md="9">
                         {/*ROW 1*/}
-                        <Row style={{border: "2px solid yellow", padding: "1rem"}}>
-                            <Col className="d-flex justify-content-evenly">
-                                    <FormModal setEnemy={setEnemy} enemy={enemy} setImages={setImages} images={images} handleTextInput={handleTextInput} />
-                                    <Fieldset1 enemy={enemy} handleTextInput={handleTextInput} handleNumberInput={handleNumberInput} handlePositionLogging={handlePositionLogging} />
-                                    <Fieldset2 handleNumberInput={handleNumberInput} handleTextInput={handleTextInput} enemy={enemy} />
+                        <Row style={{border: "4px solid blue", padding: "1rem"}}>
+                            <Col>
+                                <FormModal setEnemy={setEnemy} enemy={enemy} setImages={setImages} images={images} handleTextInput={handleTextInput} />
+                            </Col>
+                            <Col>
+                                <Fieldset1 enemy={enemy} handleTextInput={handleTextInput} handleNumberInput={handleNumberInput} handlePositionLogging={handlePositionLogging} />
+                            </Col>
+                            <Col>
+                                <Fieldset2 handleNumberInput={handleNumberInput} handleTextInput={handleTextInput} enemy={enemy} />
                             </Col>
                         </Row>
                         {/*ROW 2*/}

@@ -6,6 +6,7 @@ import "./MyProfile.css"
 import { useLocation, useNavigate } from "react-router-dom"
 import { CreateCharacterModal } from "./CreateCharacterModal"
 import { getCharacters } from "../../managers/characterManager"
+import { deleteCharacter } from "../../managers/characterManager"
 
 
 export const MyProfile = () => {
@@ -16,7 +17,9 @@ export const MyProfile = () => {
 
     const [enemies, setEnemies] = useState([])
     const [characters, setCharacters] = useState([])
-    const [selectedCharacter, setSelectedCharacter] = useState()
+    // const [selectedCharacter, setSelectedCharacter] = useState()
+    const { selectedCharacter } = useContext(UserContext)
+    const { setSelectedCharacter } = useContext(UserContext)
 
     useEffect(() => {
         getUserEnemies(userId).then(enemies => {
@@ -41,7 +44,18 @@ export const MyProfile = () => {
         const optionValue = e.target.value
         const selectedCharacter = characters.find(c => c.name == optionValue)
         console.log(selectedCharacter)
+        console.log(selectedCharacter)
         setSelectedCharacter(selectedCharacter)
+    }
+
+    const handleDeleteCharacter = () => {
+        deleteCharacter(selectedCharacter.id).then(() => {
+            getCharacters().then(charList => {
+                console.log(charList)
+                setCharacters(charList)
+            })
+        })
+        setSelectedCharacter({})
     }
 
     return (
@@ -70,26 +84,28 @@ export const MyProfile = () => {
                 </Col>
                 <Col style={{border: "4px solid blue"}}>
                     <span className="d-flex justify-content-around">
-                        <CreateCharacterModal />
-                        <Input type="select" style={{maxWidth: "400px"}} onChange={handleCharacterSelect}>
+                        <CreateCharacterModal setCharacters={setCharacters} />
+                        <Input type="select" value={selectedCharacter?.name} style={{maxWidth: "400px"}} onChange={handleCharacterSelect}>
+                            <option key={1}>Select Character</option>
                             {characters?.map(c => <option key={c.id}>{c.name}</option>)}
                         </Input>
                     </span>
                             {selectedCharacter && 
                             <Card className="mx-2 my-2">
                                 <CardBody className="d-flex flex-column align-items-center">
-                                    <CardText>{selectedCharacter.name}</CardText>
-                                    <CardText>Health: {selectedCharacter?.health}</CardText>
-                                    <CardText>Attack Power: {selectedCharacter?.attackPower}</CardText>
-                                    <CardText>Slashing Armor: {selectedCharacter?.slashingArmor}</CardText>
-                                    <CardText>Piercing Armor: {selectedCharacter?.piercingArmor}</CardText>
-                                    <CardText>Blunt Armor: {selectedCharacter?.bluntArmor}</CardText>
-                                    <CardText>Slashing Penetration: {selectedCharacter?.slashingPenetration}</CardText>
-                                    <CardText>Piercing Penetration: {selectedCharacter?.piercingPenetration}</CardText>
-                                    <CardText>Blunt Penetration: {selectedCharacter?.bluntPenetration}</CardText>
+                                    <CardText>{selectedCharacter?.name}</CardText>
+                                    {selectedCharacter?.health != null && <CardText>Health: {selectedCharacter?.health}</CardText>}
+                                    {selectedCharacter?.attackPower != null && <CardText>Attack Power: {selectedCharacter?.attackPower}</CardText>}
+                                    {selectedCharacter?.slashingArmor != null && <CardText>Slashing Armor: {selectedCharacter?.slashingArmor}</CardText>}
+                                    {selectedCharacter?.piercingArmor != null && <CardText>Piercing Armor: {selectedCharacter?.piercingArmor}</CardText>}
+                                    {selectedCharacter?.bluntArmor != null && <CardText>Blunt Armor: {selectedCharacter?.bluntArmor}</CardText>}
+                                    {selectedCharacter?.slashingPenetration != null && <CardText>Slashing Penetration: {selectedCharacter?.slashingPenetration}</CardText>}
+                                    {selectedCharacter?.piercingPenetration != null && <CardText>Piercing Penetration: {selectedCharacter?.piercingPenetration}</CardText>}
+                                    {selectedCharacter?.bluntPenetration != null && <CardText>Blunt Penetration: {selectedCharacter?.bluntPenetration}</CardText>}
                                 </CardBody>
                             </Card>
                             }
+                            {Object.values(selectedCharacter).length > 0 && <Button onClick={handleDeleteCharacter}>Delete Character</Button>}
                 </Col>
             </Row>
         </Container>
