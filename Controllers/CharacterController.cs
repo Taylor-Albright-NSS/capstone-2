@@ -47,13 +47,20 @@ public class CharacterController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    public IActionResult Delete(int id, int userId)
     {
         var enemyToDelete = _dbContext.Characters.FirstOrDefault(c => c.Id == id);
+
         if (enemyToDelete == null)
         {
             return NotFound(new {message = "Could not find character to delete"});
         }
+
+        if (enemyToDelete.UserId != userId)
+        {
+            return NotFound(new {message = "Unauthorized operation: You cannot delete another user's character"});
+        }
+
         _dbContext.Characters.Remove(enemyToDelete);
         _dbContext.SaveChanges();
         return Ok(new { message = "Character deleted successfully"});

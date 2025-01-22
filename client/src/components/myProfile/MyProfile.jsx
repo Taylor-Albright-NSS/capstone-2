@@ -20,6 +20,7 @@ export const MyProfile = () => {
     // const [selectedCharacter, setSelectedCharacter] = useState()
     const { selectedCharacter } = useContext(UserContext)
     const { setSelectedCharacter } = useContext(UserContext)
+    const [isSelected, setIsSelected] = useState(true)
 
     useEffect(() => {
         getUserEnemies(userId).then(enemies => {
@@ -39,17 +40,20 @@ export const MyProfile = () => {
             setCharacters(charList)
         })
     }, [])
+    useEffect(() => {
+        // setSelectedCharacter(null)
+    }, [])
 
     const handleCharacterSelect = (e) => {
         const optionValue = e.target.value
         const selectedCharacter = characters.find(c => c.name == optionValue)
         console.log(selectedCharacter)
-        console.log(selectedCharacter)
         setSelectedCharacter(selectedCharacter)
+        setIsSelected(true)
     }
 
     const handleDeleteCharacter = () => {
-        deleteCharacter(selectedCharacter.id).then(() => {
+        deleteCharacter(selectedCharacter.id, userId).then(() => {
             getCharacters(userId).then(charList => {
                 console.log(charList)
                 setCharacters(charList)
@@ -58,12 +62,16 @@ export const MyProfile = () => {
         setSelectedCharacter(null)
     }
 
+    const isCharacterEmpty = (char) => {
+        return char && Object.keys(char).length === 0 && char.constructor === Object;
+    }
+
     return (
         <Container style={{border: "4px solid black"}}>
             <h1>{user?.fullName}</h1>
             <Row style={{border: "4px solid green"}}>
                 <Col style={{border: "4px solid red", maxHeight: "780px", minHeight: "400px", overflow: "hidden", overflowY: "auto"}}>
-                    <h3>My Enemies</h3>
+                    <h3 style={{textAlign: "center"}}>My Enemies</h3>
                     <Card>
                         <CardBody>
                             {enemies?.map(enemy => {
@@ -103,9 +111,9 @@ export const MyProfile = () => {
                                     {selectedCharacter?.piercingPenetration != null && <CardText>Piercing Penetration: {selectedCharacter?.piercingPenetration}</CardText>}
                                     {selectedCharacter?.bluntPenetration != null && <CardText>Blunt Penetration: {selectedCharacter?.bluntPenetration}</CardText>}
                                 </CardBody>
+                                <Button onClick={handleDeleteCharacter}>Delete Character</Button>
                             </Card>
                             }
-                            {selectedCharacter != null && <Button onClick={handleDeleteCharacter}>Delete Character</Button>}
                 </Col>
             </Row>
         </Container>

@@ -76,14 +76,11 @@ export const putEnemy = async (enemy, userId) => {
 }
 
 export const getUserEnemies = async (userId) => {
-    console.log('Trying to get user enemies')
-    console.log(userId, ' user id')
     try {
         const response = await fetch(`${api_url}/${userId}/userEnemies`)
         const data = await response.json()
+        console.log(data.message)
         if (!response.ok) {
-            console.log(data.message)
-            console.log("sdfafasdfdsafdasfsda")
             throw new Error(`Unable to get user enemies`)
         }
         return data

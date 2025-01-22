@@ -30,9 +30,9 @@ export const postCharacter = async (character) => {
     return data
 }
 
-export const deleteCharacter = async (id) => {
+export const deleteCharacter = async (characterId, userId) => {
     try {
-        const response = await fetch(`${api_url}/${id}`, {
+        const response = await fetch(`${api_url}/${characterId}?userId=${userId}`, {
             method: "DELETE"
         })
         const data = await response.json()

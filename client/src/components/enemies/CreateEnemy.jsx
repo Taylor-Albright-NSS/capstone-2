@@ -105,16 +105,22 @@ export const CreateEnemy = () => {
     }
 
     const handleNumberInput = (e) => {
-        const {name, value, clientX, clientY} = e.target
+        const {name, value} = e.target
         if (value < 0 || value > 9999) { // Example limit
-            console.log('test')
-        } else {
-            setEnemy({...enemy, [name]: parseInt(value)})
+            console.log('Value cannot be less than 0 or greater than 9999')
+            return
+        } 
+        if (name == "minLevel") {
+            if (value > enemy.maxLevel) {
+                return
+            }
         }
-    }
-
-    const handleLimiters = (e) => {
-
+        if (name == "minGold") {
+            if (value > enemy.maxGold) {
+                return
+            }
+        }
+        setEnemy({...enemy, [name]: parseInt(value)})
     }
 
     return (

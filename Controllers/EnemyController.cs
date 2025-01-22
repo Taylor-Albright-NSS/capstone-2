@@ -31,14 +31,13 @@ public class EnemyController : ControllerBase
     [HttpGet("{userId}/userEnemies")]
     public IActionResult GetUserEnemies(int userId)
     {
-        Console.WriteLine(userId);
         var userEnemies = _dbContext.Enemies
         .Where(e => e.UserId == userId)
         .ProjectTo<EnemyDTO>(_mapper.ConfigurationProvider);
 
         if (userEnemies == null || !userEnemies.Any())
         {
-            return NotFound("Could not find any enemies!");
+            return NotFound(new {message = "User does not have any enemies created"});
         }
 
         return Ok(userEnemies);
