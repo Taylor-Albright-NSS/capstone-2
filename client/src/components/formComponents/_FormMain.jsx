@@ -26,11 +26,11 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
 
     return (
         <Container className="d-flex justify-content-center">
-            <Form className="my-4 mx-4 col-10" onSubmit={handleSubmit} style={{backgroundColor: "white", border: "8px solid black"}}>
-                <Row className="justify-content-center mx-4" style={{border: "2px solid green"}}>
+            <Form className="my-4 mx-4 col-11" onSubmit={handleSubmit} style={{backgroundColor: "white", border: "8px solid black"}}>
+                <Row className="justify-content-center mx-4">
                     <Col md="9">
                         {/*ROW 1*/}
-                        <Row>
+                        <Row className="d-flex align-items-center" style={{border: "8px ridge grey"}}>
                             <Col>
                                 <FormModal setEnemy={setEnemy} enemy={enemy} setImages={setImages} images={images} handleTextInput={handleTextInput} />
                             </Col>
@@ -43,15 +43,15 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
                         </Row>
                         {/*ROW 2*/}
                         <Row>
-                            <Col style={{border: "2px solid blue"}}>
+                            <Col style={{border: "6px ridge grey"}}>
                                 <FieldsetOffense handleCheckbox={handleCheckbox} enemy={enemy} handleNumberInput={handleNumberInput} />
                             </Col>
-                            <Col style={{border: "2px solid pink"}}>
+                            <Col style={{border: "6px ridge grey"}}>
                                 <FieldsetDefense handleNumberInput={handleNumberInput} enemy={enemy} />
                             </Col>
                         </Row>
                     </Col>
-                    <Col style={{border: "2px solid blue"}}>
+                    <Col style={{border: "8px ridge grey"}}>
                         <FieldsetItemDrops handleItemDropsChange={handleItemDropsChange} items={items} handleNumberInput={handleNumberInput} enemy={enemy} />
                     </Col>
                     <Row className="justify-content-center">

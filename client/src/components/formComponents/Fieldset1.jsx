@@ -4,7 +4,7 @@ export const Fieldset1 = ({ enemy, handleTextInput, handleNumberInput, handlePos
 
 
     return (
-        <Card style={{border: "4px solid green"}}>
+        <Card  className="d-flex align-items-center flex-column">
             <fieldset>
                 <FormGroup className="d-flex align-items-center flex-column">
                     <Label for="name">Name</Label>

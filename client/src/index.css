@@ -49,9 +49,26 @@ button.btn {
 
 form {
   background-image: url("public/assets/images/background/button background/button background.png");
-  color: gold
+  color: gold;
+  font-family: "Cinzel";
 }
 
 fieldset {
-  border: 2px solid red !important;
+  border: 8px ridge grey !important;
+}
+
+.card {
+  --bs-card-bg: none !important;
+}
+
+label.form-check-label,
+label.form-label,
+legend {
+  color: gold;
+}
+
+.card.enemy-card {
+  color: red;
+  font-weight: bolder !important;
+  background-image: url("public/assets/images/background/element background/bg 3.jpg");
 }

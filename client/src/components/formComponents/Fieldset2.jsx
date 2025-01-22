@@ -2,7 +2,7 @@ import { FormGroup, Label, Input, Card } from "reactstrap"
 
 export const Fieldset2 = ({ handleNumberInput, handleTextInput, enemy }) => {
     return (
-        <Card style={{border: "4px solid yellow"}}>
+        <Card>
             <fieldset>
                 <span className="d-flex justify-content-around">
                     <FormGroup>
