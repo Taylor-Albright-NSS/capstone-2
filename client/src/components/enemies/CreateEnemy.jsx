@@ -65,16 +65,21 @@ export const CreateEnemy = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         let { name, slashingDamage, piercingDamage, bluntDamage, imageUrl } = enemy
+        
         if (name.length < 1) {
             window.alert("Name must be at least 1 character long")
             return
         }
-        if (imageUrl == null) {
-            enemy.imageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542"
-        }
         if (!slashingDamage && !piercingDamage && !bluntDamage) {
             window.alert("Enemy must have at least 1 damage type")
             return
+        }
+        if (name.length > 15) {
+            window.alert("Name is too long")
+            return
+        }
+        if (imageUrl == null) {
+            enemy.imageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542"
         }
         postEnemy(enemy).then(() => {
             navigate("/enemy-list")

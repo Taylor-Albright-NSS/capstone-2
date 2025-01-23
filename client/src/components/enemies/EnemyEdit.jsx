@@ -69,6 +69,20 @@ export const EnemyEdit = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
+        let { name, slashingDamage, piercingDamage, bluntDamage, imageUrl } = enemy
+        
+        if (name.length < 1) {
+            window.alert("Name must be at least 1 character long")
+            return
+        }
+        if (!slashingDamage && !piercingDamage && !bluntDamage) {
+            window.alert("Enemy must have at least 1 damage type")
+            return
+        }
+        if (name.length > 15) {
+            window.alert("Name is too long")
+            return
+        }
         putEnemy(enemy, userId).then(data => {
             navigate("/enemy-list")
         })

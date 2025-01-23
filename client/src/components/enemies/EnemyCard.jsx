@@ -20,11 +20,12 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
     }
 
     return (
-            <Card className="mx-4 my-4 enemy-card" style={{maxWidth: "200px"}}>
+            <Card className="mx-4 my-4 enemy-card" style={{maxWidth: "200px", maxHeight: "260px"}}>
                 <CardBody onClick={() => navigate(`${id}`)} style={{cursor: "pointer"}} className="d-flex flex-column align-items-center">
-                    <CardTitle tag="h5">{enemy.name}</CardTitle>
+                    <CardTitle tag="h5" style={{textAlign: "center"}}>{enemy.name}</CardTitle>
                     {/* <CardImg src={enemy.imageUrl} /> */}
                     <Card style={{width: "100px", minHeight: "100px", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundImage: `url(${enemy.imageUrl})`}} />
+                    <p style={{margin: 0}}>Level {enemy?.minLevel} - {enemy?.maxLevel}</p>
                 </CardBody>
                 <div className="d-flex justify-content-evenly my-1">
                 {loggedInUser?.id == enemy?.userId && <Button color="danger" style={{width: "90px", fontSize: "12px"}} onClick={handleEnemyDelete}>Delete</Button>}

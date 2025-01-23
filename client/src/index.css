@@ -43,10 +43,6 @@ label {
   background-color: rgba(0, 0, 0, 0.3) !important;
 }
 
-button.btn {
-  color: black;
-  font-family: "Cinzel";
-}
 
 form {
   background-image: url("/assets/images/background/button background/button background.png");
@@ -113,14 +109,16 @@ span {
   color: white;
 }
 
-button.btn {
+button.btn, button.btn.btn-danger, button.btn.btn-primary, button.btn.btn-warning {
   color: rgb(255, 255, 255) !important;
-  background-image: url("/assets/images/background/button background/button background.png") !important
+  background-image: url("/assets/images/background/button background/button background.png") !important;
+  font-family: "Cinzel";
+  --bs-btn-border-color: none !important;
+  border: 2px ridge grey;
+  border-radius: 0px !important;
 }
 
-button.btn-danger {
-  background-color: rgb(red, green, blue, 0);
-}
+
 
 img {
   border: 6px ridge grey;
