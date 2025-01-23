@@ -10,7 +10,13 @@ import { useContext } from "react";
 
 export const Simulator = () => {
     const { selectedCharacter } = useContext(UserContext)
-
+    const simEnemyBase = {
+        baseHealth: 1000,
+        attackPower: 9,
+        slashingArmor: 5,
+        piercingArmor: 10,
+        bluntArmor: 20,
+    }
     const [enemy, setEnemy] = useState({})
     const [simEnemy, setSimEnemy] = useState({})
     const [player, setPlayer] = useState({})
@@ -49,14 +55,11 @@ export const Simulator = () => {
     // const { iceResist } = enemy || 0
     // const { lightningResist } = enemy || 0
     
+    const damageMultiplier = 1.0 + (actualLevel - minLevel) * 0.1
     //variables to interpolate
-    const bonusDamageModifier = 1.0 + (simEnemy.actualLevel - simEnemy.minLevel) * 0.1
-    console.log(bonusDamageModifier)
-
-
-    const botDamage = Math.floor(attackPower * 0.5) 
+    const botDamage = Math.floor(attackPower * 0.5)
     const topDamage = Math.floor(attackPower * 1.5)
-    const enhancedDamage = botDamage 
+
 
     const experience = actualLevel == minLevel ? baseExperience : Math.floor((((actualLevel * 0.1) * baseExperience) + baseExperience))
     const health = actualLevel == minLevel ? baseHealth : Math.floor((((actualLevel * 0.1) * baseHealth) + baseHealth))
@@ -66,20 +69,7 @@ export const Simulator = () => {
 
     const incrementLevel = () => {
         if (enemy.actualLevel + 1 > enemy.maxLevel) {return}
-        const attackPower = simEnemy.attackPower
-        const bonusDamageModifier = 1.0 + (simEnemy.actualLevel + 1 - simEnemy.minLevel) * 0.1
-        const botDamage = Math.floor((attackPower * 0.5) * bonusDamageModifier)
-        const topDamage = Math.floor((attackPower * 1.5) * bonusDamageModifier)
-
-
-        setEnemy(prevEnemy => (
-            {...prevEnemy, 
-                actualLevel: prevEnemy.actualLevel + 1,
-                botDamage: botDamage,
-                topDamage: topDamage,
-            }
-        ))
-        console.log()
+        setEnemy(prevEnemy => ({...prevEnemy, actualLevel: prevEnemy.actualLevel + 1}))
     }
     const decrementLevel = () => {
         if (enemy.actualLevel - 1 < enemy.minLevel) {return}
@@ -88,10 +78,9 @@ export const Simulator = () => {
     const calculateEnemyDamage = (armorType) => {
         const playerArmor = simPlayer[armorType]
         const damageObject = {}
-        const bonusDamageModifier = 1.0 + (simEnemy.actualLevel + 1 - simEnemy.minLevel) * 0.1
         damageObject.lowDamage = Math.ceil(simEnemy.attackPower * 0.5)
         damageObject.topDamage = Math.ceil(simEnemy.attackPower * 1.5)
-        damageObject.rawDamage = randomNumberRange(damageObject.lowDamage, damageObject.topDamage)
+        damageObject.rawDamage = Math.floor(randomNumberRange(damageObject.lowDamage, damageObject.topDamage) * damageMultiplier)
         damageObject.actualDamage = Math.max(Math.floor((damageObject.rawDamage - playerArmor) * (1000 / (1000 + playerArmor))), 0)
         return damageObject
     }
@@ -182,8 +171,7 @@ export const Simulator = () => {
                                     <Button onClick={decrementLevel} style={{maxHeight: "30px", maxWidth: "30px", display: "flex", alignItems: "center", justifyContent: "center"}}>-</Button>
                                     <Button onClick={incrementLevel} style={{maxHeight: "30px", maxWidth: "30px", display: "flex", alignItems: "center", justifyContent: "center"}}>+</Button>
                                     </span>
-                                    <CardText style={{margin: 0}}>Attack Power: {simEnemy?.attackPower}</CardText>
-                                    <CardText style={{margin: 0}}>Damage Range: {botDamage} - {topDamage}</CardText>
+                                    <CardText style={{margin: 0}}>Damage Range: {Math.floor(botDamage * damageMultiplier)} - {Math.floor(topDamage * damageMultiplier)}</CardText>
                                     {/* <CardText>Gold Range: {enemy?.minGold} - {enemy?.maxGold}</CardText> */}
                                     <CardText style={{margin: 0}}>Experience: {experience}</CardText>
                                     <CardText style={{margin: 0}}>Health: {health}</CardText>
@@ -231,7 +219,7 @@ export const Simulator = () => {
                             </Card>
                         </Col>
                     </Row>
-                    <Row style={{border: "2px solid green"}} className="d-flex justify-content-center align-content-around">
+                    <Row style={{border: "6px ridge grey"}} className="d-flex justify-content-center align-content-around">
                         <Col className="d-flex flex-column justify-content-center">
                             <span className="d-flex justify-content-center">
                                 <Button onClick={() => setSimEnemy(prev => ({...prev, baseHealth: enemy.baseHealth}))}>Reset Enemy</Button>
@@ -241,9 +229,9 @@ export const Simulator = () => {
                                 <CardText>Health: {simEnemy.baseHealth}</CardText>
                             </Card>
                             <span className="d-flex justify-content-around">
-                                <Button style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulateEnemyHit('slashingArmor')}>Enemy Slashing Swing</Button>
-                                <Button className="mx-1" style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulateEnemyHit('piercingArmor')}>Enemy Piercing Swing</Button>
-                                <Button style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulateEnemyHit('bluntArmor')}>Enemy Blunt Swing</Button>
+                                {enemy.slashingDamage && <Button style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulateEnemyHit('slashingArmor')}>Enemy Slashing Swing</Button>}
+                                {enemy.piercingDamage && <Button className="mx-1" style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulateEnemyHit('piercingArmor')}>Enemy Piercing Swing</Button>}
+                                {enemy.bluntDamage && <Button style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulateEnemyHit('bluntArmor')}>Enemy Blunt Swing</Button>}
                             </span>
                         </Col>
                         <Col>
