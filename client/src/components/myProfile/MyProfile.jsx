@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { Button, Card, CardBody, CardHeader, CardText, Col, Container, Input, Row } from "reactstrap"
+import { Card, CardBody, CardHeader, CardText, Col, Container, Input, Row } from "reactstrap"
 import { UserContext } from "../ApplicationViews"
 import { getUserEnemies } from "../../managers/enemyManager"
 import "./MyProfile.css"
@@ -77,11 +77,11 @@ export const MyProfile = () => {
                             {enemies?.map(enemy => {
                                 return (
                                 <Card style={{border: "4px ridge grey"}} onClick={() => navigate(`/enemy-list/${enemy.id}`)} key={enemy.id} className="hover" >
-                                    <CardBody className="wood-background" style={{cursor: "pointer"}}>
-                                        <Row className="d-flex justify-content-between align-items-center">
+                                    <CardBody className="wood-background" style={{padding: 0, cursor: "pointer"}}>
+                                        <Row className="d-flex align-items-center" style={{padding: "1rem", color: "gold"}}>
                                             <Col>{enemy.name}</Col>
                                             <Col>Level: {enemy.minLevel} - {enemy.maxLevel}</Col>
-                                            <img src={enemy.imageUrl} style={{maxWidth: "80px"}}/>
+                                            <img src={enemy.imageUrl} style={{maxWidth: "80px", minHeight: "80px", padding: 0, border: "4px ridge grey"}}/>
                                         </Row>
                                     </CardBody>
                                 </Card>
@@ -91,15 +91,16 @@ export const MyProfile = () => {
                     </Card>
                 </Col>
                 <Col style={{border: "6px ridge grey", textAlign: "center"}}>
-                    <span className="d-flex justify-content-around">
+                    <h3>Characters</h3>
+                    <span className="d-flex justify-content-around mt-4">
                         <CreateCharacterModal setCharacters={setCharacters} />
-                        <Input type="select" value={selectedCharacter?.name} style={{maxWidth: "400px", border: "6px ridge grey", borderRadius: "0px"}} onChange={handleCharacterSelect}>
+                        <Input type="select" value={selectedCharacter?.name} style={{maxWidth: "400px", border: "4px ridge grey", borderRadius: "0px"}} onChange={handleCharacterSelect}>
                             <option key={1}>Select Character</option>
                             {characters?.map(c => <option key={c.id}>{c.name}</option>)}
                         </Input>
                     </span>
                             {selectedCharacter?.id && 
-                            <Card style={{border: "6px ridge grey"}} className="mx-2 my-2">
+                            <Card style={{border: "6px ridge grey"}} className="mx-2 my-2 d-flex align-items-center">
                                 <CardBody className="d-flex flex-column align-items-center">
                                     <CardText>{selectedCharacter?.name}</CardText>
                                     {selectedCharacter?.health != null && <CardText style={{margin: 0}}>Health: {selectedCharacter?.health}</CardText>}
@@ -111,7 +112,7 @@ export const MyProfile = () => {
                                     {selectedCharacter?.piercingArmor != null && <CardText style={{margin: 0}}>Piercing Armor: {selectedCharacter?.piercingArmor}</CardText>}
                                     {selectedCharacter?.bluntArmor != null && <CardText style={{margin: 0}}>Blunt Armor: {selectedCharacter?.bluntArmor}</CardText>}
                                 </CardBody>
-                                <Button onClick={handleDeleteCharacter}>Delete Character</Button>
+                                <button style={{width: "200px", textAlign: "center"}} onClick={handleDeleteCharacter}>Delete Character</button>
                             </Card>
                             }
                 </Col>

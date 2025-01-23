@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
 import {
-  Button,
   Collapse,
   Nav,
   NavLink,
@@ -29,14 +28,6 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
             <NavbarToggler onClick={toggleNavbar} />
             <Collapse isOpen={open} navbar>
               <Nav navbar>
-                {/* 
-                {loggedInUser.roles.includes("Admin") && (
-                  <NavItem className="mx-4">
-                    <NavLink tag={RRNavLink} to="/enemy-list">
-                      Enemies
-                    </NavLink>
-                  </NavItem>
-                )} */}
                 <NavItem className="mx-4">
                   <NavLink className="nav-link" tag={RRNavLink} to="/">
                     Home
@@ -59,10 +50,17 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                       My Profile
                     </NavLink>
                   </NavItem>
-
+                
+                {loggedInUser.roles.includes("Admin") && (
+                  <NavItem className="mx-4">
+                    <NavLink tag={RRNavLink} to="/admin">
+                      Admin
+                    </NavLink>
+                  </NavItem>
+                )}
               </Nav>
             </Collapse>
-            <Button
+            <button
               color="primary"
               onClick={(e) => {
                 e.preventDefault();
@@ -74,13 +72,13 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
               }}
             >
               Logout
-            </Button>
+            </button>
           </>
         ) : (
           <Nav navbar>
             <NavItem>
               <NavLink tag={RRNavLink} to="/login">
-                <Button color="primary">Login</Button>
+                <button color="primary">Login</button>
               </NavLink>
             </NavItem>
           </Nav>

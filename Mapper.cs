@@ -1,6 +1,7 @@
 using AutoMapper;
 using Capstone_2.Models;
 using Capstone_2.Models.DTO;
+using Capstone2.Models;
 
 namespace Capstone_2;
 
@@ -19,6 +20,8 @@ public class AutoMapperProfiles : Profile
         CreateMap<Enemy, EnemyForEditDTO>();
         CreateMap<Character, CharacterDTO>();
         CreateMap<CharacterDTO, Character>();
+        CreateMap<UserProfile, UserProfileUpdateDTO>();
+        CreateMap<UserProfileUpdateDTO, UserProfile>();
 
         CreateMap<Enemy, EnemyDTO>()
             .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));

@@ -50,9 +50,9 @@ export const EnemyList = () => {
     return (
         <Container className="enemy-list-background d-flex flex-column align-content-center" style={{height: "780px", border: "6px ridge grey"}}>
             <Row>
-                <Col className="bg-black d-flex justify-content-start">
+                <Col className="bg-black d-flex justify-content-end" style={{height: "40px"}}>
                         <span className="d-flex align-items-center justify-content-between" style={{width: "56%"}}>
-                            <p style={{margin: 0, fontSize: "20px"}}>Browse Enemies</p>
+                            <h6 style={{margin: 0, fontSize: "20px"}}>Browse Enemies</h6>
                             <span className="d-flex align-items-center">
                                 <p style={{marginBottom: 0, marginRight: "1rem", fontSize: "12px"}}>Filter By Level</p>
                                 <Input style={{width: "60px", height: "30px"}} type="number" value={minLevelFilter} onChange={filterByLevel}/>

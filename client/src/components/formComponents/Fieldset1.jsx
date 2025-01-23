@@ -8,7 +8,7 @@ export const Fieldset1 = ({ enemy, handleTextInput, handleNumberInput, handlePos
             <fieldset>
                 <FormGroup className="d-flex align-items-center flex-column">
                     <Label for="name">Name</Label>
-                    <Input style={{maxWidth: "100px"}} type="text" name="name" id="name" value={enemy.name} onChange={handleTextInput}/>
+                    <Input style={{maxWidth: "160px"}} type="text" name="name" id="name" value={enemy.name} onChange={handleTextInput}/>
                 </FormGroup>
                 <FormGroup className="d-flex flex-column align-items-center" style={{maxWidth: "200px"}}>
                         <Label for="description">Enemy Description</Label>

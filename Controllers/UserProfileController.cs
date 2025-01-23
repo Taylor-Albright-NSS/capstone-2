@@ -4,6 +4,8 @@ using Capstone2.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Capstone_2.Models.DTO;
+using AutoMapper;
 
 namespace Capstone2.Controllers;
 
@@ -13,10 +15,13 @@ namespace Capstone2.Controllers;
 public class UserProfileController : ControllerBase
 {
     private Capstone2DbContext _dbContext;
+    private readonly IMapper _mapper;
 
-    public UserProfileController(Capstone2DbContext context)
+
+    public UserProfileController(Capstone2DbContext context, IMapper mapper)
     {
         _dbContext = context;
+        _mapper = mapper;
     }
 
     [HttpGet]
@@ -95,5 +100,21 @@ public class UserProfileController : ControllerBase
         user.Email = user.IdentityUser.Email;
         user.UserName = user.IdentityUser.UserName;
         return Ok(user);
+    }
+
+    [HttpPut("{id}")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult Put(int id, UserProfileUpdateDTO userDTO)
+    {
+        var modifiedUser = _dbContext.UserProfiles.FirstOrDefault(user => user.Id == id);
+
+        if (modifiedUser == null)
+        {
+            return NotFound(new {Message = "Custom Message: Not Found"});
+        }
+
+        _mapper.Map(userDTO, modifiedUser);
+        _dbContext.SaveChanges();
+        return Ok(new {Message = "User successfully changed"});
     }
 }

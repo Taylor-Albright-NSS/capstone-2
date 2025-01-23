@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteEnemy, getEnemies, getEnemy } from "../../managers/enemyManager";
-import { Button, Card, CardBody, CardImg, CardText, Col, Container, Row } from "reactstrap";
+import { Card, CardBody, CardImg, CardText, Col, Container, Row } from "reactstrap";
 import { getItems } from "../../managers/itemManager";
 import { Simulator } from "./Simulator";
 import { UserContext } from "../ApplicationViews";
@@ -34,14 +34,23 @@ export const EnemyDetails = () => {
                 {/* Left side column */}
                 <Col className="granite-background" style={{maxWidth: "500px", border: "6px ridge grey"}}>
                     <Row className="d-flex justify-content-center">
-                    <Button style={{width: "150px"}} color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
+                    <button style={{width: "150px"}} color="primary" onClick={() => navigate("/enemy-list")}>Go Back</button>
                         <div className="d-flex flex-column align-items-center" style={{ maxWidth: "400px" }} >
                             <h3>{enemy?.name}</h3>
                             <img style={{maxWidth: "200px"}} src={`${enemy?.imageUrl}`} alt={enemy?.name} />
                             <Card>
-                                <p style={{marginBottom: 0}}>Level range: {enemy?.minLevel + " - " + enemy?.maxLevel}</p>
-                                <p style={{marginBottom: 0}}>Base Experience: {enemy?.baseExperience}</p>
-                                <p style={{marginBottom: 0}}>Gold Range: {enemy?.minGold + " - " + enemy?.maxGold}</p>
+                                <span className="d-flex align-items-center">
+                                    <h6 style={{marginBottom: 0}}>Level range:</h6>
+                                    <p style={{marginBottom: 0, marginLeft: "0.5rem"}}>{enemy?.minLevel + " - " + enemy?.maxLevel}</p>
+                                </span>
+                                <span className="d-flex align-items-center">
+                                    <h6 style={{marginBottom: 0}}>Base Experience:</h6>
+                                    <p style={{marginBottom: 0, marginLeft: "0.5rem"}}>{enemy?.baseExperience}</p>
+                                </span>
+                                <span className="d-flex align-items-center">
+                                    <h6 style={{marginBottom: 0}}>Gold Range:</h6>
+                                    <p style={{marginBottom: 0, marginLeft: "0.5rem"}}>{enemy?.minGold + " - " + enemy?.maxGold}</p>
+                                </span>
                                 {/* <p style={{marginBottom: 0}}>^ elemental is hard coded. Need to add type property to enemies</p> */}
                             </Card>
                         </div>
@@ -60,7 +69,7 @@ export const EnemyDetails = () => {
                                         {/* <h6 className="my-2 fw-bold">Abilities</h6> */}
                                     </Card>
                                 </Col>
-                                <Col>
+                                <Col style={{textAlign: "center"}}>
                                     <Card style={{border: "4px ridge grey"}}>
                                         <h5 style={{textAlign: "center"}}>Defense</h5>
                                         <p style={{marginBottom: 0}}>Base Health: {enemy?.baseHealth}</p>
@@ -97,14 +106,14 @@ export const EnemyDetails = () => {
                                 <span className="d-flex flex-column align-items-center">
                                     <h6 style={{textAlign: "center"}}>Description</h6>
                                     <Card style={{maxWidth: "400px", minWidth: "200px", height: "100px", border: "4px ridge grey"}}>
-                                        <CardBody style={{overflow: "hidden", overflowY: "auto"}}>
+                                        <CardBody style={{overflow: "hidden", overflowY: "auto", textIndent: "20px"}}>
                                         {enemy?.description || "This is an enemy that has not yet been given a description"}
                                         </CardBody>
                                     </Card>
                                 </span>
                                 <span style={{textAlign: "center"}}>
-                                    {loggedInUser?.id == enemy?.userId && <Button color="danger" onClick={handleEnemyDelete}>Delete Enemy</Button>}
-                                    {loggedInUser?.id == enemy?.userId && <Button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</Button>}
+                                    {loggedInUser?.id == enemy?.userId && <button color="danger" onClick={handleEnemyDelete}>Delete Enemy</button>}
+                                    {loggedInUser?.id == enemy?.userId && <button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</button>}
                                 </span>
                                 </Card>
                             </Row>

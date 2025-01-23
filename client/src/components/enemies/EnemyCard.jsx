@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { Button, Card, CardBody, CardImg, CardTitle, Container } from "reactstrap"
+import { Card, CardBody, CardImg, CardTitle, Container } from "reactstrap"
 import { deleteEnemy, getEnemies } from "../../managers/enemyManager"
 import { useContext } from "react"
 import { UserContext } from "../ApplicationViews"
@@ -20,17 +20,20 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
     }
 
     return (
-            <Card className="mx-4 my-4 enemy-card" style={{maxWidth: "200px", maxHeight: "260px"}}>
-                <CardBody onClick={() => navigate(`${id}`)} style={{cursor: "pointer"}} className="d-flex flex-column align-items-center">
+            <Card className="border-test mx-4 my-4 enemy-card" style={{maxWidth: "200px", maxHeight: "260px"}}>
+                <CardBody className="d-flex flex-column align-items-center">
                     <CardTitle tag="h5" style={{textAlign: "center"}}>{enemy.name}</CardTitle>
                     {/* <CardImg src={enemy.imageUrl} /> */}
-                    <Card style={{width: "100px", minHeight: "100px", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundImage: `url(${enemy.imageUrl})`}} />
-                    <p style={{margin: 0}}>Level {enemy?.minLevel} - {enemy?.maxLevel}</p>
+                    <Card onClick={() => navigate(`${id}`)} style={{border: "4px ridge grey", cursor: "pointer", width: "100px", minHeight: "100px", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundImage: `url(${enemy.imageUrl})`}} />
+                    <span className="d-flex flex-column align-items-center">
+                        <h6 style={{marginBottom: 0, marginRight: "6px", marginTop: "0.5rem"}}>Level</h6>
+                        <p style={{margin: 0, color: "gold"}}>{enemy?.minLevel} - {enemy?.maxLevel}</p>
+                    </span>
+                    <span className="d-flex justify-content-evenly my-1">
+                        {(loggedInUser?.id == enemy?.userId || loggedInUser.roles.includes("Admin")) && <button color="danger" style={{width: "90px", fontSize: "12px"}} onClick={handleEnemyDelete}>Delete</button>}
+                        {(loggedInUser?.id == enemy?.userId || loggedInUser.roles.includes("Admin")) && <button color="warning" style={{width: "90px", fontSize: "12px"}} onClick={() => navigate(`edit/${id}`)}>Edit</button>}
+                    </span>
                 </CardBody>
-                <div className="d-flex justify-content-evenly my-1">
-                {loggedInUser?.id == enemy?.userId && <Button color="danger" style={{width: "90px", fontSize: "12px"}} onClick={handleEnemyDelete}>Delete</Button>}
-                {loggedInUser?.id == enemy?.userId && <Button color="warning" style={{width: "90px", fontSize: "12px"}} onClick={() => navigate(`edit/${id}`)}>Edit</Button>}
-                </div>
             </Card>
     )
 }

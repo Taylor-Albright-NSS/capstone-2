@@ -24,11 +24,16 @@ code {
     monospace;
 }
 
-.card, p, a, li, h1, h2, h3, h4, h5, h6, ul, li, div.card-body,
-label {
-  font-weight: 1000;
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold !important;
   font-family: 'Cinzel';
   color: gold !important;
+}
+
+.card, p, a, li, ul, li
+{
+  font-family: 'Cinzel';
+  color: white;
 }
 /* .div.card-body {
   background-image: url("/assets/images/background/element background/item container background 1.png");
@@ -38,10 +43,6 @@ label {
   color: gold;
 }
 
-.welcome {
-  backdrop-filter: blur(10px);
-  background-color: rgba(0, 0, 0, 0.3) !important;
-}
 
 
 form {
@@ -59,6 +60,34 @@ form {
   background-size: cover;
 }
 
+.main-border {
+  background-image: url("/assets/images/border/border main.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.welcome {
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  position: relative;
+}
+
+/* .welcome::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  border-image-source: url('/public/assets/images/border/border main.png');
+  border-image-slice: 50%; 
+  border-image-width: 50%;
+  border-image-outset: 50px; 
+  border-image-repeat: stretch; 
+  border-style: solid;
+  pointer-events: none;
+  z-index: 1;
+} */
+
 fieldset {
   border: 8px ridge grey !important;
 }
@@ -72,9 +101,12 @@ div.card {
   border-radius: 0px;
 }
 
-label.form-check-label,
-label.form-label,
+
 legend {
+  color: gold;
+  font-weight: 900;
+}
+label {
   color: gold;
 }
 
@@ -109,22 +141,52 @@ span {
   color: white;
 }
 
-button.btn, button.btn.btn-danger, button.btn.btn-primary, button.btn.btn-warning {
+button {
   color: rgb(255, 255, 255) !important;
-  background-image: url("/assets/images/background/button background/button background.png") !important;
-  font-family: "Cinzel";
-  --bs-btn-border-color: none !important;
-  border: 2px ridge grey;
-  border-radius: 0px !important;
+  background-image: url("/assets/images/background/button bg 4.jpg") !important;
+  font-family: "Cinzel" !important;
+  background-size: cover;
+  border: 3px ridge rgb(104, 104, 104);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:active {
+  border: 3px ridge rgb(71, 71, 71);
 }
 
 
 
-img {
+/* img {
   border: 6px ridge grey;
-}
+} */
 
 #damage-log {
   border: 4px ridge grey;
   background-color: rgb(38, 38, 38);
+}
+
+div.invalid-feedback {
+  font-weight: 900;
+  font-size: 20px
+}
+
+h5.card-title {
+  height: 50px;
+  margin: 0;
+}
+
+.p-combat {
+  margin: 0 !important;
+}
+
+.red {
+  color: red !important;
+}
+
+.light-blue {
+  color: lightBlue;
+}
+
+.yellow {
+  color: yellow;
 }

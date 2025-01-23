@@ -6,6 +6,7 @@ using Capstone_2.Models.DTO;
 using Capstone2.Data;
 using Capstone_2.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Capstone_2.Controllers;
 
@@ -160,13 +161,14 @@ public class EnemyController : ControllerBase
     }
     //--------
 	[HttpDelete("{enemyId}")]
+    [Authorize(Roles = "Admin")]
     public IActionResult DeleteEnemy(int enemyId, int userId)
     {
         var enemy = _dbContext.Enemies.FirstOrDefault(e => e.Id == enemyId);
-        if (enemy.UserId != userId)
-        {
-            return NotFound( new {Message = "You are not authorized to perform this action"});
-        }
+        // if (enemy.UserId != userId)
+        // {
+        //     return NotFound( new {Message = "You are not authorized to perform this action"});
+        // }
         if (enemy == null)
         {
             return NotFound("Enemy with that id not found");
@@ -185,6 +187,7 @@ public class EnemyController : ControllerBase
     }
 
     [HttpPut("{id}/{userId}")]
+    [Authorize(Roles = "Admin")]
     public IActionResult Put(int id, int userId, EnemyDTO enemyDTO)
     {
         Enemy enemy = _dbContext.Enemies.FirstOrDefault(e => e.Id == id);
@@ -194,10 +197,10 @@ public class EnemyController : ControllerBase
             return NotFound();
         }
         
-        if (enemy.UserId != userId)
-        {
-            return NotFound(new {Message = "Unauthorized operation: You are not authorized to make changes to this enemy"});
-        }
+        // if (enemy.UserId != userId)
+        // {
+        //     return NotFound(new {Message = "Unauthorized operation: You are not authorized to make changes to this enemy"});
+        // }
 
 
         _mapper.Map(enemyDTO, enemy);

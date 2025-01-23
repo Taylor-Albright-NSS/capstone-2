@@ -11,6 +11,7 @@ import { EnemyDetails } from "./enemies/EnemyDetails";
 import { CreateEnemy } from "./enemies/CreateEnemy";
 import { EnemyEdit } from "./enemies/EnemyEdit";
 import { MyProfile } from "./myProfile/MyProfile";
+import { Admin } from "./admin/Admin";
 export const UserContext = createContext();
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
@@ -53,6 +54,11 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             <Route path="myprofile" element={
               <AuthorizedRoute loggedInUser={loggedInUser}>
                 <MyProfile />
+              </AuthorizedRoute>
+            } />
+            <Route path="admin" element={
+              <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
+                <Admin />
               </AuthorizedRoute>
             } />
           <Route path="login" element={<Login setLoggedInUser={setLoggedInUser} />} />

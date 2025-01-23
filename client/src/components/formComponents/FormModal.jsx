@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter, Button, Card, Input } from "reactstrap"
+import { FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter, Card, Input } from "reactstrap"
 
 
 export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImages, images, handleTextInput }) => {
@@ -42,7 +42,7 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
                     </ModalBody>
 
                     <ModalFooter className="d-flex justify-content-center">
-                        <Button 
+                        <button 
                             color="danger" 
                             onClick={() => {
                                 toggleModal()
@@ -50,15 +50,15 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
                                 setSelectedImage(enemy.imageUrl)
                                 }
                             }
-                            >Cancel</Button>
+                            >Cancel</button>
 
-                        <Button 
+                        <button 
                             color="primary" 
                             onClick={() => {
                                 toggleModal()
                                 setEnemy(prev => ({...prev, imageUrl: selectedImage}))
                                 }}
-                            >Confirm</Button>
+                            >Confirm</button>
                     </ModalFooter>
                 </Modal>
                     <Card

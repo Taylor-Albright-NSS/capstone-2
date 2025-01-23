@@ -1,4 +1,4 @@
-import { Button, Form, FormGroup, Input, Label, Row, Col, ModalHeader, ModalBody, ModalFooter, Card, Container } from "reactstrap";
+import { Form, FormGroup, Input, Label, Row, Col, ModalHeader, ModalBody, ModalFooter, Card, Container } from "reactstrap";
 import { FormModal } from "../formComponents/FormModal";
 import { Fieldset1 } from "../formComponents/Fieldset1";
 import { Fieldset2 } from "../formComponents/Fieldset2";
@@ -56,11 +56,14 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
                     </Col>
                     <Row className="justify-content-center">
                         {isCreateButton ? 
-                        <Button style={{maxWidth: "400px"}}>Create Enemy</Button>
+                        <button style={{maxWidth: "400px"}}>Create Enemy</button>
                         :
                         <>
-                        <Button style={{maxWidth: "200px"}}>Confirm Edits</Button>
-                        <Button style={{maxWidth: "200px"}} onClick={() => navigate("/enemy-list")}>Back</Button>
+                        <button style={{maxWidth: "200px"}}>Confirm Edits</button>
+                        <button style={{maxWidth: "200px"}} onClick={(e) => {
+                            e.preventDefault()
+                            navigate("/enemy-list")
+                            }}>Back</button>
                         </>
                     }
                     </Row>

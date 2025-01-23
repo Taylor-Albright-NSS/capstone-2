@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter, Button, Card, Input, Form, Container } from "reactstrap"
+import { FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter, Card, Input, Form, Container } from "reactstrap"
 import { UserContext } from "../ApplicationViews";
 import { postCharacter } from "../../managers/characterManager";
 import { getCharacters } from "../../managers/characterManager";
@@ -110,25 +110,25 @@ export const CreateCharacterModal = ({setCharacters }) => {
                     </ModalBody>
 
                     <ModalFooter className="d-flex justify-content-center">
-                        <Button 
+                        <button 
                             color="danger" 
                             onClick={() => {
                                 toggleModal()
                                 setCharacter(characterTemplate)
                                 }
                             }
-                            >Cancel</Button>
+                            >Cancel</button>
 
-                        <Button 
+                        <button 
                             color="primary" 
                             onClick={() => {
                                 toggleModal()
                                 handlePostNewCharacter()
                                 }}
-                            >Confirm</Button>
+                            >Confirm</button>
                     </ModalFooter>
                 </Modal>
-                    <Button
+                    <button
                         onClick={() => {
                             toggleModal()
                             setCharacter(characterTemplate)
@@ -143,7 +143,7 @@ export const CreateCharacterModal = ({setCharacters }) => {
                             cursor: "pointer",
                         }}
                         >Create New Character
-                    </Button>
+                    </button>
             </Container>
 
     )
