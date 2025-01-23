@@ -29,10 +29,10 @@ export const EnemyDetails = () => {
     
     
     return (
-        <Container style={{border: "6px ridge grey"}}>
+        <Container>
             <Row>
                 {/* Left side column */}
-                <Col className="granite-background" style={{maxWidth: "500px"}}>
+                <Col className="granite-background" style={{maxWidth: "500px", border: "6px ridge grey"}}>
                     <Row className="d-flex justify-content-center">
                     <Button style={{width: "150px"}} color="primary" onClick={() => navigate("/enemy-list")}>Go Back</Button>
                         <div className="d-flex flex-column align-items-center" style={{ maxWidth: "400px" }} >
@@ -115,7 +115,7 @@ export const EnemyDetails = () => {
                 </Col>
 
                 {/* Right side column */}
-                <Col className="d-flex justify-content-center align-items-center" style={{border: "2px solid black"}}>
+                <Col className="granite-background d-flex justify-content-center align-items-center" style={{backdropFilter: "blur(10px)", marginLeft: "1rem", border: "6px ridge grey"}}>
                     <Simulator />
                 </Col>
             </Row>

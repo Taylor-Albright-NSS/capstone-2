@@ -26,7 +26,7 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
 
     return (
         <Container className="d-flex justify-content-center">
-            <Form className="my-4 mx-4 col-11" onSubmit={handleSubmit} style={{backgroundColor: "white", border: "8px solid black"}}>
+            <Form className="my-4 mx-4 col-11" onSubmit={handleSubmit} style={{backdropFilter: "blur(10px)", border: "8px solid black"}}>
                 <Row className="justify-content-center mx-4">
                     <Col md="9">
                         {/*ROW 1*/}

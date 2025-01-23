@@ -30,6 +30,9 @@ label {
   font-family: 'Cinzel';
   color: gold !important;
 }
+/* .div.card-body {
+  background-image: url("/assets/images/background/element background/item container background 1.png");
+} */
 
 .gold {
   color: gold;
@@ -53,6 +56,11 @@ form {
 
 .granite-background {
   background-image: url("/assets/images/background/button background/button background.png");
+}
+.wood-background {
+  background-image: url("/assets/images/background/element background/item container background 1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 fieldset {
@@ -78,8 +86,11 @@ legend {
   color: red;
   font-weight: bolder !important;
   border: 2px solid white;
-  border-radius: 10px;
-  background-image: url("public/assets/images/background/element background/bg 3.jpg");
+  background-image: url("/assets/images/background/element background/item container background 1.png");
+  background-size: cover;
+}
+.enemy-list-background {
+  background-image: url("/assets/images/background/element background/button background.png");
 }
 /* .card.enemy-card::before {
   content: '';
@@ -113,4 +124,9 @@ button.btn-danger {
 
 img {
   border: 6px ridge grey;
+}
+
+#damage-log {
+  border: 4px ridge grey;
+  background-color: rgb(38, 38, 38);
 }

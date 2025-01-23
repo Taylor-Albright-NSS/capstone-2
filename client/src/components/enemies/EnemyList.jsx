@@ -38,7 +38,7 @@ export const EnemyList = () => {
     }
 
     return (
-        <Container className="d-flex flex-column align-content-center" style={{height: "780px", border: "6px ridge grey"}}>
+        <Container className="enemy-list-background d-flex flex-column align-content-center" style={{height: "780px", border: "6px ridge grey"}}>
             <Row>
                 <Col className="bg-black d-flex justify-content-start">
                         <span className="d-flex align-items-center justify-content-between" style={{width: "56%"}}>
@@ -51,7 +51,7 @@ export const EnemyList = () => {
 
                 </Col>
             </Row>
-            <Row className="" style={{height: "90%", overflow: "hidden", overflowY: "auto", backdropFilter: "blur(15px)", border: "4px ridge black"}}>
+            <Row className="enemy-list-background" style={{height: "100%", overflow: "hidden", overflowY: "auto", border: "4px ridge black"}}>
                 {filteredEnemies.map(enemy => {
                     return(
                         <EnemyCard key={enemy.id} enemy={enemy} setEnemies={setEnemies} />

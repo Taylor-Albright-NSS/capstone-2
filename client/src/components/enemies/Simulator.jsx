@@ -172,9 +172,9 @@ export const Simulator = () => {
         {/* <App /> */}
         {!selectedCharacter?.id ? <p className="slide slide-right">Select a character from your profile to use the simulator</p> :
         <>
-        <button className="toggle-btn" onClick={toggleSlide}>→</button>
-        <Container style={{height: "800px"}} className="slide slide-right">
-            <div id="test" className="slide-content">Simulator</div>
+        {/* <button className="toggle-btn" onClick={toggleSlide}>→</button> */}
+        <Container>
+            {/* <div id="test" className="slide-content">Simulator</div> */}
             <Row>
             {/* <div className="container">
                     <div className="main-element">
@@ -186,60 +186,60 @@ export const Simulator = () => {
                     </div> */}
                 <Col>
                     <Row className="my-4">
-                        <Col>
+                        <Col style={{border: "6px ridge grey"}}>
                             <Card>
-
                                 <CardBody>
                                     <span className="d-flex justify-content-start">
                                     <CardText style={{marginRight: "10px"}}>Level: {actualLevel}</CardText>
                                     <Button onClick={incrementLevel} style={{maxHeight: "30px", maxWidth: "30px", display: "flex", alignItems: "center", justifyContent: "center"}}>-</Button>
                                     <Button onClick={decrementLevel} style={{maxHeight: "30px", maxWidth: "30px", display: "flex", alignItems: "center", justifyContent: "center"}}>+</Button>
                                     </span>
-                                    <CardText>Damage Range: {botDamage} - {topDamage}</CardText>
+                                    <CardText style={{margin: 0}}>Damage Range: {botDamage} - {topDamage}</CardText>
                                     {/* <CardText>Gold Range: {enemy?.minGold} - {enemy?.maxGold}</CardText> */}
-                                    <CardText>Experience: {experience}</CardText>
-                                    <CardText>----</CardText>
-                                    <CardText>Health: {health}</CardText>
-                                    <CardText>Dodge: {dodgeRating}</CardText>
-                                    <CardText>Accuracy: {accuracyRating}</CardText>
-                                    <h6>Damage Type(s)</h6>
-                                    {enemy?.slashingDamage && <CardText>Slashing</CardText>}
-                                    {enemy?.piercingDamage && <CardText>Piercing</CardText>}
-                                    {enemy?.bluntDamage && <CardText>Blunt</CardText>}
-                                    <div className="d-flex justify-content-around">
-                                        <span className="d-flex flex-row justify-content-end align-content-end align-items-end">
-                                            <CardText>Slashing Armor: {slashingArmor}</CardText>
-                                            <CardText>Piercing Armor: {piercingArmor}</CardText>
-                                            <CardText>Blunt Armor: {bluntArmor}</CardText>
+                                    <CardText style={{margin: 0}}>Experience: {experience}</CardText>
+                                    <CardText style={{margin: 0}}>Health: {health}</CardText>
+                                    <CardText style={{margin: 0}}>Dodge: {dodgeRating}</CardText>
+                                    <CardText style={{margin: 0}}>Accuracy: {accuracyRating}</CardText>
+                                    <div className="">
+                                        <span className="d-flex flex-column align-items-start">
+                                            <CardText style={{margin: 0}}>Slashing Armor: {slashingArmor}</CardText>
+                                            <CardText style={{margin: 0}}>Piercing Armor: {piercingArmor}</CardText>
+                                            <CardText style={{margin: 0}}>Blunt Armor: {bluntArmor}</CardText>
                                         </span>
-                                        <span className="d-flex flex-column justify-content-end align-content-end align-items-end">
-                                            <CardText>Fire Resist: {fireResist}</CardText>
-                                            <CardText>Ice Resist: {iceResist}</CardText>
-                                            <CardText>Lightning Resist: {lightningResist}</CardText>
-                                        </span>
+                                        {/* <span className="d-flex flex-column align-items-start">
+                                            <CardText style={{margin: 0}}>Fire Resist: {fireResist}</CardText>
+                                            <CardText style={{margin: 0}}>Ice Resist: {iceResist}</CardText>
+                                            <CardText style={{margin: 0}}>Lightning Resist: {lightningResist}</CardText>
+                                        </span> */}
                                     </div>
                                     
+                                    <span id="enemy-damage-types" className="d-flex flex-column align-items-center">
+                                    <h6 style={{textAlign: "center", marginTop: "1rem"}}>Damage Type(s)</h6>
+                                        {enemy?.slashingDamage && <CardText style={{margin: 0}}>Slashing</CardText>}
+                                        {enemy?.piercingDamage && <CardText style={{margin: 0}}>Piercing</CardText>}
+                                        {enemy?.bluntDamage && <CardText style={{margin: 0}}>Blunt</CardText>}
+                                    </span>
                                 </CardBody>
                             </Card>
                         </Col>
-                        <Col>
+                        <Col style={{border: "6px ridge grey"}}>
                             <Card style={{height: "100%"}}>
                                 <CardTitle style={{alignSelf: "center"}}>Player</CardTitle>
                                 <CardBody>
-                                    <Button onClick={() => {
+                                    {/* <Button onClick={() => {
                                         console.log(selectedCharacter, ' selected char')
                                         console.log(player, ' player')
                                         console.log(simPlayer, ' simplayer')
-                                    }}>Test</Button>
-                                    <CardText>Health: {player?.health}</CardText>
-                                    <CardText>Attack Power: {player?.attackPower}</CardText>
+                                    }}>Test</Button> */}
+                                    <CardText style={{margin: 0}}>Health: {player?.health}</CardText>
+                                    <CardText style={{margin: 0}}>Attack Power: {player?.attackPower}</CardText>
                                     {/* <CardText>Gold Range: {enemy?.minGold} - {enemy?.maxGold}</CardText> */}
-                                    <CardText>Slashing Armor: {player?.slashingArmor}</CardText>
-                                    <CardText>Piercing Armor: {player?.piercingArmor}</CardText>
-                                    <CardText>Blunt Armor: {player?.bluntArmor}</CardText>
-                                    <CardText>Slashing Penetration: {player?.slashingPenetration}</CardText>
-                                    <CardText>Piercing Penetration: {player?.piercingPenetration}</CardText>
-                                    <CardText>Blunt Penetration: {player?.bluntPenetration}</CardText>
+                                    <CardText style={{margin: 0}}>Slashing Penetration: {player?.slashingPenetration}</CardText>
+                                    <CardText style={{margin: 0}}>Piercing Penetration: {player?.piercingPenetration}</CardText>
+                                    <CardText style={{margin: 0}}>Blunt Penetration: {player?.bluntPenetration}</CardText>
+                                    <CardText style={{margin: 0}}>Slashing Armor: {player?.slashingArmor}</CardText>
+                                    <CardText style={{margin: 0}}>Piercing Armor: {player?.piercingArmor}</CardText>
+                                    <CardText style={{margin: 0}}>Blunt Armor: {player?.bluntArmor}</CardText>
                                 </CardBody>
                             </Card>
                         </Col>

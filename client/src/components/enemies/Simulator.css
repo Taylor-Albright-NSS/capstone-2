@@ -10,7 +10,7 @@
 }
 
 .slide-content { 
-    position: absolute;
+    /* position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -24,6 +24,6 @@
     text-align: center;
     background-color: rgb(191, 154, 154);
     color: white;
-    transition: transform .5s ease;
+    transition: transform .5s ease; */
 }
 
