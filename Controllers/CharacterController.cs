@@ -43,7 +43,7 @@ public class CharacterController : ControllerBase
         Character character = _mapper.Map<Character>(characterDTO);
         _dbContext.Characters.Add(character);
         _dbContext.SaveChanges();
-        return Ok(new {message = "Character created successfully"});
+        return Ok(new {Message = "Character created successfully"});
     }
 
     [HttpDelete("{id}")]
@@ -53,16 +53,16 @@ public class CharacterController : ControllerBase
 
         if (enemyToDelete == null)
         {
-            return NotFound(new {message = "Could not find character to delete"});
+            return NotFound(new {Message = "Could not find character to delete"});
         }
 
         if (enemyToDelete.UserId != userId)
         {
-            return NotFound(new {message = "Unauthorized operation: You cannot delete another user's character"});
+            return NotFound(new {Message = "Unauthorized operation: You cannot delete another user's character"});
         }
 
         _dbContext.Characters.Remove(enemyToDelete);
         _dbContext.SaveChanges();
-        return Ok(new { message = "Character deleted successfully"});
+        return Ok(new { Message = "Character deleted successfully"});
     }
 }

@@ -212,9 +212,6 @@ namespace Capstone_2.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccuracyRating")
-                        .HasColumnType("integer");
-
                     b.Property<int>("AttackPower")
                         .HasColumnType("integer");
 
@@ -233,9 +230,6 @@ namespace Capstone_2.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<int>("DodgeRating")
-                        .HasColumnType("integer");
 
                     b.Property<int>("FireResist")
                         .HasColumnType("integer");
@@ -297,14 +291,12 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 1,
-                            AccuracyRating = 0,
                             AttackPower = 5,
                             BaseExperience = 10,
                             BaseHealth = 10,
                             BluntArmor = 0,
                             BluntDamage = false,
                             Description = "",
-                            DodgeRating = 0,
                             FireResist = 0,
                             IceResist = 0,
                             ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2Fno%20image%20default.avif?alt=media&token=0aa5fa20-7104-4ac6-8845-92767fe685f2",
@@ -324,14 +316,12 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 2,
-                            AccuracyRating = 0,
                             AttackPower = 5,
                             BaseExperience = 10,
                             BaseHealth = 10,
                             BluntArmor = 0,
                             BluntDamage = false,
                             Description = "",
-                            DodgeRating = 0,
                             FireResist = 0,
                             IceResist = 0,
                             ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
@@ -351,14 +341,12 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 3,
-                            AccuracyRating = 0,
                             AttackPower = 5,
                             BaseExperience = 10,
                             BaseHealth = 10,
                             BluntArmor = 0,
                             BluntDamage = false,
                             Description = "",
-                            DodgeRating = 0,
                             FireResist = 0,
                             IceResist = 0,
                             ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
@@ -378,14 +366,12 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 4,
-                            AccuracyRating = 0,
                             AttackPower = 5,
                             BaseExperience = 10,
                             BaseHealth = 10,
                             BluntArmor = 0,
                             BluntDamage = false,
                             Description = "",
-                            DodgeRating = 0,
                             FireResist = 0,
                             IceResist = 0,
                             ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
@@ -405,14 +391,12 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 5,
-                            AccuracyRating = 0,
                             AttackPower = 5,
                             BaseExperience = 10,
                             BaseHealth = 10,
                             BluntArmor = 0,
                             BluntDamage = false,
                             Description = "",
-                            DodgeRating = 0,
                             FireResist = 0,
                             IceResist = 0,
                             ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
@@ -432,14 +416,12 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 6,
-                            AccuracyRating = 0,
                             AttackPower = 5,
                             BaseExperience = 10,
                             BaseHealth = 10,
                             BluntArmor = 0,
                             BluntDamage = false,
                             Description = "",
-                            DodgeRating = 0,
                             FireResist = 0,
                             IceResist = 0,
                             ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
@@ -459,14 +441,12 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 7,
-                            AccuracyRating = 0,
                             AttackPower = 5,
                             BaseExperience = 10,
                             BaseHealth = 10,
                             BluntArmor = 0,
                             BluntDamage = false,
                             Description = "",
-                            DodgeRating = 0,
                             FireResist = 0,
                             IceResist = 0,
                             ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
@@ -486,14 +466,12 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 8,
-                            AccuracyRating = 0,
                             AttackPower = 5,
                             BaseExperience = 10,
                             BaseHealth = 10,
                             BluntArmor = 0,
                             BluntDamage = false,
                             Description = "",
-                            DodgeRating = 0,
                             FireResist = 0,
                             IceResist = 0,
                             ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
@@ -513,14 +491,12 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 9,
-                            AccuracyRating = 0,
                             AttackPower = 5,
                             BaseExperience = 10,
                             BaseHealth = 10,
                             BluntArmor = 0,
                             BluntDamage = false,
                             Description = "",
-                            DodgeRating = 0,
                             FireResist = 0,
                             IceResist = 0,
                             ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
@@ -540,14 +516,12 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 10,
-                            AccuracyRating = 0,
                             AttackPower = 5,
                             BaseExperience = 10,
                             BaseHealth = 10,
                             BluntArmor = 0,
                             BluntDamage = false,
                             Description = "",
-                            DodgeRating = 0,
                             FireResist = 0,
                             IceResist = 0,
                             ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
@@ -567,14 +541,12 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 11,
-                            AccuracyRating = 0,
                             AttackPower = 5,
                             BaseExperience = 10,
                             BaseHealth = 10,
                             BluntArmor = 0,
                             BluntDamage = false,
                             Description = "",
-                            DodgeRating = 0,
                             FireResist = 0,
                             IceResist = 0,
                             ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
@@ -594,14 +566,12 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 12,
-                            AccuracyRating = 0,
                             AttackPower = 5,
                             BaseExperience = 10,
                             BaseHealth = 10,
                             BluntArmor = 0,
                             BluntDamage = false,
                             Description = "",
-                            DodgeRating = 0,
                             FireResist = 0,
                             IceResist = 0,
                             ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
@@ -930,13 +900,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f85defe7-198a-49fb-b672-4a10a9960b11",
+                            ConcurrencyStamp = "2caf7d02-d78b-4f9b-89b7-be1419c974d3",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEEwiG7yqSplKXoUxNyNi30Db2MzLt0XNp+PSOtFkNJ4xqUy6cir+EXqOmztngan9bg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFaLxScK7LMIRL2GcNrdQgpqVNOoOQJWTvx79jLlbrk7fKXssGJD/no/OYBTN64h7g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e5febfe6-2492-4f4b-9ace-1664de2e0487",
+                            SecurityStamp = "b0858785-47e1-4353-b7c1-f04d7a440065",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -944,13 +914,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d8d76512-74f1-43bb-b1fd-87d3a8aa36df",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "adccadc9-4aef-47c4-b477-7059a9a20a64",
+                            ConcurrencyStamp = "7f7e8d06-7fc3-4c4e-8178-172c8a86dc0a",
                             Email = "john@doe.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEP1HUHU3VcabVDKQrBSLZRsx+yL59Iw2k+43lM5x8FHSLYr6kFSq2kkifTYBQTf5sw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEVzIOTPt+5MU9SeE/cIBfPYFvQHCASxV4rTWWpDv3oTvxg7tSqrdZ6T+wXiu6/ydw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8098568c-ec6b-4b1a-9df6-77fd5fdd8262",
+                            SecurityStamp = "6015536e-d9c0-4363-87c4-5bb3b869aa16",
                             TwoFactorEnabled = false,
                             UserName = "JohnDoe"
                         },
@@ -958,13 +928,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "a7d21fac-3b21-454a-a747-075f072d0cf3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "53d51b42-ea9e-4e37-9f22-9261ad259ce7",
+                            ConcurrencyStamp = "1665fe77-600b-4e5d-a1ed-90e6090da51d",
                             Email = "jane@smith.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAELYCCiRcQdzQCMUTM6Ck93GjNGaYF7McUk7QOyhsnv6WdY37F+92jTSnQKHt2dkrGA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEoVmmzwOcJBOzLF8HvI2Gsi4KMtmKCoGDG6BJMfoXnCFPpzXF0tlmVbnNsVdSa2FA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c0341084-b6d5-4004-a4e5-fb101890db07",
+                            SecurityStamp = "d8d31796-2ba1-43a1-b184-f0ca1d8e43da",
                             TwoFactorEnabled = false,
                             UserName = "JaneSmith"
                         },
@@ -972,13 +942,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "c806cfae-bda9-47c5-8473-dd52fd056a9b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "735a3f09-ea44-4e14-bf94-691622d1a2d7",
+                            ConcurrencyStamp = "d6ecff9f-2e23-44ab-87de-52bcfd5a0c34",
                             Email = "alice@johnson.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAELPbbDfzG0dwYLBNPvmt2CwFwcIVoZ9ThRch4+R1aRg1f5FKRoF/NRwwJnRg8Z2Ncw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGzjiEpBv2M6UUtR8yFeALTG49sXN+5HqNUwFro62+tRW9mwt+HJx8bqgv3zPGmpGA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "57435704-527c-45bc-8389-bb3e2421807e",
+                            SecurityStamp = "11ac42c7-aea2-4320-84f4-0e3dad197da5",
                             TwoFactorEnabled = false,
                             UserName = "AliceJohnson"
                         },
@@ -986,13 +956,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "9ce89d88-75da-4a80-9b0d-3fe58582b8e2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0339ecc5-19a6-4d2d-9bce-f799e601dba4",
+                            ConcurrencyStamp = "ce2ec5b0-3196-418b-93f1-5d001075411b",
                             Email = "bob@williams.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEFH1RpSLFPc+jHCRUAVUjPjqXzxVbIZeefPYd07N5cWCTC1twGqfz+ECh8IgW3VQbw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBuxM6qxXVee9fMFyUKh/6Nxb7VpkifdxEj7SIi8RReBIkmblCtBZRgb0sibRmEgzA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3bb6c14b-2831-4d7c-8388-988555d63dd9",
+                            SecurityStamp = "225ed41a-79f4-406a-88b2-8471334f1fc2",
                             TwoFactorEnabled = false,
                             UserName = "BobWilliams"
                         },
@@ -1000,13 +970,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d224a03d-bf0c-4a05-b728-e3521e45d74d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "85f28cd5-70f5-4226-a886-922b99f0c9ae",
+                            ConcurrencyStamp = "0f7414ab-98a5-4dcd-a4f9-bd057094396f",
                             Email = "Eve@Davis.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAECNtj9ibRogDavSI91RBUF3z3KJdikvthiMmnqiUJwayyvAvYvHR3hmiRca6lvvT3g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPdPQpcDh6ykkgy0wLf5vrXd2fgqVHq8vQVJaGHJDMofrI/fJX5gauWm2/9bM8LY9Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "36277cd1-245d-40c0-91e2-a776604ac789",
+                            SecurityStamp = "89e747f8-8f2b-4cff-8517-9dbda7d58dce",
                             TwoFactorEnabled = false,
                             UserName = "EveDavis"
                         });

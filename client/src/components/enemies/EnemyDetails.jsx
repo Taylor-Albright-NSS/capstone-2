@@ -53,7 +53,6 @@ export const EnemyDetails = () => {
                                     <Card style={{border: "4px ridge grey", height: "100%"}}>
                                         <h5 style={{textAlign: "center"}}>Offense</h5>
                                         <p>Attack Power: {enemy?.attackPower}</p>
-                                        <p>Accuracy: {enemy?.accuracyRating}</p>
                                         <h6 className="my-2 fw-bold">Damage Types</h6>
                                         {enemy?.slashingDamage && <p style={{marginBottom: 0}}>Slashing</p>}
                                         {enemy?.piercingDamage && <p style={{marginBottom: 0}}>Piercing</p>}
@@ -68,7 +67,6 @@ export const EnemyDetails = () => {
                                         <p style={{marginBottom: 0}}>Slashing Armor: {enemy?.slashingArmor}</p>
                                         <p style={{marginBottom: 0}}>Piercing Armor: {enemy?.piercingArmor}</p>
                                         <p style={{marginBottom: 0}}>Blunt Armor: {enemy?.bluntArmor}</p>
-                                        <p style={{marginBottom: 0}}>Dodge: {enemy?.dodgeRating}</p>
                                     </Card>
                                     <Card style={{border: "4px ridge grey"}}>
                                         <h5 style={{textAlign: "center"}}>Magic Resist</h5>
@@ -115,7 +113,7 @@ export const EnemyDetails = () => {
                 </Col>
 
                 {/* Right side column */}
-                <Col className="granite-background d-flex justify-content-center align-items-center" style={{backdropFilter: "blur(10px)", marginLeft: "1rem", border: "6px ridge grey"}}>
+                <Col className="granite-background d-flex justify-content-center" style={{backdropFilter: "blur(10px)", marginLeft: "1rem", border: "6px ridge grey"}}>
                     <Simulator />
                 </Col>
             </Row>

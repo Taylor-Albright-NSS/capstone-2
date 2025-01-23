@@ -29,6 +29,8 @@ export const postEnemy = async (enemy) => {
         },
         body: JSON.stringify(enemy)
     })
+    const data = await response.json()
+    console.log(data, "data")
 
     if (!response.ok) {
         throw new Error(`Error posting enemy. Status: ${response.status}`)
@@ -36,7 +38,7 @@ export const postEnemy = async (enemy) => {
         console.log("enemy created")
     }
 
-    return response.json()
+    return data
 }
 
 export const deleteEnemy = async (enemyId, userId) => {

@@ -10,10 +10,6 @@ export const FieldsetDefense = ({ handleNumberInput, enemy }) => {
                 <Label for="baseHealth">Base Health</Label>
                 <Input style={{maxWidth: "76px"}} type="number" name="baseHealth" id="baseHealth" onChange={handleNumberInput} value={enemy.baseHealth} />
             </FormGroup>
-            <FormGroup className="d-flex flex-column align-items-center">
-                <Label for="dodgeRating">Dodge</Label>
-                <Input style={{maxWidth: "76px"}} type="number" name="dodgeRating" id="dodgeRating" onChange={handleNumberInput} value={enemy.dodgeRating} />
-            </FormGroup>
                 </Col>
             </Row>
 

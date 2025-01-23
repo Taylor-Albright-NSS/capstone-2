@@ -19,8 +19,6 @@ public class EnemyDTO
     public bool SlashingDamage { get; set; }
     public bool PiercingDamage { get; set; }
     public bool BluntDamage { get; set; }
-    public int DodgeRating { get; set; }
-    public int AccuracyRating { get; set; }
     public int FireResist { get; set; }
     public int IceResist { get; set; }
     public int LightningResist { get; set; }
@@ -57,8 +55,6 @@ public class EnemyForEditDTO
     public bool SlashingDamage { get; set; }
     public bool PiercingDamage { get; set; }
     public bool BluntDamage { get; set; }
-    public int DodgeRating { get; set; }
-    public int AccuracyRating { get; set; }
     public int FireResist { get; set; }
     public int IceResist { get; set; }
     public int LightningResist { get; set; }

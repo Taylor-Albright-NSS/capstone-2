@@ -37,7 +37,7 @@ public class EnemyController : ControllerBase
 
         if (userEnemies == null || !userEnemies.Any())
         {
-            return NotFound(new {message = "User does not have any enemies created"});
+            return NotFound(new {Message = "User does not have any enemies created"});
         }
 
         return Ok(userEnemies);
@@ -125,6 +125,11 @@ public class EnemyController : ControllerBase
     {
 
         Enemy enemy = _mapper.Map<Enemy>(enemyDTO);
+
+        if (enemy == null)
+        {
+            return NotFound(new {Message = "Unable to create enemy"});
+        }
         _dbContext.Enemies.Add(enemy);
         _dbContext.SaveChanges();
 
@@ -160,7 +165,7 @@ public class EnemyController : ControllerBase
         var enemy = _dbContext.Enemies.FirstOrDefault(e => e.Id == enemyId);
         if (enemy.UserId != userId)
         {
-            return NotFound( new {message = "You are not authorized to perform this action"});
+            return NotFound( new {Message = "You are not authorized to perform this action"});
         }
         if (enemy == null)
         {
@@ -191,12 +196,12 @@ public class EnemyController : ControllerBase
         
         if (enemy.UserId != userId)
         {
-            return NotFound(new {message = "Unauthorized operation: You are not authorized to make changes to this enemy"});
+            return NotFound(new {Message = "Unauthorized operation: You are not authorized to make changes to this enemy"});
         }
 
 
         _mapper.Map(enemyDTO, enemy);
         _dbContext.SaveChanges();
-        return Ok(new { message = "Custom message: Enemy was changed successfully"});
+        return Ok(new { Message = "Custom message: Enemy was changed successfully"});
     }
 }

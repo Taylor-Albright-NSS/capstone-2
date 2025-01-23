@@ -23,8 +23,6 @@ export const EnemyEdit = () => {
         slashingDamage: false,
         piercingDamage: false,
         bluntDamage: false,
-        dodgeRating: 0,
-        accuracyRating: 0,
         fireResist: 0,
         iceResist: 0,
         lightningResist: 0,

@@ -10,11 +10,6 @@ export const FieldsetOffense = ({ handleCheckbox, enemy, handleNumberInput }) =>
                     <Input style={{maxWidth: "76px"}} type="number" name="attackPower" id="attackPower" onChange={handleNumberInput}  value={enemy.attackPower} />
                 </FormGroup>
 
-                <FormGroup className="d-flex flex-column align-items-center">
-                    <Label for="accuracyRating">Accuracy</Label>
-                    <Input style={{maxWidth: "76px"}} type="number" name="accuracyRating" id="accuracyRating" onChange={handleNumberInput}  value={enemy.accuracyRating} />
-                </FormGroup>
-
                 <FormGroup check>
                     <Label check>
                         <Input type="checkbox" name="slashingDamage" onChange={handleCheckbox} checked={enemy.slashingDamage || false}/>

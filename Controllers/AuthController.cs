@@ -99,12 +99,12 @@ public class AuthController : ControllerBase
         var identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         if (identityUserId == null)
         {
-            return NotFound(new {message = "Identity User Id not found"});
+            return NotFound(new {Message = "Identity User Id not found"});
         }
         var profile = _dbContext.UserProfiles.SingleOrDefault(up => up.IdentityUserId == identityUserId);
         if (profile == null)
         {
-            return NotFound(new {message = "Profile not found"});
+            return NotFound(new {Message = "Profile not found"});
         }
         var roles = User.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList();
         if (profile != null)

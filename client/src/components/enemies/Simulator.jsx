@@ -10,13 +10,7 @@ import { useContext } from "react";
 
 export const Simulator = () => {
     const { selectedCharacter } = useContext(UserContext)
-    const simEnemyBase = {
-        baseHealth: 1000,
-        attackPower: 9,
-        slashingArmor: 5,
-        piercingArmor: 10,
-        bluntArmor: 20,
-    }
+
     const [enemy, setEnemy] = useState({})
     const [simEnemy, setSimEnemy] = useState({})
     const [player, setPlayer] = useState({})
@@ -27,7 +21,7 @@ export const Simulator = () => {
         getEnemy(id).then(enemy => {
             enemy.actualLevel = enemy.minLevel
             setEnemy(enemy)
-            setSimEnemy(simEnemyBase)
+            setSimEnemy(enemy)
         })
     }, [id])
 
@@ -51,39 +45,41 @@ export const Simulator = () => {
     const { slashingArmor } = enemy || 0
     const { piercingArmor } = enemy || 0
     const { bluntArmor } = enemy || 0
-    const { fireResist } = enemy || 0
-    const { iceResist } = enemy || 0
-    const { lightningResist } = enemy || 0
-    const dodgeRating = enemy?.dodgeRating + actualLevel || 0
-    const accuracyRating = enemy?.accuracyRating + actualLevel || 0
+    // const { fireResist } = enemy || 0
+    // const { iceResist } = enemy || 0
+    // const { lightningResist } = enemy || 0
     
     //variables to interpolate
-    const botDamage = Math.floor(attackPower * 0.5)
+    const bonusDamageModifier = 1.0 + (simEnemy.actualLevel - simEnemy.minLevel) * 0.1
+    console.log(bonusDamageModifier)
+
+
+    const botDamage = Math.floor(attackPower * 0.5) 
     const topDamage = Math.floor(attackPower * 1.5)
+    const enhancedDamage = botDamage 
+
     const experience = actualLevel == minLevel ? baseExperience : Math.floor((((actualLevel * 0.1) * baseExperience) + baseExperience))
     const health = actualLevel == minLevel ? baseHealth : Math.floor((((actualLevel * 0.1) * baseHealth) + baseHealth))
     
     //randomizer
     const damage = randomNumberRange(botDamage, topDamage)
 
-    //PLAYER DAMAGE CALC
-	// const { attackPower, botMultiplier, topMultiplier } = player[playerWeapon.skillUsed]
-	// const { botDamage, topDamage } = playerWeapon;
-	// const lowDamage = Math.ceil(attackPower * (botMultiplier * botDamage));
-	// const highDamage = Math.ceil(attackPower * (topMultiplier * topDamage));
-	// const attackPower = Math.max(0, randomNumberRange(lowDamage, highDamage))
-	// console.log(lowDamage, 'LOW DAMAGE - RIGHT')
-	// console.log(highDamage, 'HIGH DAMAGE - RIGHT', highDamage / player.currentWeaponSkill.speed, ' HIGH DPS - RIGHT')
-	// console.log(attackPower, 'CHOSEN DAMAGE - RIGHT')
-	// console.log(attackPower / player.currentWeaponSkill.speed, ' DPS - RIGHT')
-	// return attackPower  
-
-    // let armorAfterPen = enemyArmor - player[slashingPiercingOrBlunt] <= 0 ? 0 : enemyArmor - player[slashingPiercingOrBlunt]
-    // const damageAfterMitigation = (damageBeforeMitigation - armorAfterPen) * (1000 / (1000 + armorAfterPen)) <= 0 ? 0 : (damageBeforeMitigation - armorAfterPen) * (1000 / (1000 + armorAfterPen))
-
     const incrementLevel = () => {
         if (enemy.actualLevel + 1 > enemy.maxLevel) {return}
-        setEnemy(prevEnemy => ({...prevEnemy, actualLevel: prevEnemy.actualLevel + 1}))
+        const attackPower = simEnemy.attackPower
+        const bonusDamageModifier = 1.0 + (simEnemy.actualLevel + 1 - simEnemy.minLevel) * 0.1
+        const botDamage = Math.floor((attackPower * 0.5) * bonusDamageModifier)
+        const topDamage = Math.floor((attackPower * 1.5) * bonusDamageModifier)
+
+
+        setEnemy(prevEnemy => (
+            {...prevEnemy, 
+                actualLevel: prevEnemy.actualLevel + 1,
+                botDamage: botDamage,
+                topDamage: topDamage,
+            }
+        ))
+        console.log()
     }
     const decrementLevel = () => {
         if (enemy.actualLevel - 1 < enemy.minLevel) {return}
@@ -92,6 +88,7 @@ export const Simulator = () => {
     const calculateEnemyDamage = (armorType) => {
         const playerArmor = simPlayer[armorType]
         const damageObject = {}
+        const bonusDamageModifier = 1.0 + (simEnemy.actualLevel + 1 - simEnemy.minLevel) * 0.1
         damageObject.lowDamage = Math.ceil(simEnemy.attackPower * 0.5)
         damageObject.topDamage = Math.ceil(simEnemy.attackPower * 1.5)
         damageObject.rawDamage = randomNumberRange(damageObject.lowDamage, damageObject.topDamage)
@@ -171,19 +168,10 @@ export const Simulator = () => {
         <>
         {/* <App /> */}
         {!selectedCharacter?.id ? <p className="slide slide-right">Select a character from your profile to use the simulator</p> :
-        <>
-        {/* <button className="toggle-btn" onClick={toggleSlide}>→</button> */}
         <Container>
-            {/* <div id="test" className="slide-content">Simulator</div> */}
+        <h1 style={{textAlign: "center"}}>Combat Simulator</h1>
+        <Container>
             <Row>
-            {/* <div className="container">
-                    <div className="main-element">
-                    </div>
-                    
-                    <div className="sliding-element">
-                    This is the sliding element
-                    </div>
-                    </div> */}
                 <Col>
                     <Row className="my-4">
                         <Col style={{border: "6px ridge grey"}}>
@@ -191,15 +179,14 @@ export const Simulator = () => {
                                 <CardBody>
                                     <span className="d-flex justify-content-start">
                                     <CardText style={{marginRight: "10px"}}>Level: {actualLevel}</CardText>
-                                    <Button onClick={incrementLevel} style={{maxHeight: "30px", maxWidth: "30px", display: "flex", alignItems: "center", justifyContent: "center"}}>-</Button>
-                                    <Button onClick={decrementLevel} style={{maxHeight: "30px", maxWidth: "30px", display: "flex", alignItems: "center", justifyContent: "center"}}>+</Button>
+                                    <Button onClick={decrementLevel} style={{maxHeight: "30px", maxWidth: "30px", display: "flex", alignItems: "center", justifyContent: "center"}}>-</Button>
+                                    <Button onClick={incrementLevel} style={{maxHeight: "30px", maxWidth: "30px", display: "flex", alignItems: "center", justifyContent: "center"}}>+</Button>
                                     </span>
+                                    <CardText style={{margin: 0}}>Attack Power: {simEnemy?.attackPower}</CardText>
                                     <CardText style={{margin: 0}}>Damage Range: {botDamage} - {topDamage}</CardText>
                                     {/* <CardText>Gold Range: {enemy?.minGold} - {enemy?.maxGold}</CardText> */}
                                     <CardText style={{margin: 0}}>Experience: {experience}</CardText>
                                     <CardText style={{margin: 0}}>Health: {health}</CardText>
-                                    <CardText style={{margin: 0}}>Dodge: {dodgeRating}</CardText>
-                                    <CardText style={{margin: 0}}>Accuracy: {accuracyRating}</CardText>
                                     <div className="">
                                         <span className="d-flex flex-column align-items-start">
                                             <CardText style={{margin: 0}}>Slashing Armor: {slashingArmor}</CardText>
@@ -284,7 +271,7 @@ export const Simulator = () => {
                 </Col>
             </Row>
         </Container>
-        </>
+        </Container>
 }
         </>
     )
