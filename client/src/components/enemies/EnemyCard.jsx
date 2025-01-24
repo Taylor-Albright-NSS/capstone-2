@@ -27,7 +27,7 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
                     <Card onClick={() => navigate(`${id}`)} className="mb-2" style={{border: "4px ridge grey", cursor: "pointer", width: "100px", minHeight: "100px", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundImage: `url(${enemy.imageUrl})`}} />
                     <span className="d-flex flex-column align-items-center">
                         <h6 style={{margin: 0}}>Level</h6>
-                        <p style={{margin: 0, color: "gold"}}>{enemy?.minLevel} - {enemy?.maxLevel}</p>
+                        <p style={{margin: 0, color: "white"}}>{enemy?.minLevel} - {enemy?.maxLevel}</p>
                     </span>
                     <span className="d-flex justify-content-evenly my-1">
                         {(loggedInUser?.id == enemy?.userId || loggedInUser.roles.includes("Admin")) && <button color="danger" style={{width: "90px", fontSize: "12px"}} onClick={handleEnemyDelete}>Delete</button>}

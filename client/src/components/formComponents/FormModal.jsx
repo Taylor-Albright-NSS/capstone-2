@@ -13,15 +13,15 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
 
     return (
             <FormGroup className="d-flex justify-content-center">
-                <Modal isOpen={isOpen} toggle={() => {
+                <Modal style={{border: "8px ridge grey"}} isOpen={isOpen} toggle={() => {
                     toggleModal()
-                    setEnemyImage(enemy.imageUrl)
+                    setSelectedImage(enemy.imageUrl)
                 }}>
-                    <ModalHeader toggle={() => {
+                    <ModalHeader className="d-flex justify-content-center" toggle={() => {
                         toggleModal()
-                        setEnemyImage(enemy.imageUrl)
+                        setSelectedImage(enemy.imageUrl)
                     }}
-                    >Header
+                    >Choose a picture
                     </ModalHeader>
                     
                     <ModalBody>

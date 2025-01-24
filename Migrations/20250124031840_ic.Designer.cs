@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Capstone_2.Migrations
 {
     [DbContext(typeof(Capstone2DbContext))]
-    [Migration("20250123020426_ic")]
+    [Migration("20250124031840_ic")]
     partial class ic
     {
         /// <inheritdoc />
@@ -296,18 +296,18 @@ namespace Capstone_2.Migrations
                             Id = 1,
                             AttackPower = 5,
                             BaseExperience = 10,
-                            BaseHealth = 10,
+                            BaseHealth = 30,
                             BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "",
+                            BluntDamage = true,
+                            Description = "A muddy little earth elemental",
                             FireResist = 0,
                             IceResist = 0,
-                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2Fno%20image%20default.avif?alt=media&token=0aa5fa20-7104-4ac6-8845-92767fe685f2",
-                            ItemIds = new List<int>(),
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2Fmudling.png?alt=media&token=e88f74ca-310b-4d42-8bf2-8f659ce998cf",
+                            ItemIds = new List<int> { 2 },
                             LightningResist = 0,
-                            MaxGold = 0,
-                            MaxLevel = 3,
-                            MinGold = 0,
+                            MaxGold = 5,
+                            MaxLevel = 5,
+                            MinGold = 1,
                             MinLevel = 1,
                             Name = "Mudling",
                             PiercingArmor = 0,
@@ -321,24 +321,24 @@ namespace Capstone_2.Migrations
                             Id = 2,
                             AttackPower = 5,
                             BaseExperience = 10,
-                            BaseHealth = 10,
+                            BaseHealth = 30,
                             BluntArmor = 0,
                             BluntDamage = false,
-                            Description = "",
+                            Description = "An innocent looking grass elemental",
                             FireResist = 0,
                             IceResist = 0,
-                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
-                            ItemIds = new List<int>(),
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2Fgrassling.png?alt=media&token=7bb90e0a-ca52-4c19-b67e-babe6681c157",
+                            ItemIds = new List<int> { 6 },
                             LightningResist = 0,
-                            MaxGold = 0,
-                            MaxLevel = 3,
-                            MinGold = 0,
+                            MaxGold = 5,
+                            MaxLevel = 5,
+                            MinGold = 1,
                             MinLevel = 1,
-                            Name = "Placeholder",
+                            Name = "Grassling",
                             PiercingArmor = 0,
                             PiercingDamage = false,
                             SlashingArmor = 0,
-                            SlashingDamage = false,
+                            SlashingDamage = true,
                             UserId = 1
                         },
                         new
@@ -346,22 +346,22 @@ namespace Capstone_2.Migrations
                             Id = 3,
                             AttackPower = 5,
                             BaseExperience = 10,
-                            BaseHealth = 10,
+                            BaseHealth = 30,
                             BluntArmor = 0,
                             BluntDamage = false,
-                            Description = "",
+                            Description = "A harmless looking water elemental",
                             FireResist = 0,
                             IceResist = 0,
-                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
-                            ItemIds = new List<int>(),
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2Fwaterling.png?alt=media&token=a752abdc-a38d-469f-9029-a05f3acbc565",
+                            ItemIds = new List<int> { 2 },
                             LightningResist = 0,
-                            MaxGold = 0,
-                            MaxLevel = 3,
-                            MinGold = 0,
+                            MaxGold = 5,
+                            MaxLevel = 5,
+                            MinGold = 1,
                             MinLevel = 1,
-                            Name = "Placeholder",
+                            Name = "Waterling",
                             PiercingArmor = 0,
-                            PiercingDamage = false,
+                            PiercingDamage = true,
                             SlashingArmor = 0,
                             SlashingDamage = false,
                             UserId = 1
@@ -369,199 +369,199 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 4,
-                            AttackPower = 5,
+                            AttackPower = 9,
                             BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
+                            BaseHealth = 90,
+                            BluntArmor = 2,
                             BluntDamage = false,
-                            Description = "",
+                            Description = "An angry looking Gnoll",
                             FireResist = 0,
                             IceResist = 0,
-                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
-                            ItemIds = new List<int>(),
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2F_496c9af9-a760-46b9-bf18-fd7014b94883.jpg?alt=media&token=8953b581-9615-4c8f-b11e-da010ffba5dd",
+                            ItemIds = new List<int> { 1 },
                             LightningResist = 0,
-                            MaxGold = 0,
-                            MaxLevel = 3,
-                            MinGold = 0,
-                            MinLevel = 1,
-                            Name = "Placeholder",
-                            PiercingArmor = 0,
+                            MaxGold = 12,
+                            MaxLevel = 10,
+                            MinGold = 4,
+                            MinLevel = 6,
+                            Name = "Gnoll Mage",
+                            PiercingArmor = 2,
                             PiercingDamage = false,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
+                            SlashingArmor = 2,
+                            SlashingDamage = true,
                             UserId = 1
                         },
                         new
                         {
                             Id = 5,
-                            AttackPower = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
+                            AttackPower = 18,
+                            BaseExperience = 78,
+                            BaseHealth = 150,
+                            BluntArmor = 5,
                             BluntDamage = false,
-                            Description = "",
+                            Description = "A small Kobold",
                             FireResist = 0,
                             IceResist = 0,
-                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
-                            ItemIds = new List<int>(),
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2F_7a867825-4cea-4ebc-8595-af8584818925.jpg?alt=media&token=1c37fb3b-1a7e-4a8d-8d45-5dcd4fff9991",
+                            ItemIds = new List<int> { 6 },
                             LightningResist = 0,
-                            MaxGold = 0,
-                            MaxLevel = 3,
-                            MinGold = 0,
-                            MinLevel = 1,
-                            Name = "Placeholder",
-                            PiercingArmor = 0,
-                            PiercingDamage = false,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
+                            MaxGold = 26,
+                            MaxLevel = 15,
+                            MinGold = 12,
+                            MinLevel = 10,
+                            Name = "Kobold",
+                            PiercingArmor = 5,
+                            PiercingDamage = true,
+                            SlashingArmor = 5,
+                            SlashingDamage = true,
                             UserId = 1
                         },
                         new
                         {
                             Id = 6,
-                            AttackPower = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
-                            Description = "",
+                            AttackPower = 33,
+                            BaseExperience = 250,
+                            BaseHealth = 300,
+                            BluntArmor = 20,
+                            BluntDamage = true,
+                            Description = "A large Minotaur",
                             FireResist = 0,
                             IceResist = 0,
-                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
-                            ItemIds = new List<int>(),
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2F_657577c4-8972-4639-8aff-fa94d3767f35.jpg?alt=media&token=6a5fe8bc-9790-4588-9bd7-e1cdd925bace",
+                            ItemIds = new List<int> { 8, 9, 10 },
                             LightningResist = 0,
-                            MaxGold = 0,
-                            MaxLevel = 3,
-                            MinGold = 0,
-                            MinLevel = 1,
-                            Name = "Placeholder",
-                            PiercingArmor = 0,
-                            PiercingDamage = false,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
+                            MaxGold = 65,
+                            MaxLevel = 30,
+                            MinGold = 30,
+                            MinLevel = 20,
+                            Name = "Minotaur",
+                            PiercingArmor = 10,
+                            PiercingDamage = true,
+                            SlashingArmor = 10,
+                            SlashingDamage = true,
                             UserId = 1
                         },
                         new
                         {
                             Id = 7,
-                            AttackPower = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
+                            AttackPower = 27,
+                            BaseExperience = 200,
+                            BaseHealth = 230,
                             BluntArmor = 0,
                             BluntDamage = false,
                             Description = "",
                             FireResist = 0,
                             IceResist = 0,
-                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
-                            ItemIds = new List<int>(),
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2F_8a350560-8617-4f3c-baa3-b3d6b7191db7.jpg?alt=media&token=43fdecd8-f5ff-426e-a5f7-5a918d0392e8",
+                            ItemIds = new List<int> { 7 },
                             LightningResist = 0,
-                            MaxGold = 0,
-                            MaxLevel = 3,
-                            MinGold = 0,
-                            MinLevel = 1,
-                            Name = "Placeholder",
-                            PiercingArmor = 0,
-                            PiercingDamage = false,
-                            SlashingArmor = 0,
+                            MaxGold = 45,
+                            MaxLevel = 25,
+                            MinGold = 22,
+                            MinLevel = 20,
+                            Name = "Orc Hunter",
+                            PiercingArmor = 7,
+                            PiercingDamage = true,
+                            SlashingArmor = 7,
                             SlashingDamage = false,
                             UserId = 1
                         },
                         new
                         {
                             Id = 8,
-                            AttackPower = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
+                            AttackPower = 15,
+                            BaseExperience = 200,
+                            BaseHealth = 400,
+                            BluntArmor = 40,
+                            BluntDamage = true,
                             Description = "",
                             FireResist = 0,
                             IceResist = 0,
-                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
-                            ItemIds = new List<int>(),
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2F_e8af266a-749d-4b95-9673-336e05df4dcc.jpg?alt=media&token=4bc4d096-4287-4c29-a6d4-5e67741f463b",
+                            ItemIds = new List<int> { 1, 5, 8 },
                             LightningResist = 0,
-                            MaxGold = 0,
-                            MaxLevel = 3,
-                            MinGold = 0,
-                            MinLevel = 1,
-                            Name = "Placeholder",
-                            PiercingArmor = 0,
+                            MaxGold = 90,
+                            MaxLevel = 25,
+                            MinGold = 40,
+                            MinLevel = 20,
+                            Name = "Forest Dweller",
+                            PiercingArmor = 10,
                             PiercingDamage = false,
-                            SlashingArmor = 0,
+                            SlashingArmor = 10,
                             SlashingDamage = false,
                             UserId = 1
                         },
                         new
                         {
                             Id = 9,
-                            AttackPower = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
+                            AttackPower = 200,
+                            BaseExperience = 3750,
+                            BaseHealth = 4000,
+                            BluntArmor = 300,
+                            BluntDamage = true,
                             Description = "",
                             FireResist = 0,
                             IceResist = 0,
-                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
-                            ItemIds = new List<int>(),
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2F_324919a7-190f-4cc0-a8ee-b4678b6ac2f3.jpg?alt=media&token=a6284056-b304-4e12-8702-7f9ba7718132",
+                            ItemIds = new List<int> { 2, 22 },
                             LightningResist = 0,
-                            MaxGold = 0,
-                            MaxLevel = 3,
-                            MinGold = 0,
-                            MinLevel = 1,
-                            Name = "Placeholder",
-                            PiercingArmor = 0,
-                            PiercingDamage = false,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
+                            MaxGold = 700,
+                            MaxLevel = 90,
+                            MinGold = 500,
+                            MinLevel = 80,
+                            Name = "Dragon",
+                            PiercingArmor = 200,
+                            PiercingDamage = true,
+                            SlashingArmor = 200,
+                            SlashingDamage = true,
                             UserId = 1
                         },
                         new
                         {
                             Id = 10,
-                            AttackPower = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
+                            AttackPower = 7,
+                            BaseExperience = 35,
+                            BaseHealth = 60,
+                            BluntArmor = 1,
                             BluntDamage = false,
                             Description = "",
                             FireResist = 0,
                             IceResist = 0,
-                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2Fgiant%20rat.png?alt=media&token=d0ba98a3-ee93-48fa-b25a-d9b12e6e63a1",
                             ItemIds = new List<int>(),
                             LightningResist = 0,
-                            MaxGold = 0,
-                            MaxLevel = 3,
-                            MinGold = 0,
-                            MinLevel = 1,
-                            Name = "Placeholder",
-                            PiercingArmor = 0,
-                            PiercingDamage = false,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
+                            MaxGold = 12,
+                            MaxLevel = 10,
+                            MinGold = 7,
+                            MinLevel = 5,
+                            Name = "Giant Rat",
+                            PiercingArmor = 1,
+                            PiercingDamage = true,
+                            SlashingArmor = 1,
+                            SlashingDamage = true,
                             UserId = 1
                         },
                         new
                         {
                             Id = 11,
-                            AttackPower = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
-                            BluntDamage = false,
+                            AttackPower = 9,
+                            BaseExperience = 70,
+                            BaseHealth = 90,
+                            BluntArmor = 5,
+                            BluntDamage = true,
                             Description = "",
                             FireResist = 0,
                             IceResist = 0,
-                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
-                            ItemIds = new List<int>(),
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2Fwild%20boar.png?alt=media&token=6aa861fc-ae0f-412d-aba8-812ffde7bad6",
+                            ItemIds = new List<int> { 5 },
                             LightningResist = 0,
-                            MaxGold = 0,
-                            MaxLevel = 3,
-                            MinGold = 0,
-                            MinLevel = 1,
-                            Name = "Placeholder",
+                            MaxGold = 10,
+                            MaxLevel = 10,
+                            MinGold = 5,
+                            MinLevel = 6,
+                            Name = "Wild Boar",
                             PiercingArmor = 0,
-                            PiercingDamage = false,
+                            PiercingDamage = true,
                             SlashingArmor = 0,
                             SlashingDamage = false,
                             UserId = 1
@@ -569,26 +569,26 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 12,
-                            AttackPower = 5,
-                            BaseExperience = 10,
-                            BaseHealth = 10,
-                            BluntArmor = 0,
+                            AttackPower = 55,
+                            BaseExperience = 2100,
+                            BaseHealth = 1350,
+                            BluntArmor = 50,
                             BluntDamage = false,
                             Description = "",
                             FireResist = 0,
                             IceResist = 0,
-                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542",
-                            ItemIds = new List<int>(),
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2F_f4076778-abc0-4fec-8388-0a29374242ff.jpg?alt=media&token=e163475d-1ead-4ffa-9584-aac4f20d39ea",
+                            ItemIds = new List<int> { 7, 8, 21, 22 },
                             LightningResist = 0,
-                            MaxGold = 0,
-                            MaxLevel = 3,
-                            MinGold = 0,
-                            MinLevel = 1,
-                            Name = "Placeholder",
-                            PiercingArmor = 0,
-                            PiercingDamage = false,
-                            SlashingArmor = 0,
-                            SlashingDamage = false,
+                            MaxGold = 250,
+                            MaxLevel = 80,
+                            MinGold = 100,
+                            MinLevel = 70,
+                            Name = "Forest Esper",
+                            PiercingArmor = 120,
+                            PiercingDamage = true,
+                            SlashingArmor = 120,
+                            SlashingDamage = true,
                             UserId = 1
                         });
                 });
@@ -645,22 +645,22 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Sword"
+                            Name = "Shortsword"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Twohanded Sword"
+                            Name = "Claymore"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Bow"
+                            Name = "Longbow"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Fist Weapon"
+                            Name = "Great Axe"
                         },
                         new
                         {
@@ -670,22 +670,22 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 6,
-                            Name = "Leather Chest"
+                            Name = "Leather Chestpiece"
                         },
                         new
                         {
                             Id = 7,
-                            Name = "Potion"
+                            Name = "Small Healing Potion"
                         },
                         new
                         {
                             Id = 8,
-                            Name = "Small Gem"
+                            Name = "Small Mana Potion"
                         },
                         new
                         {
                             Id = 9,
-                            Name = "Dagger"
+                            Name = "Sharp Dagger"
                         },
                         new
                         {
@@ -700,46 +700,56 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 12,
-                            Name = "Leather Trousers"
+                            Name = "Leaf Perch"
                         },
                         new
                         {
                             Id = 13,
-                            Name = "Plate Gauntlets"
+                            Name = "Copper Ore"
                         },
                         new
                         {
                             Id = 14,
-                            Name = "Large Bone"
+                            Name = "Leather Trousers"
                         },
                         new
                         {
                             Id = 15,
-                            Name = "Small Bone"
+                            Name = "Plate Gauntlets"
                         },
                         new
                         {
                             Id = 16,
-                            Name = "Cape"
+                            Name = "Large Bone"
                         },
                         new
                         {
                             Id = 17,
-                            Name = "Small Key"
+                            Name = "Small Bone"
                         },
                         new
                         {
                             Id = 18,
-                            Name = "Fishing Rod"
+                            Name = "Cape"
                         },
                         new
                         {
                             Id = 19,
-                            Name = "Bright Yellow Flower"
+                            Name = "Small Key"
                         },
                         new
                         {
                             Id = 20,
+                            Name = "Fishing Rod"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Name = "Pickle Lily"
+                        },
+                        new
+                        {
+                            Id = 22,
                             Name = "Tome"
                         });
                 });
@@ -903,13 +913,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2caf7d02-d78b-4f9b-89b7-be1419c974d3",
+                            ConcurrencyStamp = "f674c948-8c2f-4caa-a337-064d42f0cff5",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEFaLxScK7LMIRL2GcNrdQgpqVNOoOQJWTvx79jLlbrk7fKXssGJD/no/OYBTN64h7g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDr7HwDRJ3WjfLYzxX1Vnkx46ZuQBSswGbObyLTQ55VIo5Ig14MFoiJrezEVtMThWw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b0858785-47e1-4353-b7c1-f04d7a440065",
+                            SecurityStamp = "fb429439-2bb3-4796-b430-5d018c477c29",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -917,13 +927,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d8d76512-74f1-43bb-b1fd-87d3a8aa36df",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7f7e8d06-7fc3-4c4e-8178-172c8a86dc0a",
+                            ConcurrencyStamp = "c59cb69f-1554-4d64-8c61-9c281e3681cb",
                             Email = "john@doe.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEEVzIOTPt+5MU9SeE/cIBfPYFvQHCASxV4rTWWpDv3oTvxg7tSqrdZ6T+wXiu6/ydw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOeERIwd3XX+gqlnLmE30yUnpXZ9jlEuApCWGjTeDTlpiS/32Qo0p+drTkfF4weXlg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6015536e-d9c0-4363-87c4-5bb3b869aa16",
+                            SecurityStamp = "37f2372e-84d1-4178-a09b-3aef9c32c3c8",
                             TwoFactorEnabled = false,
                             UserName = "JohnDoe"
                         },
@@ -931,13 +941,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "a7d21fac-3b21-454a-a747-075f072d0cf3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1665fe77-600b-4e5d-a1ed-90e6090da51d",
+                            ConcurrencyStamp = "1541af62-5ee8-4b80-8358-92a3112ddc6e",
                             Email = "jane@smith.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEEoVmmzwOcJBOzLF8HvI2Gsi4KMtmKCoGDG6BJMfoXnCFPpzXF0tlmVbnNsVdSa2FA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAU9YpHbFiG1ca6I3z4aH1oFvwpa2rUW6RmAjdLDmSKzVbMOj8phvEMmKEaR0LsIEQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d8d31796-2ba1-43a1-b184-f0ca1d8e43da",
+                            SecurityStamp = "a99f5fb2-ef81-49e5-9d06-9f926f2c4d05",
                             TwoFactorEnabled = false,
                             UserName = "JaneSmith"
                         },
@@ -945,13 +955,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "c806cfae-bda9-47c5-8473-dd52fd056a9b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d6ecff9f-2e23-44ab-87de-52bcfd5a0c34",
+                            ConcurrencyStamp = "8f120f0b-c6de-4d99-91ef-4b2eb04f1f5d",
                             Email = "alice@johnson.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEGzjiEpBv2M6UUtR8yFeALTG49sXN+5HqNUwFro62+tRW9mwt+HJx8bqgv3zPGmpGA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIo8bIZD4un/LFJkBus/IsPhq8hNCwNblSaSaWqF85YZMMfs1aNMUsue8Eu0NguTLQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "11ac42c7-aea2-4320-84f4-0e3dad197da5",
+                            SecurityStamp = "2c0235bc-02ed-46cd-ad54-dced8a7d3a49",
                             TwoFactorEnabled = false,
                             UserName = "AliceJohnson"
                         },
@@ -959,13 +969,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "9ce89d88-75da-4a80-9b0d-3fe58582b8e2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ce2ec5b0-3196-418b-93f1-5d001075411b",
+                            ConcurrencyStamp = "c6e2c593-e7a9-48de-a61e-0fa07563c1a5",
                             Email = "bob@williams.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEBuxM6qxXVee9fMFyUKh/6Nxb7VpkifdxEj7SIi8RReBIkmblCtBZRgb0sibRmEgzA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC7uB5X2TqTzkgS+85El9MKxrarAIBSM1Tk3Q94uF1F4PBTNGUMqzTa2+TPgHOeRFA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "225ed41a-79f4-406a-88b2-8471334f1fc2",
+                            SecurityStamp = "9d6ee5eb-dfb0-4769-a0cc-6c582115872b",
                             TwoFactorEnabled = false,
                             UserName = "BobWilliams"
                         },
@@ -973,13 +983,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d224a03d-bf0c-4a05-b728-e3521e45d74d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0f7414ab-98a5-4dcd-a4f9-bd057094396f",
+                            ConcurrencyStamp = "db4dd824-9525-484b-bb59-41117769cc12",
                             Email = "Eve@Davis.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEPdPQpcDh6ykkgy0wLf5vrXd2fgqVHq8vQVJaGHJDMofrI/fJX5gauWm2/9bM8LY9Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELXqrjSnXVAglgv0C/wtZkzthHUk90X+xnjYWyCFFjvyXou/Zgdb1jZMRZGWoK8pCA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "89e747f8-8f2b-4cff-8517-9dbda7d58dce",
+                            SecurityStamp = "39ff4205-91a5-432d-a34b-edcba7992763",
                             TwoFactorEnabled = false,
                             UserName = "EveDavis"
                         });

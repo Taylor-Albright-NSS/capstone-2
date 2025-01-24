@@ -15,10 +15,9 @@ import { Admin } from "./admin/Admin";
 export const UserContext = createContext();
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
-  const test = "test"
   const [selectedCharacter, setSelectedCharacter] = useState({})
   return (
-    <UserContext.Provider value={{ loggedInUser, setLoggedInUser, test, selectedCharacter, setSelectedCharacter }}>
+    <UserContext.Provider value={{ loggedInUser, setLoggedInUser, selectedCharacter, setSelectedCharacter }}>
       <Routes>
         <Route path="/">
           <Route index 

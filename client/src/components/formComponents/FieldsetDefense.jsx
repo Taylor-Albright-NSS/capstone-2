@@ -2,8 +2,8 @@ import { FormGroup, Label, Input, Row, Col } from "reactstrap"
 
 export const FieldsetDefense = ({ handleNumberInput, enemy }) => {
     return (
-        <fieldset>
-            <legend style={{textAlign: "center"}}>Defense</legend>
+        <fieldset className="p-3">
+            <legend style={{border: "4px outset grey", textAlign: "center"}}>Defense</legend>
             <Row>
                 <Col>
             <FormGroup className="d-flex flex-column align-items-center">

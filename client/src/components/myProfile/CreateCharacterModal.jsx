@@ -57,10 +57,10 @@ export const CreateCharacterModal = ({setCharacters }) => {
 
     return (
             <Container className="d-flex justify-content-center">
-                <Modal isOpen={isOpen} toggle={() => {
+                <Modal style={{border: "8px ridge grey"}} isOpen={isOpen} toggle={() => {
                     toggleModal()
                 }}>
-                    <ModalHeader toggle={() => {
+                    <ModalHeader className="d-flex justify-content-center" toggle={() => {
                         toggleModal()
                     }}
                     >New Character

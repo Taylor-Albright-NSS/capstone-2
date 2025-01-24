@@ -21,6 +21,7 @@ export const MyProfile = () => {
     const { selectedCharacter } = useContext(UserContext)
     const { setSelectedCharacter } = useContext(UserContext)
     const [isSelected, setIsSelected] = useState(true)
+    const location = useLocation()
 
     useEffect(() => {
         getUserEnemies(userId).then(enemies => {
@@ -71,12 +72,12 @@ export const MyProfile = () => {
             <h1 style={{textAlign: "center"}}>{user?.fullName}</h1>
             <Row>
                 <Col style={{border: "6px ridge grey", maxHeight: "700px", minHeight: "400px", overflow: "hidden", overflowY: "auto"}}>
-                    <h3 style={{textAlign: "center"}}>My Enemies</h3>
+                    <h3 style={{border: "4px outset grey", textAlign: "center"}}>My Enemies</h3>
                     <Card>
                         <CardBody>
                             {enemies?.map(enemy => {
                                 return (
-                                <Card style={{border: "4px ridge grey"}} onClick={() => navigate(`/enemy-list/${enemy.id}`)} key={enemy.id} className="hover" >
+                                <Card style={{border: "4px ridge grey"}} onClick={() => navigate(`/enemy-list/${enemy.id}`, {state: { from: location.pathname }, replace: false})} key={enemy.id} className="hover" >
                                     <CardBody className="wood-background" style={{padding: 0, cursor: "pointer"}}>
                                         <Row className="d-flex align-items-center" style={{padding: "1rem", color: "gold"}}>
                                             <Col>{enemy.name}</Col>
@@ -91,7 +92,7 @@ export const MyProfile = () => {
                     </Card>
                 </Col>
                 <Col style={{border: "6px ridge grey", textAlign: "center"}}>
-                    <h3>Characters</h3>
+                    <h3 style={{border: "4px outset grey"}}>Characters</h3>
                     <span className="d-flex justify-content-around mt-4">
                         <CreateCharacterModal setCharacters={setCharacters} />
                         <Input type="select" value={selectedCharacter?.name} style={{maxWidth: "400px", border: "4px ridge grey", borderRadius: "0px"}} onChange={handleCharacterSelect}>

@@ -161,7 +161,7 @@ public class EnemyController : ControllerBase
     }
     //--------
 	[HttpDelete("{enemyId}")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public IActionResult DeleteEnemy(int enemyId, int userId)
     {
         var enemy = _dbContext.Enemies.FirstOrDefault(e => e.Id == enemyId);
@@ -187,7 +187,7 @@ public class EnemyController : ControllerBase
     }
 
     [HttpPut("{id}/{userId}")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public IActionResult Put(int id, int userId, EnemyDTO enemyDTO)
     {
         Enemy enemy = _dbContext.Enemies.FirstOrDefault(e => e.Id == id);

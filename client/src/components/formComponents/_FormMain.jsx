@@ -12,7 +12,7 @@ import { useState } from "react";
 
 
 
-export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, handleTextInput, handleNumberInput, handleCheckbox, handleItemDropsChange, items, isCreateButton}) => {
+export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, handleTextInput, handleNumberInput, handleCheckbox, handleItemDropsChange, items, isCreateButton, from}) => {
     const navigate = useNavigate()
     const [warning, setWarning] = useState({ visible: false, message: '', x: 0, y:0 })
 
@@ -25,10 +25,10 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
     }
 
     return (
-        <Container style={{height: "800px"}} className="d-flex justify-content-center">
-            <Form className="my-4 mx-4 col-11" onSubmit={handleSubmit} style={{backdropFilter: "blur(10px)", border: "8px solid black"}}>
+        <Container style={{height: "100%"}} className="d-flex justify-content-center">
+            <Form className="my-4 mx-4 col-11" onSubmit={handleSubmit} style={{backdropFilter: "blur(10px)", border: "8px ridge grey"}}>
                 <Row className="justify-content-center mx-4">
-                    <Col md="9">
+                    <Col md="9" className="d-flex flex-column justify-content-between">
                         {/*ROW 1*/}
                         <Row className="d-flex align-items-center" style={{border: "8px ridge grey"}}>
                             <Col>
@@ -54,15 +54,20 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
                     <Col style={{border: "8px ridge grey"}}>
                         <FieldsetItemDrops handleItemDropsChange={handleItemDropsChange} items={items} handleNumberInput={handleNumberInput} enemy={enemy} />
                     </Col>
-                    <Row className="justify-content-center">
+                    <Row className="justify-content-center my-2">
                         {isCreateButton ? 
-                        <button style={{maxWidth: "400px"}}>Create Enemy</button>
+                        <button style={{maxWidth: "300px"}}>Create Enemy</button>
                         :
                         <>
                         <button style={{maxWidth: "200px"}}>Confirm Edits</button>
                         <button style={{maxWidth: "200px"}} onClick={(e) => {
                             e.preventDefault()
-                            navigate("/enemy-list")
+                            if (from) {
+                                navigate(from)
+                            } else {
+
+                                navigate("/enemy-list")
+                            }
                             }}>Back</button>
                         </>
                     }

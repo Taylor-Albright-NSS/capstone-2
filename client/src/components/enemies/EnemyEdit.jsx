@@ -5,7 +5,7 @@ import { getEnemyForEdit, putEnemy } from "../../managers/enemyManager";
 import { getItems } from "../../managers/itemManager";
 import { getEnemyImages } from "../../managers/imageManager";
 import { getEnemyImagesFirebase } from "../../managers/imageManager";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { FormMain } from "../formComponents/_FormMain";
 
 
@@ -46,11 +46,14 @@ export const EnemyEdit = () => {
 
     const [isOpen, setIsOpen] = useState(false);
     const toggleModal = () => setIsOpen(!isOpen);
+    const location = useLocation()
+    const from = location?.state?.from || false
 
     useEffect(() => {
         getItems().then(itemList => {
             console.log(itemList)
             setItems(itemList)
+            console.log(from, " FROM")
         })
     }, [])
     useEffect(() => {
@@ -66,6 +69,7 @@ export const EnemyEdit = () => {
             setEnemyImage(enemy.image)
         })
     }, [])
+
     
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -152,7 +156,8 @@ export const EnemyEdit = () => {
                     handleNumberInput={handleNumberInput}
                     handleCheckbox={handleCheckbox}
                     handleItemDropsChange={handleItemDropsChange}
-                    items={items} 
+                    items={items}
+                    from={from}
             />
     );
 }

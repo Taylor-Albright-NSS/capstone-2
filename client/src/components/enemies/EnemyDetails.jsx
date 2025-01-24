@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { deleteEnemy, getEnemies, getEnemy } from "../../managers/enemyManager";
 import { Card, CardBody, CardImg, CardText, Col, Container, Row } from "reactstrap";
 import { getItems } from "../../managers/itemManager";
@@ -11,6 +11,11 @@ export const EnemyDetails = () => {
     const { id } = useParams()
     console.log(id)
     const navigate = useNavigate()
+    
+    const { loggedInUser } = useContext(UserContext)
+    const userId = loggedInUser.id
+
+    
     useEffect(() => {
         getEnemy(id).then(enemy => {
             console.log(enemy)
@@ -18,27 +23,40 @@ export const EnemyDetails = () => {
         })
     }, [id])
 
-    const { loggedInUser } = useContext(UserContext)
-    const userId = loggedInUser.id
-	const handleEnemyDelete = () => {
+    const location = useLocation()
+    const [currentLocation, setCurrentLocation] = useState()
+    useEffect(() => {
+        setCurrentLocation(location)
+    }, [location])
+
+    useEffect(() => {
+        console.log(location, " LOCAION")
+    }, [location])
+
+
+    const handleEnemyDelete = () => {
         deleteEnemy(id, userId).then(() => {
             navigate("/enemy-list")
         })
     }
-
-    
-    
+    const from = location?.state?.from || false
     return (
         <Container>
             <Row>
                 {/* Left side column */}
                 <Col className="granite-background" style={{maxWidth: "500px", border: "6px ridge grey"}}>
                     <Row className="d-flex justify-content-center">
-                    <button style={{width: "150px"}} className="my-2" onClick={() => navigate("/enemy-list")}>Go Back</button>
+                    <button style={{width: "150px"}} className="my-2" onClick={() => {
+                            if (from) {
+                                navigate(from)
+                            } else {
+                                navigate("/enemy-list")
+                            }
+                        }}>Go Back</button>
                         <div className="d-flex flex-column align-items-center" style={{ maxWidth: "400px" }} >
                             <h3>{enemy?.name}</h3>
                             <img className="my-2" style={{width: "100%", maxWidth: "200px", height: "100%", maxHeight: "200px", border: "6px ridge grey"}} src={`${enemy?.imageUrl}`} alt={enemy?.name} />
-                            <Card style={{border: "4px ridge grey", padding: "0.5rem"}}>
+                            <Card style={{border: "4px ridge grey", padding: "0.5rem", marginBottom: "0.5rem"}}>
                                 <span className="d-flex align-items-center">
                                     <h6 style={{marginBottom: 0}}>Level range:</h6>
                                     <p style={{marginBottom: 0, marginLeft: "0.5rem"}}>{enemy?.minLevel + " - " + enemy?.maxLevel}</p>
@@ -77,19 +95,19 @@ export const EnemyDetails = () => {
                                         <p style={{marginBottom: 0}}>Piercing Armor: {enemy?.piercingArmor}</p>
                                         <p style={{marginBottom: 0}}>Blunt Armor: {enemy?.bluntArmor}</p>
                                     </Card>
-                                    <Card style={{border: "4px ridge grey"}}>
+                                    {/* <Card style={{border: "4px ridge grey"}}>
                                         <h5 style={{textAlign: "center"}}>Magic Resist</h5>
                                         <p style={{marginBottom: 0}}>Fire Resist: {enemy?.fireResist}</p>
                                         <p style={{marginBottom: 0}}>Ice Resist: {enemy?.iceResist}</p>
                                         <p style={{marginBottom: 0}}>Lightning Resist: {enemy?.lightningResist}</p>
-                                    </Card>
+                                    </Card> */}
                                 </Col>
                             </Row>
                             <Row>
                                 <Card>
 
-                                <div className="d-flex flex-column align-items-center" style={{border: "4px ridge grey"}}>
-                                    <h6>Item drops</h6>
+                                <div className="d-flex flex-column align-items-center" style={{border: "4px ridge grey", marginTop: "0.5rem"}}>
+                                    <h6 >Item drops</h6>
                                     <ul style={{maxHeight: "80px", overflow: "hidden", overflowY: "auto"}}>
                                     {enemy?.items.length > 0 ?
                                         enemy.items.map((item, i) => {
@@ -105,7 +123,7 @@ export const EnemyDetails = () => {
                                 </div>
                                 <span className="d-flex flex-column align-items-center">
                                     <h6 style={{textAlign: "center"}}>Description</h6>
-                                    <Card style={{maxWidth: "400px", minWidth: "200px", height: "100px", border: "4px ridge grey"}}>
+                                    <Card style={{maxWidth: "400px", minWidth: "200px", height: "100px", border: "4px ridge grey", marginBottom: "1rem"}}>
                                         <CardBody style={{overflow: "hidden", overflowY: "auto", textIndent: "20px"}}>
                                         {enemy?.description || "This is an enemy that has not yet been given a description"}
                                         </CardBody>
@@ -113,7 +131,7 @@ export const EnemyDetails = () => {
                                 </span>
                                 <span style={{textAlign: "center"}}>
                                     {loggedInUser?.id == enemy?.userId && <button color="danger" onClick={handleEnemyDelete}>Delete Enemy</button>}
-                                    {loggedInUser?.id == enemy?.userId && <button color="warning" onClick={() => navigate(`../edit/${id}`)}>Edit enemy</button>}
+                                    {loggedInUser?.id == enemy?.userId && <button color="warning" onClick={() => navigate(`../edit/${id}`, { state: { from: location.pathname } } )}>Edit enemy</button>}
                                 </span>
                                 </Card>
                             </Row>

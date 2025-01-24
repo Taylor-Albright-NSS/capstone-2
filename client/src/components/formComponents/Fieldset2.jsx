@@ -4,6 +4,7 @@ export const Fieldset2 = ({ handleNumberInput, handleTextInput, enemy }) => {
     return (
         <Card>
             <fieldset>
+                <h3 style={{border: "4px outset grey", textAlign: "center"}}>Level</h3>
                 <span className="d-flex justify-content-around">
                     <FormGroup>
                         <Label for="minLevel">Min. Level</Label>

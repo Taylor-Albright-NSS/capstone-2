@@ -3,7 +3,7 @@ import { FormGroup, Label, Input, Col, Row, Card } from "reactstrap"
 export const FieldsetItemDrops = ({ handleItemDropsChange, items, handleNumberInput, enemy }) => {
     return (
         <fieldset>
-            <legend style={{textAlign: "center"}}>Item Drops</legend>
+            <legend style={{border: "4px outset grey", textAlign: "center"}}>Item Drops</legend>
             {items && items.map(item => 
                     (
                     <FormGroup key={item.id} check>

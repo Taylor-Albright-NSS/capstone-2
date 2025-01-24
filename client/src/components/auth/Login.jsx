@@ -10,8 +10,7 @@ export default function Login({ setLoggedInUser }) {
   const [password, setPassword] = useState("");
   const [failedLogin, setFailedLogin] = useState(false);
   const { selectedCharacter, setSelectedCharacter } = useContext(UserContext)
-  console.log(selectedCharacter)
-
+  
   useEffect(() => {
     setSelectedCharacter({})
   }, [])
