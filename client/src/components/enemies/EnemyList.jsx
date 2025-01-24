@@ -55,17 +55,17 @@ export const EnemyList = () => {
                             <h6 style={{margin: 0, fontSize: "20px"}}>Browse Enemies</h6>
                             <span className="d-flex align-items-center">
                                 <p style={{marginBottom: 0, marginRight: "1rem", fontSize: "12px"}}>Filter By Level</p>
-                                <Input style={{width: "60px", height: "30px"}} type="number" value={minLevelFilter} onChange={filterByLevel}/>
+                                <Input style={{maxWidth: "60px", width: "100%", height: "30px"}} type="number" value={minLevelFilter} onChange={filterByLevel}/>
                             </span>
                             <span className="d-flex align-items-center">
                                 <p style={{marginBottom: 0, marginRight: "1rem"}}>Search</p>
-                                <Input style={{width: "200px", height: "30px"}} type="text" value={searchString} onChange={filterByName}/>
+                                <Input style={{maxWidth: "200px", width: "100%", height: "30px"}} type="text" value={searchString} onChange={filterByName}/>
                             </span>
                         </span>
 
                 </Col>
             </Row>
-            <Row className="enemy-list-background" style={{height: "100%", overflow: "hidden", overflowY: "auto", border: "4px ridge black"}}>
+            <Row className="enemy-list-background" style={{wheight: "100%", overflow: "hidden", overflowY: "auto", border: "4px ridge black"}}>
                 {filteredEnemies.map(enemy => {
                     return(
                         <EnemyCard key={enemy.id} enemy={enemy} setEnemies={setEnemies} />

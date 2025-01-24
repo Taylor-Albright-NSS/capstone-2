@@ -22,11 +22,11 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
     return (
             <Card className="border-test mx-4 my-4 enemy-card" style={{maxWidth: "200px", maxHeight: "260px"}}>
                 <CardBody className="d-flex flex-column align-items-center">
-                    <CardTitle tag="h5" style={{textAlign: "center"}}>{enemy.name}</CardTitle>
+                    <CardTitle className="" tag="h5" style={{textAlign: "center"}}>{enemy.name}</CardTitle>
                     {/* <CardImg src={enemy.imageUrl} /> */}
-                    <Card onClick={() => navigate(`${id}`)} style={{border: "4px ridge grey", cursor: "pointer", width: "100px", minHeight: "100px", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundImage: `url(${enemy.imageUrl})`}} />
+                    <Card onClick={() => navigate(`${id}`)} className="mb-2" style={{border: "4px ridge grey", cursor: "pointer", width: "100px", minHeight: "100px", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundImage: `url(${enemy.imageUrl})`}} />
                     <span className="d-flex flex-column align-items-center">
-                        <h6 style={{marginBottom: 0, marginRight: "6px", marginTop: "0.5rem"}}>Level</h6>
+                        <h6 style={{margin: 0}}>Level</h6>
                         <p style={{margin: 0, color: "gold"}}>{enemy?.minLevel} - {enemy?.maxLevel}</p>
                     </span>
                     <span className="d-flex justify-content-evenly my-1">

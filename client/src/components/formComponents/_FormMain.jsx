@@ -42,8 +42,8 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
                             </Col>
                         </Row>
                         {/*ROW 2*/}
-                        <Row>
-                            <Col style={{border: "6px ridge grey"}}>
+                        <Row className="d-flex justify-content-center">
+                            <Col className="d-flex justify-content-center align-items-center" style={{border: "6px ridge grey"}}>
                                 <FieldsetOffense handleCheckbox={handleCheckbox} enemy={enemy} handleNumberInput={handleNumberInput} />
                             </Col>
                             <Col style={{border: "6px ridge grey"}}>

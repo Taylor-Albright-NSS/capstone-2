@@ -20,8 +20,6 @@ public class AutoMapperProfiles : Profile
         CreateMap<Enemy, EnemyForEditDTO>();
         CreateMap<Character, CharacterDTO>();
         CreateMap<CharacterDTO, Character>();
-        CreateMap<UserProfile, UserProfileUpdateDTO>();
-        CreateMap<UserProfileUpdateDTO, UserProfile>();
 
         CreateMap<Enemy, EnemyDTO>()
             .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import { Card, CardBody, Col, Container, FormGroup, Input, Label, Row } from "reactstrap"
-import { getProfiles } from "../../managers/userProfileManager"
+import { getProfiles, promoteUser } from "../../managers/userProfileManager"
 import { useEffect, useState } from "react"
-import { updateUser } from "../../managers/userProfileManager"
+import { demoteUser } from "../../managers/userProfileManager"
 
 export const Admin = () => {
     const [users, setUsers] = useState([])
@@ -13,6 +13,7 @@ export const Admin = () => {
             console.log(userArray)
         })
     }, [selectedUser])
+
     useEffect(() => {
         console.log(selectedUser)
     }, [selectedUser])
@@ -48,37 +49,62 @@ export const Admin = () => {
         }
     };
 
-    const handleSaveChanges = () => {
-        updateUser(selectedUser).then(data => {
-            console.log(data)
+    const handleDemote = (user) => {
+        if (user.identityUserId == "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f") {
+            alert("Main Admin cannot be demoted")
+            return
+        }
+        if (!user.roles.includes("Admin")) {
+            alert("User is already a non-Admin")
+            return
+        }
+        demoteUser(user).then(() => {
+        }).then(() => {
+            getProfiles().then(setUsers)
+        })
+    }
+    const handlePromote = (user) => {
+        if (user.roles.includes("Admin")) {
+            alert("User is already an Admin")
+            return
+        }
+        promoteUser(user).then(() => {
         }).then(() => {
             getProfiles().then(setUsers)
         })
     }
 
     return (
-        <Container style={{ maxWidth: "500px" }}>
-            <button onClick={() => console.log(selectedUser)}>Test</button>
+        <Container>
         <Row>
           <Col className="d-flex justify-content-center" style={{marginTop: "4rem"}}>
-            <Card className="welcome p-4 d-flex align-items-center" style={{maxWidth: "800px", minHeight: "400px", border: "6px ridge grey"}}>
-                <h3>Admin Panel</h3>
+            <Card className="granite-background p-4 d-flex align-items-center" style={{width: "100%", maxWidth: "400px", minHeight: "400px", border: "10px ridge grey"}}>
+                <h2 style={{border: "6px outset grey", padding: "0.5rem"}}>Admin Panel</h2>
                 <span className="d-flex my-4">
                     <FormGroup>
-                        <Input style={{minWidth: "180px"}} type="select" value={selectedUser?.firstName} onChange={handleUserSelect}>
+                        {/* <Input style={{minWidth: "180px"}} type="select" value={selectedUser?.firstName} onChange={handleUserSelect}>
                         <option>Select a user</option>
                         {users?.map(user => {
                             return <option key={user.id}>{user.firstName}</option>
                         })}
-                        </Input>
-                    </FormGroup>
+                        </Input> */}
+                        <ul style={{padding: 0, maxHeight: "100%", overflow: "hidden", overflowY: "auto", minWidth: "220px"}}>
+                        {users?.map(user => {
+                            return (
+                                <>  
+                                    <span className="d-flex justify-content-between">
+                                        <button style={{padding: "2px",fontSize: "14px"}} onClick={() => {handleDemote(user)}}>Demote</button>
+                                        {user.roles.includes("Admin") && <li style={{color: "gold", listStyleType: "none", fontWeight: "bold", fontSize: "20px", margin: "0 0.5rem 0 0.5rem"}} key={user.id}>{user.firstName}</li>}
+                                        {!user.roles.includes("Admin") && <li style={{color: "white", listStyleType: "none", fontSize: "20px"}} key={user.id}>{user.firstName}</li>}
+                                        <button style={{padding: "2px",fontSize: "14px"}} onClick={() => {handlePromote(user)}}>Promote</button>
+                                    </span>
+                                </>
+                            )
+                        })}
 
-                    <FormGroup style={{marginLeft: "0.5rem"}} className="d-flex align-items-center">
-                        <Label>Admin</Label>
-                        <Input style={{margin: 0, marginLeft: "6px"}} type="checkbox" onChange={handleCheckbox} checked={selectedUser?.roles?.includes("Admin") || false} />
-                    </FormGroup> 
+                        </ul>
+                    </FormGroup>
                 </span>
-                <button onClick={handleSaveChanges}>Save Changes</button>
             </Card>
           </Col>
         </Row>

@@ -113,29 +113,29 @@ label {
 .card.enemy-card {
   color: red;
   font-weight: bolder !important;
-  border: 2px solid white;
+  border: 6px ridge black;
   background-image: url("/assets/images/background/element background/item container background 1.png");
   background-size: cover;
 }
 .enemy-list-background {
   background-image: url("/assets/images/background/element background/button background.png");
 }
-/* .card.enemy-card::before {
-  content: '';
+.card.enemy-card::before {
+  /* content: '';
   position: absolute;
   top: -5px;
   left: -5px;
   right: -5px;
   bottom: -5px; 
-  border-image-source: url('/public/assets/images/border/enemy border.png');
+  border-image-source: url('/public/assets/images/border/border 1.png');
   border-image-slice: 50%; 
   border-image-width: 50%;
   border-image-outset: 20px; 
   border-image-repeat: stretch; 
   border-style: solid;
   pointer-events: none;
-  z-index: 100;
-} */
+  z-index: 100; */
+}
 
 span {
   color: white;
@@ -173,6 +173,7 @@ div.invalid-feedback {
 h5.card-title {
   height: 50px;
   margin: 0;
+  /* border: 4px outset grey; */
 }
 
 .p-combat {

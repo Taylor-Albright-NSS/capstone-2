@@ -34,11 +34,11 @@ export const EnemyDetails = () => {
                 {/* Left side column */}
                 <Col className="granite-background" style={{maxWidth: "500px", border: "6px ridge grey"}}>
                     <Row className="d-flex justify-content-center">
-                    <button style={{width: "150px"}} color="primary" onClick={() => navigate("/enemy-list")}>Go Back</button>
+                    <button style={{width: "150px"}} className="my-2" onClick={() => navigate("/enemy-list")}>Go Back</button>
                         <div className="d-flex flex-column align-items-center" style={{ maxWidth: "400px" }} >
                             <h3>{enemy?.name}</h3>
-                            <img style={{maxWidth: "200px"}} src={`${enemy?.imageUrl}`} alt={enemy?.name} />
-                            <Card>
+                            <img className="my-2" style={{width: "100%", maxWidth: "200px", height: "100%", maxHeight: "200px", border: "6px ridge grey"}} src={`${enemy?.imageUrl}`} alt={enemy?.name} />
+                            <Card style={{border: "4px ridge grey", padding: "0.5rem"}}>
                                 <span className="d-flex align-items-center">
                                     <h6 style={{marginBottom: 0}}>Level range:</h6>
                                     <p style={{marginBottom: 0, marginLeft: "0.5rem"}}>{enemy?.minLevel + " - " + enemy?.maxLevel}</p>

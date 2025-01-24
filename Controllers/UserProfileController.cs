@@ -63,8 +63,10 @@ public class UserProfileController : ControllerBase
             UserId = id
         });
         _dbContext.SaveChanges();
-        return NoContent();
+        return Ok(new {Message = "User has been promoted"});
     }
+
+    //--------
 
     [HttpPost("demote/{id}")]
     [Authorize(Roles = "Admin")]
@@ -81,7 +83,7 @@ public class UserProfileController : ControllerBase
 
         _dbContext.UserRoles.Remove(userRole);
         _dbContext.SaveChanges();
-        return NoContent();
+        return Ok(new {Message = "User has been demoted"});
     }
 
     [Authorize]
@@ -100,21 +102,5 @@ public class UserProfileController : ControllerBase
         user.Email = user.IdentityUser.Email;
         user.UserName = user.IdentityUser.UserName;
         return Ok(user);
-    }
-
-    [HttpPut("{id}")]
-    [Authorize(Roles = "Admin")]
-    public IActionResult Put(int id, UserProfileUpdateDTO userDTO)
-    {
-        var modifiedUser = _dbContext.UserProfiles.FirstOrDefault(user => user.Id == id);
-
-        if (modifiedUser == null)
-        {
-            return NotFound(new {Message = "Custom Message: Not Found"});
-        }
-
-        _mapper.Map(userDTO, modifiedUser);
-        _dbContext.SaveChanges();
-        return Ok(new {Message = "User successfully changed"});
     }
 }
