@@ -23,11 +23,12 @@ export const Testing = () => {
 
     console.log("TEST")
     return (
-            <Card className="border-test mx-4 my-4 enemy-card" style={{maxWidth: "200px", maxHeight: "260px"}}>
+        <div className="d-flex justify-content-center">
+            <Card className="d-flex border-test mx-4 my-4 enemy-card" style={{maxWidth: "200px", maxHeight: "260px"}}>
                 <CardBody className="d-flex flex-column align-items-center">
                     <Button onClick={handleOpenAITest}>TEST ME</Button>
-                Testing
                 </CardBody>
             </Card>
+        </div>
     )
 }
