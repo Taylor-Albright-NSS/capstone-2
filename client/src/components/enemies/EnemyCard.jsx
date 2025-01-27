@@ -30,8 +30,8 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
                         <p style={{margin: 0, color: "white"}}>{enemy?.minLevel} - {enemy?.maxLevel}</p>
                     </span>
                     <span className="d-flex justify-content-evenly my-1">
-                        {(loggedInUser?.id == enemy?.userId || loggedInUser.roles.includes("Admin")) && <button color="danger" style={{width: "90px", fontSize: "12px"}} onClick={handleEnemyDelete}>Delete</button>}
-                        {(loggedInUser?.id == enemy?.userId || loggedInUser.roles.includes("Admin")) && <button color="warning" style={{width: "90px", fontSize: "12px"}} onClick={() => navigate(`edit/${id}`)}>Edit</button>}
+                        {(loggedInUser.roles.includes("Admin")) && <button color="danger" style={{width: "90px", fontSize: "12px"}} onClick={handleEnemyDelete}>Delete</button>}
+                        {(loggedInUser.roles.includes("Admin")) && <button color="warning" style={{width: "90px", fontSize: "12px"}} onClick={() => navigate(`edit/${id}`)}>Edit</button>}
                     </span>
                 </CardBody>
             </Card>

@@ -29,6 +29,7 @@ export default function Login({ setLoggedInUser }) {
 
   return (
     <Container style={{ maxWidth: "500px" }}>
+      {console.log(new Date(2000, 0, 3, 4))}
       <Row>
         <Col className="d-flex justify-content-center align-items-center" style={{marginTop: "4rem"}}>
           <Card className="welcome p-4 d-flex justify-content-center align-items-center" style={{maxWidth: "800px", minHeight: "400px", border: "6px ridge grey"}}>
