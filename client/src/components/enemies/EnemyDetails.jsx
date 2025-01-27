@@ -130,8 +130,8 @@ export const EnemyDetails = () => {
                                     </Card>
                                 </span>
                                 <span style={{textAlign: "center"}}>
-                                    {loggedInUser?.id == enemy?.userId && <button color="danger" onClick={handleEnemyDelete}>Delete Enemy</button>}
-                                    {loggedInUser?.id == enemy?.userId && <button color="warning" onClick={() => navigate(`../edit/${id}`, { state: { from: location.pathname } } )}>Edit enemy</button>}
+                                {(loggedInUser.roles.includes("Admin")) && <button color="danger" onClick={handleEnemyDelete}>Delete Enemy</button>}
+                                {(loggedInUser.roles.includes("Admin")) && <button color="warning" onClick={() => navigate(`../edit/${id}`, { state: { from: location.pathname } } )}>Edit enemy</button>}
                                 </span>
                                 </Card>
                             </Row>

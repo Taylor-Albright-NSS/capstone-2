@@ -33,7 +33,7 @@ public class CharacterController : ControllerBase
         {
             return NotFound("Couldn't find characters");
         }
-
+        
         return Ok(characters);
     }
 
