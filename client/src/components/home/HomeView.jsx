@@ -12,7 +12,7 @@ export const HomeView = () => {
                         <CardImg src="assets/images/icons/Galvadia Banner.png" style={{maxWidth: "250px", height: "auto"}} />
 
                         <p className="my-5 translate-test" style={{color: "white", fontWeight: "100", width: "400px", textIndent: "20px", textAlign: "center"}}>
-                            The Galvadia <mark>Armory</mark> is an interactive application to create enemies for Galvadia. You can also test out your characters damage against any monster!
+                            The Galvadia Armory is an interactive application to create enemies for Galvadia. You can also test out your characters damage against any monster!
                         </p>
                     </Card>
                 </Col>
