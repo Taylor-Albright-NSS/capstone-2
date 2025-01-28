@@ -1,13 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, Form, FormGroup, Input, Label, Row, Col, ModalHeader, ModalBody, ModalFooter, Card } from "reactstrap";
+import { Form, FormGroup, Input, Label, Row, Col, ModalHeader, ModalBody, ModalFooter, Card } from "reactstrap";
 import { UserContext } from "../ApplicationViews";
 import { postEnemy } from "../../managers/enemyManager";
 import { getItems } from "../../managers/itemManager";
 import { getEnemyImages } from "../../managers/imageManager";
-import { fetchImages } from "../../managers/imageManager";
+import { getEnemyImagesFirebase } from "../../managers/imageManager";
 import { useNavigate } from "react-router-dom";
 import { FormMain } from "../formComponents/_FormMain";
 import "../../App.css"
+import "./CreateEnemy.css"
 
 
 export const CreateEnemy = () => {
@@ -15,16 +16,15 @@ export const CreateEnemy = () => {
     const navigate = useNavigate()
     const userId = loggedInUser.id
     const [images, setImages] = useState([])
-    const [enemyImage, setEnemyImage] = useState(null)
+    // const [enemyImage, setEnemyImage] = useState(null)
 
     const [items, setItems] = useState([])
     const [enemy, setEnemy] = useState({
         userId: userId,
-        imageId: 1,
         name: "",
         minLevel: 1,
         maxLevel: 1,
-        strength: 1,
+        attackPower: 1,
         baseHealth: 1,
         baseExperience: 0,
         slashingArmor: 0,
@@ -33,14 +33,13 @@ export const CreateEnemy = () => {
         slashingDamage: false,
         piercingDamage: false,
         bluntDamage: false,
-        dodgeRating: 0,
-        accuracyRating: 0,
         fireResist: 0,
         iceResist: 0,
         lightningResist: 0,
         minGold: 0,
         maxGold: 0,
         description: "",
+        imageUrl: null,
         itemIds: [],
     })
 
@@ -52,20 +51,36 @@ export const CreateEnemy = () => {
     }, [])
 
     // useEffect(() => {
-    //     fetchImages().then(imageList => {
+    //     getEnemyImagesFirebase().then(imageList => {
     //         console.log(imageList, 'Images list')
     //         setImages(imageList)
     //     })
     // }, [])
     useEffect(() => {
-        getEnemyImages().then(imageList => {
-            console.log(imageList, 'Images list')
+        getEnemyImagesFirebase().then(imageList => {
             setImages(imageList)
         })
     }, [])
     
     const handleSubmit = (e) => {
         e.preventDefault()
+        let { name, slashingDamage, piercingDamage, bluntDamage, imageUrl } = enemy
+        
+        if (name.length < 1) {
+            window.alert("Name must be at least 1 character long")
+            return
+        }
+        if (!slashingDamage && !piercingDamage && !bluntDamage) {
+            window.alert("Enemy must have at least 1 damage type")
+            return
+        }
+        if (name.length > 15) {
+            window.alert("Name is too long")
+            return
+        }
+        if (imageUrl == null) {
+            enemy.imageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2FNo%20Image.png?alt=media&token=a7ddaad7-0650-43d7-bcdf-de98a4b81542"
+        }
         postEnemy(enemy).then(() => {
             navigate("/enemy-list")
         })
@@ -86,36 +101,46 @@ export const CreateEnemy = () => {
         setEnemy({ ...enemy, [name]: checked });
     };
 
-    const handleItemSelect = (e) => {
-        console.log(e)
-        console.log(e.target)
-        console.log(e.target.options[e.target.selectedIndex].value, ' test')
-    }
-
     const handleTextInput = (e) => {
         const {name, value} = e.target
         setEnemy({...enemy, [name]: value})
     }
 
     const handleNumberInput = (e) => {
-        const {name, value, clientX, clientY} = e.target
+        let {name, value} = e.target
+        console.log(value, "value")
+        if (isNaN(value) || !value) {value = 0}
         if (value < 0 || value > 9999) { // Example limit
-            console.log('test')
-        } else {
-            setEnemy({...enemy, [name]: parseInt(value)})
+            console.log('Value cannot be less than 0 or greater than 9999')
+            return
+        } 
+        if (name == "minLevel") {
+            if (value > enemy.maxLevel) {
+                return
+            }
         }
-    }
-
-    const handleLimiters = (e) => {
-
+        if (name == "maxLevel") {
+            if (value < enemy.minLevel) {
+                return
+            }
+        }
+        if (name == "minGold") {
+            if (value > enemy.maxGold) {
+                return
+            }
+        }
+        if (name == "maxGold") {
+            if (value < enemy.minGold) {
+                return
+            }
+        }
+        setEnemy({...enemy, [name]: parseInt(value)})
     }
 
     return (
         <>
             <FormMain 
                 handleSubmit={handleSubmit} 
-                setEnemyImage={setEnemyImage}
-                enemyImage={enemyImage}
                 setEnemy={setEnemy}
                 enemy={enemy}
                 setImages={setImages}

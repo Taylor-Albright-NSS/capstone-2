@@ -6,6 +6,7 @@ using Capstone_2.Models.DTO;
 using Capstone2.Data;
 using Capstone_2.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Capstone_2.Controllers;
 
@@ -27,6 +28,22 @@ public class EnemyController : ControllerBase
     {
         return Ok(_dbContext.Enemies.ProjectTo<EnemyDTO>(_mapper.ConfigurationProvider));
     }
+
+    [HttpGet("{userId}/userEnemies")]
+    public IActionResult GetUserEnemies(int userId)
+    {
+        var userEnemies = _dbContext.Enemies
+        .Where(e => e.UserId == userId)
+        .ProjectTo<EnemyDTO>(_mapper.ConfigurationProvider);
+
+        if (userEnemies == null || !userEnemies.Any())
+        {
+            return NotFound(new {Message = "User does not have any enemies created"});
+        }
+
+        return Ok(userEnemies);
+    }
+
     [HttpGet("{id}")]
     public IActionResult Get(int id)
     {
@@ -109,6 +126,11 @@ public class EnemyController : ControllerBase
     {
 
         Enemy enemy = _mapper.Map<Enemy>(enemyDTO);
+
+        if (enemy == null)
+        {
+            return NotFound(new {Message = "Unable to create enemy"});
+        }
         _dbContext.Enemies.Add(enemy);
         _dbContext.SaveChanges();
 
@@ -138,15 +160,19 @@ public class EnemyController : ControllerBase
         return Ok(_dbContext.EnemiesItems);
     }
     //--------
-    [HttpDelete("{enemyId}")]
-    public IActionResult DeleteEnemy(int enemyId)
+	[HttpDelete("{enemyId}")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult DeleteEnemy(int enemyId, int userId)
     {
         var enemy = _dbContext.Enemies.FirstOrDefault(e => e.Id == enemyId);
+        // if (enemy.UserId != userId)
+        // {
+        //     return NotFound( new {Message = "You are not authorized to perform this action"});
+        // }
         if (enemy == null)
         {
             return NotFound("Enemy with that id not found");
         }
-
 
         var enemyItems = _dbContext.EnemiesItems.Where(ei => ei.EnemiesId == enemyId).ToList();
         if (enemyItems == null)
@@ -159,8 +185,10 @@ public class EnemyController : ControllerBase
         _dbContext.SaveChanges();
         return Ok();
     }
-    [HttpPut("{id}")]
-    public IActionResult Put(EnemyDTO enemyDTO, int id)
+
+    [HttpPut("{id}/{userId}")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult Put(int id, int userId, EnemyDTO enemyDTO)
     {
         Enemy enemy = _dbContext.Enemies.FirstOrDefault(e => e.Id == id);
 
@@ -168,9 +196,15 @@ public class EnemyController : ControllerBase
         {
             return NotFound();
         }
+        
+        // if (enemy.UserId != userId)
+        // {
+        //     return NotFound(new {Message = "Unauthorized operation: You are not authorized to make changes to this enemy"});
+        // }
+
 
         _mapper.Map(enemyDTO, enemy);
         _dbContext.SaveChanges();
-        return Ok(new { message = "Custom message: Enemy was changed successfully"});
+        return Ok(new { Message = "Custom message: Enemy was changed successfully"});
     }
 }

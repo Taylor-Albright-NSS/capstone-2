@@ -1,4 +1,4 @@
-import { Button, Form, FormGroup, Input, Label, Row, Col, ModalHeader, ModalBody, ModalFooter, Card } from "reactstrap";
+import { Form, FormGroup, Input, Label, Row, Col, ModalHeader, ModalBody, ModalFooter, Card, Container } from "reactstrap";
 import { FormModal } from "../formComponents/FormModal";
 import { Fieldset1 } from "../formComponents/Fieldset1";
 import { Fieldset2 } from "../formComponents/Fieldset2";
@@ -12,7 +12,7 @@ import { useState } from "react";
 
 
 
-export const FormMain = ({handleSubmit,setEnemyImage, enemyImage, setEnemy, enemy, setImages, images, handleTextInput, handleNumberInput, handleCheckbox, handleItemDropsChange, items, isCreateButton}) => {
+export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, handleTextInput, handleNumberInput, handleCheckbox, handleItemDropsChange, items, isCreateButton, from}) => {
     const navigate = useNavigate()
     const [warning, setWarning] = useState({ visible: false, message: '', x: 0, y:0 })
 
@@ -25,41 +25,50 @@ export const FormMain = ({handleSubmit,setEnemyImage, enemyImage, setEnemy, enem
     }
 
     return (
-        <>
-            <Form className="my-4 mx-4" onSubmit={handleSubmit} style={{border: "2px solid black"}}>
-                <Row className="justify-content-center mx-4" style={{border: "2px solid green"}}>
-                    <Col className="col-7" style={{border: "2px solid red"}}>
+        <Container style={{height: "100%"}} className="d-flex justify-content-center">
+            <Form className="my-4 mx-4 col-11" onSubmit={handleSubmit} style={{backdropFilter: "blur(10px)", border: "8px ridge grey"}}>
+                <Row className="justify-content-center mx-4">
+                    <Col md="9" className="d-flex flex-column justify-content-between">
                         {/*ROW 1*/}
-                        <Row style={{border: "2px solid yellow", padding: "1rem"}}>
-                            <Col className="d-flex justify-content-evenly">
-                                    <FormModal  setEnemyImage={setEnemyImage} enemyImage={enemyImage} setEnemy={setEnemy} enemy={enemy} setImages={setImages} images={images} />
-                                    <Fieldset1 enemy={enemy} handleTextInput={handleTextInput} handleNumberInput={handleNumberInput} handlePositionLogging={handlePositionLogging} />
-                                    <Fieldset2 handleNumberInput={handleNumberInput} handleTextInput={handleTextInput} enemy={enemy} />
+                        <Row className="d-flex align-items-center" style={{border: "8px ridge grey"}}>
+                            <Col>
+                                <FormModal setEnemy={setEnemy} enemy={enemy} setImages={setImages} images={images} handleTextInput={handleTextInput} />
+                            </Col>
+                            <Col>
+                                <Fieldset1 enemy={enemy} handleTextInput={handleTextInput} handleNumberInput={handleNumberInput} handlePositionLogging={handlePositionLogging} />
+                            </Col>
+                            <Col>
+                                <Fieldset2 handleNumberInput={handleNumberInput} handleTextInput={handleTextInput} enemy={enemy} />
                             </Col>
                         </Row>
                         {/*ROW 2*/}
-                        <Row style={{border: "2px solid yellow"}}>
-
-                            <Col style={{border: "2px solid blue"}}>
+                        <Row className="d-flex justify-content-center">
+                            <Col className="d-flex justify-content-center align-items-center" style={{border: "6px ridge grey"}}>
                                 <FieldsetOffense handleCheckbox={handleCheckbox} enemy={enemy} handleNumberInput={handleNumberInput} />
                             </Col>
-                            <Col style={{border: "2px solid blue"}}>
+                            <Col style={{border: "6px ridge grey"}}>
                                 <FieldsetDefense handleNumberInput={handleNumberInput} enemy={enemy} />
                             </Col>
-
-                                
                         </Row>
                     </Col>
-                    <Col style={{border: "2px solid blue"}}>
+                    <Col style={{border: "8px ridge grey"}}>
                         <FieldsetItemDrops handleItemDropsChange={handleItemDropsChange} items={items} handleNumberInput={handleNumberInput} enemy={enemy} />
                     </Col>
-                    <Row className="justify-content-center">
+                    <Row className="justify-content-center my-2">
                         {isCreateButton ? 
-                        <Button style={{maxWidth: "400px"}}>Create Enemy</Button>
+                        <button style={{maxWidth: "300px"}}>Create Enemy</button>
                         :
                         <>
-                        <Button style={{maxWidth: "200px"}}>Confirm Edits</Button>
-                        <Button style={{maxWidth: "200px"}} onClick={() => navigate("/enemy-list")}>Back</Button>
+                        <button style={{maxWidth: "200px"}}>Confirm Edits</button>
+                        <button style={{maxWidth: "200px"}} onClick={(e) => {
+                            e.preventDefault()
+                            if (from) {
+                                navigate(from)
+                            } else {
+
+                                navigate("/enemy-list")
+                            }
+                            }}>Back</button>
                         </>
                     }
                     </Row>
@@ -67,9 +76,9 @@ export const FormMain = ({handleSubmit,setEnemyImage, enemyImage, setEnemy, enem
             </Form>
             {warning.visible && (
                 <div className="warning-message" style={{ top: warning.y, left: warning.x }}>
-                    {warning.message}fdsafasd
+                    {warning.message}
                 </div>
             )}
-        </>
+        </Container>
     );
 }

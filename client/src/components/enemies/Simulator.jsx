@@ -1,31 +1,21 @@
 import { useEffect, useState } from "react"
-import { Button, Card, CardBody, CardColumns, CardGroup, CardText, CardTitle, Col, Container, Row } from "reactstrap";
+import { Card, CardBody, CardColumns, CardGroup, CardText, CardTitle, Col, Container, Row } from "reactstrap";
 import { getEnemy } from "../../managers/enemyManager";
 import { useParams } from "react-router-dom";
 import './Simulator.css'
 import { app } from "../../firebase/fireBase";
 import App from "../../firebase/FirebaseUploadUI";
-
+import { UserContext } from "../ApplicationViews";
+import { useContext } from "react";
 
 export const Simulator = () => {
-    const playerBase = {
-        baseHealth: 30,
-        attackPower: 1000,
-        slashingArmor: 10,
-        piercingArmor: 20,
-        bluntArmor: 30,
-        slashingPenetration: 0,
-        piercingPenetration: 0,
-        bluntPenetration: 0,
-        dodgeRating: 0,
-        accuracyRating: 0,
-    }
+    const { selectedCharacter } = useContext(UserContext)
     const simEnemyBase = {
-        baseHealth: 100,
-        baseDamage: 100,
-        slashingArmor: 10,
+        baseHealth: 1000,
+        attackPower: 9,
+        slashingArmor: 5,
         piercingArmor: 10,
-        bluntArmor: 10,
+        bluntArmor: 20,
     }
     const [enemy, setEnemy] = useState({})
     const [simEnemy, setSimEnemy] = useState({})
@@ -37,13 +27,13 @@ export const Simulator = () => {
         getEnemy(id).then(enemy => {
             enemy.actualLevel = enemy.minLevel
             setEnemy(enemy)
-            setSimEnemy(simEnemyBase)
+            setSimEnemy(enemy)
         })
     }, [id])
 
     useEffect(() => {
-        setPlayer(playerBase)
-        setSimPlayer(playerBase)
+        setPlayer(selectedCharacter)
+        setSimPlayer(selectedCharacter)
     }, [])
 
     function randomNumberRange(min, max) {
@@ -51,8 +41,8 @@ export const Simulator = () => {
      }
 
     //base variables
-    const scalingFactor = 1 //Strength is increased by 1 per level
-    const { baseDamage } = enemy || 0
+    const scalingFactor = 1
+    const { attackPower } = enemy || 0
     const { baseExperience } = enemy || 0
     const { baseHealth } = enemy || 0
     const { actualLevel } = enemy || 0
@@ -61,35 +51,21 @@ export const Simulator = () => {
     const { slashingArmor } = enemy || 0
     const { piercingArmor } = enemy || 0
     const { bluntArmor } = enemy || 0
-    const { fireResist } = enemy || 0
-    const { iceResist } = enemy || 0
-    const { lightningResist } = enemy || 0
-    const dodgeRating = enemy?.dodgeRating + actualLevel || 0
-    const accuracyRating = enemy?.accuracyRating + actualLevel || 0
+    // const { fireResist } = enemy || 0
+    // const { iceResist } = enemy || 0
+    // const { lightningResist } = enemy || 0
     
+    const damageMultiplier = 1.0 + (actualLevel - minLevel) * 0.1
     //variables to interpolate
-    const botDamage = Math.floor(baseDamage * 0.5)
-    const topDamage = Math.floor(baseDamage * 1.5)
+    const botDamage = Math.floor(attackPower * 0.5)
+    const topDamage = Math.floor(attackPower * 1.5)
+
+
     const experience = actualLevel == minLevel ? baseExperience : Math.floor((((actualLevel * 0.1) * baseExperience) + baseExperience))
     const health = actualLevel == minLevel ? baseHealth : Math.floor((((actualLevel * 0.1) * baseHealth) + baseHealth))
     
     //randomizer
     const damage = randomNumberRange(botDamage, topDamage)
-
-    //PLAYER DAMAGE CALC
-	// const { attackPower, botMultiplier, topMultiplier } = player[playerWeapon.skillUsed]
-	// const { botDamage, topDamage } = playerWeapon;
-	// const lowDamage = Math.ceil(attackPower * (botMultiplier * botDamage));
-	// const highDamage = Math.ceil(attackPower * (topMultiplier * topDamage));
-	// const baseDamage = Math.max(0, randomNumberRange(lowDamage, highDamage))
-	// console.log(lowDamage, 'LOW DAMAGE - RIGHT')
-	// console.log(highDamage, 'HIGH DAMAGE - RIGHT', highDamage / player.currentWeaponSkill.speed, ' HIGH DPS - RIGHT')
-	// console.log(baseDamage, 'CHOSEN DAMAGE - RIGHT')
-	// console.log(baseDamage / player.currentWeaponSkill.speed, ' DPS - RIGHT')
-	// return baseDamage  
-
-    // let armorAfterPen = enemyArmor - player[slashingPiercingOrBlunt] <= 0 ? 0 : enemyArmor - player[slashingPiercingOrBlunt]
-    // const damageAfterMitigation = (damageBeforeMitigation - armorAfterPen) * (1000 / (1000 + armorAfterPen)) <= 0 ? 0 : (damageBeforeMitigation - armorAfterPen) * (1000 / (1000 + armorAfterPen))
 
     const incrementLevel = () => {
         if (enemy.actualLevel + 1 > enemy.maxLevel) {return}
@@ -102,9 +78,9 @@ export const Simulator = () => {
     const calculateEnemyDamage = (armorType) => {
         const playerArmor = simPlayer[armorType]
         const damageObject = {}
-        damageObject.lowDamage = Math.ceil(simEnemy.baseDamage * 0.5)
-        damageObject.topDamage = Math.ceil(simEnemy.baseDamage * 1.5)
-        damageObject.rawDamage = randomNumberRange(damageObject.lowDamage, damageObject.topDamage)
+        damageObject.lowDamage = Math.ceil(simEnemy.attackPower * 0.5)
+        damageObject.topDamage = Math.ceil(simEnemy.attackPower * 1.5)
+        damageObject.rawDamage = Math.floor(randomNumberRange(damageObject.lowDamage, damageObject.topDamage) * damageMultiplier)
         damageObject.actualDamage = Math.max(Math.floor((damageObject.rawDamage - playerArmor) * (1000 / (1000 + playerArmor))), 0)
         return damageObject
     }
@@ -114,16 +90,38 @@ export const Simulator = () => {
         const { actualDamage } = enemyDamageObject
         const { rawDamage } = enemyDamageObject
         const blockedDamage = rawDamage - actualDamage
-        const playerNewHealth = Math.max(simPlayer.baseHealth - actualDamage, 0)
-        console.log(playerNewHealth, ' PLAYER NEW HEALTH')
+        const playerNewHealth = Math.max(simPlayer.health - actualDamage, 0)
+
         const damageLog = document.getElementById('damage-log')
-        const damageP = document.createElement('logline')
         damageLog.style.fontSize = "12px"
-        damageP.textContent = `${enemy.name} hits for: ${actualDamage} (you block ${blockedDamage})`
-        damageLog.insertBefore(damageP, damageLog.firstChild);
-        damageLog.appendChild(damageP)
+
+        const enemyName = document.createElement("p")
+        enemyName.classList.add("p-combat", "red", "mx-1")
+        enemyName.textContent = `Enemy `
+
+        const combatText1 = document.createElement("p")
+        combatText1.classList.add("p-combat")
+        combatText1.textContent = `hits for `
+
+        const combatNumber = document.createElement("p")
+        combatNumber.classList.add("p-combat", "yellow", "mx-1")
+        combatNumber.textContent = `${actualDamage} `
+
+        const combatText2 = document.createElement("p")
+        combatText2.classList.add("p-combat")
+        combatText2.textContent = `(you block ${blockedDamage})`
+
+        const span = document.createElement("span")
+        span.classList.add("d-flex")
+        span.appendChild(enemyName)
+        span.appendChild(combatText1)
+        span.appendChild(combatNumber)
+        span.appendChild(combatText2)
+
+        damageLog.insertBefore(span, damageLog.firstChild);
+        damageLog.appendChild(span)
         damageLog.scrollTop = damageLog.scrollHeight
-        setSimPlayer(prevState => ({...prevState, baseHealth: playerNewHealth}))
+        setSimPlayer(prevState => ({...prevState, health: playerNewHealth}))
     }
 
     const calculatePlayerDamage = (armorType, penetrationType) => {
@@ -146,12 +144,35 @@ export const Simulator = () => {
         const { rawDamage } = playerDamageObject
         const blockedDamage = rawDamage - actualDamage
         const enemyNewHealth = Math.max(simEnemy.baseHealth - actualDamage, 0)
+
         const damageLog = document.getElementById('damage-log')
-        const damageP = document.createElement('logline')
         damageLog.style.fontSize = "12px"
-        damageP.textContent = `You hit for: ${actualDamage} (enemy blocks ${blockedDamage})`
-        damageLog.insertBefore(damageP, damageLog.firstChild);
-        damageLog.appendChild(damageP)
+
+        const enemyName = document.createElement("p")
+        enemyName.classList.add("p-combat", "light-blue", "mx-1")
+        enemyName.textContent = `You `
+
+        const combatText1 = document.createElement("p")
+        combatText1.classList.add("p-combat")
+        combatText1.textContent = `hit for `
+
+        const combatNumber = document.createElement("p")
+        combatNumber.classList.add("p-combat", "yellow", "mx-1")
+        combatNumber.textContent = `${actualDamage} `
+
+        const combatText2 = document.createElement("p")
+        combatText2.classList.add("p-combat")
+        combatText2.textContent = `(enemy blocks ${blockedDamage})`
+
+        const span = document.createElement("span")
+        span.classList.add("d-flex")
+        span.appendChild(enemyName)
+        span.appendChild(combatText1)
+        span.appendChild(combatNumber)
+        span.appendChild(combatText2)
+
+        damageLog.insertBefore(span, damageLog.firstChild);
+        damageLog.appendChild(span)
         damageLog.scrollTop = damageLog.scrollHeight
         setSimEnemy(prevState => ({...prevState, baseHealth: enemyNewHealth}))
     }
@@ -180,112 +201,102 @@ export const Simulator = () => {
     return (
         <>
         {/* <App /> */}
-        <button className="toggle-btn" onClick={toggleSlide}>→</button>
-        <Container style={{height: "800px"}} className="slide slide-right">
-            <div id="test" className="slide-content">Simulator</div>
+        {!selectedCharacter?.id ? <p className="d-flex align-items-center">Select a character from your profile to use the simulator</p> :
+        <Container>
+        <h1 style={{textAlign: "center"}}>Combat Simulator</h1>
+        <Container>
             <Row>
-            {/* <div className="container">
-                    <div className="main-element">
-                    </div>
-                    
-                    <div className="sliding-element">
-                    This is the sliding element
-                    </div>
-                    </div> */}
                 <Col>
-                    <Row>
-                        <Col>
+                    <Row className="my-4">
+                        <Col style={{border: "6px ridge grey"}}>
                             <Card>
-                                <span className="d-flex justify-content-center">
-                                    <Button onClick={decrementLevel}>Decrease Enemy Level</Button>
-                                    <Button onClick={incrementLevel}>Increase Enemy Level</Button>
-                                </span>
+                                <h5 style={{textAlign: "center"}}>{enemy.name}</h5>
                                 <CardBody>
-                                    <CardText>Level: {actualLevel}</CardText>
-                                    <CardText>Damage Range: {botDamage} - {topDamage}</CardText>
-                                    {/* <CardText>Gold Range: {enemy?.minGold} - {enemy?.maxGold}</CardText> */}
-                                    <CardText>Experience: {experience}</CardText>
-                                    <CardText>----</CardText>
-                                    <CardText>Health: {health}</CardText>
-                                    <CardText>Dodge: {dodgeRating}</CardText>
-                                    <CardText>Accuracy: {accuracyRating}</CardText>
-                                    <h6>Damage Type(s)</h6>
-                                    {enemy?.slashingDamage && <CardText>Slashing</CardText>}
-                                    {enemy?.piercingDamage && <CardText>Piercing</CardText>}
-                                    {enemy?.bluntDamage && <CardText>Blunt</CardText>}
-                                    <div className="d-flex justify-content-around">
-                                        <span>
-                                            <CardText>Slashing Armor: {slashingArmor}</CardText>
-                                            <CardText>Piercing Armor: {piercingArmor}</CardText>
-                                            <CardText>Blunt Armor: {bluntArmor}</CardText>
+                                    <span style={{height: "24px"}} className="d-flex justify-content-start">
+                                        <p className="d-flex align-items-center" style={{marginRight: "10px", marginBottom: 0}}>Level: {actualLevel}</p>
+                                        <span className="d-flex">
+                                            <button onClick={decrementLevel} style={{maxHeight: "30px", maxWidth: "30px", display: "flex", alignItems: "center", justifyContent: "center", marginRight: "0.5rem"}}>-</button>
+                                            <button onClick={incrementLevel} style={{maxHeight: "30px", maxWidth: "30px", display: "flex", alignItems: "center", justifyContent: "center"}}>+</button>
                                         </span>
-                                        <span>
-                                            <CardText>Fire Resist: {fireResist}</CardText>
-                                            <CardText>Ice Resist: {iceResist}</CardText>
-                                            <CardText>Lightning Resist: {lightningResist}</CardText>
+                                    </span>
+                                    <CardText style={{margin: 0}}>Damage Range: {Math.floor(botDamage * damageMultiplier)} - {Math.floor(topDamage * damageMultiplier)}</CardText>
+                                    {/* <CardText>Gold Range: {enemy?.minGold} - {enemy?.maxGold}</CardText> */}
+                                    <CardText style={{margin: 0}}>Experience: {experience}</CardText>
+                                    <CardText style={{margin: 0}}>Health: {health}</CardText>
+                                    <div className="">
+                                        <span className="d-flex flex-column align-items-start">
+                                            <CardText style={{margin: 0}}>Slashing Armor: {slashingArmor}</CardText>
+                                            <CardText style={{margin: 0}}>Piercing Armor: {piercingArmor}</CardText>
+                                            <CardText style={{margin: 0}}>Blunt Armor: {bluntArmor}</CardText>
                                         </span>
                                     </div>
-                                    
+                                    <span id="enemy-damage-types" className="d-flex flex-column align-items-center">
+                                    <h6 style={{textAlign: "center", marginTop: "1rem"}}>Damage Type(s)</h6>
+                                        {enemy?.slashingDamage && <CardText style={{margin: 0}}>Slashing</CardText>}
+                                        {enemy?.piercingDamage && <CardText style={{margin: 0}}>Piercing</CardText>}
+                                        {enemy?.bluntDamage && <CardText style={{margin: 0}}>Blunt</CardText>}
+                                    </span>
                                 </CardBody>
                             </Card>
                         </Col>
-                        <Col>
+                        <Col style={{border: "6px ridge grey"}}>
                             <Card style={{height: "100%"}}>
-                                <CardTitle style={{alignSelf: "center"}}>Player</CardTitle>
+                                <h5 style={{alignSelf: "center", margin: 0, textAlign: "center", color: "gold"}}>{player?.name}</h5>
                                 <CardBody>
-                                    <CardText>Health: {player.baseHealth}</CardText>
-                                    <CardText>Damage: {player.damage}</CardText>
-                                    {/* <CardText>Gold Range: {enemy?.minGold} - {enemy?.maxGold}</CardText> */}
-                                    <CardText>Slashing Armor: {player.slashingArmor}</CardText>
-                                    <CardText>Piercing Armor: {player.piercingArmor}</CardText>
-                                    <CardText>Blunt Armor: {player.bluntArmor}</CardText>
-                                    <CardText>Slashing Penetration: {player.slashingPenetration}</CardText>
-                                    <CardText>Piercing Penetration: {player.piercingPenetration}</CardText>
-                                    <CardText>Blunt Penetration: {player.bluntPenetration}</CardText>
+                                    <CardText style={{margin: 0}}>Health: {player?.health}</CardText>
+                                    <CardText style={{margin: 0}}>Attack Power: {player?.attackPower}</CardText>
+                                    <CardText style={{margin: 0}}>Slashing Penetration: {player?.slashingPenetration}</CardText>
+                                    <CardText style={{margin: 0}}>Piercing Penetration: {player?.piercingPenetration}</CardText>
+                                    <CardText style={{margin: 0}}>Blunt Penetration: {player?.bluntPenetration}</CardText>
+                                    <CardText style={{margin: 0}}>Slashing Armor: {player?.slashingArmor}</CardText>
+                                    <CardText style={{margin: 0}}>Piercing Armor: {player?.piercingArmor}</CardText>
+                                    <CardText style={{margin: 0}}>Blunt Armor: {player?.bluntArmor}</CardText>
                                 </CardBody>
                             </Card>
                         </Col>
                     </Row>
-                    <Row className="d-flex justify-content-center align-content-around">
+                    <Row style={{border: "6px ridge grey"}} className="d-flex justify-content-center align-content-around">
                         <Col className="d-flex flex-column justify-content-center">
-                            <span className="d-flex justify-content-center">
-                                <Button onClick={() => setSimEnemy(prev => ({...prev, baseHealth: enemy.baseHealth}))}>Reset Enemy</Button>
-                            </span>
                             <Card className="my-2 d-flex align-items-center justify-content-between">
-                                <CardTitle>Enemy</CardTitle>
+                                <h5>{enemy.name}</h5>
                                 <CardText>Health: {simEnemy.baseHealth}</CardText>
                             </Card>
                             <span className="d-flex justify-content-around">
-                                <Button style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulateEnemyHit('slashingArmor')}>Enemy Slashing Swing</Button>
-                                <Button className="mx-1" style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulateEnemyHit('piercingArmor')}>Enemy Piercing Swing</Button>
-                                <Button style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulateEnemyHit('bluntArmor')}>Enemy Blunt Swing</Button>
+                                {enemy.slashingDamage && <button style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulateEnemyHit('slashingArmor')}>Enemy Slashing Swing</button>}
+                                {enemy.piercingDamage && <button className="mx-1" style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulateEnemyHit('piercingArmor')}>Enemy Piercing Swing</button>}
+                                {enemy.bluntDamage && <button style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulateEnemyHit('bluntArmor')}>Enemy Blunt Swing</button>}
+                            </span>
+                            <span className="d-flex justify-content-center">
+                                <button onClick={() => setSimEnemy(prev => ({...prev, baseHealth: health}))}>Reset Enemy</button>
                             </span>
                         </Col>
-                        <Col>
+                        <Col className="col-5">
                             {/*Card is what holds the combat log. Combat messages are appended here.*/}
                             <Card id="damage-log" className="my-2 d-flex align-items-start" style={{height: "220px", overflowY: "auto"}}></Card>
                                 <span className="d-flex justify-content-center" style={{height: "30px"}}>
-                                    <Button className="d-flex align-items-center" onClick={handleLogReset}>Reset</Button>
+                                    <button className="d-flex align-items-center" onClick={handleLogReset}>Reset</button>
                                 </span>
                         </Col>
                         <Col className="d-flex flex-column justify-content-center">
-                            <span className="d-flex justify-content-center">
-                                <Button onClick={() => setSimPlayer(prev => ({...prev, baseHealth: player.baseHealth}))}>Reset Player</Button>
-                            </span>
                             <Card className="my-2 d-flex align-items-center justify-content-between">
-                                <CardTitle>Player</CardTitle>
-                                <CardText>Health: {simPlayer.baseHealth}</CardText>
+                                <h5>{player.name}</h5>
+                                <CardText>Health: {simPlayer?.health}</CardText>
                             </Card>
                             <span className="d-flex justify-content-around">
-                                <Button style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulatePlayerHit('slashingArmor', 'slashingPenetration')}>Player Slashing Swing</Button>
-                                <Button className="mx-1" style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulatePlayerHit('piercingArmor', 'piercingPenetration')}>Player Piercing Swing</Button>
-                                <Button style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulatePlayerHit('bluntArmor', 'bluntPenetration')}>Player Blunt Swing</Button>
+                                <button style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulatePlayerHit('slashingArmor', 'slashingPenetration')}>Player Slashing Swing</button>
+                                <button className="mx-1" style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulatePlayerHit('piercingArmor', 'piercingPenetration')}>Player Piercing Swing</button>
+                                <button style={{padding: 0, fontSize: "10px", maxWidth: "78px"}} onClick={() => simulatePlayerHit('bluntArmor', 'bluntPenetration')}>Player Blunt Swing</button>
+                            </span>
+                            <span className="d-flex justify-content-center">
+                                <button onClick={() => setSimPlayer(prev => ({...prev, health: player.health}))}>Reset Player</button>
                             </span>
                         </Col>
                     </Row>
                 </Col>
             </Row>
         </Container>
+        </Container>
+}
         </>
     )
 }

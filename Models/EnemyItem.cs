@@ -1,4 +1,4 @@
-using Capstone_2.Models;
+namespace Capstone_2.Models;
 
 public class EnemyItem
 {

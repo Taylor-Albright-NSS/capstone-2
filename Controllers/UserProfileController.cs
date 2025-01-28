@@ -4,6 +4,8 @@ using Capstone2.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Capstone_2.Models.DTO;
+using AutoMapper;
 
 namespace Capstone2.Controllers;
 
@@ -13,10 +15,13 @@ namespace Capstone2.Controllers;
 public class UserProfileController : ControllerBase
 {
     private Capstone2DbContext _dbContext;
+    private readonly IMapper _mapper;
 
-    public UserProfileController(Capstone2DbContext context)
+
+    public UserProfileController(Capstone2DbContext context, IMapper mapper)
     {
         _dbContext = context;
+        _mapper = mapper;
     }
 
     [HttpGet]
@@ -58,8 +63,10 @@ public class UserProfileController : ControllerBase
             UserId = id
         });
         _dbContext.SaveChanges();
-        return NoContent();
+        return Ok(new {Message = "User has been promoted"});
     }
+
+    //--------
 
     [HttpPost("demote/{id}")]
     [Authorize(Roles = "Admin")]
@@ -76,7 +83,7 @@ public class UserProfileController : ControllerBase
 
         _dbContext.UserRoles.Remove(userRole);
         _dbContext.SaveChanges();
-        return NoContent();
+        return Ok(new {Message = "User has been demoted"});
     }
 
     [Authorize]

@@ -2,17 +2,13 @@ import { FormGroup, Label, Input, Row, Col } from "reactstrap"
 
 export const FieldsetDefense = ({ handleNumberInput, enemy }) => {
     return (
-        <fieldset>
-            <legend style={{textAlign: "center"}}>Defense</legend>
+        <fieldset className="p-3">
+            <legend style={{border: "4px outset grey", textAlign: "center"}}>Defense</legend>
             <Row>
                 <Col>
             <FormGroup className="d-flex flex-column align-items-center">
                 <Label for="baseHealth">Base Health</Label>
                 <Input style={{maxWidth: "76px"}} type="number" name="baseHealth" id="baseHealth" onChange={handleNumberInput} value={enemy.baseHealth} />
-            </FormGroup>
-            <FormGroup className="d-flex flex-column align-items-center">
-                <Label for="dodgeRating">Dodge</Label>
-                <Input style={{maxWidth: "76px"}} type="number" name="dodgeRating" id="dodgeRating" onChange={handleNumberInput} value={enemy.dodgeRating} />
             </FormGroup>
                 </Col>
             </Row>

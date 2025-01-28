@@ -1,36 +1,40 @@
-import { useState } from "react";
-import { FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter, Button, Card } from "reactstrap"
+import { useEffect, useState } from "react";
+import { FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter, Card, Input } from "reactstrap"
 
 
-export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImages, images }) => {
+export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImages, images, handleTextInput }) => {
+    const [selectedImage, setSelectedImage] = useState("")
     const [isOpen, setIsOpen] = useState(false);
     const toggleModal = () => setIsOpen(!isOpen);
-    
+
+    useEffect(() => {
+        setSelectedImage(enemy.imageUrl)
+    }, [enemy.imageUrl])
+
     return (
             <FormGroup className="d-flex justify-content-center">
-                <Modal isOpen={isOpen} toggle={() => {
+                <Modal style={{border: "8px ridge grey"}} isOpen={isOpen} toggle={() => {
                     toggleModal()
-                    setEnemyImage(enemy.image)
+                    setSelectedImage(enemy.imageUrl)
                 }}>
-                    <ModalHeader toggle={() => {
+                    <ModalHeader className="d-flex justify-content-center" toggle={() => {
                         toggleModal()
-                        setEnemyImage(enemy.image)
+                        setSelectedImage(enemy.imageUrl)
                     }}
-                    >Header
+                    >Choose a picture
                     </ModalHeader>
                     
                     <ModalBody>
-                        {images?.map(image => {
+                        {images?.map((image, i) => {
                             return (<img 
-                                key={image.id} 
-                                src={image.imageLocation} 
-                                // src={image} 
+                                key={i} 
+                                src={image} 
                                 alt={"NO IMAGE"} 
                                 style={{maxWidth: "80px"}}
                                 className="mx-1"
                                 border="2px solid black"
                                 onClick={() => {
-                                    setEnemyImage(image)
+                                    setSelectedImage(image)
                                 }}
                                 />)
                             }
@@ -38,23 +42,23 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
                     </ModalBody>
 
                     <ModalFooter className="d-flex justify-content-center">
-                        <Button 
+                        <button 
                             color="danger" 
                             onClick={() => {
                                 toggleModal()
-                                console.log(enemy.image)
-                                setEnemyImage(enemy.image)
+                                console.log(enemy.imageUrl)
+                                setSelectedImage(enemy.imageUrl)
                                 }
                             }
-                            >Cancel</Button>
+                            >Cancel</button>
 
-                        <Button 
+                        <button 
                             color="primary" 
                             onClick={() => {
                                 toggleModal()
-                                setEnemy(prev => ({...prev, imageId: enemyImage.id, image: enemyImage}))
+                                setEnemy(prev => ({...prev, imageUrl: selectedImage}))
                                 }}
-                            >Confirm</Button>
+                            >Confirm</button>
                     </ModalFooter>
                 </Modal>
                     <Card
@@ -65,14 +69,15 @@ export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImage
                             alignItems: "center",
                             name: "image",
                             minWidth: "200px",
-                            minHeight: "200px",
+                            height: "200px",
                             cursor: "pointer",
-                            backgroundImage: `url(${enemyImage?.imageLocation})`,
+                            border: "6px ridge grey",
+                            backgroundImage: `url(${selectedImage})`,
                             backgroundSize: "cover",
                             backgroundPosition: "center"
                         }}
                         >
-                        {enemyImage == null || enemyImage == undefined ? <span>Select Image</span> : ""}
+                        {selectedImage == null || selectedImage == undefined ? <span>Select Image</span> : ""}
                     </Card>
             </FormGroup>
 

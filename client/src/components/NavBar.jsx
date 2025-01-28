@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
 import {
-  Button,
   Collapse,
   Nav,
   NavLink,
@@ -11,6 +10,7 @@ import {
   NavbarToggler,
 } from "reactstrap";
 import { logout } from "../managers/authManager";
+import "./NavBar.css"
 
 export default function NavBar({ loggedInUser, setLoggedInUser }) {
   const [open, setOpen] = useState(false);
@@ -19,9 +19,8 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
 
   return (
     <div>
-      <Navbar className="" color="light" light fixed="true" expand="lg">
+      <Navbar color="light" light fixed="true" expand="lg">
         <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
-          Bestiary
         </NavbarBrand>
         {loggedInUser ? (
           <>
@@ -29,25 +28,43 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
             <Collapse isOpen={open} navbar>
               <Nav navbar>
                 <NavItem className="mx-4">
-                  <NavLink tag={RRNavLink} to="/">
+                  <NavLink className="nav-link" tag={RRNavLink} to="/">
                     Home
                   </NavLink>
                 </NavItem>
 
+                <NavItem className="mx-4">
+                  <NavLink tag={RRNavLink} to="/enemy-list">
+                    Enemies
+                  </NavLink>
+                </NavItem>
+
+                  <NavItem>
+                    <NavLink  className="mx-4" tag={RRNavLink} to="/create-enemy">
+                      Create Enemy
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink  className="mx-4" tag={RRNavLink} to="/myprofile">
+                      My Profile
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink  className="mx-4" tag={RRNavLink} to="/testing">
+                      Testing
+                    </NavLink>
+                  </NavItem>
+                
                 {loggedInUser.roles.includes("Admin") && (
                   <NavItem className="mx-4">
-                    <NavLink tag={RRNavLink} to="/enemy-list">
-                      Enemies
+                    <NavLink tag={RRNavLink} to="/admin">
+                      Admin
                     </NavLink>
                   </NavItem>
                 )}
-
-                  <NavLink  className="mx-4" tag={RRNavLink} to="/create-enemy">
-                    Create Enemy
-                  </NavLink>
               </Nav>
             </Collapse>
-            <Button
+            <button
               color="primary"
               onClick={(e) => {
                 e.preventDefault();
@@ -59,13 +76,13 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
               }}
             >
               Logout
-            </Button>
+            </button>
           </>
         ) : (
           <Nav navbar>
             <NavItem>
               <NavLink tag={RRNavLink} to="/login">
-                <Button color="primary">Login</Button>
+                <button color="primary">Login</button>
               </NavLink>
             </NavItem>
           </Nav>

@@ -116,6 +116,94 @@ namespace Capstone_2.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Capstone_2.Models.Character", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AttackPower")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("BluntArmor")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("BluntPenetration")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Health")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("PiercingArmor")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PiercingPenetration")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SlashingArmor")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SlashingPenetration")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Characters");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AttackPower = 10,
+                            BluntArmor = 3,
+                            BluntPenetration = 7,
+                            Health = 50,
+                            Name = "Fighter",
+                            PiercingArmor = 3,
+                            PiercingPenetration = 6,
+                            SlashingArmor = 3,
+                            SlashingPenetration = 5,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AttackPower = 20,
+                            BluntArmor = 9,
+                            BluntPenetration = 1,
+                            Health = 100,
+                            Name = "Paladin",
+                            PiercingArmor = 9,
+                            PiercingPenetration = 1,
+                            SlashingArmor = 9,
+                            SlashingPenetration = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AttackPower = 5,
+                            BluntArmor = 1,
+                            BluntPenetration = 10,
+                            Health = 40,
+                            Name = "Thief",
+                            PiercingArmor = 2,
+                            PiercingPenetration = 10,
+                            SlashingArmor = 1,
+                            SlashingPenetration = 10,
+                            UserId = 1
+                        });
+                });
+
             modelBuilder.Entity("Capstone_2.Models.Enemy", b =>
                 {
                     b.Property<int>("Id")
@@ -124,10 +212,7 @@ namespace Capstone_2.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccuracyRating")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("BaseDamage")
+                    b.Property<int>("AttackPower")
                         .HasColumnType("integer");
 
                     b.Property<int>("BaseExperience")
@@ -146,17 +231,15 @@ namespace Capstone_2.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("DodgeRating")
-                        .HasColumnType("integer");
-
                     b.Property<int>("FireResist")
                         .HasColumnType("integer");
 
                     b.Property<int>("IceResist")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ImageId")
-                        .HasColumnType("integer");
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<List<int>>("ItemIds")
                         .HasColumnType("integer[]");
@@ -200,8 +283,6 @@ namespace Capstone_2.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ImageId");
-
                     b.HasIndex("UserProfileId");
 
                     b.ToTable("Enemies");
@@ -210,22 +291,20 @@ namespace Capstone_2.Migrations
                         new
                         {
                             Id = 1,
-                            AccuracyRating = 0,
-                            BaseDamage = 5,
+                            AttackPower = 5,
                             BaseExperience = 10,
-                            BaseHealth = 10,
+                            BaseHealth = 30,
                             BluntArmor = 0,
                             BluntDamage = true,
-                            Description = "A brown moving puddle that resembles a puddle of mud.",
-                            DodgeRating = 0,
+                            Description = "A muddy little earth elemental",
                             FireResist = 0,
                             IceResist = 0,
-                            ImageId = 1,
-                            ItemIds = new List<int> { 1, 2 },
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2Fmudling.png?alt=media&token=e88f74ca-310b-4d42-8bf2-8f659ce998cf",
+                            ItemIds = new List<int> { 2 },
                             LightningResist = 0,
-                            MaxGold = 0,
-                            MaxLevel = 3,
-                            MinGold = 0,
+                            MaxGold = 5,
+                            MaxLevel = 5,
+                            MinGold = 1,
                             MinLevel = 1,
                             Name = "Mudling",
                             PiercingArmor = 0,
@@ -233,178 +312,285 @@ namespace Capstone_2.Migrations
                             SlashingArmor = 0,
                             SlashingDamage = false,
                             UserId = 1
-                        });
-                });
-
-            modelBuilder.Entity("Capstone_2.Models.Image", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ImageLocation")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Images");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ImageLocation = "/public/assets/images/elementals/mudling/mudling.png"
                         },
                         new
                         {
                             Id = 2,
-                            ImageLocation = "/public/assets/images/elementals/waterling/waterling.png"
+                            AttackPower = 5,
+                            BaseExperience = 10,
+                            BaseHealth = 30,
+                            BluntArmor = 0,
+                            BluntDamage = false,
+                            Description = "An innocent looking grass elemental",
+                            FireResist = 0,
+                            IceResist = 0,
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2Fgrassling.png?alt=media&token=7bb90e0a-ca52-4c19-b67e-babe6681c157",
+                            ItemIds = new List<int> { 6 },
+                            LightningResist = 0,
+                            MaxGold = 5,
+                            MaxLevel = 5,
+                            MinGold = 1,
+                            MinLevel = 1,
+                            Name = "Grassling",
+                            PiercingArmor = 0,
+                            PiercingDamage = false,
+                            SlashingArmor = 0,
+                            SlashingDamage = true,
+                            UserId = 1
                         },
                         new
                         {
                             Id = 3,
-                            ImageLocation = "/public/assets/images/elementals/grassling/grassling.png"
+                            AttackPower = 5,
+                            BaseExperience = 10,
+                            BaseHealth = 30,
+                            BluntArmor = 0,
+                            BluntDamage = false,
+                            Description = "A harmless looking water elemental",
+                            FireResist = 0,
+                            IceResist = 0,
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2Fwaterling.png?alt=media&token=a752abdc-a38d-469f-9029-a05f3acbc565",
+                            ItemIds = new List<int> { 2 },
+                            LightningResist = 0,
+                            MaxGold = 5,
+                            MaxLevel = 5,
+                            MinGold = 1,
+                            MinLevel = 1,
+                            Name = "Waterling",
+                            PiercingArmor = 0,
+                            PiercingDamage = true,
+                            SlashingArmor = 0,
+                            SlashingDamage = false,
+                            UserId = 1
                         },
                         new
                         {
                             Id = 4,
-                            ImageLocation = "/public/assets/images/kobolds/kobold_child/kobold_child.png"
+                            AttackPower = 9,
+                            BaseExperience = 10,
+                            BaseHealth = 90,
+                            BluntArmor = 2,
+                            BluntDamage = false,
+                            Description = "An angry looking Gnoll",
+                            FireResist = 0,
+                            IceResist = 0,
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2F_496c9af9-a760-46b9-bf18-fd7014b94883.jpg?alt=media&token=8953b581-9615-4c8f-b11e-da010ffba5dd",
+                            ItemIds = new List<int> { 1 },
+                            LightningResist = 0,
+                            MaxGold = 12,
+                            MaxLevel = 10,
+                            MinGold = 4,
+                            MinLevel = 6,
+                            Name = "Gnoll Mage",
+                            PiercingArmor = 2,
+                            PiercingDamage = false,
+                            SlashingArmor = 2,
+                            SlashingDamage = true,
+                            UserId = 1
                         },
                         new
                         {
                             Id = 5,
-                            ImageLocation = "/public/assets/images/kobolds/kobold_archer/kobold_archer.png"
+                            AttackPower = 18,
+                            BaseExperience = 78,
+                            BaseHealth = 150,
+                            BluntArmor = 5,
+                            BluntDamage = false,
+                            Description = "A small Kobold",
+                            FireResist = 0,
+                            IceResist = 0,
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2F_7a867825-4cea-4ebc-8595-af8584818925.jpg?alt=media&token=1c37fb3b-1a7e-4a8d-8d45-5dcd4fff9991",
+                            ItemIds = new List<int> { 6 },
+                            LightningResist = 0,
+                            MaxGold = 26,
+                            MaxLevel = 15,
+                            MinGold = 12,
+                            MinLevel = 10,
+                            Name = "Kobold",
+                            PiercingArmor = 5,
+                            PiercingDamage = true,
+                            SlashingArmor = 5,
+                            SlashingDamage = true,
+                            UserId = 1
                         },
                         new
                         {
                             Id = 6,
-                            ImageLocation = "/public/assets/images/kobolds/kobold_scoundrel/kobold_scoundrel.png"
-                        });
-                });
-
-            modelBuilder.Entity("Capstone_2.Models.Item", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Items");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Sword"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Twohanded Sword"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Bow"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Fist Weapon"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Axe"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Leather Chest"
+                            AttackPower = 33,
+                            BaseExperience = 250,
+                            BaseHealth = 300,
+                            BluntArmor = 20,
+                            BluntDamage = true,
+                            Description = "A large Minotaur",
+                            FireResist = 0,
+                            IceResist = 0,
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2F_657577c4-8972-4639-8aff-fa94d3767f35.jpg?alt=media&token=6a5fe8bc-9790-4588-9bd7-e1cdd925bace",
+                            ItemIds = new List<int> { 8, 9, 10 },
+                            LightningResist = 0,
+                            MaxGold = 65,
+                            MaxLevel = 30,
+                            MinGold = 30,
+                            MinLevel = 20,
+                            Name = "Minotaur",
+                            PiercingArmor = 10,
+                            PiercingDamage = true,
+                            SlashingArmor = 10,
+                            SlashingDamage = true,
+                            UserId = 1
                         },
                         new
                         {
                             Id = 7,
-                            Name = "Potion"
+                            AttackPower = 27,
+                            BaseExperience = 200,
+                            BaseHealth = 230,
+                            BluntArmor = 0,
+                            BluntDamage = false,
+                            Description = "",
+                            FireResist = 0,
+                            IceResist = 0,
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2F_8a350560-8617-4f3c-baa3-b3d6b7191db7.jpg?alt=media&token=43fdecd8-f5ff-426e-a5f7-5a918d0392e8",
+                            ItemIds = new List<int> { 7 },
+                            LightningResist = 0,
+                            MaxGold = 45,
+                            MaxLevel = 25,
+                            MinGold = 22,
+                            MinLevel = 20,
+                            Name = "Orc Hunter",
+                            PiercingArmor = 7,
+                            PiercingDamage = true,
+                            SlashingArmor = 7,
+                            SlashingDamage = false,
+                            UserId = 1
                         },
                         new
                         {
                             Id = 8,
-                            Name = "Small Gem"
+                            AttackPower = 15,
+                            BaseExperience = 200,
+                            BaseHealth = 400,
+                            BluntArmor = 40,
+                            BluntDamage = true,
+                            Description = "",
+                            FireResist = 0,
+                            IceResist = 0,
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2F_e8af266a-749d-4b95-9673-336e05df4dcc.jpg?alt=media&token=4bc4d096-4287-4c29-a6d4-5e67741f463b",
+                            ItemIds = new List<int> { 1, 5, 8 },
+                            LightningResist = 0,
+                            MaxGold = 90,
+                            MaxLevel = 25,
+                            MinGold = 40,
+                            MinLevel = 20,
+                            Name = "Forest Dweller",
+                            PiercingArmor = 10,
+                            PiercingDamage = false,
+                            SlashingArmor = 10,
+                            SlashingDamage = false,
+                            UserId = 1
                         },
                         new
                         {
                             Id = 9,
-                            Name = "Dagger"
+                            AttackPower = 200,
+                            BaseExperience = 3750,
+                            BaseHealth = 4000,
+                            BluntArmor = 300,
+                            BluntDamage = true,
+                            Description = "",
+                            FireResist = 0,
+                            IceResist = 0,
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2F_324919a7-190f-4cc0-a8ee-b4678b6ac2f3.jpg?alt=media&token=a6284056-b304-4e12-8702-7f9ba7718132",
+                            ItemIds = new List<int> { 2, 22 },
+                            LightningResist = 0,
+                            MaxGold = 700,
+                            MaxLevel = 90,
+                            MinGold = 500,
+                            MinLevel = 80,
+                            Name = "Dragon",
+                            PiercingArmor = 200,
+                            PiercingDamage = true,
+                            SlashingArmor = 200,
+                            SlashingDamage = true,
+                            UserId = 1
                         },
                         new
                         {
                             Id = 10,
-                            Name = "Mudball"
+                            AttackPower = 7,
+                            BaseExperience = 35,
+                            BaseHealth = 60,
+                            BluntArmor = 1,
+                            BluntDamage = false,
+                            Description = "",
+                            FireResist = 0,
+                            IceResist = 0,
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2Fgiant%20rat.png?alt=media&token=d0ba98a3-ee93-48fa-b25a-d9b12e6e63a1",
+                            ItemIds = new List<int>(),
+                            LightningResist = 0,
+                            MaxGold = 12,
+                            MaxLevel = 10,
+                            MinGold = 7,
+                            MinLevel = 5,
+                            Name = "Giant Rat",
+                            PiercingArmor = 1,
+                            PiercingDamage = true,
+                            SlashingArmor = 1,
+                            SlashingDamage = true,
+                            UserId = 1
                         },
                         new
                         {
                             Id = 11,
-                            Name = "Fish"
+                            AttackPower = 9,
+                            BaseExperience = 70,
+                            BaseHealth = 90,
+                            BluntArmor = 5,
+                            BluntDamage = true,
+                            Description = "",
+                            FireResist = 0,
+                            IceResist = 0,
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2Fwild%20boar.png?alt=media&token=6aa861fc-ae0f-412d-aba8-812ffde7bad6",
+                            ItemIds = new List<int> { 5 },
+                            LightningResist = 0,
+                            MaxGold = 10,
+                            MaxLevel = 10,
+                            MinGold = 5,
+                            MinLevel = 6,
+                            Name = "Wild Boar",
+                            PiercingArmor = 0,
+                            PiercingDamage = true,
+                            SlashingArmor = 0,
+                            SlashingDamage = false,
+                            UserId = 1
                         },
                         new
                         {
                             Id = 12,
-                            Name = "Leather Trousers"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Name = "Plate Gauntlets"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Name = "Large Bone"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Name = "Small Bone"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Name = "Cape"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Name = "Small Key"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Name = "Fishing Rod"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            Name = "Bright Yellow Flower"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            Name = "Tome"
+                            AttackPower = 55,
+                            BaseExperience = 2100,
+                            BaseHealth = 1350,
+                            BluntArmor = 50,
+                            BluntDamage = false,
+                            Description = "",
+                            FireResist = 0,
+                            IceResist = 0,
+                            ImageUrl = "https://firebasestorage.googleapis.com/v0/b/capstone2-3243e.firebasestorage.app/o/uploads%2F_f4076778-abc0-4fec-8388-0a29374242ff.jpg?alt=media&token=e163475d-1ead-4ffa-9584-aac4f20d39ea",
+                            ItemIds = new List<int> { 7, 8, 21, 22 },
+                            LightningResist = 0,
+                            MaxGold = 250,
+                            MaxLevel = 80,
+                            MinGold = 100,
+                            MinLevel = 70,
+                            Name = "Forest Esper",
+                            PiercingArmor = 120,
+                            PiercingDamage = true,
+                            SlashingArmor = 120,
+                            SlashingDamage = true,
+                            UserId = 1
                         });
                 });
 
-            modelBuilder.Entity("EnemyItem", b =>
+            modelBuilder.Entity("Capstone_2.Models.EnemyItem", b =>
                 {
                     b.Property<int>("EnemiesId")
                         .HasColumnType("integer");
@@ -436,7 +622,136 @@ namespace Capstone_2.Migrations
                         });
                 });
 
-            modelBuilder.Entity("EnemyItem1", b =>
+            modelBuilder.Entity("Capstone_2.Models.Item", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Items");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Shortsword"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Claymore"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Longbow"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Great Axe"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Axe"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Leather Chestpiece"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Small Healing Potion"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Small Mana Potion"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Sharp Dagger"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Mudball"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Fish"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Leaf Perch"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Copper Ore"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Leather Trousers"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Plate Gauntlets"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "Large Bone"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "Small Bone"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "Cape"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Name = "Small Key"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Name = "Fishing Rod"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Name = "Pickle Lily"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Name = "Tome"
+                        });
+                });
+
+            modelBuilder.Entity("EnemyItem", b =>
                 {
                     b.Property<int>("EnemiesId")
                         .HasColumnType("integer");
@@ -448,7 +763,7 @@ namespace Capstone_2.Migrations
 
                     b.HasIndex("ItemsId");
 
-                    b.ToTable("EnemyItem1");
+                    b.ToTable("EnemyItem");
 
                     b.HasData(
                         new
@@ -595,13 +910,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a2576dd5-117a-47b6-b43f-21a234365997",
+                            ConcurrencyStamp = "f674c948-8c2f-4caa-a337-064d42f0cff5",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEOmrpigpAQmegklqkKiOkhYN67Z95VAkS5KjqWbT1KKKoS9E0YRqCgKVQFj02piaaQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDr7HwDRJ3WjfLYzxX1Vnkx46ZuQBSswGbObyLTQ55VIo5Ig14MFoiJrezEVtMThWw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6b341c6b-8367-448b-a8e2-3189e8816d6d",
+                            SecurityStamp = "fb429439-2bb3-4796-b430-5d018c477c29",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -609,13 +924,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d8d76512-74f1-43bb-b1fd-87d3a8aa36df",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "65c071cd-0298-4186-88f3-e1ed2957d4be",
+                            ConcurrencyStamp = "c59cb69f-1554-4d64-8c61-9c281e3681cb",
                             Email = "john@doe.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEEP4t+bqQEcaaHfitx7rU1LZnw8E61+iYQVOrBWBFp/wCUUV+Ro7/mzMPQOb31FgTQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOeERIwd3XX+gqlnLmE30yUnpXZ9jlEuApCWGjTeDTlpiS/32Qo0p+drTkfF4weXlg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "00643b83-ae6a-45b3-bb78-77ff19e3ff6e",
+                            SecurityStamp = "37f2372e-84d1-4178-a09b-3aef9c32c3c8",
                             TwoFactorEnabled = false,
                             UserName = "JohnDoe"
                         },
@@ -623,13 +938,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "a7d21fac-3b21-454a-a747-075f072d0cf3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2e3b2a98-f224-4cbb-8a0b-d4b33c056716",
+                            ConcurrencyStamp = "1541af62-5ee8-4b80-8358-92a3112ddc6e",
                             Email = "jane@smith.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEAIDvdHc9VNXLWz6e8q69gWaQWzsMYadLhRd5Vol/KpYjXn63un1NG80rUe0wgT6tA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAU9YpHbFiG1ca6I3z4aH1oFvwpa2rUW6RmAjdLDmSKzVbMOj8phvEMmKEaR0LsIEQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "28a73371-fe5b-42a7-930b-6aa5541689fb",
+                            SecurityStamp = "a99f5fb2-ef81-49e5-9d06-9f926f2c4d05",
                             TwoFactorEnabled = false,
                             UserName = "JaneSmith"
                         },
@@ -637,13 +952,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "c806cfae-bda9-47c5-8473-dd52fd056a9b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "23a341a6-eb95-4b43-8b72-bc06b539c0ac",
+                            ConcurrencyStamp = "8f120f0b-c6de-4d99-91ef-4b2eb04f1f5d",
                             Email = "alice@johnson.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEODomwV2YNO2DMkWUmc7r87KwAM4/wXdfnOTCwuc8ejn3delYJ17dlrKLFnwnmB78A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIo8bIZD4un/LFJkBus/IsPhq8hNCwNblSaSaWqF85YZMMfs1aNMUsue8Eu0NguTLQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "89717b0a-a84d-4a3d-ac20-40dafa87bee5",
+                            SecurityStamp = "2c0235bc-02ed-46cd-ad54-dced8a7d3a49",
                             TwoFactorEnabled = false,
                             UserName = "AliceJohnson"
                         },
@@ -651,13 +966,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "9ce89d88-75da-4a80-9b0d-3fe58582b8e2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cc0fdf8d-08ad-47c3-892f-45573c72937e",
+                            ConcurrencyStamp = "c6e2c593-e7a9-48de-a61e-0fa07563c1a5",
                             Email = "bob@williams.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAECqfTkQwRbjLWR0ywPdUJPDTEGkrFg4o7tQdTewEGN1LwmLwCqr5qUwefNNMM+xkdQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC7uB5X2TqTzkgS+85El9MKxrarAIBSM1Tk3Q94uF1F4PBTNGUMqzTa2+TPgHOeRFA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d56719f3-7ded-4073-ab7a-b682e7ee204e",
+                            SecurityStamp = "9d6ee5eb-dfb0-4769-a0cc-6c582115872b",
                             TwoFactorEnabled = false,
                             UserName = "BobWilliams"
                         },
@@ -665,13 +980,13 @@ namespace Capstone_2.Migrations
                         {
                             Id = "d224a03d-bf0c-4a05-b728-e3521e45d74d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cfaa717c-3b79-4b05-b010-a800e9f85225",
+                            ConcurrencyStamp = "db4dd824-9525-484b-bb59-41117769cc12",
                             Email = "Eve@Davis.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEJRiw2TDUKa0bzIlZwgrEYK50uK5ETOEvojgqcGR1L/cQ1wAVeegHUM/jDNnMhVC9w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELXqrjSnXVAglgv0C/wtZkzthHUk90X+xnjYWyCFFjvyXou/Zgdb1jZMRZGWoK8pCA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f11363d3-9bbd-477a-b240-1c394557982c",
+                            SecurityStamp = "39ff4205-91a5-432d-a34b-edcba7992763",
                             TwoFactorEnabled = false,
                             UserName = "EveDavis"
                         });
@@ -783,20 +1098,12 @@ namespace Capstone_2.Migrations
 
             modelBuilder.Entity("Capstone_2.Models.Enemy", b =>
                 {
-                    b.HasOne("Capstone_2.Models.Image", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Capstone2.Models.UserProfile", null)
                         .WithMany("Enemies")
                         .HasForeignKey("UserProfileId");
-
-                    b.Navigation("Image");
                 });
 
-            modelBuilder.Entity("EnemyItem", b =>
+            modelBuilder.Entity("Capstone_2.Models.EnemyItem", b =>
                 {
                     b.HasOne("Capstone_2.Models.Enemy", "Enemy")
                         .WithMany("EnemyItems")
@@ -815,7 +1122,7 @@ namespace Capstone_2.Migrations
                     b.Navigation("Item");
                 });
 
-            modelBuilder.Entity("EnemyItem1", b =>
+            modelBuilder.Entity("EnemyItem", b =>
                 {
                     b.HasOne("Capstone_2.Models.Enemy", null)
                         .WithMany()

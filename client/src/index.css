@@ -1,14 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+
+html, #root {
+  background: url('/assets/images/background/main background.png') no-repeat center fixed;
+  background-size: cover;
+  /* background-color: black; */
+}
+
 body {
+  background-size: contain; /* Ensures the entire image fits within the viewport */
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
+
 
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold !important;
+  font-family: 'Cinzel';
+  color: gold !important;
+}
+
+.card, p, a, li, ul, li
+{
+  font-family: 'Cinzel';
+  color: white;
+}
+/* .div.card-body {
+  background-image: url("/assets/images/background/element background/item container background 1.png");
+} */
+
+.gold {
+  color: gold;
+}
+
+
+
+form {
+  background-image: url("/assets/images/background/button background/button background.png");
+  color: gold;
+  font-family: "Cinzel";
+}
+
+.granite-background {
+  background-image: url("/assets/images/background/button background/button background.png");
+}
+.wood-background {
+  background-image: url("/assets/images/background/element background/item container background 1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.main-border {
+  background-image: url("/assets/images/border/message border 1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.welcome {
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  position: relative;
+}
+
+
+fieldset {
+  border: 8px ridge grey !important;
+}
+
+.card {
+  --bs-card-bg: none !important;
+}
+
+div.card {
+  /* border: 4px ridge rgb(134, 75, 26); */
+  border-radius: 0px;
+}
+
+
+legend {
+  color: gold;
+  font-weight: 900;
+}
+label {
+  color: gold;
+}
+
+.card.enemy-card {
+  color: red;
+  /* font-weight: bolder !important; */
+  border: 6px ridge black;
+  background-image: url("/assets/images/background/element background/item container background 1.png");
+  background-size: cover;
+}
+.enemy-list-background {
+  background-image: url("/assets/images/background/secondary background 2.jpg");
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card.enemy-card::before {
+  /* content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px; 
+  border-image-source: url('/public/assets/images/border/border 1.png');
+  border-image-slice: 50%; 
+  border-image-width: 50%;
+  border-image-outset: 20px; 
+  border-image-repeat: stretch; 
+  border-style: solid;
+  pointer-events: none;
+  z-index: 100; */
+}
+
+span {
+  color: white;
+}
+
+button {
+  color: rgb(255, 255, 255) !important;
+  background-image: url("/assets/images/background/button bg 4.jpg") !important;
+  font-family: "Cinzel" !important;
+  background-size: cover;
+  border: 3px ridge rgb(104, 104, 104);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:active {
+  border: 3px ridge rgb(71, 71, 71);
+}
+
+
+
+/* img {
+  border: 6px ridge grey;
+} */
+
+#damage-log {
+  border: 4px ridge grey;
+  background-color: rgb(38, 38, 38);
+}
+
+div.invalid-feedback {
+  font-weight: 900;
+  font-size: 20px
+}
+
+h5.card-title {
+  height: 50px;
+  margin: 0;
+  /* border: 4px outset grey; */
+}
+
+.p-combat {
+  margin: 0 !important;
+}
+
+.red {
+  color: red !important;
+}
+
+.light-blue {
+  color: lightBlue;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.modal-content {
+  background-image: url("/assets/images/background/button background/button background.png");
+}
+
+.modal-header .btn-close {
+  display: none;
+}
+
+.modal-header, .modal-footer {
+  --bs-modal-header-border-color: transparent !important;
+  --bs-modal-footer-border-color: transparent !important;
+}
+
+.card-body {
+  color: white !important;
+}
+

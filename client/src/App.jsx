@@ -12,6 +12,7 @@ function App() {
   useEffect(() => {
     // user will be null if not authenticated
     tryGetLoggedInUser().then((user) => {
+      console.log(user)
       setLoggedInUser(user);
     });
   }, []);

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { storage } from "./fireBase"; // Import Firebase storage
 import { ref, uploadBytes, getDownloadURL, listAll } from "firebase/storage";
-import { Button } from "reactstrap";
-import { fetchImages } from "../managers/imageManager";
+import { getEnemyImagesFirebase } from "../managers/imageManager";
 
 const App = () => {
   const [file, setFile] = useState(null);
@@ -29,12 +28,12 @@ const App = () => {
     }
   };
   const handleImagesSet = () => {
-    fetchImages().then(images => {
+    getEnemyImagesFirebase().then(images => {
       console.log(images)
     })
   }
 
-  // const fetchImages = async () => {
+  // const getEnemyImagesFirebase = async () => {
   //     const imagesRef = ref(storage, 'uploads/');
   //     try {
   //       const res = await listAll(imagesRef);
@@ -52,7 +51,7 @@ const App = () => {
 
   return (
     <div>
-      <Button onClick={handleImagesSet}>Set Images!</Button>
+      <button onClick={handleImagesSet}>Set Images!</button>
       <h1>Upload Image</h1>
       <input
         type="file"

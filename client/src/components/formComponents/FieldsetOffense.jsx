@@ -4,15 +4,10 @@ export const FieldsetOffense = ({ handleCheckbox, enemy, handleNumberInput }) =>
     return (
         <Card className="d-flex flex-column align-items-center">
             <fieldset>
-                <legend style={{textAlign: "center"}}>Offense</legend>
-                <FormGroup style={{margin: 0}}>
-                    <Label for="baseDamage">Base Damage</Label>
-                    <Input style={{maxWidth: "76px"}} type="number" name="baseDamage" id="baseDamage" onChange={handleNumberInput}  value={enemy.baseDamage} />
-                </FormGroup>
-
-                <FormGroup>
-                    <Label for="accuracyRating">Accuracy</Label>
-                    <Input style={{maxWidth: "76px"}} type="number" name="accuracyRating" id="accuracyRating" onChange={handleNumberInput}  value={enemy.accuracyRating} />
+                <legend style={{border: "4px outset grey", textAlign: "center"}}>Offense</legend>
+                <FormGroup className="d-flex flex-column align-items-center" style={{margin: 0}}>
+                    <Label for="attackPower">Attack Power</Label>
+                    <Input style={{maxWidth: "76px"}} type="number" name="attackPower" id="attackPower" onChange={handleNumberInput}  value={enemy.attackPower} />
                 </FormGroup>
 
                 <FormGroup check>

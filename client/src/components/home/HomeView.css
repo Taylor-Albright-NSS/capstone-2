@@ -1,3 +1,13 @@
 .border-thick {
     border-width: 8px !important
 }
+
+.translate-test {
+    border: 6px solid transparent;
+    transition: transform 0.5s, background-color 0.5s;
+}
+
+.translate-test:hover {
+    transform: scale(1, 2);
+    background-color: blue;
+}

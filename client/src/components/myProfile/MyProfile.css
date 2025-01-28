@@ -1,0 +1,9 @@
+.hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Define the hover state where the element "lifts" */
+  .hover:hover {
+    transform: translateY(-5px); /* Moves the element up by 5px */
+  }
