@@ -22,6 +22,7 @@ public class CharacterController : ControllerBase
         _dbContext = context;
         _mapper = mapper;
     }
+    
     [HttpGet("{id}")]
     public IActionResult Get(int id)
     {
