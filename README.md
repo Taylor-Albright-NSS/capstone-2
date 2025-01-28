@@ -2,7 +2,7 @@
 
 This is a support application used to create and store representations of enemies for my game, Galvadia. It allows me to create enemies and test their values for in-game scaling. It includes a combat simulator that tests an enemy's damage vs a player as well as a player's damage vs an enemy.
 
-### **PostgreSQL is needed to run this application!**
+### ** PostgreSQL is needed to run this application! **
 
 ## Table of Contents
 - [Installation](#installation)
