@@ -28,7 +28,7 @@ To run this project locally:
 ### Main Views:
 
 1. **Enemies**
-   ![Alt text](public/assets/images/screenshots/enemy_view.png)
+   ![Alt text](client/public/assets/images/screenshots/enemy_view.png)
    - You can view all created enemies in this view. 
 
 
