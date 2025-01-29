@@ -13,22 +13,23 @@ This is a support application used to create and store representations of enemie
 ## Installation
 
 To run this project locally:
-1. Clone the repository
-2. Cd into the capstone directory
-3. Run `npm install` to install dependencies
-4. To start the json-server, enter the command `json-server --watch -p 8088 database.json`. Be sure you are in the directory with the database.json file when running this command.
-5. To start the Vite development server, cd into the src folder and enter the command `npm run dev`
-6. Ctrl + click (for Windows) or copy the localhost server link from the terminal and paste into your browser (default url is http://localhost:5173/).
-7. Good to go!
+1. Clone the repository.
+2. Cd into the client directory.
+3. Run `npm install` to install dependencies.
+4. Run `npm run dev`. This will open a window in your browser. It will not be working until you complete the next step.
+5. Open a new terminal window and cd into the root folder.
+6. Start the development server through your debugger.
+7. Refresh your browser with the localhost url (localhost:5173 by default)
+8. Good to go!
+
 
 ## Features / How To Use
 
 ### Main Views:
 
-1. **All Items**
-   - You can view all created items on this page
-   - Clicking on an item will take you to its details view
-   - An item's details view will allow you to edit or delete the item
+1. **Enemies**
+   ![Alt text](public/assets/images/screenshots/enemy_view.png)
+   - You can view all created enemies in this view. 
 
 
 
