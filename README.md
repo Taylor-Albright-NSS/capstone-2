@@ -6,8 +6,7 @@ This is a support application used to create and store representations of enemie
 
 ## Table of Contents
 - [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
+- [Features / How To Use](#features)
 - [Technologies Used](#technologies-used)
 
 ## Installation
