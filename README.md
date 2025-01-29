@@ -35,13 +35,22 @@ This is a support application used to create and store representations of enemie
 
    
    <img src="client/public/assets/images/screenshots/enemy_view.png" alt="enemy view screenshot" width="400" />
+   
    - You can view all created enemies in this view.
    - You can select any enemy by clicking on its portrait
    - Only administrators can edit or delete an enemy
-3. **Enemy Details**
+
+     
+2. **Enemy Details**
 
    
    <img src="client/public/assets/images/screenshots/enemy_details_view.png" alt="enemy details screenshot" width="400" />
+
+   - You can view an enemies details here. Once you select a character from the My Profile view, you can interact with the combat simulator.
+  
+3. **Create Enemy**
+
+   <img src="client/public/assets/images/screenshots/create_enemy_view.png" alt="enemy details screenshot" width="400" />
 
 
 
