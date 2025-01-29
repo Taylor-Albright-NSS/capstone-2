@@ -1,5 +1,8 @@
 # Capstone: Galvadia Enemy Compendium
 
+
+   <img src="client/public/assets/images/screenshots/home_view.png" alt="home view screenshot" width="400" />
+
 This is a support application used to create and store representations of enemies for my game, Galvadia. It allows me to create enemies and test their values for in-game scaling. It includes a combat simulator that tests an enemy's damage vs a player as well as a player's damage vs an enemy.
 
 ### ** PostgreSQL is needed to run this application! **
