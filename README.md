@@ -85,3 +85,6 @@ This is a support application used to create and store representations of enemie
 ### Libraries
 1. React
 2. Reactstrap
+
+### Backend Services
+1. Firebase
