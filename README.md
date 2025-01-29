@@ -32,11 +32,15 @@ This is a support application used to create and store representations of enemie
 ### Main Views:
 
 1. **Enemies**
+
+   
    <img src="client/public/assets/images/screenshots/enemy_view.png" alt="enemy view screenshot" width="400" />
    - You can view all created enemies in this view.
    - You can select any enemy by clicking on its portrait
    - Only administrators can edit or delete an enemy
-2. **Enemy Details**
+3. **Enemy Details**
+
+   
    <img src="client/public/assets/images/screenshots/enemy_details_view.png" alt="enemy details screenshot" width="400" />
 
 
