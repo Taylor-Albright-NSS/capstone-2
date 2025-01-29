@@ -48,13 +48,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
                     <NavLink  className="mx-4" tag={RRNavLink} to="/myprofile">
                       My Profile
                     </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink  className="mx-4" tag={RRNavLink} to="/testing">
-                      Testing
-                    </NavLink>
-                  </NavItem>
-                
+                  </NavItem>                
                 {loggedInUser.roles.includes("Admin") && (
                   <NavItem className="mx-4">
                     <NavLink tag={RRNavLink} to="/admin">
