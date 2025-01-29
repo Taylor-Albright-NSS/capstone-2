@@ -26,6 +26,7 @@ This is a support application used to create and store representations of enemie
 ### Main Views:
 
 1. **Enemies**
+   <img src="client/public/assets/images/screenshots/enemy_view.png" alt="enemy view screenshot" width="400"/>
    ![Alt text](client/public/assets/images/screenshots/enemy_view.png)
    - You can view all created enemies in this view. 
 
