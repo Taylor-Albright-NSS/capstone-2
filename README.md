@@ -64,7 +64,7 @@ This is a support application used to create and store representations of enemie
 
 5. **Combat Simulator**
 
-      <img src="client/public/assets/images/screenshots/combat_simulator_view.png" alt="combat simulator screenshot" width="400" />
+      <img src="client/public/assets/images/screenshots/simulator_view.png" alt="combat simulator screenshot" width="400" />
 
    - This is where you can test enemy damage vs a player and a player's damage vs an enemy. All calculations are based on the stats of each player and enemy. Armor and armor penetration are taken into consideration when calculating the damage and amount blocked. The exact formula can be found in the code.
 
