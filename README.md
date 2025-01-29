@@ -66,4 +66,16 @@ This is a support application used to create and store representations of enemie
       <img src="client/public/assets/images/screenshots/simulator_view.png" alt="combat simulator screenshot" width="400" />
 
    - This is where you can test enemy damage vs a player and a player's damage vs an enemy. All calculations are based on the stats of each player and enemy. Armor and armor penetration are taken into consideration when calculating the damage and amount blocked. The exact formula can be found in the code.
+  
+## Technologies
+
+### Languages
+1. JavaScript
+2. C#
+3. CSS
+
+### Frameworks
+1. React
+2. .NET
+3. Bootstrap
 
