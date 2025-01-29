@@ -10,7 +10,7 @@ This is a support application used to create and store representations of enemie
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 
-## InstallationTo run this project locally:
+## Installation To run this project locally:
 1. Clone the repository.
 2. Cd into the client directory.
 3. Run `npm install` to install dependencies.
