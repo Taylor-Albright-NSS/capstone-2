@@ -72,7 +72,7 @@ This is a support application used to create and store representations of enemie
 ### Languages
 1. JavaScript
 2. C#
-3. CSS (Bootstrap/Reactstrap)
+3. CSS
 
 ### Frameworks
 1. .NET
