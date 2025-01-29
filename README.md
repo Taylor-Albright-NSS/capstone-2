@@ -6,7 +6,7 @@ This is a support application used to create and store representations of enemie
 
 ## Table of Contents
 - [Installation](#installation)
-- [Features / How To Use](#features-how-to-use)
+- [Features / How To Use](#features/how-to-use)
 - [Technologies Used](#technologies-used)
 
 ## Installation
@@ -20,7 +20,7 @@ This is a support application used to create and store representations of enemie
 8. Good to go!
 
 
-## Features How To Use
+## Features/How To Use
 
 1. **Logging in**
    - You can create your own account by registering, however, only the administrator has admin privileges. Once you create your own account, you can log in with the administrator account and promote yourself to admin through the Admin panel (linked at the top in the navbar).
