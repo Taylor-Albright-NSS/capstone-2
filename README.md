@@ -72,10 +72,13 @@ This is a support application used to create and store representations of enemie
 ### Languages
 1. JavaScript
 2. C#
-3. CSS
+3. CSS (Bootstrap/Reactstrap)
 
 ### Frameworks
-1. React
-2. .NET
+1. .NET
+2. Entity Framework Core
 3. Bootstrap
 
+### Libraries
+1. React
+2. Reactstrap
