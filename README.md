@@ -67,7 +67,7 @@ This is a support application used to create and store representations of enemie
 
    - This is where you can test enemy damage vs a player and a player's damage vs an enemy. All calculations are based on the stats of each player and enemy. Armor and armor penetration are taken into consideration when calculating the damage and amount blocked. The exact formula can be found in the code.
   
-## Technologies
+## Technologies Used
 
 ### Languages
 1. JavaScript
