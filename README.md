@@ -26,15 +26,18 @@ This is a support application used to create and store representations of enemie
 1. **Logging in**
    - You can create your own account by registering, however, only the administrator has admin privileges. Once you create your own account, you can log in with the administrator account and promote yourself to admin through the Admin panel (linked at the top in the navbar)
    - To log in as the default administrator, use these credentials:
-     Email: admina@strator.comx
-     Password: password
+   - Email: admina@strator.comx
+   - Password: password
 
 ### Main Views:
 
 1. **Enemies**
-   <img src="client/public/assets/images/screenshots/enemy_view.png" alt="enemy view screenshot" width="400"/>
+   <img src="client/public/assets/images/screenshots/enemy_view.png" alt="enemy view screenshot" width="400" />
    - You can view all created enemies in this view.
-   - You can select any 
+   - You can select any enemy by clicking on its portrait
+   - Only administrators can edit or delete an enemy
+2. **Enemy Details**
+   <img src="client/public/assets/images/screenshots/enemy_details_view.png" alt="enemy details screenshot" width="400" />
 
 
 
