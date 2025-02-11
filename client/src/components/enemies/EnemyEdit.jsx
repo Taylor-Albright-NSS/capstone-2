@@ -1,9 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { Form, FormGroup, Input, Label, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { UserContext } from "../ApplicationViews";
 import { getEnemyForEdit, putEnemy } from "../../managers/enemyManager";
 import { getItems } from "../../managers/itemManager";
-import { getEnemyImages } from "../../managers/imageManager";
 import { getEnemyImagesFirebase } from "../../managers/imageManager";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { FormMain } from "../formComponents/_FormMain";

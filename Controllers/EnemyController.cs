@@ -26,6 +26,7 @@ public class EnemyController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
+        Console.WriteLine("All enemies called");
         return Ok(_dbContext.Enemies.ProjectTo<EnemyDTO>(_mapper.ConfigurationProvider));
     }
 
@@ -40,7 +41,10 @@ public class EnemyController : ControllerBase
         {
             return NotFound(new {Message = "User does not have any enemies created"});
         }
-
+        foreach (var enemy in userEnemies)
+        {
+            Console.WriteLine($"{enemy.Name} is in user's list");
+        }
         return Ok(userEnemies);
     }
 

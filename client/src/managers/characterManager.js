@@ -1,5 +1,19 @@
 const api_url = "/api/character"
 
+export const testGetCharacters = async () => {
+    try {
+        const response = await fetch(`${api_url}`)
+        if (!response.ok) {
+            throw new Error(`An error has occurred`)
+        }
+        const data = await response.json()
+        return data
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 export const getCharacters = async (userId) => {
     try {
         const response = await fetch(`${api_url}/${userId}`)

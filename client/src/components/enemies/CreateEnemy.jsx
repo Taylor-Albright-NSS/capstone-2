@@ -45,17 +45,10 @@ export const CreateEnemy = () => {
 
     useEffect(() => {
         getItems().then(itemList => {
-            console.log(itemList, ' Items list')
             setItems(itemList)
         })
     }, [])
 
-    // useEffect(() => {
-    //     getEnemyImagesFirebase().then(imageList => {
-    //         console.log(imageList, 'Images list')
-    //         setImages(imageList)
-    //     })
-    // }, [])
     useEffect(() => {
         getEnemyImagesFirebase().then(imageList => {
             setImages(imageList)
@@ -108,10 +101,8 @@ export const CreateEnemy = () => {
 
     const handleNumberInput = (e) => {
         let {name, value} = e.target
-        console.log(value, "value")
         if (isNaN(value) || !value) {value = 0}
         if (value < 0 || value > 9999) { // Example limit
-            console.log('Value cannot be less than 0 or greater than 9999')
             return
         } 
         if (name == "minLevel") {

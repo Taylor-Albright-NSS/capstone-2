@@ -4,7 +4,7 @@ public class CharacterDTO
 {
     public int Id { get; set; }
     public int UserId { get; set; }
-    public string Name { get; set; }
+    public string Name { get; set; } = "No Name";
     public int Health { get; set; }
     public int AttackPower { get; set; }
     public int SlashingArmor { get; set; }

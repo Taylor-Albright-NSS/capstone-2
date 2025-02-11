@@ -1,7 +1,18 @@
-import { Card, CardImg, Col, Container, Row } from "reactstrap";
+import { Button, Card, CardImg, Col, Container, Row } from "reactstrap";
 import "./HomeView.css"
+import { useState } from "react";
+import { testGetCharacters } from "../../managers/characterManager";
 
 export const HomeView = () => {
+    const [characters, setCharacters] = useState([])
+
+    const handleTestGetCharacters = () => {
+        testGetCharacters().then(charList => {
+            console.log(charList)
+            setCharacters(charList)
+        })    
+    }
+
     return (
         <Container>
             <Row>

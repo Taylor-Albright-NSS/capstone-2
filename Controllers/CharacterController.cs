@@ -6,6 +6,7 @@ using Capstone_2.Models.DTO;
 using Capstone2.Data;
 using Capstone_2.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Capstone_2.Controllers;
 
@@ -14,7 +15,7 @@ namespace Capstone_2.Controllers;
 
 public class CharacterController : ControllerBase
 {
-    private Capstone2DbContext _dbContext;
+    private readonly Capstone2DbContext _dbContext;
     private readonly IMapper _mapper;
 
     public CharacterController(Capstone2DbContext context, IMapper mapper)
@@ -23,6 +24,14 @@ public class CharacterController : ControllerBase
         _mapper = mapper;
     }
     
+    [HttpGet("test")]
+    public IActionResult TestGet()
+    {
+        Console.WriteLine($"");
+        var characters = _dbContext.Characters.ProjectTo<CharacterDTO>(_mapper.ConfigurationProvider);
+        return Ok(characters);
+    }
+
     [HttpGet("{id}")]
     public IActionResult Get(int id)
     {

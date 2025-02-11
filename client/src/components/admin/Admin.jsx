@@ -18,37 +18,6 @@ export const Admin = () => {
         console.log(selectedUser)
     }, [selectedUser])
 
-    const handleUserSelect = (e) => {
-        const optionValue = e.target.value
-        const chosenUser = users.find(user => user.firstName == optionValue)
-        const baseUser = {
-            id: chosenUser.id,
-            firstName: chosenUser.firstName,
-            lastName: chosenUser.lastName,
-            userName: chosenUser.userName,
-            email: chosenUser.email,
-            roles: chosenUser.roles,
-            imageLocation: "none",
-            identityUserId: chosenUser.identityUserId
-        }
-        setSelectedUser(baseUser)
-    }
-
-    const handleCheckbox = (e) => {
-        if (!selectedUser.roles.includes("Admin")) {
-            setSelectedUser({ 
-                ...selectedUser, 
-                roles: [...selectedUser.roles, "Admin"]
-            });
-        } else {
-            const updatedUserRoles = selectedUser.roles.filter(role => role != "Admin")
-            setSelectedUser({
-                ...selectedUser,
-                roles: updatedUserRoles
-            })
-        }
-    };
-
     const handleDemote = (user) => {
         if (user.identityUserId == "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f") {
             alert("Main Admin cannot be demoted")
@@ -82,12 +51,6 @@ export const Admin = () => {
                 <h2 style={{border: "6px outset grey", padding: "0.5rem"}}>Admin Panel</h2>
                 <span className="d-flex my-4">
                     <FormGroup>
-                        {/* <Input style={{minWidth: "180px"}} type="select" value={selectedUser?.firstName} onChange={handleUserSelect}>
-                        <option>Select a user</option>
-                        {users?.map(user => {
-                            return <option key={user.id}>{user.firstName}</option>
-                        })}
-                        </Input> */}
                         <ul style={{padding: 0, maxHeight: "100%", overflow: "hidden", overflowY: "auto", minWidth: "220px"}}>
                         {users?.map(user => {
                             return (
@@ -101,7 +64,6 @@ export const Admin = () => {
                                 </>
                             )
                         })}
-
                         </ul>
                     </FormGroup>
                 </span>
