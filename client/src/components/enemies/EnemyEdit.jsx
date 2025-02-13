@@ -39,7 +39,6 @@ export const EnemyEdit = () => {
     const [images, setImages] = useState([])
     const [items, setItems] = useState([])
     const [enemyImage, setEnemyImage] = useState({})
-
     const [originalEnemy, setOriginalEnemy] = useState({})
 
     const [isOpen, setIsOpen] = useState(false);

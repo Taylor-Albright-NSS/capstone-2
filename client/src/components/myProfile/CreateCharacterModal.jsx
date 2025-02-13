@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter, Card, Input, Form, Container } from "reactstrap"
+import { FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter, Input, Form, Container } from "reactstrap"
 import { UserContext } from "../ApplicationViews";
 import { postCharacter } from "../../managers/characterManager";
 import { getCharacters } from "../../managers/characterManager";

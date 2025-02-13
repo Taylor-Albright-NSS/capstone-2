@@ -91,3 +91,20 @@ export const getUserEnemies = async (userId) => {
         throw error
     }
 }
+
+export const getEnemiesByFilter = async (letters) => {
+    if (letters === "") {return}
+    try {
+        const response = await fetch(`${api_url}/byfilter?letters=${letters}`)
+        console.log(response)
+        if (!response.ok) {
+            throw new Error(`Response is not ok`)
+        }
+        const data = await response.json()
+        return data
+
+    } catch(error) {
+        console.error(`${error}`)
+    }
+
+}

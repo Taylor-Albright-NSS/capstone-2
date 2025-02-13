@@ -1,6 +1,6 @@
 import { FormGroup, Label, Input, Card } from "reactstrap"
 
-export const Fieldset1 = ({ enemy, handleTextInput, handleNumberInput, handlePositionLogging }) => {
+export const Fieldset1 = ({ enemy, handleTextInput}) => {
 
 
     return (

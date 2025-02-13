@@ -34,7 +34,6 @@ export default function Register({ setLoggedInUser }) {
       for (const prop in newUser) {
         if (newUser[prop]?.length < 1 || !newUser[prop]?.trim() || newUser[prop] == null) {
           alert("All fields must be filled out")
-          console.log("MUST BE VALID")
           return
         }
       }

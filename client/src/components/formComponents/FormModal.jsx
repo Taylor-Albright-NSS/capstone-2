@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter, Card, Input } from "reactstrap"
 
 
-export const FormModal = ({ setEnemyImage, enemyImage, setEnemy, enemy, setImages, images, handleTextInput }) => {
+export const FormModal = ({ setEnemy, enemy, images }) => {
     const [selectedImage, setSelectedImage] = useState("")
     const [isOpen, setIsOpen] = useState(false);
     const toggleModal = () => setIsOpen(!isOpen);

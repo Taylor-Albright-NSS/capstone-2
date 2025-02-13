@@ -1,4 +1,4 @@
-import { FormGroup, Label, Input, Card, Row, Col } from "reactstrap"
+import { FormGroup, Label, Input, Card } from "reactstrap"
 
 export const FieldsetOffense = ({ handleCheckbox, enemy, handleNumberInput }) => {
     return (

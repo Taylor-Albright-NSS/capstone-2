@@ -1,4 +1,4 @@
-import { Button, Card, CardImg, Col, Container, Row } from "reactstrap";
+import { Card, CardImg, Col, Container, Row } from "reactstrap";
 import "./HomeView.css"
 import { useState } from "react";
 import { testGetCharacters } from "../../managers/characterManager";

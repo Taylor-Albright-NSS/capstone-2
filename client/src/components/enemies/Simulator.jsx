@@ -1,22 +1,13 @@
 import { useEffect, useState } from "react"
-import { Card, CardBody, CardColumns, CardGroup, CardText, CardTitle, Col, Container, Row } from "reactstrap";
+import { Card, CardBody, CardText, Col, Container, Row } from "reactstrap";
 import { getEnemy } from "../../managers/enemyManager";
 import { useParams } from "react-router-dom";
 import './Simulator.css'
-import { app } from "../../firebase/fireBase";
-import App from "../../firebase/FirebaseUploadUI";
 import { UserContext } from "../ApplicationViews";
 import { useContext } from "react";
 
 export const Simulator = () => {
     const { selectedCharacter } = useContext(UserContext)
-    const simEnemyBase = {
-        baseHealth: 1000,
-        attackPower: 9,
-        slashingArmor: 5,
-        piercingArmor: 10,
-        bluntArmor: 20,
-    }
     const [enemy, setEnemy] = useState({})
     const [simEnemy, setSimEnemy] = useState({})
     const [player, setPlayer] = useState({})
@@ -40,20 +31,15 @@ export const Simulator = () => {
         return Math.floor(Math.random() * (max + 1 - min) + min)
      }
 
-    //base variables
     const scalingFactor = 1
     const { attackPower } = enemy || 0
     const { baseExperience } = enemy || 0
     const { baseHealth } = enemy || 0
     const { actualLevel } = enemy || 0
     const { minLevel } = enemy || 0
-    const { maxLevel } = enemy || 0
     const { slashingArmor } = enemy || 0
     const { piercingArmor } = enemy || 0
     const { bluntArmor } = enemy || 0
-    // const { fireResist } = enemy || 0
-    // const { iceResist } = enemy || 0
-    // const { lightningResist } = enemy || 0
     
     const damageMultiplier = 1.0 + (actualLevel - minLevel) * 0.1
     //variables to interpolate
@@ -135,7 +121,6 @@ export const Simulator = () => {
         damageObject.rawDamage = randomNumberRange(damageObject.lowDamage, damageObject.topDamage)
         damageObject.enemyArmorAfterPenetration = Math.max(simEnemy[armorType] - simPlayer[penetrationType], 0)
         damageObject.actualDamage = Math.max(Math.floor((damageObject.rawDamage - damageObject.enemyArmorAfterPenetration) * (1000 / (1000 + damageObject.enemyArmorAfterPenetration))), 0)
-        console.log(damageObject)
         return damageObject
     }
     const simulatePlayerHit = (armorType, penetrationType) => {
@@ -180,22 +165,6 @@ export const Simulator = () => {
     const handleLogReset = () => {
         const combatLog = document.getElementById('damage-log')
         combatLog.textContent = ''
-    }
-
-    const [isMoved, setIsMoved] = useState(false)
-    function toggleSlide() {
-        const slidingElement = document.querySelector("#test");
-        // slidingElement.classList.toggle('slide-content')
-        if (isMoved) {
-            slidingElement.style.transform = 'translate(0, 0)'
-        } else {
-            slidingElement.style.transform = 'translate(100%, 0)'
-        }
-        setIsMoved(!isMoved)
-        // const isMoved = slidingElement.style.transform === 'translate(100%, 0)';
-        // slidingElement.style.transform = isMoved ? 'translate(0, 0)' : 'translate(100%, 0)';
-
-
     }
 
     return (

@@ -1,15 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { deleteEnemy, getEnemies, getEnemy } from "../../managers/enemyManager";
-import { Card, CardBody, CardImg, CardText, Col, Container, Row } from "reactstrap";
-import { getItems } from "../../managers/itemManager";
+import { deleteEnemy, getEnemy } from "../../managers/enemyManager";
+import { Card, CardBody, Col, Container, Row } from "reactstrap";
 import { Simulator } from "./Simulator";
 import { UserContext } from "../ApplicationViews";
 
 export const EnemyDetails = () => {
     const [enemy, setEnemy] = useState()
     const { id } = useParams()
-    console.log(id)
     const navigate = useNavigate()
     
     const { loggedInUser } = useContext(UserContext)
@@ -18,7 +16,6 @@ export const EnemyDetails = () => {
     
     useEffect(() => {
         getEnemy(id).then(enemy => {
-            console.log(enemy)
             setEnemy(enemy)
         })
     }, [id])
@@ -30,7 +27,6 @@ export const EnemyDetails = () => {
     }, [location])
 
     useEffect(() => {
-        console.log(location, " LOCAION")
     }, [location])
 
 
@@ -125,7 +121,7 @@ export const EnemyDetails = () => {
                                     <h6 style={{textAlign: "center"}}>Description</h6>
                                     <Card style={{maxWidth: "400px", minWidth: "200px", height: "100px", border: "4px ridge grey", marginBottom: "1rem"}}>
                                         <CardBody style={{overflow: "hidden", overflowY: "auto", textIndent: "20px"}}>
-                                        {enemy?.description || "This is an enemy that has not yet been given a description"}
+                                        {enemy?.description || "This enemy was not given a description"}
                                         </CardBody>
                                     </Card>
                                 </span>

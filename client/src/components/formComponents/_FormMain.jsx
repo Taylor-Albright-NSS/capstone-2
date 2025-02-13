@@ -59,7 +59,6 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
                         <button style={{maxWidth: "300px"}}>Create Enemy</button>
                         :
                         <>
-                        <button style={{maxWidth: "200px"}}>Confirm Edits</button>
                         <button style={{maxWidth: "200px"}} onClick={(e) => {
                             e.preventDefault()
                             if (from) {
@@ -69,6 +68,7 @@ export const FormMain = ({handleSubmit, setEnemy, enemy, setImages, images, hand
                                 navigate("/enemy-list")
                             }
                             }}>Back</button>
+                        <button style={{maxWidth: "200px"}}>Confirm Edits</button>
                         </>
                     }
                     </Row>

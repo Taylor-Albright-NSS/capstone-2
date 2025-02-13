@@ -13,7 +13,6 @@ export const EnemyCard = ({ enemy, setEnemies }) => {
     const handleEnemyDelete = () => {
         deleteEnemy(id, userId).then(() => {
             getEnemies().then(updatedEnemies => {
-                console.log(updatedEnemies, " UPDATED ENEMIES")
                 setEnemies(updatedEnemies)
             })
         })

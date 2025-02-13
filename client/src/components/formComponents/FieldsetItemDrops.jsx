@@ -1,6 +1,6 @@
-import { FormGroup, Label, Input, Col, Row, Card } from "reactstrap"
+import { FormGroup, Label, Input } from "reactstrap"
 
-export const FieldsetItemDrops = ({ handleItemDropsChange, items, handleNumberInput, enemy }) => {
+export const FieldsetItemDrops = ({ handleItemDropsChange, items, enemy }) => {
     return (
         <fieldset>
             <legend style={{border: "4px outset grey", textAlign: "center"}}>Item Drops</legend>

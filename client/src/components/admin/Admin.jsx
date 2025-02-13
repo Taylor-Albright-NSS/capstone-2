@@ -10,12 +10,10 @@ export const Admin = () => {
     useEffect(() => {
         getProfiles().then(userArray => {
             setUsers(userArray)
-            console.log(userArray)
         })
     }, [selectedUser])
 
     useEffect(() => {
-        console.log(selectedUser)
     }, [selectedUser])
 
     const handleDemote = (user) => {

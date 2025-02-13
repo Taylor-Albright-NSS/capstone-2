@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { Card, CardBody, CardHeader, CardText, Col, Container, Input, Row } from "reactstrap"
+import { Card, CardBody, CardText, Col, Container, Input, Row } from "reactstrap"
 import { UserContext } from "../ApplicationViews"
 import { getUserEnemies } from "../../managers/enemyManager"
 import "./MyProfile.css"

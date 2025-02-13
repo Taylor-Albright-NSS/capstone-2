@@ -1,23 +1,18 @@
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../ApplicationViews";
+import { useEffect, useState } from "react";
 import { Col, Container, Input, Row } from "reactstrap";
 import { getEnemies } from "../../managers/enemyManager";
 import { EnemyCard } from "./EnemyCard";
-import { useLocation } from "react-router-dom";
+import { getEnemiesByFilter } from "../../managers/enemyManager";
 
 export const EnemyList = () => {
     const [enemies, setEnemies] = useState([]);
     const [filteredEnemies, setFilteredEnemies] = useState([]);
     const [minLevelFilter, setMinLevelFilter] = useState(1)
     const [searchString, setSearchString] = useState("")
-
-    const { loggedInUser } = useContext(UserContext)
-
-
+    const [isSearchPaused, setIsSearchPaused] = useState(false)
 
     useEffect(() => {
         getEnemies().then(enemyList => {
-            console.log(enemyList)
             setEnemies(enemyList)
         })
     }, [])
@@ -31,7 +26,6 @@ export const EnemyList = () => {
 
     const filterByLevel = (e) => {
         let targetLevel = parseInt(e.target.value)
-        console.log(targetLevel, " target level")
         if (isNaN(targetLevel) || !targetLevel) {targetLevel = 1}
         if (targetLevel <= 0) {
             return
@@ -43,13 +37,17 @@ export const EnemyList = () => {
         }
     }
 
-    const filterByName = (e) => {
+    const filterByName = async (e) => {
         const searchInput = e.target.value.toLowerCase()
+        console.log(filteredEnemies)
         setSearchString(searchInput)
-        console.log(searchInput)
-        console.log(enemies)
-        const filteredEnemies = enemies.filter(enemy => enemy.name.toLowerCase().includes(searchInput))
-        setFilteredEnemies(filteredEnemies)
+        
+        setTimeout(async () => {
+            const filteredEnemies = await getEnemiesByFilter(searchInput)
+            const setThis = searchInput === "" ? enemies : filteredEnemies
+            setFilteredEnemies(setThis)
+
+        }, 500)
     }
 
     return (

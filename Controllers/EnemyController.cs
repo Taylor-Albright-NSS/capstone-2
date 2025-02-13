@@ -211,4 +211,19 @@ public class EnemyController : ControllerBase
         _dbContext.SaveChanges();
         return Ok(new { Message = "Custom message: Enemy was changed successfully"});
     }
+
+    [HttpGet("byfilter")]
+    public IActionResult GetByFilter(string letters)
+    {
+        var enemies = _dbContext.Enemies
+        .Where(enemy => enemy.Name.ToLower().Contains(letters))
+        .ProjectTo<EnemyDTO>(_mapper.ConfigurationProvider);
+
+        if (enemies == null)
+        {
+            return NotFound(new {Message = $"Converted letters: '{letters}'"});
+        }
+
+        return Ok(enemies);
+    }
 }
