@@ -12,7 +12,6 @@ namespace Capstone_2.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-
 public class EnemyController : ControllerBase
 {
     private Capstone2DbContext _dbContext;
@@ -227,3 +226,5 @@ public class EnemyController : ControllerBase
         return Ok(enemies);
     }
 }
+
+

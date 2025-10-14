@@ -20,8 +20,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
   return (
     <div>
       <Navbar color="light" light fixed="true" expand="lg">
-        <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
-        </NavbarBrand>
+        <NavbarBrand className="mr-auto" tag={RRNavLink} to="/" />
         {loggedInUser ? (
           <>
             <NavbarToggler onClick={toggleNavbar} />

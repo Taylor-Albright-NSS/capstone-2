@@ -27,7 +27,6 @@ public class CharacterController : ControllerBase
     [HttpGet("test")]
     public IActionResult TestGet()
     {
-        Console.WriteLine($"");
         var characters = _dbContext.Characters.ProjectTo<CharacterDTO>(_mapper.ConfigurationProvider);
         return Ok(characters);
     }

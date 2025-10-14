@@ -9,11 +9,11 @@ export const EnemyDetails = () => {
     const [enemy, setEnemy] = useState()
     const { id } = useParams()
     const navigate = useNavigate()
+    const [currentLocation, setCurrentLocation] = useState()
     
     const { loggedInUser } = useContext(UserContext)
     const userId = loggedInUser.id
 
-    
     useEffect(() => {
         getEnemy(id).then(enemy => {
             setEnemy(enemy)
@@ -21,14 +21,9 @@ export const EnemyDetails = () => {
     }, [id])
 
     const location = useLocation()
-    const [currentLocation, setCurrentLocation] = useState()
     useEffect(() => {
         setCurrentLocation(location)
     }, [location])
-
-    useEffect(() => {
-    }, [location])
-
 
     const handleEnemyDelete = () => {
         deleteEnemy(id, userId).then(() => {

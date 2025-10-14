@@ -23,12 +23,6 @@ public class AutoMapperProfiles : Profile
 
         CreateMap<Enemy, EnemyDTO>()
             .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));
-
-        // CreateMap<Enemy, EnemyDTO>()
-        //     .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Image));
-        // CreateMap<EnemyDTO, Enemy>()
-        //     .ForMember(dest => dest.Image, opt => opt.Ignore());
-
         CreateMap<Item, ItemDTO>()
             .ForMember(dest => dest.Enemies, opt => opt.MapFrom(src => src.Enemies));
         CreateMap<ItemDTO, Item>()
